@@ -17,8 +17,9 @@ if (!firebase.apps.length) {
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// Admin email (hard-coded)
-const ADMIN_EMAIL = 'rrenomeronjr@gmail.com';
+// Admin emails (array for multi-admin support)
+const ADMIN_EMAILS = ['rrenomeronjr@gmail.com', 'rrjrenomeron@mlgcl.edu.ph'];
+const ADMIN_EMAIL = ADMIN_EMAILS[0]; // backward compat
 
 // Module definitions
 const MODULES = [

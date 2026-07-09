@@ -82,23 +82,26 @@ To secure your students' quiz grades and profiles, publish these security rules:
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Users can read/write their own profile doc
+    // Helper function: is the current user an admin?
+    function isAdmin() {
+      return request.auth != null && 
+        (request.auth.token.email == 'rrjrenomeron@mlgcl.edu.ph' || 
+         request.auth.token.email == 'rrenomeronjr@gmail.com');
+    }
+    
+    // Users collection
     match /users/{userId} {
+      // Any signed-in user can read (needed for admin dashboard)
       allow read: if request.auth != null;
-      allow write: if request.auth != null && request.auth.uid == userId;
+      // Users can write their own doc, admin can write any doc (for approvals)
+      allow write: if request.auth != null && 
+        (request.auth.uid == userId || isAdmin());
       
       // Quiz results subcollection
       match /quizResults/{moduleId} {
         allow read: if request.auth != null;
         allow write: if request.auth != null && request.auth.uid == userId;
       }
-    }
-    
-    // Admin can read all student profile records and quiz results
-    match /{document=**} {
-      allow read: if request.auth != null && 
-        (request.auth.token.email == 'rrjrenomeron@mlgcl.edu.ph' || 
-         request.auth.token.email == 'rrenomeronjr@gmail.com');
     }
   }
 }

@@ -12,11 +12,15 @@ function googleSignIn() {
       const userDoc = await userDocRef.get();
       
       if (!userDoc.exists) {
+        // New user — set approved to false (needs admin approval)
+        // Admin accounts are auto-approved
+        const isAdmin = ADMIN_EMAILS.includes(user.email);
         await userDocRef.set({
           name: user.displayName,
           email: user.email,
           photoURL: user.photoURL,
-          role: user.email === ADMIN_EMAIL ? 'admin' : 'student',
+          role: isAdmin ? 'admin' : 'student',
+          approved: isAdmin ? true : false,
           registeredAt: firebase.firestore.FieldValue.serverTimestamp(),
           lastActive: firebase.firestore.FieldValue.serverTimestamp()
         });
@@ -52,7 +56,7 @@ function signOut() {
 }
 
 // Monitor Auth State changes
-auth.onAuthStateChanged((user) => {
+auth.onAuthStateChanged(async (user) => {
   const signInBtn = document.getElementById('signInBtn');
   const userMenu = document.getElementById('userMenu');
   const userDisplayName = document.getElementById('userDisplayName');
@@ -67,12 +71,27 @@ auth.onAuthStateChanged((user) => {
       if (userDisplayName) userDisplayName.textContent = user.displayName;
     }
     
-    // Re-render module cards as unlocked
+    // Check approval status from Firestore
+    try {
+      const userDoc = await db.collection('users').doc(user.uid).get();
+      if (userDoc.exists) {
+        const data = userDoc.data();
+        const isAdmin = ADMIN_EMAILS.includes(user.email);
+        isUserApproved = isAdmin || (data.approved === true);
+      } else {
+        isUserApproved = false;
+      }
+    } catch (err) {
+      console.error('Error checking approval:', err);
+      isUserApproved = false;
+    }
+    
+    // Re-render module cards with approval status
     if (typeof renderModuleCards === 'function') renderModuleCards();
     
-    // Show admin link if matches admin email
+    // Show admin link if admin
     if (adminLink) {
-      if (user.email === ADMIN_EMAIL) {
+      if (ADMIN_EMAILS.includes(user.email)) {
         adminLink.style.display = 'inline-block';
       } else {
         adminLink.style.display = 'none';
@@ -96,6 +115,7 @@ auth.onAuthStateChanged((user) => {
   } else {
     // User is signed out
     isUserSignedIn = false;
+    isUserApproved = false;
     if (signInBtn) signInBtn.style.display = 'inline-flex';
     if (userMenu) userMenu.style.display = 'none';
     if (adminLink) adminLink.style.display = 'none';

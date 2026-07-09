@@ -52,8 +52,12 @@
     <!-- STATS BLOCKS -->
     <div class="admin-stats-row">
       <div class="admin-stat-card">
-        <div class="stat-label">Total Registered Students</div>
+        <div class="stat-label">Approved Students</div>
         <div class="stat-value" id="totalStudents">0</div>
+      </div>
+      <div class="admin-stat-card stat-card-pending">
+        <div class="stat-label">Pending Requests</div>
+        <div class="stat-value" id="pendingStatCount">0</div>
       </div>
       <div class="admin-stat-card">
         <div class="stat-label">Average Quiz Score</div>
@@ -62,6 +66,17 @@
       <div class="admin-stat-card">
         <div class="stat-label">Overall Completion Rate</div>
         <div class="stat-value" id="completionRate">—</div>
+      </div>
+    </div>
+
+    <!-- PENDING APPROVALS SECTION -->
+    <div class="pending-section" id="pendingContainer" style="display: none;">
+      <div class="pending-header">
+        <h3>🔔 Pending Student Approvals <span class="pending-badge" id="pendingCount">0</span></h3>
+        <p style="color: var(--text-secondary); margin-top: 4px;">These students have signed in but need your approval before they can access the modules.</p>
+      </div>
+      <div class="pending-list" id="pendingList">
+        <!-- Filled dynamically by js/admin.js -->
       </div>
     </div>
 

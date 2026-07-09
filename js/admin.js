@@ -20,7 +20,7 @@ function checkAdminAccess(user) {
     return;
   }
   
-  if (user.email !== ADMIN_EMAIL) {
+  if (!ADMIN_EMAILS.includes(user.email)) {
     if (adminContent) adminContent.style.display = 'none';
     if (accessDenied) {
       accessDenied.style.display = 'flex';
@@ -50,7 +50,8 @@ async function loadAdminDashboard() {
     
     // Fetch all users with role 'student'
     const usersSnapshot = await db.collection('users').where('role', '==', 'student').get();
-    const studentRecords = [];
+    const approvedStudents = [];
+    const pendingStudents = [];
     
     for (const doc of usersSnapshot.docs) {
       const studentData = doc.data();
@@ -64,14 +65,21 @@ async function loadAdminDashboard() {
         studentData.quizResults[qDoc.id] = qDoc.data();
       });
       
-      studentRecords.push(studentData);
+      // Sort into pending vs approved
+      if (studentData.approved === true) {
+        approvedStudents.push(studentData);
+      } else {
+        pendingStudents.push(studentData);
+      }
     }
     
-    // Cache records globally for filtering and exports
-    window.allStudentsCached = studentRecords;
+    // Cache records globally
+    window.allStudentsCached = approvedStudents;
+    window.pendingStudentsCached = pendingStudents;
     
-    renderStudentTable(studentRecords);
-    calculateDashboardStats(studentRecords);
+    renderPendingApprovals(pendingStudents);
+    renderStudentTable(approvedStudents);
+    calculateDashboardStats(approvedStudents, pendingStudents);
     
     showToast('Dashboard updated!', 'success');
   } catch (error) {
@@ -80,7 +88,104 @@ async function loadAdminDashboard() {
   }
 }
 
-// Display student table
+// ——————————— PENDING APPROVALS ———————————
+
+function renderPendingApprovals(pending) {
+  const container = document.getElementById('pendingContainer');
+  const countBadge = document.getElementById('pendingCount');
+  
+  if (countBadge) {
+    countBadge.textContent = pending.length;
+    countBadge.style.display = pending.length > 0 ? 'inline-flex' : 'none';
+  }
+  
+  if (!container) return;
+  
+  if (pending.length === 0) {
+    container.style.display = 'none';
+    return;
+  }
+  
+  container.style.display = 'block';
+  
+  const list = container.querySelector('#pendingList');
+  if (!list) return;
+  list.innerHTML = '';
+  
+  pending.forEach(student => {
+    const registeredDate = student.registeredAt
+      ? new Date(student.registeredAt.seconds * 1000).toLocaleDateString(undefined, {
+          month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
+        })
+      : 'Unknown';
+    
+    const card = document.createElement('div');
+    card.className = 'pending-card';
+    card.id = `pending-${student.uid}`;
+    card.innerHTML = `
+      <div class="pending-info">
+        <div class="pending-name">${student.name || 'Anonymous Student'}</div>
+        <div class="pending-email">${student.email || '—'}</div>
+        <div class="pending-date">Registered: ${registeredDate}</div>
+      </div>
+      <div class="pending-actions">
+        <button class="btn-approve" onclick="approveStudent('${student.uid}', '${(student.name || '').replace(/'/g, "\\'")}')">✓ Approve</button>
+        <button class="btn-reject" onclick="rejectStudent('${student.uid}', '${(student.name || '').replace(/'/g, "\\'")}')">✕ Reject</button>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+// Approve a student
+async function approveStudent(uid, name) {
+  try {
+    await db.collection('users').doc(uid).update({ approved: true });
+    
+    // Remove from pending UI with animation
+    const card = document.getElementById(`pending-${uid}`);
+    if (card) {
+      card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      card.style.opacity = '0';
+      card.style.transform = 'translateX(20px)';
+      setTimeout(() => card.remove(), 300);
+    }
+    
+    showToast(`${name || 'Student'} approved! ✅`, 'success');
+    
+    // Reload dashboard after a short delay to reflect changes
+    setTimeout(() => loadAdminDashboard(), 500);
+  } catch (error) {
+    console.error('Error approving student:', error);
+    showToast('Failed to approve student. Check Firestore rules.', 'error');
+  }
+}
+
+// Reject (delete) a student
+async function rejectStudent(uid, name) {
+  if (!confirm(`Remove ${name || 'this student'}? They will need to sign in again and request access.`)) return;
+  
+  try {
+    await db.collection('users').doc(uid).delete();
+    
+    const card = document.getElementById(`pending-${uid}`);
+    if (card) {
+      card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      card.style.opacity = '0';
+      card.style.transform = 'translateX(-20px)';
+      setTimeout(() => card.remove(), 300);
+    }
+    
+    showToast(`${name || 'Student'} removed.`, 'info');
+    setTimeout(() => loadAdminDashboard(), 500);
+  } catch (error) {
+    console.error('Error rejecting student:', error);
+    showToast('Failed to remove student. Check Firestore rules.', 'error');
+  }
+}
+
+// ——————————— APPROVED STUDENTS TABLE ———————————
+
 function renderStudentTable(students) {
   const tbody = document.getElementById('studentTableBody');
   if (!tbody) return;
@@ -92,7 +197,7 @@ function renderStudentTable(students) {
     tbody.innerHTML = `
       <tr>
         <td colspan="${4 + availableModules.length}" class="text-center" style="color: var(--text-secondary); padding: 30px;">
-          No student records found.
+          No approved students yet. Approve pending students above to see them here.
         </td>
       </tr>
     `;
@@ -145,18 +250,20 @@ function renderStudentTable(students) {
 }
 
 // Calculate summary counts
-function calculateDashboardStats(students) {
+function calculateDashboardStats(approvedStudents, pendingStudents) {
   const totalStudentsEl = document.getElementById('totalStudents');
   const avgScoreEl = document.getElementById('avgScore');
   const completionRateEl = document.getElementById('completionRate');
+  const pendingCountEl = document.getElementById('pendingStatCount');
   
-  if (totalStudentsEl) totalStudentsEl.textContent = students.length;
+  if (totalStudentsEl) totalStudentsEl.textContent = approvedStudents.length;
+  if (pendingCountEl) pendingCountEl.textContent = pendingStudents.length;
   
   const availableModules = MODULES.filter(m => m.status === 'available');
   let aggregatePercentages = 0;
   let quizCompletesCount = 0;
   
-  students.forEach(student => {
+  approvedStudents.forEach(student => {
     availableModules.forEach(mod => {
       const quiz = student.quizResults[mod.id];
       if (quiz && quiz.bestPercentage !== undefined) {
@@ -171,9 +278,9 @@ function calculateDashboardStats(students) {
     avgScoreEl.textContent = quizCompletesCount > 0 ? Math.round(aggregatePercentages / quizCompletesCount) + '%' : '—';
   }
   
-  // Completion rate (percentage of possible quizzes completed)
+  // Completion rate
   if (completionRateEl) {
-    const totalPossibleQuizzes = students.length * availableModules.length;
+    const totalPossibleQuizzes = approvedStudents.length * availableModules.length;
     completionRateEl.textContent = totalPossibleQuizzes > 0 ? Math.round((quizCompletesCount / totalPossibleQuizzes) * 100) + '%' : '—';
   }
 }

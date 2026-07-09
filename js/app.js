@@ -1,7 +1,8 @@
 // js/app.js
 
-// Auth gate — tracks whether a user is currently signed in
+// Auth gate — tracks whether a user is currently signed in AND approved
 let isUserSignedIn = false;
+let isUserApproved = false;
 
 // Theme initialization and toggling
 function initTheme() {
@@ -38,10 +39,11 @@ function renderModuleCards() {
     
     // Determine if this card should be locked
     const isComingSoon = (mod.status === 'locked');
-    const isAuthLocked = (mod.status === 'available' && !isUserSignedIn);
-    const isLocked = isComingSoon || isAuthLocked;
+    const isNotSignedIn = (mod.status === 'available' && !isUserSignedIn);
+    const isPendingApproval = (mod.status === 'available' && isUserSignedIn && !isUserApproved);
+    const isLocked = isComingSoon || isNotSignedIn || isPendingApproval;
     
-    card.className = `module-card ${isLocked ? 'locked' : ''}`;
+    card.className = `module-card ${isLocked ? 'locked' : ''} ${isPendingApproval ? 'pending' : ''} ${isNotSignedIn ? 'clickable-locked' : ''}`;
     card.id = `card-${mod.id}`;
     card.style.setProperty('--card-color', mod.color);
     card.style.animationDelay = `${index * 0.06}s`;
@@ -50,8 +52,10 @@ function renderModuleCards() {
     let footerLabel;
     if (isComingSoon) {
       footerLabel = '<span class="locked-label">🔒 Coming Soon</span>';
-    } else if (isAuthLocked) {
+    } else if (isNotSignedIn) {
       footerLabel = '<span class="locked-label">🔒 Sign in to access</span>';
+    } else if (isPendingApproval) {
+      footerLabel = '<span class="locked-label pending-label">⏳ Awaiting teacher approval</span>';
     } else {
       footerLabel = '<span class="open-label">Open Module →</span>';
     }
@@ -76,13 +80,13 @@ function renderModuleCards() {
       ${isLocked ? '<div class="card-locked-overlay"></div>' : ''}
     `;
     
-    // Click action — only if unlocked
-    if (mod.status === 'available' && isUserSignedIn) {
+    // Click action — only if fully unlocked (signed in + approved)
+    if (mod.status === 'available' && isUserSignedIn && isUserApproved) {
       card.addEventListener('click', () => {
         window.location.href = mod.path;
       });
       card.style.cursor = 'pointer';
-    } else if (isAuthLocked) {
+    } else if (isNotSignedIn) {
       // Clicking a sign-in-locked card triggers Google sign-in
       card.addEventListener('click', () => {
         if (typeof googleSignIn === 'function') googleSignIn();

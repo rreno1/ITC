@@ -1,5 +1,9 @@
 // js/auth.js
 
+// Global variables for authentication and approval state
+window.isUserSignedIn = false;
+window.isUserApproved = false;
+
 // Google Sign-In via Popup
 function googleSignIn() {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -64,7 +68,7 @@ auth.onAuthStateChanged(async (user) => {
 
   if (user) {
     // User is signed in
-    isUserSignedIn = true;
+    window.isUserSignedIn = true;
     if (signInBtn) signInBtn.style.display = 'none';
     if (userMenu) {
       userMenu.style.display = 'flex';
@@ -77,13 +81,13 @@ auth.onAuthStateChanged(async (user) => {
       if (userDoc.exists) {
         const data = userDoc.data();
         const isAdmin = ADMIN_EMAILS.includes(user.email);
-        isUserApproved = isAdmin || (data.approved === true);
+        window.isUserApproved = isAdmin || (data.approved === true);
       } else {
-        isUserApproved = false;
+        window.isUserApproved = false;
       }
     } catch (err) {
       console.error('Error checking approval:', err);
-      isUserApproved = false;
+      window.isUserApproved = false;
     }
     
     // Re-render module cards with approval status
@@ -112,10 +116,15 @@ auth.onAuthStateChanged(async (user) => {
     if (typeof checkAdminAccess === 'function') {
       checkAdminAccess(user);
     }
+    
+    // Trigger page-specific auth callback
+    if (typeof onAuthGateChanged === 'function') {
+      onAuthGateChanged(user, window.isUserApproved);
+    }
   } else {
     // User is signed out
-    isUserSignedIn = false;
-    isUserApproved = false;
+    window.isUserSignedIn = false;
+    window.isUserApproved = false;
     if (signInBtn) signInBtn.style.display = 'inline-flex';
     if (userMenu) userMenu.style.display = 'none';
     if (adminLink) adminLink.style.display = 'none';
@@ -126,6 +135,11 @@ auth.onAuthStateChanged(async (user) => {
     // Trigger admin check on admin page with null
     if (typeof checkAdminAccess === 'function') {
       checkAdminAccess(null);
+    }
+    
+    // Trigger page-specific auth callback
+    if (typeof onAuthGateChanged === 'function') {
+      onAuthGateChanged(null, false);
     }
   }
 });

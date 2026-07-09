@@ -32,6 +32,106 @@
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
     }
+    /* Quiz Lock & Approval Overlay styles */
+    .quiz-lock-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 10, 26, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+    [data-theme="light"] .quiz-lock-overlay {
+      background: rgba(240, 242, 245, 0.95);
+    }
+    .quiz-lock-card {
+      max-width: 450px;
+      background: var(--card-bg, rgba(255,255,255,0.05));
+      border: 1px solid var(--card-border, rgba(255,255,255,0.1));
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    .quiz-lock-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+      font-family: 'Outfit', sans-serif;
+    }
+    .quiz-lock-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      font-family: 'Inter', sans-serif;
+    }
+    .quiz-disclaimer {
+      font-size: 12px;
+      color: var(--text-secondary);
+      opacity: 0.6;
+      margin-top: 15px;
+      text-align: center;
+      line-height: 1.4;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 10px;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+    }
+    [data-theme="light"] .quiz-disclaimer {
+      border-top-color: rgba(0, 0, 0, 0.1);
+    }
+    .btn-lock-signin {
+      background: #667eea;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-lock-signin:hover {
+      background: #764ba2;
+      transform: translateY(-1px);
+    }
+    .option-btn.selected-correct {
+      border-color: #10b981 !important;
+      background: rgba(16, 185, 129, 0.15) !important;
+      color: #10b981 !important;
+    }
+    .option-btn.selected-incorrect {
+      border-color: #ef4444 !important;
+      background: rgba(239, 68, 68, 0.15) !important;
+      color: #ef4444 !important;
+    }
+    .option-btn.selected-temp {
+      border-color: #667eea !important;
+      background: rgba(102, 126, 234, 0.15) !important;
+    }
+    .quiz-container {
+      position: relative;
+    }
+    .quiz-container.gated-locked > *:not(.quiz-lock-overlay) {
+      pointer-events: none;
+      filter: blur(4px);
+      opacity: 0.2;
+    }
+    .quiz-container.gated-locked .quiz-lock-overlay {
+      pointer-events: auto;
+    }
   </style>
 </head>
 <body>
@@ -551,6 +651,10 @@
                 <span id="quizScoreText">Score: 0 / 0</span>
                 <button class="btn btn-secondary" onclick="resetQuiz()">Restart Quiz</button>
               </div>
+              
+              <div class="quiz-disclaimer">
+                ⚠️ <strong>Disclaimer</strong>: This quiz can only be answerable by signed in and approved students. Your score and completion date will be logged for grading.
+              </div>
             </div>
 
             <!-- Quiz Results Container (Hidden initially) -->
@@ -564,7 +668,10 @@
                 <span id="finalScoreText">15/15</span>
               </div>
               <p id="resultsMessage" class="text-center" style="margin-bottom: 20px; font-weight: 500;">Excellent work, future IT Professional!</p>
-              <button class="btn btn-primary" style="margin: 0 auto; display: block;" onclick="resetQuiz()">Take Quiz Again</button>
+              <div class="results-actions" style="display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="resetQuiz()">Take Quiz Again</button>
+                <button class="btn btn-secondary" id="reviewQuizBtn" onclick="startQuizReview()">🔍 Review Answers</button>
+              </div>
             </div>
           </div>
         </section>
@@ -668,6 +775,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   <script src="../js/firebase-config.js"></script>
   <script src="../js/progress.js"></script>
+  <script src="../js/auth.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

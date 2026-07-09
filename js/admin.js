@@ -218,8 +218,20 @@ function renderStudentTable(students) {
         if (percentage >= 85) scoreClass = 'score-high';
         else if (percentage >= 60) scoreClass = 'score-mid';
         else scoreClass = 'score-low';
+
+        let completedDateStr = 'Unknown Date';
+        if (quiz.completedAt) {
+          const dt = quiz.completedAt.toDate ? quiz.completedAt.toDate() : new Date(quiz.completedAt.seconds * 1000);
+          completedDateStr = dt.toLocaleDateString(undefined, {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+        }
         
-        scoreCells += `<td class="score-cell ${scoreClass}" title="Attempts: ${quiz.attempts}">${quiz.bestScore}/${quiz.total}</td>`;
+        scoreCells += `<td class="score-cell ${scoreClass}" title="Completed: ${completedDateStr}&#10;Attempts: ${quiz.attempts}">${quiz.bestScore}/${quiz.total}</td>`;
       } else {
         scoreCells += `<td class="score-cell score-none">—</td>`;
       }

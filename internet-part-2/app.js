@@ -642,8 +642,11 @@ function sendPackets(total, lossRate, log, progress) {
     transferLoop();
 }
 
-// Interactive Quiz System Logic
+// // Interactive Quiz System Logic
+let isReviewMode = false;
+
 function resetQuiz() {
+    isReviewMode = false;
     quizCurrentQuestion = 0;
     quizScore = 0;
     quizAnswers = [];
@@ -688,7 +691,9 @@ function loadQuestion() {
             const btn = document.createElement("button");
             btn.className = "option-btn";
             btn.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + idx)}</span> <span class="option-text">${opt}</span>`;
-            btn.addEventListener("click", () => selectOption(idx));
+            if (!isReviewMode) {
+                btn.addEventListener("click", () => selectOption(idx));
+            }
             optionsGrid.appendChild(btn);
         });
     }
@@ -696,55 +701,95 @@ function loadQuestion() {
     // Update progress steps
     const steps = document.querySelectorAll(".quiz-progress-step");
     steps.forEach((step, idx) => {
-        step.classList.toggle("active-q", idx === quizCurrentQuestion);
+        step.className = `quiz-progress-step ${idx === quizCurrentQuestion ? 'active-q' : ''}`;
         if (idx < quizCurrentQuestion) {
-            const isCorrect = quizAnswers[idx];
-            step.classList.add(isCorrect ? "correct-q" : "incorrect-q");
-        } else {
-            step.classList.remove("correct-q", "incorrect-q");
+            if (isReviewMode) {
+                const wasCorrect = quizAnswers[idx] === QUIZ_QUESTIONS[idx].answer;
+                step.classList.add(wasCorrect ? "correct-q" : "incorrect-q");
+            } else {
+                step.classList.add("completed-q");
+            }
         }
     });
+
+    if (isReviewMode) {
+        // Show correct/incorrect highlights immediately
+        const studentAns = quizAnswers[quizCurrentQuestion];
+        const correctAns = q.answer;
+        const buttons = document.querySelectorAll("#optionsGrid .option-btn");
+        buttons.forEach((btn, idx) => {
+            btn.disabled = true;
+            if (idx === correctAns) {
+                btn.classList.add("selected-correct");
+            } else if (idx === studentAns && studentAns !== correctAns) {
+                btn.classList.add("selected-incorrect");
+            }
+        });
+
+        // Show feedback panel immediately with explanation
+        const iconEl = document.getElementById("feedbackIcon");
+        const titleEl = document.getElementById("feedbackTitle");
+        const textEl = document.getElementById("feedbackText");
+        const nextBtn = document.getElementById("nextQuestionBtn");
+
+        const isCorrect = studentAns === correctAns;
+
+        if (iconEl) {
+            iconEl.innerText = isCorrect ? "✓" : "✗";
+            iconEl.className = `feedback-icon ${isCorrect ? 'correct-icon' : 'incorrect-icon'}`;
+        }
+        if (titleEl) {
+            titleEl.innerText = isCorrect ? "Correct!" : "Incorrect";
+            titleEl.className = `feedback-title ${isCorrect ? 'correct-title' : 'incorrect-title'}`;
+        }
+        if (textEl) textEl.innerHTML = q.explanation;
+        if (nextBtn) {
+            nextBtn.innerText = (quizCurrentQuestion === QUIZ_QUESTIONS.length - 1) ? "Finish Review" : "Next Question";
+        }
+        if (feedbackPanel) feedbackPanel.classList.remove("hidden");
+    }
 
     updateScoreText();
 }
 
 function selectOption(selectedIdx) {
+    // Block multiple clicks
     const feedbackPanel = document.getElementById("feedbackPanel");
     if (feedbackPanel && !feedbackPanel.classList.contains("hidden")) return;
 
     const q = QUIZ_QUESTIONS[quizCurrentQuestion];
-    const isCorrect = selectedIdx === q.answer;
-    
-    if (isCorrect) quizScore++;
-    quizAnswers.push(isCorrect);
+    quizAnswers[quizCurrentQuestion] = selectedIdx;
 
+    // Highlight selected option neutrally
     const buttons = document.querySelectorAll("#optionsGrid .option-btn");
     buttons.forEach((btn, idx) => {
         btn.disabled = true;
-        if (idx === q.answer) {
-            btn.classList.add("selected-correct");
-        } else if (idx === selectedIdx && !isCorrect) {
-            btn.classList.add("selected-incorrect");
+        if (idx === selectedIdx) {
+            btn.classList.add("selected-temp");
         }
     });
 
-    // Display feedback panel
+    // Display feedback panel to prompt for Next Question
     const iconEl = document.getElementById("feedbackIcon");
     const titleEl = document.getElementById("feedbackTitle");
     const textEl = document.getElementById("feedbackText");
+    const nextBtn = document.getElementById("nextQuestionBtn");
 
     if (iconEl) {
-        iconEl.innerText = isCorrect ? "✓" : "✗";
-        iconEl.className = `feedback-icon ${isCorrect ? 'correct-icon' : 'incorrect-icon'}`;
+        iconEl.innerText = "✓";
+        iconEl.className = "feedback-icon correct-icon";
     }
     if (titleEl) {
-        titleEl.innerText = isCorrect ? "Correct!" : "Incorrect";
-        titleEl.className = `feedback-title ${isCorrect ? 'correct-title' : 'incorrect-title'}`;
+        titleEl.innerText = "Answer Logged";
+        titleEl.className = "feedback-title correct-title";
     }
-    if (textEl) textEl.innerHTML = q.explanation;
+    if (textEl) {
+        textEl.innerHTML = "Your selection has been recorded. Click Next Question to continue.";
+    }
+    if (nextBtn) {
+        nextBtn.innerText = "Next Question";
+    }
     if (feedbackPanel) feedbackPanel.classList.remove("hidden");
-
-    updateScoreText();
 }
 
 function nextQuestion() {
@@ -752,7 +797,15 @@ function nextQuestion() {
     if (quizCurrentQuestion < QUIZ_QUESTIONS.length) {
         loadQuestion();
     } else {
-        showQuizResults();
+        if (isReviewMode) {
+            // Finish review, show results again
+            const quizBox = document.getElementById("quizBox");
+            const quizResults = document.getElementById("quizResults");
+            if (quizBox) quizBox.classList.add("hidden");
+            if (quizResults) quizResults.classList.remove("hidden");
+        } else {
+            showQuizResults();
+        }
     }
 }
 
@@ -772,6 +825,15 @@ function showQuizResults() {
     if (quizBox) quizBox.classList.add("hidden");
     if (quizResults) quizResults.classList.remove("hidden");
     
+    // Calculate final score
+    let computedScore = 0;
+    QUIZ_QUESTIONS.forEach((q, idx) => {
+        if (quizAnswers[idx] === q.answer) {
+            computedScore++;
+        }
+    });
+    quizScore = computedScore;
+
     if (finalScoreText) {
         finalScoreText.innerText = `${quizScore} / ${QUIZ_QUESTIONS.length}`;
     }
@@ -794,3 +856,58 @@ function showQuizResults() {
         }
     }
 }
+
+function startQuizReview() {
+    isReviewMode = true;
+    quizCurrentQuestion = 0;
+    
+    const quizBox = document.getElementById("quizBox");
+    const quizResults = document.getElementById("quizResults");
+    if (quizBox) quizBox.classList.remove("hidden");
+    if (quizResults) quizResults.classList.add("hidden");
+    
+    loadQuestion();
+}
+
+// Auth callbacks for quiz gating
+function onAuthGateChanged(user, isApproved) {
+    updateQuizAccessUI(isApproved);
+}
+
+function updateQuizAccessUI(isApproved) {
+    const quizBox = document.getElementById("quizBox");
+    if (!quizBox) return;
+    
+    let overlay = quizBox.querySelector(".quiz-lock-overlay");
+    if (isApproved) {
+        if (overlay) overlay.remove();
+        quizBox.classList.remove("gated-locked");
+    } else {
+        if (!overlay) {
+            overlay = document.createElement("div");
+            overlay.className = "quiz-lock-overlay";
+            quizBox.appendChild(overlay);
+        }
+        quizBox.classList.add("gated-locked");
+        
+        const isUser = auth.currentUser;
+        if (!isUser) {
+            overlay.innerHTML = `
+                <div class="quiz-lock-card">
+                    <div class="quiz-lock-title">🔐 Sign In Required</div>
+                    <div class="quiz-lock-desc" style="margin-bottom: 20px;">To take this quiz and submit your grades, please sign in with your student Google account.</div>
+                    <button class="btn btn-primary btn-lock-signin" style="pointer-events: auto;" onclick="if(typeof googleSignIn === 'function') googleSignIn()">Sign in with Google</button>
+                </div>
+            `;
+        } else {
+            overlay.innerHTML = `
+                <div class="quiz-lock-card">
+                    <div class="quiz-lock-title">⏳ Awaiting Approval</div>
+                    <div class="quiz-lock-desc" style="margin-bottom: 20px;">Your account (<strong>${isUser.email}</strong>) is signed in but is pending teacher approval. Please wait for your instructor to approve your account.</div>
+                    <button class="btn btn-secondary btn-lock-signin" style="pointer-events: auto; background: transparent; border: 1px solid var(--text-secondary); color: var(--text-primary);" onclick="if(typeof signOut === 'function') signOut()">Sign Out / Switch Account</button>
+                </div>
+            `;
+        }
+    }
+}
+

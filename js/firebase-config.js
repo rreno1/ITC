@@ -18,7 +18,7 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 // Admin emails (array for multi-admin support)
-const ADMIN_EMAILS = ['rrenomeronjr@gmail.com', 'rrjrenomeron@mlgcl.edu.ph'];
+const ADMIN_EMAILS = ['rrenomeronjr@gmail.com'];
 const ADMIN_EMAIL = ADMIN_EMAILS[0]; // backward compat
 
 // Module definitions

@@ -43,72 +43,82 @@ function checkAdminAccess(user) {
   loadAdminDashboard();
 }
 
-// Load student progress and calculate aggregate stats
-async function loadAdminDashboard() {
-  try {
-    showToast('Loading student records...', 'info');
-    
-    // Fetch all users with role 'student'
-    const usersSnapshot = await db.collection('users').where('role', '==', 'student').get();
-    const approvedStudents = [];
-    const pendingStudents = [];
-    
-    for (const doc of usersSnapshot.docs) {
-      const studentData = doc.data();
-      studentData.uid = doc.id;
-      
-      // Load quiz results subcollection
-      const quizSnapshot = await db.collection('users').doc(doc.id).collection('quizResults').get();
-      studentData.quizResults = {};
-      
-      quizSnapshot.forEach(qDoc => {
-        studentData.quizResults[qDoc.id] = qDoc.data();
-      });
-      
-      // Sort into pending vs approved
-      if (studentData.approved === true) {
-        approvedStudents.push(studentData);
-      } else {
-        pendingStudents.push(studentData);
-      }
-    }
-    
-    // Cache records globally
-    window.allStudentsCached = approvedStudents;
-    window.pendingStudentsCached = pendingStudents;
-    
-    renderPendingApprovals(pendingStudents);
-    renderStudentTable(approvedStudents);
-    calculateDashboardStats(approvedStudents, pendingStudents);
-    
-    showToast('Dashboard updated!', 'success');
-  } catch (error) {
-    console.error('Error fetching admin data:', error);
-    showToast('Error loading database documents.', 'error');
+let adminDashboardUnsubscribe = null;
+
+// Load student progress and calculate aggregate stats in real-time
+function loadAdminDashboard() {
+  if (adminDashboardUnsubscribe) {
+    // Already listening
+    return;
   }
+  
+  showToast('Connecting to database...', 'info');
+  
+  adminDashboardUnsubscribe = db.collection('users')
+    .where('role', '==', 'student')
+    .onSnapshot(async (snapshot) => {
+      try {
+        const approvedStudents = [];
+        const pendingStudents = [];
+        
+        for (const doc of snapshot.docs) {
+          const studentData = doc.data();
+          studentData.uid = doc.id;
+          
+          // Fetch quiz results subcollection
+          const quizSnapshot = await db.collection('users').doc(doc.id).collection('quizResults').get();
+          studentData.quizResults = {};
+          
+          quizSnapshot.forEach(qDoc => {
+            studentData.quizResults[qDoc.id] = qDoc.data();
+          });
+          
+          if (studentData.approved === true) {
+            approvedStudents.push(studentData);
+          } else {
+            pendingStudents.push(studentData);
+          }
+        }
+        
+        // Cache records globally
+        window.allStudentsCached = approvedStudents;
+        window.pendingStudentsCached = pendingStudents;
+        
+        renderPendingApprovals(pendingStudents);
+        renderStudentTable(approvedStudents);
+        calculateDashboardStats(approvedStudents, pendingStudents);
+        
+      } catch (error) {
+        console.error('Error processing student updates:', error);
+      }
+    }, (error) => {
+      console.error('Firestore subscription error:', error);
+      showToast('Connection to student database failed.', 'error');
+    });
 }
 
 // ——————————— PENDING APPROVALS ———————————
 
 function renderPendingApprovals(pending) {
   const container = document.getElementById('pendingContainer');
-  const countBadge = document.getElementById('pendingCount');
+  const sidebarBadge = document.getElementById('pendingSidebarBadge');
+  const noPendingMessage = document.getElementById('noPendingMessage');
   
-  if (countBadge) {
-    countBadge.textContent = pending.length;
-    countBadge.style.display = pending.length > 0 ? 'inline-flex' : 'none';
+  if (sidebarBadge) {
+    sidebarBadge.textContent = pending.length;
+    sidebarBadge.style.display = pending.length > 0 ? 'inline-flex' : 'none';
   }
   
-  if (!container) return;
-  
   if (pending.length === 0) {
-    container.style.display = 'none';
+    if (container) container.style.display = 'none';
+    if (noPendingMessage) noPendingMessage.style.display = 'flex';
     return;
   }
   
-  container.style.display = 'block';
+  if (container) container.style.display = 'block';
+  if (noPendingMessage) noPendingMessage.style.display = 'none';
   
-  const list = container.querySelector('#pendingList');
+  const list = container ? container.querySelector('#pendingList') : null;
   if (!list) return;
   list.innerHTML = '';
   
@@ -354,9 +364,35 @@ function filterStudentsTable(query) {
   renderStudentTable(filtered);
 }
 
+// Tab Switching navigation logic
+function setupTabNavigation() {
+  const buttons = document.querySelectorAll('.sidebar-nav-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.getAttribute('data-tab');
+      
+      // Update buttons active class
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Update panels active class
+      const panels = document.querySelectorAll('.admin-panel');
+      panels.forEach(panel => {
+        panel.classList.remove('active-panel');
+      });
+      
+      const targetPanel = document.getElementById(`panel-${targetTab}`);
+      if (targetPanel) {
+        targetPanel.classList.add('active-panel');
+      }
+    });
+  });
+}
+
 // Bind admin controls
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
+  setupTabNavigation();
   
   const themeToggle = document.getElementById('themeToggle');
   if (themeToggle) {

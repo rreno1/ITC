@@ -96,7 +96,9 @@ service cloud.firestore {
     
     // Admin can read all student profile records and quiz results
     match /{document=**} {
-      allow read: if request.auth != null && request.auth.token.email == 'rrjrenomeron@mlgcl.edu.ph';
+      allow read: if request.auth != null && 
+        (request.auth.token.email == 'rrjrenomeron@mlgcl.edu.ph' || 
+         request.auth.token.email == 'rrenomeronjr@gmail.com');
     }
   }
 }

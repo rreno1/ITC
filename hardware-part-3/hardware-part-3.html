@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CC 101 - Hardware Part 3: Ports, Connectivity, and Operating Systems</title>
+  <meta name="description" content="Introduction to Computing: Connectivity ports (USB, HDMI), Wi-Fi, Bluetooth, Operating Systems, and device drivers.">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    .portal-back-btn {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 10000;
+      background: rgba(102, 126, 234, 0.9);
+      color: #fff;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    }
+    .portal-back-btn:hover {
+      background: rgba(102, 126, 234, 1);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <a href="../index.html" class="portal-back-btn" title="Back to Portal">← Portal</a>
+
+
+  <!-- App Shell -->
+  <div class="app-container">
+    
+    <!-- Top Navigation Bar -->
+    <header class="top-navbar">
+      <div class="nav-left">
+        <span class="badge">CC 101</span>
+        <span class="nav-title">Hardware Part 3: Connectivity & OS</span>
+      </div>
+      
+      <div class="nav-center">
+        <!-- Slide Progress Bar -->
+        <div class="progress-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <span class="slide-counter"><span id="currentSlideNum">1</span> / <span id="totalSlidesNum">11</span></span>
+      </div>
+
+      <div class="nav-right">
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle Theme" title="Toggle Theme (T)">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <!-- Keyboard Shortcuts Help -->
+        <button id="helpToggle" class="icon-btn" aria-label="Keyboard Shortcuts Help" title="Keyboard Shortcuts (H)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Dashboard Layout -->
+    <div class="workspace-grid">
+      
+      <!-- Left Steps Progress Checklist Sidebar -->
+      <aside class="steps-sidebar">
+        <div class="sidebar-title">Lecture Outline</div>
+        <ul class="sidebar-checklist" id="sidebarChecklist">
+          <!-- Populated dynamically via JS -->
+        </ul>
+      </aside>
+
+      <!-- Right Presentation Viewport -->
+      <main class="presentation-viewport">
+
+        <!-- SLIDE 1: WELCOME TITLE SLIDE -->
+        <section class="slide active-slide" id="slide-1">
+          <div class="slide-content title-layout">
+            <div class="hero-header">
+              <span class="sub-category">CC 101 - INTRODUCTION TO COMPUTING</span>
+              <h1>Hardware Part 3: Ports, Connectivity, and Operating Systems</h1>
+              <div class="accent-line"></div>
+              <p class="hero-desc">An exploration of input/output devices, physical ports (USB, HDMI), wireless connection protocols (Wi-Fi, Bluetooth), Operating Systems (OS), and device drivers.</p>
+            </div>
+            
+            <div class="welcome-grid">
+              <div class="info-card">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <div>
+                  <h4>Course Format</h4>
+                  <p>First Year Lecture Series</p>
+                </div>
+              </div>
+              <div class="info-card">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+                <div>
+                  <h4>Course Instructor</h4>
+                  <p class="teacher-highlight">Mr. Romulo Ritz R. Renomeron Jr.</p>
+                </div>
+              </div>
+              <div class="info-card">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                <div>
+                  <h4>Course Code</h4>
+                  <p>CC 101 • Introduction to Computing</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="welcome-tip animate-pulse">
+              <span class="tip-icon">⚙️</span>
+              <span>Learn how computers communicate with outer peripherals and run system software libraries. Scroll down to read detailed lecture notes.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 2: INPUT AND OUTPUT DEVICES -->
+        <section class="slide" id="slide-2">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">02</span>
+                  <span class="badge-label ohs-bg">Peripherals</span>
+                  <h2>Input and Output Devices</h2>
+                </div>
+                <p class="lead-text">Computers use input and output (I/O) devices as sensors and actuators to interact with human users and the physical environment.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Input Devices:</strong> Send data into the computer system. 
+                    *Examples: Keyboards, mice, scanners, microphones, and webcams.*
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Output Devices:</strong> Translate processed digital data into a form humans can perceive.
+                    *Examples: Monitors, printers, speakers, and projectors.*
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Abstractions:</strong> Whether it is a keystroke or a print line, all I/O instructions are converted to binary states under the hood.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/screwdriver_set.jpg" alt="Computer peripheral hardware tools" class="fill-img">
+                  <div class="caption">Tools for mounting and unmounting external device connections.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>Peripherals connect the digital processor to the physical world we live in. These devices are classified based on the direction of data flow. Input devices translate human actions or physical variables into digital codes. Output devices convert processed digital bytes back into physical sensory signals. Together, I/O peripherals enable humans to interact with computer hardware.</p>
+              <p>Standard input devices include the keyboard, mouse, webcam, and microphone. The keyboard translates physical keystrokes into binary character encoding values. The mouse tracks coordinates to move the graphic cursor on screen. Microphones capture sound waves and convert them to digital audio samples. These input signals are processed by the CPU to drive application software.</p>
+              <p>Common output devices include the computer monitor, printer, and speaker. The monitor displays processed pixel frames generated by the graphics adapter. Speakers convert digital audio streams back into audible sound waves. Printers output digital documents onto physical paper using ink or toner. Without these output channels, the computer would calculate without displaying results.</p>
+              <p>An easy analogy is comparing a computer to the sensory organs of a human body. Input devices are like eyes, ears, and skin sensing outer variables. Output devices are like the voice and limbs acting on the environment. For example, a microphone acts as an ear translating sound waves into signals. The monitor functions as a screen displaying visual calculations to the user.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 3: USB & CONNECTIVITY -->
+        <section class="slide" id="slide-3">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">03</span>
+                  <span class="badge-label tools-bg">Ports</span>
+                  <h2>USB (Universal Serial Bus)</h2>
+                </div>
+                <p class="lead-text"><strong>USB</strong> is the standard industry interface for connecting peripherals to a computer, replacing dozens of old mismatched cables.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">1</div>
+                  <div>
+                    <strong>USB Type-A:</strong> The classic rectangular port. Flat connector that plugs in only one way.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">2</div>
+                  <div>
+                    <strong>USB Type-C:</strong> The modern oval connector. It is fully reversible (plugs in both ways) and offers much faster data rates.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">3</div>
+                  <div>
+                    <strong>Power Delivery (PD):</strong> Modern USB-C ports can transmit power (up to 240W), allowing a single cable to transfer video data and charge a laptop battery.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/usb_c_cable.jpg" alt="USB Type-C and Type-A connectors" class="fill-img">
+                  <div class="caption">Accurate photo of standard USB Type-C plug alongside legacy Type-A connector.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>USB stands for Universal Serial Bus, a standard peripheral interface. It was created in the 1990s to replace mismatched port designs. Before USB, connecting a keyboard, mouse, or printer required different cables. USB unified these connections into a single hot-swappable connector standard. Today, it is the most dominant physical port standard in the world.</p>
+              <p>USB Type-A is the classic rectangular connector found on older PCs. It has a flat interface that only plugs in one way. USB Type-C is the modern oval connector that has replaced Type-A. It is symmetrical and can be plugged in reversibly without checking. This modern standard supports significantly higher data transfer and charging speeds.</p>
+              <p>USB-C supports a technology called Power Delivery to transfer high wattages. This allows a single USB-C cable to charge laptops and monitors. It also supports DisplayPort Alternate Mode to carry high-definition video feeds. This multi-role capability reduces the number of cables on your desk. Understanding these port differences is essential for troubleshooting modern device setups.</p>
+              <p>Think of USB as a universal key that opens every door in a building. Before USB, you needed different keys for keyboards, mouse plugs, and printers. For instance, USB Type-A was like a key that only opened when inserted right-side up. USB Type-C is like a symmetrical key that opens doors no matter how you turn it. It also functions as a power hose charging your devices alongside data transfers.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 4: DISPLAY & VIDEO PORTS -->
+        <section class="slide" id="slide-4">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">04</span>
+                  <span class="badge-label path-bg">Video</span>
+                  <h2>Display and Video Ports</h2>
+                </div>
+                <p class="lead-text">Video standards have transitioned from early analog systems to high-bandwidth digital feeds.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">✦</div>
+                  <div>
+                    <strong>HDMI (High-Definition Multimedia Interface):</strong> The most common interface. Carries uncompressed digital audio and video signals together.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">✦</div>
+                  <div>
+                    <strong>DisplayPort (DP):</strong> A high-performance digital video standard standard on dedicated GPUs, supporting higher refresh rates and resolutions.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">✦</div>
+                  <div>
+                    <strong>VGA (Video Graphics Array):</strong> The older trapezoidal 15-pin blue port. It transmits analog signals, which are prone to quality degradation.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/hdmi_cable.jpg" alt="HDMI and DisplayPort connectors" class="fill-img">
+                  <div class="caption">HDMI cable interface and DisplayPort connectors side-by-side.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>Display ports connect the computer graphics card to external monitors. Over time, these video standards transitioned from analog to digital. Early analog connections were prone to signal degradation over long cables. Modern digital display links transmit pixel color values as exact numbers. This digital transition ensures sharp image quality at high monitor resolutions.</p>
+              <p>HDMI stands for High-Definition Multimedia Interface, a common consumer standard. It carries both digital video and multi-channel audio in one cable. DisplayPort, or DP, is a high-performance standard used on desktop PCs. It supports higher screen refresh rates and resolutions than standard HDMI. Gaming monitors and graphics cards typically prioritize DisplayPort connections for speed.</p>
+              <p>VGA is an legacy analog standard utilizing a 15-pin blue connector. Because it is analog, it struggles with modern high-definition display resolutions. Most modern motherboards and graphics cards have phased out VGA ports. If you connect an old VGA monitor, the signal must be converted. Knowing your display ports helps you select the correct cables for monitors.</p>
+              <p>A simple analogy is comparing analog VGA to digital HDMI using drawing boards. VGA is like drawing a picture by tracing lines with a pencil on paper. HDMI is like printing an image using a precise grid of colored dots. For example, a VGA cable can suffer from static fuzz if moved around. An HDMI cable transmits numbers, keeping pixel colors sharp on modern screens.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 5: WIRELESS CONNECTIVITY -->
+        <section class="slide" id="slide-5">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">05</span>
+                  <span class="badge-label ohs-bg">Wireless</span>
+                  <h2>Wireless: Wi-Fi & Bluetooth</h2>
+                </div>
+                <p class="lead-text">Computers use radio frequency (RF) waves to send binary data through the air without physical cables.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Wi-Fi (Wireless Fidelity):</strong> Standard for high-speed local network access. Operates in 2.4 GHz, 5 GHz, and newer 6 GHz bands.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Bluetooth:</strong> A short-range (typically <10 meters) low-power network protocol used to link mice, keyboards, and audio devices.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Interference:</strong> Multiple devices running on the same radio frequencies (e.g. 2.4 GHz) can crowd the bandwidth and slow connection speeds.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/lan_cable_tester.jpg" alt="Wireless and wired network interfaces" class="fill-img">
+                  <div class="caption">Network diagnostic indicators on transceiver blocks.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>Wireless connectivity allows computers to transmit data without physical copper wires. Devices use radio frequency signals to broadcast binary information packages. These radio waves travel through the air between local transceiver modules. The two primary wireless standards on computers are Wi-Fi and Bluetooth. Each standard is designed for different networking ranges and power levels.</p>
+              <p>Wi-Fi connects your computer to local area networks and the internet. It operates in the 2.4 GHz, 5 GHz, and 6 GHz microwave bands. The higher frequency bands deliver faster speeds but have shorter ranges. Wi-Fi routers coordinate this radio traffic to prevent packets from colliding. Secure password encryption protocols protect your wireless data from local interceptors.</p>
+              <p>Bluetooth is a short-range, low-power connection protocol for peripheral devices. It is typically limited to distances of under ten meters. We use Bluetooth to link wireless mice, keyboards, and audio headsets. Because it uses low energy, it preserves peripheral battery life effectively. However, crowded radio environments can sometimes cause Bluetooth signals to drop.</p>
+              <p>Think of wireless connectivity as people talking to each other using walkie-talkies. Wi-Fi is like a high-speed megaphone broadcast covering an entire local house. Bluetooth is like a quiet whisper meant only for a person standing next to you. For instance, pairing wireless earbuds is like linking walkie-talkies on a private channel. If multiple megaphones broadcast at once, the radio channels become crowded and static.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 6: EXPANSION SLOTS -->
+        <section class="slide" id="slide-6">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">06</span>
+                  <span class="badge-label tools-bg">Motherboard</span>
+                  <h2>Expansion Slots (PCIe)</h2>
+                </div>
+                <p class="lead-text">Computers can be upgraded with new hardware capabilities by inserting circuit boards into slots on the motherboard.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">✦</div>
+                  <div>
+                    <strong>PCIe (PCI Express):</strong> The dominant motherboard expansion slot interface. Operates in x1, x4, x8, or x16 lanes (representing speed channels).
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">✦</div>
+                  <div>
+                    <strong>Graphics Cards (GPUs):</strong> Plugged into the largest PCIe x16 slot to handle demanding video rendering tasks.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">✦</div>
+                  <div>
+                    <strong>Dedicated Cards:</strong> Sound cards (high-fidelity audio) and Network Interface Cards (NICs for adding high-speed Ethernet or Wi-Fi).
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/pc_gpu_remove.jpg" alt="PCIe expansion slot GPU unseating" class="fill-img">
+                  <div class="caption">Installing high-bandwidth expansion graphic cards into PCIe slots.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>Expansion slots allow you to customize and upgrade motherboard features. They provide high-speed slots to plug in auxiliary circuit boards. The dominant expansion interface standard on modern mainboards is PCI Express. PCI Express, or PCIe, connects upgrade cards directly to CPU lanes. This direct link provides the high bandwidth required for intensive computations.</p>
+              <p>PCIe slots are sized by the number of data lanes they offer. Common slot configurations include x1, x4, x8, and x16 lanes. Graphics cards require the largest PCIe x16 slot to process frame rates. Slower expansion cards, like network adapters, use smaller PCIe x1 slots. This modular design lets users customize PCs for gaming or workstation tasks.</p>
+              <p>Sound cards can be added to provide high-fidelity multi-channel audio ports. Network cards add dedicated Ethernet jacks or wireless antennas to motherboards. Capture cards let creators stream video feeds from external gaming consoles. These boards draw electrical power directly from the PCIe expansion slot. Managing these slot resources is essential for building high-performance computer setups.</p>
+              <p>A great analogy for expansion slots is a modular toy set with expansion tracks. The motherboard is the base track, and PCIe slots are the expansion sockets. For example, adding a graphics card is like plugging in a high-speed booster track. A sound card acts like a speaker module adding fresh audio outputs. This modular design allows you to rebuild and upgrade your PC capabilities over time.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 7: INTERACTIVE MATCHING ACTIVITY -->
+        <section class="slide" id="slide-7">
+          <div class="slide-content">
+            <div class="section-title text-center">
+              <span class="slide-num">07</span>
+              <span class="badge-label quiz-bg">Interactive Activity</span>
+              <h2>Interactive Ports Matching Activity</h2>
+              <p>Click a port name on the left, then click its correct description on the right to connect them.</p>
+            </div>
+            
+            <div class="port-matching-container">
+              <div class="port-matching-left" id="matching-ports" style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- Loaded dynamically via JS -->
+              </div>
+              <div class="port-matching-right" id="matching-descriptions" style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- Loaded dynamically via JS -->
+              </div>
+            </div>
+            <div class="matching-feedback text-center" id="matching-feedback-box" style="margin-top: 20px; font-weight: 600; font-size: 15px; color: var(--text-secondary); min-height: 24px;">
+              Select a port to begin.
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 8: THE OPERATING SYSTEM -->
+        <section class="slide" id="slide-8">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">08</span>
+                  <span class="badge-label ohs-bg">System Software</span>
+                  <h2>The Operating System (OS)</h2>
+                </div>
+                <p class="lead-text">An **Operating System** is system software that manages computer hardware resources and provides common services for application programs.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Resource Allocator:</strong> Allocates CPU execution time, divides RAM space, and monitors file storage paths.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>User Interface (UI):</strong> Provides the window dashboard where users click folders (GUI) or type text commands (CLI).
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Major Types:</strong> Microsoft Windows (dominant desktop), Apple macOS (creative workstation), and Linux (open-source server engine).
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/pc_psu_install.jpg" alt="Operating System power loader" class="fill-img">
+                  <div class="caption">Powering the chassis runs the motherboard chip routines for OS boot loaders.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>The Operating System, or OS, is the primary system software. It acts as the manager coordinating hardware resources and software applications. When you turn on your PC, the OS is loaded. It sits as an interface layer between user programs and physical chips. Without an operating system, running applications on hardware would be impossible.</p>
+              <p>The OS kernel manages CPU scheduling and RAM space memory allocation. It decides which programs get processor time and prevents memory conflicts. It also handles file system storage paths on your drive sectors. Additionally, the OS provides the graphical user interface for navigation. This GUI allows users to click folders instead of typing text.</p>
+              <p>The three dominant desktop operating systems are Windows, macOS, and Linux. Microsoft Windows is the most popular desktop system for home users. Apple macOS is optimized to run exclusively on proprietary Mac devices. Linux is free, open-source, and powers most global web servers. Each OS offers distinct advantages in security, customizability, and software support.</p>
+              <p>Think of the Operating System as a manager running a busy office building. The manager schedules meeting rooms, distributes office supplies, and controls security doors. For example, Windows acts as the office manager allocating desk space RAM to programs. If two workers try to use the same desk, the manager resolves the conflict. Without this manager, application workers would clash and crash the entire building.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 9: DEVICE DRIVERS -->
+        <section class="slide" id="slide-9">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">09</span>
+                  <span class="badge-label tools-bg">Drivers</span>
+                  <h2>Device Drivers</h2>
+                </div>
+                <p class="lead-text">A **Device Driver** is a specialized system file that acts as a translator between the Operating System and a physical hardware component.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">1</div>
+                  <div>
+                    <strong>The Bridge:</strong> The OS doesn't know the exact physical language of every printer, mouse, or graphic card. The driver translates standard OS commands into device-specific instructions.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">2</div>
+                  <div>
+                    <strong>Errors:</strong> Without the correct driver installed, plugged-in devices will fail to work, or trigger system instability (like crash logs).
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">3</div>
+                  <div>
+                    <strong>Updates:</strong> Hardware manufacturers frequently update drivers to fix software bugs and improve performance.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/pc_data_cables.jpg" alt="Device driver data bridge lines" class="fill-img">
+                  <div class="caption">Data cable links bridge peripheral physical sockets to mainboards.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>Device drivers are specialized software files that manage hardware peripheral components. They act as translators between the Operating System and plugged-in devices. The OS does not natively know the language of every printer. Instead, it relies on the driver to translate generic commands. This driver translation layer is essential for plug-and-play device support.</p>
+              <p>When you connect a new device, the OS looks for drivers. If the driver is missing, the plugged-in peripheral will not work. The system might display error codes or fail to recognize ports. Hardware manufacturers write these files and distribute them for specific systems. Installing the correct driver version ensures the device runs stable and fast.</p>
+              <p>Graphics card drivers are updated frequently to optimize gaming performance speeds. Motherboard chipset drivers ensure thermal controllers and USB ports connect properly. Operating systems often package common generic drivers for mice and keyboards. These basic drivers allow core peripherals to work immediately out of the box. Managing these driver software updates keeps the overall computer running smoothly.</p>
+              <p>A simple analogy for a device driver is a human translator at an international conference. The manager speaks English, but the newly arrived guest only speaks French. For example, the printer driver translates the OS "Print Document" command into printer language. Without this translator, the printer remains idle and cannot process incoming files. Installing driver updates is like teaching the translator new vocabulary to improve speed.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 10: 15-ITEM QUIZ -->
+        <section class="slide" id="slide-10" data-section="quiz">
+          <div class="slide-content quiz-layout">
+            <div class="section-title text-center">
+              <span class="slide-num">10</span>
+              <span class="badge-label quiz-bg">Classroom Activity</span>
+              <h2>Connectivity & OS Check</h2>
+              <p>Test your knowledge on ports and system software. Answer these 15 multiple-choice questions.</p>
+            </div>
+
+            <!-- Interactive Quiz Box -->
+            <div class="quiz-container glass-card" id="quizBox">
+              <div class="quiz-progress" id="quizProgress" style="display: flex; gap: 4px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap;">
+                <!-- Injected dynamically by JS -->
+              </div>
+              
+              <div class="question-container">
+                <span id="questionCategory" class="question-cat">Ports & OS</span>
+                <h3 id="questionText">Question Text?</h3>
+                <div class="options-grid" id="optionsGrid">
+                  <!-- Loaded via JS -->
+                </div>
+              </div>
+
+              <div class="feedback-container hidden" id="feedbackPanel">
+                <div class="feedback-indicator">
+                  <span class="feedback-icon" id="feedbackIcon">✓</span>
+                  <span class="feedback-title" id="feedbackTitle">Correct!</span>
+                </div>
+                <p id="feedbackText">Explanation here.</p>
+                <button class="btn btn-primary" id="nextQuestionBtn" onclick="nextQuestion()">Next Question</button>
+              </div>
+
+              <div class="quiz-footer">
+                <span id="quizScoreText">Score: 0 / 0</span>
+                <button class="btn btn-secondary" onclick="resetQuiz()">Restart Quiz</button>
+              </div>
+            </div>
+
+            <!-- Quiz Results Container (Hidden initially) -->
+            <div class="quiz-results-container glass-card hidden" id="quizResults">
+              <div class="results-header">
+                <div class="results-badge">🏆</div>
+                <h2>Module Complete!</h2>
+                <p>Here is how you scored on the Connectivity & OS quiz:</p>
+              </div>
+              <div class="score-circle" style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 800; margin: 20px auto; color: var(--text-primary);">
+                <span id="finalScoreText">15/15</span>
+              </div>
+              <p id="resultsMessage" class="text-center" style="margin-bottom: 20px; font-weight: 500;">Excellent work, future IT Professional!</p>
+              <button class="btn btn-primary" style="margin: 0 auto; display: block;" onclick="resetQuiz()">Take Quiz Again</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 11: SUMMARY & REVIEW -->
+        <section class="slide" id="slide-11">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">11</span>
+                  <span class="badge-label ohs-bg">Conclusion</span>
+                  <h2>Hardware Part 3 Summary</h2>
+                </div>
+                
+                <ul class="slide-body-bullets">
+                  <li>**I/O Devices** serve as the inputs (mouse, keyboard) and outputs (monitors, speakers) connecting computer logic to humans.</li>
+                  <li>**USB-C** represents the modern standard for general connection, providing high power charging alongside data transfers.</li>
+                  <li>**HDMI and DisplayPort** carry high-definition digital audio/video, replacing legacy analog VGA.</li>
+                  <li>**Wi-Fi & Bluetooth** use radio waves to transmit binary without wires.</li>
+                  <li>The **Operating System (OS)** manages the physical hardware resources (CPU, RAM) and hosts user software.</li>
+                  <li>**Device Drivers** bridge the gap by translating standard OS commands into printer/GPU native languages.</li>
+                </ul>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/pc_thermal_paste.jpg" alt="Complete balanced hardware review" class="fill-img">
+                  <div class="caption">Review of connectivity and system software maintenance components.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>This lecture module explored how computers connect peripherals and run software. Input and output devices let users feed and receive data. USB-C has unified physical ports, offering data and power delivery. Digital standards like HDMI have replaced analog video interfaces like VGA. Wireless protocols Wi-Fi and Bluetooth transmit binary signals via radio waves.</p>
+              <p>Motherboard PCIe slots allow users to upgrade systems with graphics cards. The Operating System manages CPU cores, memory limits, and file paths. It hosts the dashboard interface where users open application software programs. Device drivers translate generic OS operations into device-specific hardware codes. Keeping drivers updated prevents hardware errors and keeps systems running stable.</p>
+              <p>This concludes our exploration of computer hardware modules in CC 101. We have traced computing from basic binary numbers to operating systems. Understanding these hardware layers prepares you for the next syllabus topic. Starting next week, we will explore the global infrastructure of networks. We will cover IP addresses, routers, and web communication protocols.</p>
+              <p>A final analogy is to view a completed computer system as a busy airport. The building structure and terminals represent the physical hardware ports. The airplanes carrying passengers are the input and output data packets. The air traffic controllers managing routes correspond to the operating system. Together, these layers ensure that global digital travel runs smoothly and safely.</p>
+            </article>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- Bottom Control Panel -->
+    <footer class="bottom-controls">
+      <div class="control-left">
+        <button id="prevBtn" class="btn btn-secondary" title="Previous Slide (Left Arrow / Backspace)">
+          ← Previous
+        </button>
+      </div>
+
+      <div class="control-center">
+        <!-- Interactive Slide Indicator dots -->
+        <div class="slide-dots" id="slideDots">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="control-right">
+        <button id="nextBtn" class="btn btn-primary" title="Next Slide (Right Arrow / Spacebar)">
+          Next Slide →
+        </button>
+      </div>
+    <!-- Floating Scroll Indicator -->
+    <div class="scroll-prompt hidden" id="scrollPrompt">
+      <div class="prompt-mouse">
+        <div class="prompt-wheel"></div>
+      </div>
+      <span>Scroll down to know more</span>
+    </div>
+
+  </div>
+
+  <!-- Keyboard Help Modal -->
+  <div class="help-modal modal-backdrop" id="helpModal">
+    <div class="help-modal-content modal-content glass-card">
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 16px;">
+        <h3>Keyboard Navigation Shortcuts</h3>
+        <button id="closeHelpModal" class="icon-btn" style="background: none; border: none; color: var(--text-secondary); font-size: 20px; cursor: pointer;">×</button>
+      </div>
+      <div class="modal-body">
+        <ul class="shortcuts-list" style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">→</kbd> or <kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">Space</kbd> <span>Next Slide</span></li>
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">←</kbd> <span>Previous Slide</span></li>
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">T</kbd> <span>Toggle Dark / Light Theme</span></li>
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">H</kbd> <span>Show / Hide this guide</span></li>
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">F</kbd> <span>Toggle Fullscreen Presentation</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portal Integration -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/progress.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

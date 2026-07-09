@@ -1,0 +1,796 @@
+// app.js
+
+// Presentation State
+let currentSlide = 1;
+const totalSlides = 10;
+const MODULE_ID = 'internet-part-2';
+
+// Slide Titles for Left Sidebar Checklist
+const SLIDE_TITLES = [
+    "Welcome & Intro",
+    "Packets & Routing",
+    "TCP/IP Handshake",
+    "DNS Resolution",
+    "HTTP Requests",
+    "HTTPS Security",
+    "DNS Route Tracer",
+    "TCP Simulator",
+    "Quiz Assessment",
+    "Summary & Review"
+];
+
+// Quiz Database (15 Questions matching constraints)
+const QUIZ_QUESTIONS = [
+    {
+        category: "Packets & Routing",
+        question: "What is the standard maximum size of a typical internet Ethernet packet?",
+        options: [
+            "128 bytes",
+            "1,500 bytes",
+            "64,000 bytes",
+            "1 Megabyte"
+        ],
+        answer: 1,
+        explanation: "The standard MTU (Maximum Transmission Unit) for Ethernet packets on the web is 1,500 bytes."
+    },
+    {
+        category: "Packets & Routing",
+        question: "How do packets reach their destination if routing paths are congested?",
+        options: [
+            "They stop moving and wait until the line clears.",
+            "They route independently across different hops, taking different paths.",
+            "They automatically increase their size to force through gates.",
+            "They fail and corrupt the client operating system."
+        ],
+        answer: 1,
+        explanation: "Packets travel independently. Routers dynamic-path packet chunks around network congestion blocks."
+    },
+    {
+        category: "TCP Protocol",
+        question: "Which of the following describes the first step of the TCP 3-way handshake?",
+        options: [
+            "Client sends ACK (Acknowledgment)",
+            "Client sends SYN (Synchronize)",
+            "Server sends SYN-ACK",
+            "Server sends FIN (Finish)"
+        ],
+        answer: 1,
+        explanation: "The client starts the TCP handshake by sending a SYN packet to synchronize sequence numbers."
+    },
+    {
+        category: "TCP Protocol",
+        question: "What action does TCP take if a packet segment is lost in transit?",
+        options: [
+            "It drops the entire connection and restarts the download.",
+            "It requests retransmission of only the lost packet segment.",
+            "It maps the IP address class to Class D.",
+            "It redirects the packet to a local loopback."
+        ],
+        answer: 1,
+        explanation: "TCP uses error recovery tracking. If a segment is missing, the client requests retransmission of that specific sequence block."
+    },
+    {
+        category: "Domain Name System",
+        question: "What is the primary role of the Domain Name System (DNS)?",
+        options: [
+            "To encrypt HTML tags inside browser files.",
+            "To map human-readable domain names to numerical IP addresses.",
+            "To assign local IP addresses to wifi clients dynamically.",
+            "To check motherboard voltages during startup."
+        ],
+        answer: 1,
+        explanation: "DNS acts as the web phonebook, resolving domain names (like google.com) to numeric IP targets."
+    },
+    {
+        category: "Domain Name System",
+        question: "Which DNS server is queried first after your browser checks its local cache?",
+        options: [
+            "Authoritative Server",
+            "TLD Name Server",
+            "Root Name Server",
+            "SSL Certificate Authority"
+        ],
+        answer: 2,
+        explanation: "The DNS query path resolves hierarchically, starting at Root name servers, moving to TLD (.com/.org), and then Authoritative servers."
+    },
+    {
+        category: "HTTP Protocol",
+        question: "Which HTTP request method is used by a browser to retrieve layout page files from a web server?",
+        options: [
+            "POST",
+            "GET",
+            "PUT",
+            "DELETE"
+        ],
+        answer: 1,
+        explanation: "Browsers use the GET method to retrieve documents or assets from a target server."
+    },
+    {
+        category: "HTTP Protocol",
+        question: "What does an HTTP 404 response status code indicate?",
+        options: [
+            "Request succeeded (OK)",
+            "Server error occurred",
+            "Resource not found",
+            "Connection encrypted securely"
+        ],
+        answer: 2,
+        explanation: "A 404 status code is returned by a web host indicating that the requested URL page was not found."
+    },
+    {
+        category: "Web Security",
+        question: "What is the primary purpose of the HTTPS protocol?",
+        options: [
+            "To make files download at higher speeds.",
+            "To encrypt the request-response data stream using SSL/TLS.",
+            "To assign class subnets dynamically.",
+            "To loop data back to local hosts."
+        ],
+        answer: 1,
+        explanation: "HTTPS secures standard HTTP streams using SSL/TLS protocols to encrypt data transit."
+    },
+    {
+        category: "Web Security",
+        question: "What type of cryptography does HTTPS use to verify server identity during a handshake?",
+        options: [
+            "Symmetric key cryptography only",
+            "Asymmetric (Public-Private key) cryptography",
+            "Binary ASCII tables",
+            "Dynamic DHCP leases"
+        ],
+        answer: 1,
+        explanation: "HTTPS uses asymmetric public-private key cryptography during SSL handshakes to verify host certificates."
+    },
+    {
+        category: "HTTP statelessness",
+        question: "Since HTTP is a stateless protocol, how do modern websites remember your active login state?",
+        options: [
+            "Using hardware MAC addresses.",
+            "By writing temporary files called cookies to your browser.",
+            "By locking the TCP socket permanently.",
+            "Using DHCP lease timers."
+        ],
+        answer: 1,
+        explanation: "HTTP is stateless. Sites store session tokens in cookies saved locally in your browser to remember login states."
+    },
+    {
+        category: "Domain Name System",
+        question: "Which DNS server holds the final, definitive mapping record for a domain's IP address?",
+        options: [
+            "Root Name Server",
+            "TLD Name Server (.com)",
+            "Authoritative Name Server",
+            "Local DHCP client"
+        ],
+        answer: 2,
+        explanation: "The Authoritative Name Server is the final step in DNS queries, holding the actual IP mapping record for a domain."
+    },
+    {
+        category: "HTTP Protocol",
+        question: "Which HTTP request method is used when submitting form data (like usernames and passwords) to a server?",
+        options: [
+            "GET",
+            "POST",
+            "OPTIONS",
+            "TRACE"
+        ],
+        answer: 1,
+        explanation: "The POST method wraps form data inside the request body rather than URL queries, ideal for logins."
+    },
+    {
+        category: "Web Security",
+        question: "What visual indicator in the browser URL bar guarantees a site is running HTTPS?",
+        options: [
+            "A blue circular badge",
+            "A padlock icon next to the address",
+            "A blinking green dot",
+            "A secure banner in the footer"
+        ],
+        answer: 1,
+        explanation: "Modern browsers display a padlock icon next to domain names to indicate an active secure TLS encryption layer."
+    },
+    {
+        category: "Packets & Routing",
+        question: "What parameter in a packet header tells the router how many hops a packet can survive before being dropped?",
+        options: [
+            "TTL (Time to Live)",
+            "Sequence ID",
+            "DHCP Lease Limit",
+            "Port Number"
+        ],
+        answer: 0,
+        explanation: "TTL (Time to Live) limits packet lifespan. Every router hop decrements TTL. If TTL reaches 0, the packet is discarded."
+    }
+];
+
+// Interactive Widgets State
+let isDNSResolving = false;
+let isTCPSimulating = false;
+
+// Initialize on Load
+document.addEventListener("DOMContentLoaded", () => {
+    setupNavigation();
+    setupTheme();
+    setupKeyboardShortcuts();
+    resetQuiz();
+    
+    // Scroll Prompt setup
+    setupScrollPromptListeners();
+    setTimeout(updateScrollPrompt, 100);
+});
+
+// Setup Presentation Navigation
+function setupNavigation() {
+    populateSidebar();
+    updateProgress();
+    setupDots();
+
+    // Next / Prev button event listeners
+    document.getElementById("prevBtn").addEventListener("click", prevSlide);
+    document.getElementById("nextBtn").addEventListener("click", nextSlide);
+
+    // Help Modal listeners
+    const helpToggle = document.getElementById("helpToggle");
+    const helpModal = document.getElementById("helpModal");
+    const closeHelp = document.getElementById("closeHelpModal");
+
+    if (helpToggle && helpModal) {
+        helpToggle.addEventListener("click", () => {
+            helpModal.classList.toggle("active");
+        });
+    }
+    if (closeHelp && helpModal) {
+        closeHelp.addEventListener("click", () => {
+            helpModal.classList.remove("active");
+        });
+    }
+    if (helpModal) {
+        helpModal.addEventListener("click", (e) => {
+            if (e.target === helpModal) helpModal.classList.remove("active");
+        });
+    }
+}
+
+// Generate Checklist Sidebar steps
+function populateSidebar() {
+    const sidebar = document.getElementById("sidebarChecklist");
+    if (!sidebar) return;
+    
+    sidebar.innerHTML = "";
+    SLIDE_TITLES.forEach((title, idx) => {
+        const slideNum = idx + 1;
+        const li = document.createElement("li");
+        li.className = `sidebar-item ${slideNum === currentSlide ? 'active' : ''} ${slideNum < currentSlide ? 'completed' : ''}`;
+        li.setAttribute("data-target", slideNum);
+        
+        const dot = document.createElement("span");
+        dot.className = "step-indicator-dot";
+        dot.innerText = slideNum;
+        
+        const label = document.createElement("span");
+        label.innerText = title;
+        
+        li.appendChild(dot);
+        li.appendChild(label);
+        
+        li.addEventListener("click", () => {
+            goToSlide(slideNum);
+        });
+        
+        sidebar.appendChild(li);
+    });
+}
+
+// Setup navigation dots at the bottom
+function setupDots() {
+    const dotsContainer = document.getElementById("slideDots");
+    if (!dotsContainer) return;
+
+    dotsContainer.innerHTML = "";
+    for (let i = 1; i <= totalSlides; i++) {
+        const dot = document.createElement("div");
+        dot.className = `dot ${i === currentSlide ? "active-dot" : ""}`;
+        dot.title = `Jump to Slide ${i}`;
+        dot.addEventListener("click", () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    }
+}
+
+// Go to specific slide
+function goToSlide(slideNum) {
+    if (slideNum < 1 || slideNum > totalSlides) return;
+
+    // Slide transition
+    const oldSlide = document.getElementById(`slide-${currentSlide}`);
+    const newSlide = document.getElementById(`slide-${slideNum}`);
+
+    if (oldSlide) oldSlide.classList.remove("active-slide");
+    if (newSlide) {
+        newSlide.classList.add("active-slide");
+        newSlide.scrollTop = 0; // Reset scroll position to top
+    }
+
+    currentSlide = slideNum;
+    
+    // Update sidebar checklist states
+    const items = document.querySelectorAll(".sidebar-item");
+    items.forEach((item, idx) => {
+        const itemNum = idx + 1;
+        item.classList.toggle("active", itemNum === currentSlide);
+        item.classList.toggle("completed", itemNum < currentSlide);
+    });
+
+    // Update dots indicator
+    const dots = document.querySelectorAll(".dot");
+    dots.forEach((dot, idx) => {
+        dot.classList.toggle("active-dot", idx + 1 === currentSlide);
+    });
+
+    updateProgress();
+    setTimeout(updateScrollPrompt, 50); // Refresh floating indicator
+}
+
+function nextSlide() {
+    if (currentSlide < totalSlides) {
+        // Block navigation inside quiz slide unless completed
+        if (currentSlide === 9 && quizCurrentQuestion < QUIZ_QUESTIONS.length) {
+            return;
+        }
+        goToSlide(currentSlide + 1);
+    }
+}
+
+function prevSlide() {
+    if (currentSlide > 1) {
+        goToSlide(currentSlide - 1);
+    }
+}
+
+// Update Slide Progress indicators
+function updateProgress() {
+    const progressBar = document.getElementById("progressBar");
+    const currentNumEl = document.getElementById("currentSlideNum");
+    const totalNumEl = document.getElementById("totalSlidesNum");
+
+    if (currentNumEl) currentNumEl.innerText = currentSlide;
+    if (totalNumEl) totalNumEl.innerText = totalSlides;
+
+    if (progressBar) {
+        const percentage = ((currentSlide - 1) / (totalSlides - 1)) * 100;
+        progressBar.style.width = `${percentage}%`;
+    }
+}
+
+// Theme System Control (Dark / Light)
+function setupTheme() {
+    const themeToggle = document.getElementById("themeToggle");
+    const htmlEl = document.documentElement;
+
+    const savedTheme = localStorage.getItem("itc-theme") || "dark";
+    htmlEl.setAttribute("data-theme", savedTheme);
+
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            const currentTheme = htmlEl.getAttribute("data-theme");
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            htmlEl.setAttribute("data-theme", newTheme);
+            localStorage.setItem("itc-theme", newTheme);
+            setTimeout(updateScrollPrompt, 50); // Color updates
+        });
+    }
+}
+
+// Keyboard shortcuts mapping
+function setupKeyboardShortcuts() {
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === "Space") {
+            if (currentSlide === 9 && quizCurrentQuestion < QUIZ_QUESTIONS.length) {
+                return;
+            }
+            nextSlide();
+            if (e.key === "Space") e.preventDefault();
+        } else if (e.key === "ArrowLeft") {
+            prevSlide();
+        } else if (e.key === "t" || e.key === "T") {
+            const themeToggle = document.getElementById("themeToggle");
+            if (themeToggle) themeToggle.click();
+        } else if (e.key === "h" || e.key === "H") {
+            const helpModal = document.getElementById("helpModal");
+            if (helpModal) helpModal.classList.toggle("active");
+        } else if (e.key === "f" || e.key === "F") {
+            toggleFullscreen();
+        }
+    });
+}
+
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+            console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+// Floating Scroll Prompt Management
+function updateScrollPrompt() {
+    const prompt = document.getElementById("scrollPrompt");
+    if (!prompt) return;
+
+    const activeSlideEl = document.getElementById(`slide-${currentSlide}`);
+    if (!activeSlideEl) return;
+
+    const isScrollable = activeSlideEl.scrollHeight > activeSlideEl.clientHeight + 15;
+    const isScrolledDown = activeSlideEl.scrollTop > 30;
+
+    if (isScrollable && !isScrolledDown) {
+        prompt.classList.add("visible");
+        prompt.classList.remove("hidden");
+    } else {
+        prompt.classList.remove("visible");
+        prompt.classList.add("hidden");
+    }
+}
+
+// Add scroll listeners to all slides
+function setupScrollPromptListeners() {
+    const slides = document.querySelectorAll(".slide");
+    slides.forEach(slide => {
+        slide.addEventListener("scroll", () => {
+            updateScrollPrompt();
+        });
+    });
+}
+
+// Interactive Widget: DNS Resolver & Traceroute
+function resolveDomain() {
+    if (isDNSResolving) return;
+
+    const input = document.getElementById("domain-input");
+    const rootStatus = document.getElementById("dns-root-status");
+    const tldStatus = document.getElementById("dns-tld-status");
+    const authStatus = document.getElementById("dns-auth-status");
+    const traceBox = document.getElementById("traceroute-output");
+
+    if (!input || !rootStatus || !tldStatus || !authStatus || !traceBox) return;
+
+    const domain = input.value.trim();
+    if (!domain) return;
+
+    isDNSResolving = true;
+    traceBox.innerHTML = "Resolving DNS hierarchy for " + domain + "...<br>";
+
+    // Reset status
+    rootStatus.innerText = "Querying...";
+    rootStatus.style.color = "var(--color-primary)";
+    tldStatus.innerText = "Waiting...";
+    tldStatus.style.color = "var(--text-secondary)";
+    authStatus.innerText = "Waiting...";
+    authStatus.style.color = "var(--text-secondary)";
+
+    // Step 1: Root Server Query
+    setTimeout(() => {
+        rootStatus.innerText = "Resolved";
+        rootStatus.style.color = "var(--color-success)";
+        tldStatus.innerText = "Querying...";
+        tldStatus.style.color = "var(--color-primary)";
+        traceBox.innerHTML += "&bull; Root Name Server: Referred query to TLD Name Server (.org)<br>";
+
+        // Step 2: TLD Server Query
+        setTimeout(() => {
+            tldStatus.innerText = "Resolved";
+            tldStatus.style.color = "var(--color-success)";
+            authStatus.innerText = "Querying...";
+            authStatus.style.color = "var(--color-primary)";
+            traceBox.innerHTML += "&bull; TLD Name Server: Pointed query to Authoritative Name Server for wikipedia.org<br>";
+
+            // Step 3: Auth Server Query
+            setTimeout(() => {
+                authStatus.innerText = "91.198.174.192";
+                authStatus.style.color = "var(--color-success)";
+                traceBox.innerHTML += "&bull; Authoritative Server: Final mapping resolved (wikipedia.org -> 91.198.174.192)<br><br>";
+                traceBox.innerHTML += "Starting traceroute to 91.198.174.192 (max 30 hops):<br>";
+
+                // Run Traceroute simulation
+                runTraceroute(traceBox);
+            }, 1000);
+        }, 1000);
+    }, 1000);
+}
+
+function runTraceroute(box) {
+    const targetIP = "91.198.174.192";
+    const hops = [
+        { label: "192.168.1.1 (Local Router gateway)", delay: 2 },
+        { label: "isp-routing-hub.net (ISP Core Node)", delay: 14 },
+        { label: "backbone-transit-level3.net (Transit Node)", delay: 35 },
+        { label: "undersea-light-cable.org (Oceanic Link)", delay: 78 },
+        { label: "european-distribution-hub.net (Regional Node)", delay: 92 },
+        { label: targetIP + " (wikipedia.org server host)", delay: 104 }
+    ];
+
+    let currentHop = 0;
+
+    function printHop() {
+        if (currentHop < hops.length) {
+            const h = hops[currentHop];
+            box.innerHTML += ` hop ${currentHop + 1}:  ${h.label}   [${h.delay}ms] <br>`;
+            box.scrollTop = box.scrollHeight;
+            currentHop++;
+            setTimeout(printHop, 600);
+        } else {
+            box.innerHTML += "<br>Trace complete. Target reached successfully. 🎉";
+            box.scrollTop = box.scrollHeight;
+            isDNSResolving = false;
+        }
+    }
+
+    setTimeout(printHop, 500);
+}
+
+// Interactive Widget: TCP Handshake & Packet Loss Simulator
+function startTCPSimulation() {
+    if (isTCPSimulating) return;
+
+    const lossSlider = document.getElementById("loss-slider");
+    const progressEl = document.getElementById("tcp-download-progress");
+    const handshakeEl = document.getElementById("tcp-handshake-status");
+    const gridEl = document.getElementById("packetsGrid");
+    const logEl = document.getElementById("tcp-visual-log");
+
+    if (!lossSlider || !progressEl || !handshakeEl || !gridEl || !logEl) return;
+
+    isTCPSimulating = true;
+    const lossRate = Number(lossSlider.value) / 100;
+
+    // Reset grid
+    gridEl.innerHTML = "";
+    const totalPackets = 20;
+    for (let i = 0; i < totalPackets; i++) {
+        const box = document.createElement("div");
+        box.className = "packet-block";
+        box.setAttribute("data-id", i + 1);
+        box.innerText = i + 1;
+        gridEl.appendChild(box);
+    }
+
+    // Step 1: Handshake
+    logEl.innerHTML = "<div><span style='color: var(--color-primary);'>[TCP]</span> Initiating Three-Way Handshake...</div>";
+    handshakeEl.innerText = "SYN Sent";
+    handshakeEl.style.color = "var(--color-primary)";
+
+    setTimeout(() => {
+        logEl.innerHTML += "<div><span style='color: var(--color-success);'>[TCP]</span> Server responded with SYN-ACK packet.</div>";
+        handshakeEl.innerText = "SYN-ACK Received";
+
+        setTimeout(() => {
+            logEl.innerHTML += "<div><span style='color: var(--color-success);'>[TCP]</span> Client sent ACK. Handshake established!</div>";
+            handshakeEl.innerText = "Established";
+            handshakeEl.style.color = "var(--color-success)";
+
+            // Start sending packets
+            sendPackets(totalPackets, lossRate, logEl, progressEl);
+        }, 800);
+    }, 800);
+}
+
+function sendPackets(total, lossRate, log, progress) {
+    let packetStates = new Array(total).fill(0); // 0: Unsended, 1: Sent, -1: Lost
+    let currentIdx = 0;
+    let successfulTransfers = 0;
+
+    function transferLoop() {
+        if (successfulTransfers < total) {
+            // Find next unsent or lost packet
+            let idx = packetStates.indexOf(0);
+            if (idx === -1) {
+                idx = packetStates.indexOf(-1); // Resend lost packets
+            }
+
+            if (idx === -1) {
+                // Done!
+                finishTCP();
+                return;
+            }
+
+            const pNum = idx + 1;
+            const block = document.querySelector(`.packet-block[data-id="${pNum}"]`);
+            
+            // Random check for loss
+            const isLost = Math.random() < lossRate;
+
+            log.innerHTML += `<div>Sending packet segment ${pNum} / ${total}...</div>`;
+            log.scrollTop = log.scrollHeight;
+
+            if (block) {
+                block.className = "packet-block active-trans";
+            }
+
+            setTimeout(() => {
+                if (isLost) {
+                    packetStates[idx] = -1; // Lost
+                    if (block) block.className = "packet-block lost-trans";
+                    log.innerHTML += `<div><span style="color: var(--color-error);">[LOSS]</span> Packet segment ${pNum} dropped in transit.</div>`;
+                    log.scrollTop = log.scrollHeight;
+                } else {
+                    packetStates[idx] = 1; // Succeeded
+                    successfulTransfers++;
+                    if (block) block.className = "packet-block success-trans";
+                    log.innerHTML += `<div><span style="color: var(--color-success);">[ACK]</span> Acknowledgment received for segment ${pNum}.</div>`;
+                    log.scrollTop = log.scrollHeight;
+
+                    // Update progress
+                    const percentage = Math.round((successfulTransfers / total) * 100);
+                    progress.innerText = percentage + "%";
+                }
+
+                setTimeout(transferLoop, 300);
+            }, 500);
+
+        } else {
+            finishTCP();
+        }
+    }
+
+    function finishTCP() {
+        log.innerHTML += "<div><span style='color: var(--color-success);'>[SUCCESS]</span> All packet segments assembled in correct order.</div>";
+        log.scrollTop = log.scrollHeight;
+        isTCPSimulating = false;
+    }
+
+    transferLoop();
+}
+
+// Interactive Quiz System Logic
+function resetQuiz() {
+    quizCurrentQuestion = 0;
+    quizScore = 0;
+    quizAnswers = [];
+    
+    const quizBox = document.getElementById("quizBox");
+    const quizResults = document.getElementById("quizResults");
+    
+    if (quizBox) quizBox.classList.remove("hidden");
+    if (quizResults) quizResults.classList.add("hidden");
+
+    // Rebuild quiz progress indicators
+    const progressContainer = document.getElementById("quizProgress");
+    if (progressContainer) {
+        progressContainer.innerHTML = "";
+        for (let i = 0; i < QUIZ_QUESTIONS.length; i++) {
+            const step = document.createElement("div");
+            step.className = `quiz-progress-step ${i === 0 ? 'active-q' : ''}`;
+            step.innerText = i + 1;
+            progressContainer.appendChild(step);
+        }
+    }
+
+    loadQuestion();
+}
+
+function loadQuestion() {
+    // Hide feedback panel
+    const feedbackPanel = document.getElementById("feedbackPanel");
+    if (feedbackPanel) feedbackPanel.classList.add("hidden");
+
+    const q = QUIZ_QUESTIONS[quizCurrentQuestion];
+    const catEl = document.getElementById("questionCategory");
+    const textEl = document.getElementById("questionText");
+    const optionsGrid = document.getElementById("optionsGrid");
+
+    if (catEl) catEl.innerText = q.category;
+    if (textEl) textEl.innerText = q.question;
+    
+    if (optionsGrid) {
+        optionsGrid.innerHTML = "";
+        q.options.forEach((opt, idx) => {
+            const btn = document.createElement("button");
+            btn.className = "option-btn";
+            btn.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + idx)}</span> <span class="option-text">${opt}</span>`;
+            btn.addEventListener("click", () => selectOption(idx));
+            optionsGrid.appendChild(btn);
+        });
+    }
+
+    // Update progress steps
+    const steps = document.querySelectorAll(".quiz-progress-step");
+    steps.forEach((step, idx) => {
+        step.classList.toggle("active-q", idx === quizCurrentQuestion);
+        if (idx < quizCurrentQuestion) {
+            const isCorrect = quizAnswers[idx];
+            step.classList.add(isCorrect ? "correct-q" : "incorrect-q");
+        } else {
+            step.classList.remove("correct-q", "incorrect-q");
+        }
+    });
+
+    updateScoreText();
+}
+
+function selectOption(selectedIdx) {
+    const feedbackPanel = document.getElementById("feedbackPanel");
+    if (feedbackPanel && !feedbackPanel.classList.contains("hidden")) return;
+
+    const q = QUIZ_QUESTIONS[quizCurrentQuestion];
+    const isCorrect = selectedIdx === q.answer;
+    
+    if (isCorrect) quizScore++;
+    quizAnswers.push(isCorrect);
+
+    const buttons = document.querySelectorAll("#optionsGrid .option-btn");
+    buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === q.answer) {
+            btn.classList.add("selected-correct");
+        } else if (idx === selectedIdx && !isCorrect) {
+            btn.classList.add("selected-incorrect");
+        }
+    });
+
+    // Display feedback panel
+    const iconEl = document.getElementById("feedbackIcon");
+    const titleEl = document.getElementById("feedbackTitle");
+    const textEl = document.getElementById("feedbackText");
+
+    if (iconEl) {
+        iconEl.innerText = isCorrect ? "✓" : "✗";
+        iconEl.className = `feedback-icon ${isCorrect ? 'correct-icon' : 'incorrect-icon'}`;
+    }
+    if (titleEl) {
+        titleEl.innerText = isCorrect ? "Correct!" : "Incorrect";
+        titleEl.className = `feedback-title ${isCorrect ? 'correct-title' : 'incorrect-title'}`;
+    }
+    if (textEl) textEl.innerHTML = q.explanation;
+    if (feedbackPanel) feedbackPanel.classList.remove("hidden");
+
+    updateScoreText();
+}
+
+function nextQuestion() {
+    quizCurrentQuestion++;
+    if (quizCurrentQuestion < QUIZ_QUESTIONS.length) {
+        loadQuestion();
+    } else {
+        showQuizResults();
+    }
+}
+
+function updateScoreText() {
+    const scoreTextEl = document.getElementById("quizScoreText");
+    if (scoreTextEl) {
+        scoreTextEl.innerText = `Score: ${quizScore} / ${QUIZ_QUESTIONS.length}`;
+    }
+}
+
+function showQuizResults() {
+    const quizBox = document.getElementById("quizBox");
+    const quizResults = document.getElementById("quizResults");
+    const finalScoreText = document.getElementById("finalScoreText");
+    const resultsMsg = document.getElementById("resultsMessage");
+
+    if (quizBox) quizBox.classList.add("hidden");
+    if (quizResults) quizResults.classList.remove("hidden");
+    
+    if (finalScoreText) {
+        finalScoreText.innerText = `${quizScore} / ${QUIZ_QUESTIONS.length}`;
+    }
+    
+    // Save quiz result to Firebase portal
+    if (typeof saveQuizResult === 'function') {
+      saveQuizResult(MODULE_ID, quizScore, QUIZ_QUESTIONS.length);
+    }
+
+    if (resultsMsg) {
+        const pct = (quizScore / QUIZ_QUESTIONS.length) * 100;
+        if (pct === 100) {
+            resultsMsg.innerText = "Perfect! Excellent work, future IT Professional! 🏆";
+        } else if (pct >= 80) {
+            resultsMsg.innerText = "Great job! Very strong understanding of packets, handshakes, and encryption! 🌟";
+        } else if (pct >= 50) {
+            resultsMsg.innerText = "Passed! Review the slides to strengthen your knowledge.";
+        } else {
+            resultsMsg.innerText = "Try again! Go through the slides to review core concepts.";
+        }
+    }
+}

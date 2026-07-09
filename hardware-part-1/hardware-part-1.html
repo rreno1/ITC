@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CC 101 - Hardware Part 1: How Computers Represent Information</title>
+  <meta name="description" content="Introduction to Computing: Binary representation, bits, bytes, ASCII, and Unicode.">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    .portal-back-btn {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 10000;
+      background: rgba(102, 126, 234, 0.9);
+      color: #fff;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    }
+    .portal-back-btn:hover {
+      background: rgba(102, 126, 234, 1);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <a href="../index.html" class="portal-back-btn" title="Back to Portal">← Portal</a>
+
+
+  <!-- App Shell -->
+  <div class="app-container">
+    
+    <!-- Top Navigation Bar -->
+    <header class="top-navbar">
+      <div class="nav-left">
+        <span class="badge">CC 101</span>
+        <span class="nav-title">Hardware Part 1: Information Representation</span>
+      </div>
+      
+      <div class="nav-center">
+        <!-- Slide Progress Bar -->
+        <div class="progress-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <span class="slide-counter"><span id="currentSlideNum">1</span> / <span id="totalSlidesNum">12</span></span>
+      </div>
+
+      <div class="nav-right">
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle Theme" title="Toggle Theme (T)">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <!-- Keyboard Shortcuts Help -->
+        <button id="helpToggle" class="icon-btn" aria-label="Keyboard Shortcuts Help" title="Keyboard Shortcuts (H)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Dashboard Layout -->
+    <div class="workspace-grid">
+      
+      <!-- Left Steps Progress Checklist Sidebar -->
+      <aside class="steps-sidebar">
+        <div class="sidebar-title">Lecture Outline</div>
+        <ul class="sidebar-checklist" id="sidebarChecklist">
+          <!-- Populated dynamically via JS -->
+        </ul>
+      </aside>
+
+      <!-- Right Presentation Viewport -->
+      <main class="presentation-viewport">
+
+        <!-- SLIDE 1: WELCOME TITLE SLIDE -->
+        <section class="slide active-slide" id="slide-1">
+          <div class="slide-content title-layout">
+            <div class="hero-header">
+              <span class="sub-category">CC 101 - INTRODUCTION TO COMPUTING</span>
+              <h1>Hardware Part 1: How Computers Represent Information</h1>
+              <div class="accent-line"></div>
+              <p class="hero-desc">An exploration of Binary systems, Bits, Bytes, and Character Encoding Standards (ASCII & Unicode)</p>
+            </div>
+            
+            <div class="welcome-grid">
+              <div class="info-card">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <div>
+                  <h4>Course Format</h4>
+                  <p>First Year Lecture Series</p>
+                </div>
+              </div>
+              <div class="info-card">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+                <div>
+                  <h4>Course Instructor</h4>
+                  <p class="teacher-highlight">Mr. Romulo Ritz R. Renomeron Jr.</p>
+                </div>
+              </div>
+              <div class="info-card">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                <div>
+                  <h4>Course Code</h4>
+                  <p>CC 101 • Introduction to Computing</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="welcome-tip animate-pulse">
+              <span class="tip-icon">⚙️</span>
+              <span>Learn how computers represent letters, numbers, and symbols using simple electrical states. Scroll down to read detailed lecture notes.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 2: WHAT IS HARDWARE? -->
+        <section class="slide" id="slide-2">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">02</span>
+                  <span class="badge-label ohs-bg">Basics</span>
+                  <h2>What is Hardware?</h2>
+                </div>
+                <p class="lead-text">Hardware refers to the physical, tangible components of a computer system that you can touch and see, operating under the instruction of software.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Tangible vs. Intangible:</strong> Hardware is the physical engine (CPU, RAM, drives), while software is the code that drives it.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Under the Hood:</strong> Computers appear to understand English, images, and videos, but physically they only process electrical signals.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Digital Abstraction:</strong> We abstract physical signals (voltages) into logical values: <strong>0</strong> (off) and <strong>1</strong> (on).
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/what_is_hardware.jpg" alt="Computer Hardware Components" class="fill-img">
+                  <div class="caption">Physical computer parts: motherboard, CPU, RAM stick, and solid state drive.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>Physical computer parts represent the machinery that converts raw electrical currents into computing logic. Unlike the software that controls it, hardware is tangible and consists of materials like copper, silicon, and fiberglass. Every transaction in a system must eventually be executed by these physical structures under command loops. Without hardware to run it, code remains a set of instructions with no engine to carry them out. Therefore, a complete understanding of computing requires analyzing how these components function at the physical level.</p>
+              <p>At the very core of digital computing, everything is reduced to electrical voltage states. Engineers designed microscopic circuits that can represent two distinct options: voltage present or voltage absent. This binary abstraction prevents random voltage variations from corrupting critical calculations within the system pathways. These physical switches are known as transistors, and they act as the base gatekeepers of digital memory. By combining billions of these switches on a single chip, complex calculations can be processed in fractions of a second.</p>
+              <p>The motherboard serves as the communication central routing board where all physical components meet. Memory modules store active data, while storage drives preserve files permanently even after power loss. Peripherals plug into outer ports to feed new signals into the processor registers. Each component plays a distinct role in balancing the overall throughput speed of the system. Understanding this mechanical division of labor helps developers optimize their software for real hardware targets.</p>
+              <p>For example, think of a computer as a physical piano, where the keys, hammers, and strings represent the hardware. The sheet music containing musical notes represents the software instructions guiding the performance. Just as a piano cannot produce sound without a pianist pressing physical keys, software cannot compute without hardware switches. Another simple analogy is a physical kitchen where the pans, stoves, and utensils are the hardware tools. The recipe book represents the software instructing the cook on how to combine ingredients using those tools.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 3: THE BINARY SYSTEM -->
+        <section class="slide" id="slide-3">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">03</span>
+                  <span class="badge-label tools-bg">Logic</span>
+                  <h2>The Binary System</h2>
+                </div>
+                <p class="lead-text">Computers use the <strong>Binary system (Base 2)</strong>, which uses only two digits: 0 and 1, differing from the Decimal system (Base 10) we use daily.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">1</div>
+                  <div>
+                    <strong>Transistors:</strong> Microscopic switches inside chips. If electricity flows, it represents <strong>1</strong>. If blocked, it represents <strong>0</strong>.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">2</div>
+                  <div>
+                    <strong>Reliability:</strong> It is electronically much easier and more reliable to distinguish between two states (on/off) than ten states (different voltage levels).
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">3</div>
+                  <div>
+                    <strong>Base 2 Counting:</strong> Every place value in binary represents a power of 2 (1, 2, 4, 8, 16, 32, 64, 128...).
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/binary_laptop.jpg" alt="Silicon logical switches" class="fill-img">
+                  <div class="caption">The binary system utilizes base 2 logic (ones and zeros).</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>The binary system represents the native language of computers, utilizing a base of two numbers. While humans count using ten digits, computers use only zero and one. This mathematical system corresponds directly to the physical states of transistors inside computer microchips. An open circuit allowing current represents a one, while a closed circuit blocking it represents a zero. This clean mechanical mapping makes digital calculations highly reliable and resistant to interference.</p>
+              <p>Positional notation in binary works similarly to decimal, but each column increases by powers of two. The rightmost column represents ones, the next represents twos, followed by fours, eights, and so on. By adding these place values together, any decimal integer can be represented in binary format. For example, the binary string 101 represents one four and one one, summing to five. This simple base mathematical structure allows computers to perform complex arithmetic using only basic logic gates.</p>
+              <p>Boolean logic drives all CPU decisions by processing binary inputs to produce a single binary output. Gates like AND, OR, and NOT combine to form complex execution blocks. Millions of these logic gates are etched onto silicon dies to calculate software instructions. This hardware-level math operates at clock speeds measured in billions of cycles per second. Thus, the binary system acts as the bridge connecting physical electricity to mathematical logic.</p>
+              <p>An easy analogy for the binary system is a long row of ordinary household light switches. If you turn a switch up, it lights up representing a binary one. If you flip it down, the bulb goes dark representing a binary zero. For instance, sending a message across early telegraph wires used short and long pulses to transmit words. By combining these simple light switch states, you can create complex code coordinates to display images.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 4: BITS AND BYTES -->
+        <section class="slide" id="slide-4">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">04</span>
+                  <span class="badge-label path-bg">Units</span>
+                  <h2>Bits and Bytes</h2>
+                </div>
+                <p class="lead-text">All computer data is built from these fundamental building blocks of digital storage.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">✦</div>
+                  <div>
+                    <strong>Bit (Binary Digit):</strong> The smallest unit of data. Can be a 0 or a 1.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">✦</div>
+                  <div>
+                    <strong>Byte:</strong> A group of <strong>8 bits</strong>. It is the standard base unit of computer storage.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">✦</div>
+                  <div>
+                    <strong>Capacity:</strong> A single byte can represent 2<sup>8</sup> = <strong>256</strong> unique values (ranges from 0 to 255).
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">✦</div>
+                  <div>
+                    <strong>Standard Units:</strong> Kilobyte (KB ~ 1,000 bytes), Megabyte (MB ~ 1 million bytes), Gigabyte (GB ~ 1 billion bytes), Terabyte (TB ~ 1 trillion bytes).
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/usb_flash_drive.jpg" alt="Binary bits and bytes data representation" class="fill-img">
+                  <div class="caption">Bits are individual binary digits grouped together into bytes on storage chips.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>The bit is the fundamental building block of all digital information in computer memory. Short for binary digit, a single bit can only hold a value of zero or one. On their own, individual bits cannot store complex files like pictures or audio. However, by grouping bits together, we can represent larger numbers and characters. This grouping of binary units forms the foundation of modern data storage and transmission.</p>
+              <p>A byte is a group of exactly eight bits and represents the standard storage unit. With eight binary positions, a single byte can represent two hundred and fifty-six unique states. This capacity is sufficient to encode a single letter, number, or punctuation mark. When you view file sizes, they are measured in multiples of these eight-bit bytes. Kilobytes, megabytes, and gigabytes represent thousands, millions, and billions of these storage blocks.</p>
+              <p>Computer memory addresses are assigned to individual bytes rather than single bits. This allows the CPU to fetch and write data blocks efficiently during execution loops. If a program needs to store a large number, it utilizes multiple adjacent bytes. This byte-addressable architecture simplifies how memory is managed by the operating system. Knowing how bytes group is essential for managing computer storage capacities and networking budgets.</p>
+              <p>Think of a bit as a single alphabet letter, which has very limited meaning on its own. A byte is like a complete eight-letter word that conveys a specific, readable instruction to the reader. For example, a single character on this screen requires exactly one byte of storage memory space. Another simple analogy is a egg carton that holds exactly eight eggs in designated slots. You can represent different numbers by leaving specific egg slots empty or filled.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 5: INTERACTIVE BINARY CALCULATOR -->
+        <section class="slide" id="slide-5">
+          <div class="slide-content">
+            <div class="section-title text-center">
+              <span class="slide-num">05</span>
+              <span class="badge-label quiz-bg">Interactive Widget</span>
+              <h2>Interactive Binary Calculator</h2>
+              <p>Toggle bits below to build an 8-bit binary number and see its decimal value in real-time</p>
+            </div>
+            
+            <div class="interactive-container">
+              <div class="binary-toggle-row" id="binary-toggle-row">
+                <!-- Injected dynamically by JS -->
+              </div>
+              <div class="binary-output-display">
+                <div class="output-stat">
+                  <span class="output-label">Binary Byte</span>
+                  <span class="output-value" id="bin-val-text">00000000</span>
+                </div>
+                <div class="output-stat">
+                  <span class="output-label">Decimal</span>
+                  <span class="output-value" id="dec-val-text">0</span>
+                </div>
+                <div class="output-stat">
+                  <span class="output-label">Hexadecimal</span>
+                  <span class="output-value" id="hex-val-text">0x00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 6: REPRESENTING TEXT -->
+        <section class="slide" id="slide-6">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">06</span>
+                  <span class="badge-label ohs-bg">Encoding</span>
+                  <h2>Representing Text</h2>
+                </div>
+                <p class="lead-text">How do computers translate binary numbers into text? We need a mapping standard where each character (letter, number, symbol) is assigned a numeric value.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">A</div>
+                  <div>
+                    <strong>Character Encoding:</strong> A lookup table that links binary codes to human-readable characters.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">B</div>
+                  <div>
+                    <strong>Standardization:</strong> Without an agreed standard, sending text from one computer to another would result in unreadable gibberish.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">C</div>
+                  <div>
+                    <strong>Major Standards:</strong> Over time, two primary systems have dominated computer history: <strong>ASCII</strong> and <strong>Unicode</strong>.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/keyboard_close_up.jpg" alt="Text representation code" class="fill-img">
+                  <div class="caption">Character encoding maps physical key cap letters and symbols to numeric values.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>To represent human language, computers need a consistent system to map numbers to characters. Since hardware only processes binary digits, characters must be encoded as numeric values. A character encoding table acts as a dictionary connecting numbers to specific letters. When you type on a keyboard, a numeric code is sent to the processor. The computer then looks up this numeric code to display the correct symbol on screen.</p>
+              <p>Without a standardized lookup dictionary, files sent between computers would display as unreadable garbled text. Early computer developers created custom tables, which often caused severe document compatibility problems. These localized encoding systems made international communication difficult and prone to corruption. Therefore, standardizing character maps became a priority for the emerging digital network. Modern systems rely on global standards to guarantee that text renders correctly worldwide.</p>
+              <p>Character encoding is not limited to letters but also covers numbers and control symbols. Control characters include instructions like carriage returns, tabs, and line breaks. The operating system processes these hidden codes to format text layouts properly on screen. This ensures that formatting remains consistent across different software applications and web browsers. Managing these translation tables is the foundation of global software development and data transmission.</p>
+              <p>A simple analogy for character encoding is the classic Morse code used by early telegraph operators. In Morse code, unique combinations of dots and dashes map to specific letters of the alphabet. For instance, three short taps represent the letter S, and three long taps represent O. Similarly, when you press a key on your laptop, the keyboard sends a numbers-only signal. The system translates this signal using a lookup map to display the character on screen.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 7: ASCII ENCODING -->
+        <section class="slide" id="slide-7">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">07</span>
+                  <span class="badge-label tools-bg">ASCII</span>
+                  <h2>ASCII Encoding</h2>
+                </div>
+                <p class="lead-text"><strong>ASCII</strong> (American Standard Code for Information Interchange) was defined in 1963 for telegraph systems and later adapted for computers.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">1</div>
+                  <div>
+                    <strong>Size:</strong> Originally a 7-bit code, representing 2<sup>7</sup> = <strong>128 characters</strong>.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">2</div>
+                  <div>
+                    <strong>Range:</strong> Includes English uppercase/lowercase letters, numbers 0-9, basic punctuation, and control characters (like newline).
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">3</div>
+                  <div>
+                    <strong>Examples:</strong> Letter <strong>'A'</strong> is mapped to 65 (binary: <code>01000001</code>). Letter <strong>'a'</strong> is mapped to 97 (binary: <code>01100001</code>).
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/retro_terminal.jpg" alt="ASCII character set mapping" class="fill-img">
+                  <div class="caption">ASCII defines a 7-bit standard mapping for English characters on early computer systems.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>ASCII stands for the American Standard Code for Information Interchange and was defined in 1963. It was originally designed for telegraph communication but became the standard for early computer systems. ASCII utilizes a seven-bit encoding structure to map characters to numbers. This seven-bit length allows it to represent exactly one hundred and twenty-eight unique characters. These values include the standard English alphabet, digits, punctuation marks, and control codes.</p>
+              <p>In the ASCII table, uppercase letters are grouped sequentially to make sorting operations easy. For example, uppercase A is mapped to sixty-five, while uppercase B is sixty-six. Lowercase letters follow a similar sequence, starting at decimal ninety-seven with lowercase a. This numeric arrangement allows programmers to manipulate text strings using simple arithmetic. For instance, subtracting thirty-two from a lowercase letter code converts it to uppercase.</p>
+              <p>Although ASCII is very simple, its small file footprint made it highly efficient for early networks. Because it only required seven bits, it fit comfortably inside standard eight-bit bytes with room to spare. The remaining eighth bit was often used as a parity check to detect transmission errors. This efficiency helped early computers maximize their limited storage and communication bandwidth. Today, ASCII remains the historical baseline upon which modern encodings are built.</p>
+              <p>Think of ASCII as a simple pocket dictionary containing only one hundred and twenty-eight English words. If you try to translate a foreign language using this dictionary, you will find no matching entries. For example, typing the letter H corresponds to decimal seventy-two in the ASCII index. If you want to type the symbol for a euro currency, ASCII has no code for it. This makes it like a post office that only delivers letters to English-speaking regions.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 8: THE LIMITATIONS OF ASCII -->
+        <section class="slide" id="slide-8">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">08</span>
+                  <span class="badge-label path-bg">Limitations</span>
+                  <h2>The Limitations of ASCII</h2>
+                </div>
+                <p class="lead-text">As computing went global, ASCII's 128-character limit quickly became insufficient for international communication.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">✗</div>
+                  <div>
+                    <strong>English-Centric:</strong> ASCII has no characters for accents (e.g., é, ü), which are common in European languages.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">✗</div>
+                  <div>
+                    <strong>Foreign Scripts:</strong> It cannot represent writing systems like Chinese, Japanese, Arabic, Cyrillic, or Greek, which require thousands of characters.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">✗</div>
+                  <div>
+                    <strong>Emojis:</strong> Popular modern communication elements (e.g., 😂, 🚀, 💻) have no place in ASCII's simple 7-bit table.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/multilingual_phone.jpg" alt="Corrupt characters text limits" class="fill-img">
+                  <div class="caption">ASCII cannot support accents, international scripts, or emojis on modern devices.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>The primary limitation of ASCII is its tiny seven-bit capacity of one hundred and twenty-eight characters. This small range can only fit the basic English alphabet and common symbols. As computing expanded globally, this English-centric design became a major obstacle. Languages that use accented letters, such as Spanish, French, and German, could not be mapped. This limitation meant ASCII was unable to support the writing systems of most global populations.</p>
+              <p>Non-Latin scripts like Chinese, Arabic, Cyrillic, and Hindi require thousands of unique characters. Trying to fit these complex writing systems into a 128-character table is mathematically impossible. To solve this, developers created localized eight-bit extensions that mapped characters to the extra values. However, these custom tables clashed with each other and caused documents to display incorrect symbols. A document written in one country would open as scrambled gibberish in another.</p>
+              <p>Modern text elements, like emojis, also require representation in digital files. Because ASCII was created long before emojis existed, it has no codes allocated for them. Without a larger encoding standard, modern digital expression would be severely limited. These combined shortfalls made it clear that a new universal standard was necessary. Moving beyond ASCII allowed computing to become a truly global, multilingual medium.</p>
+              <p>A good analogy is trying to write a global newsletter using only a standard typewriter. If the typewriter keys lack accents or non-English letters, you cannot print foreign words. For instance, writing the word Café requires an accented letter that standard ASCII cannot display. If a Russian or Chinese document opens in an ASCII editor, it renders as corrupt text blocks. This is like a postman returning a letter because the destination address is written in characters he cannot read.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 9: UNICODE: THE UNIVERSAL STANDARD -->
+        <section class="slide" id="slide-9">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">09</span>
+                  <span class="badge-label ohs-bg">Unicode</span>
+                  <h2>Unicode: The Universal Standard</h2>
+                </div>
+                <p class="lead-text">Created to unify all encoding systems, <strong>Unicode</strong> aims to represent every character in every human writing system, past and present.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Huge Capacity:</strong> Capable of representing over 1.1 million symbols (currently defines ~149,000).
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>UTF-8:</strong> The most dominant encoding on the web. It is variable-width (1 to 4 bytes).
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Backward Compatibility:</strong> The first 128 characters of UTF-8 are 100% identical to ASCII. A standard ASCII file is also a valid UTF-8 file!
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/digital_multimeter.jpg" alt="Global Unicode character encoding" class="fill-img">
+                  <div class="caption">Unicode establishes a precise, universally standardized measurement mapping for global text.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>Unicode was created to establish a single, universal character set for all written human communication. Its goal is to represent every character from every language, past and present. Currently, Unicode has defined over one hundred and forty-nine thousand unique characters. It contains symbols for historical scripts, mathematical equations, and standard global emojis. This massive directory ensures that no two characters share the same numeric identifier.</p>
+              <p>UTF-8 is the most popular encoding standard used to implement Unicode on the web. It is a variable-width encoding, meaning characters can take between one and four bytes. This flexible format optimizes storage because standard English text still only uses one byte. Rare characters and emojis scale up automatically to utilize more bytes as needed. This variable design allows UTF-8 to balance storage efficiency with universal language compatibility.</p>
+              <p>A key feature of UTF-8 is its complete backward compatibility with standard ASCII files. The first one hundred and twenty-eight codes in UTF-8 are identical to the ASCII table. This means any legacy ASCII text file is already a valid UTF-8 file. This smart design prevented the corruption of old archives when the web transitioned to Unicode. Today, UTF-8 is the default standard for almost all digital text transmission.</p>
+              <p>Think of Unicode as a massive global dictionary containing every word from every language on earth. It acts like a giant catalog where every unique character gets a permanent, universal item number. For example, the thumbs-up emoji has a specific Unicode identifier that displays identically across all devices. UTF-8 functions like a smart shipping box that changes size depending on what is placed inside. Small letters get a small box, while complex characters and emojis get a larger box.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 10: INTERACTIVE TEXT-TO-BINARY CONVERTER -->
+        <section class="slide" id="slide-10">
+          <div class="slide-content">
+            <div class="section-title text-center">
+              <span class="slide-num">10</span>
+              <span class="badge-label quiz-bg">Interactive Widget</span>
+              <h2>Interactive Text-to-Binary</h2>
+              <p>Type text below to see its UTF-8 binary byte representation in real-time</p>
+            </div>
+            
+            <div class="ascii-converter-widget">
+              <div class="ascii-input-col">
+                <label for="text-to-convert">English Text</label>
+                <textarea id="text-to-convert" placeholder="Type text here... (e.g., Hello)"></textarea>
+              </div>
+              <div class="ascii-input-col">
+                <label>Binary Representation (UTF-8 / ASCII)</label>
+                <div class="binary-output-box" id="binary-ascii-output">
+                  01001000 01100101 01101100 01101100 01101111
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 11: 15-ITEM QUIZ -->
+        <section class="slide" id="slide-11" data-section="quiz">
+          <div class="slide-content quiz-layout">
+            <div class="section-title text-center">
+              <span class="slide-num">11</span>
+              <span class="badge-label quiz-bg">Classroom Activity</span>
+              <h2>Information Representation Check</h2>
+              <p>Test your knowledge on data representation. Answer these 15 multiple-choice questions.</p>
+            </div>
+
+            <!-- Interactive Quiz Box -->
+            <div class="quiz-container glass-card" id="quizBox">
+              <div class="quiz-progress" id="quizProgress" style="display: flex; gap: 4px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap;">
+                <!-- Injected dynamically by JS -->
+              </div>
+              
+              <div class="question-container">
+                <span id="questionCategory" class="question-cat">Information Representation</span>
+                <h3 id="questionText">Question Text?</h3>
+                <div class="options-grid" id="optionsGrid">
+                  <!-- Loaded via JS -->
+                </div>
+              </div>
+
+              <div class="feedback-container hidden" id="feedbackPanel">
+                <div class="feedback-indicator">
+                  <span class="feedback-icon" id="feedbackIcon">✓</span>
+                  <span class="feedback-title" id="feedbackTitle">Correct!</span>
+                </div>
+                <p id="feedbackText">Explanation here.</p>
+                <button class="btn btn-primary" id="nextQuestionBtn" onclick="nextQuestion()">Next Question</button>
+              </div>
+
+              <div class="quiz-footer">
+                <span id="quizScoreText">Score: 0 / 0</span>
+                <button class="btn btn-secondary" onclick="resetQuiz()">Restart Quiz</button>
+              </div>
+            </div>
+
+            <!-- Quiz Results Container (Hidden initially) -->
+            <div class="quiz-results-container glass-card hidden" id="quizResults">
+              <div class="results-header">
+                <div class="results-badge">🏆</div>
+                <h2>Module Complete!</h2>
+                <p>Here is how you scored on the Data Representation quiz:</p>
+              </div>
+              <div class="score-circle" style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 800; margin: 20px auto; color: var(--text-primary);">
+                <span id="finalScoreText">15/15</span>
+              </div>
+              <p id="resultsMessage" class="text-center" style="margin-bottom: 20px; font-weight: 500;">Excellent work, future IT Professional!</p>
+              <button class="btn btn-primary" style="margin: 0 auto; display: block;" onclick="resetQuiz()">Take Quiz Again</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 12: SUMMARY & REVIEW -->
+        <section class="slide" id="slide-12">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">12</span>
+                  <span class="badge-label ohs-bg">Conclusion</span>
+                  <h2>Hardware Part 1 Summary</h2>
+                </div>
+                
+                <ul class="slide-body-bullets">
+                  <li><strong>Hardware</strong> represents the physical machinery; all logic is built on electrical transistors.</li>
+                  <li><strong>Binary</strong> is the Base-2 system used by hardware (composed of bits and bytes).</li>
+                  <li><strong>1 Byte = 8 Bits</strong>, providing 256 unique combinations.</li>
+                  <li><strong>ASCII</strong> was the early 128-character standard, which was English-only.</li>
+                  <li><strong>Unicode (UTF-8)</strong> is the modern global standard, supporting all languages, symbols, and emojis.</li>
+                  <li><strong>Next Week:</strong> We will explore the core internal components inside a computer in <strong>Hardware Part 2</strong> (Motherboards, CPUs, RAM, and Storage).</li>
+                </ul>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/pc_case_open.jpg" alt="Summary review" class="fill-img">
+                  <div class="caption">Review of fundamental topics inside the computer unit.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>Hardware represents the physical foundation of all modern digital computer systems. All logic inside a machine is managed by manipulating electrical voltage levels. We abstract these physical voltages into binary values of zeros and ones. These binary values form the native language of the processor chips. By combining these binary states, computers can represent complex data structures.</p>
+              <p>Data capacity scales up from individual bits to groups of eight-bit bytes. Bytes are the standard units of computer memory allocation and file storage. To represent text, computers map these byte values using character tables. ASCII was the early standard, but it was limited to basic English. Unicode (UTF-8) resolved this limit by mapping all global languages and emojis.</p>
+              <p>Programmers must understand how physical hardware abstracts data to write efficient software. Mismatched character encodings can cause data loss and corrupt database entries. Modern web standards require using UTF-8 to ensure universal communication compatibility. In the next module, we will explore the core internal components of computer systems. We will look at motherboards, processor execution loops, RAM memory, and storage drives.</p>
+              <p>A final analogy is to view a computer system as a modern busy post office. The physical trucks, mailboxes, and sorting tables represent the hardware components. The mail packets flowing through the system are the bits and bytes of raw binary data. The address formats written on the envelopes correspond to character encoding standards like Unicode. Understanding how these layers connect helps you see the physical logic behind modern digital networks.</p>
+            </article>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- Bottom Control Panel -->
+    <footer class="bottom-controls">
+      <div class="control-left">
+        <button id="prevBtn" class="btn btn-secondary" title="Previous Slide (Left Arrow / Backspace)">
+          ← Previous
+        </button>
+      </div>
+
+      <div class="control-center">
+        <!-- Interactive Slide Indicator dots -->
+        <div class="slide-dots" id="slideDots">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="control-right">
+        <button id="nextBtn" class="btn btn-primary" title="Next Slide (Right Arrow / Spacebar)">
+          Next Slide →
+        </button>
+      </div>
+    <!-- Floating Scroll Indicator -->
+    <div class="scroll-prompt hidden" id="scrollPrompt">
+      <div class="prompt-mouse">
+        <div class="prompt-wheel"></div>
+      </div>
+      <span>Scroll down to know more</span>
+    </div>
+
+  </div>
+
+  <!-- Keyboard Help Modal -->
+  <div class="help-modal modal-backdrop" id="helpModal">
+    <div class="help-modal-content modal-content glass-card">
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 16px;">
+        <h3>Keyboard Navigation Shortcuts</h3>
+        <button id="closeHelpModal" class="icon-btn" style="background: none; border: none; color: var(--text-secondary); font-size: 20px; cursor: pointer;">×</button>
+      </div>
+      <div class="modal-body">
+        <ul class="shortcuts-list" style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">→</kbd> or <kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">Space</kbd> <span>Next Slide</span></li>
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">←</kbd> <span>Previous Slide</span></li>
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">T</kbd> <span>Toggle Dark / Light Theme</span></li>
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">H</kbd> <span>Show / Hide this guide</span></li>
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">F</kbd> <span>Toggle Fullscreen Presentation</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portal Integration -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/progress.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

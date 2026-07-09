@@ -1,0 +1,8 @@
+# Ignore list for CC 101 Portal
+*.xlsx
+*.xls
+.DS_Store
+Thumbs.db
+node_modules/
+.env
+.gemini/

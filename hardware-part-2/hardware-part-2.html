@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CC 101 - Hardware Part 2: Core Components of a Computer</title>
+  <meta name="description" content="Introduction to Computing: Motherboard, CPU, RAM, and Storage (SSDs/HDDs).">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    .portal-back-btn {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 10000;
+      background: rgba(102, 126, 234, 0.9);
+      color: #fff;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    }
+    .portal-back-btn:hover {
+      background: rgba(102, 126, 234, 1);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <a href="../index.html" class="portal-back-btn" title="Back to Portal">← Portal</a>
+
+
+  <!-- App Shell -->
+  <div class="app-container">
+    
+    <!-- Top Navigation Bar -->
+    <header class="top-navbar">
+      <div class="nav-left">
+        <span class="badge">CC 101</span>
+        <span class="nav-title">Hardware Part 2: Core Components</span>
+      </div>
+      
+      <div class="nav-center">
+        <!-- Slide Progress Bar -->
+        <div class="progress-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <span class="slide-counter"><span id="currentSlideNum">1</span> / <span id="totalSlidesNum">11</span></span>
+      </div>
+
+      <div class="nav-right">
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle Theme" title="Toggle Theme (T)">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <!-- Keyboard Shortcuts Help -->
+        <button id="helpToggle" class="icon-btn" aria-label="Keyboard Shortcuts Help" title="Keyboard Shortcuts (H)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Dashboard Layout -->
+    <div class="workspace-grid">
+      
+      <!-- Left Steps Progress Checklist Sidebar -->
+      <aside class="steps-sidebar">
+        <div class="sidebar-title">Lecture Outline</div>
+        <ul class="sidebar-checklist" id="sidebarChecklist">
+          <!-- Populated dynamically via JS -->
+        </ul>
+      </aside>
+
+      <!-- Right Presentation Viewport -->
+      <main class="presentation-viewport">
+
+        <!-- SLIDE 1: WELCOME TITLE SLIDE -->
+        <section class="slide active-slide" id="slide-1">
+          <div class="slide-content title-layout">
+            <div class="hero-header">
+              <span class="sub-category">CC 101 - INTRODUCTION TO COMPUTING</span>
+              <h1>Hardware Part 2: Core Components of a Computer</h1>
+              <div class="accent-line"></div>
+              <p class="hero-desc">An in-depth look at Motherboards, Central Processing Units (CPUs), Random Access Memory (RAM), and Storage (SSDs/HDDs)</p>
+            </div>
+            
+            <div class="welcome-grid">
+              <div class="info-card">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <div>
+                  <h4>Course Format</h4>
+                  <p>First Year Lecture Series</p>
+                </div>
+              </div>
+              <div class="info-card">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+                <div>
+                  <h4>Course Instructor</h4>
+                  <p class="teacher-highlight">Mr. Romulo Ritz R. Renomeron Jr.</p>
+                </div>
+              </div>
+              <div class="info-card">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                <div>
+                  <h4>Course Code</h4>
+                  <p>CC 101 • Introduction to Computing</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="welcome-tip animate-pulse">
+              <span class="tip-icon">⚙️</span>
+              <span>Explore how motherboards, CPUs, memory, and permanent drives collaborate to execute apps. Scroll down to read detailed lecture notes.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 2: THE MOTHERBOARD -->
+        <section class="slide" id="slide-2">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">02</span>
+                  <span class="badge-label ohs-bg">Mainboard</span>
+                  <h2>The Motherboard</h2>
+                </div>
+                <p class="lead-text">The <strong>Motherboard</strong> is the main printed circuit board (PCB) in a computer. It serves as the physical backbone connecting all components together.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Central Hub:</strong> Houses the CPU socket, RAM memory slots, expansion ports, storage interfaces, and power lines.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Bus Lines:</strong> Microscopic copper tracks etched on the board that act as highways for electrical data signals to travel between chips.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Chipset:</strong> The onboard controller that directs the flow of data between the CPU, memory lanes, and auxiliary ports.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/pc_motherboard_install.jpg" alt="A computer motherboard" class="fill-img">
+                  <div class="caption">The central printed circuit board of a modern PC.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>The motherboard represents the physical foundation block of a computer system. It consists of a multi-layered fiberglass board with printed copper circuits. These printed circuits, or bus lines, transport electricity and data between slots. Every internal component must connect to this board to communicate with others. Therefore, the motherboard acts as the central hub of computer hardware architecture.</p>
+              <p>The central controller on the board is called the motherboard chipset. The chipset directs the traffic flow of data lanes across the system. It manages communication between high-speed components and slower peripheral ports. Modern motherboards integrate the chipset controllers to reduce data travel latency. Choosing a motherboard with a high-performance chipset determines overall system upgradability.</p>
+              <p>Motherboards house dedicated slots for the CPU, RAM sticks, and storage drives. Expansion ports allow users to plug in upgrade cards like GPUs. Onboard voltage regulator modules step down raw power supply currents for chip silicon. Without these motherboard routing networks, hardware components would remain isolated and non-functional. Proper motherboard maintenance is crucial to prevent electrical shorts and system failures.</p>
+              <p>An easy analogy is to view the motherboard as a busy city infrastructure layout. The streets, roads, and highways represent the copper traces transporting data between buildings. The buildings themselves represent the CPU, RAM modules, and storage drives. For example, plugging a graphics card into a PCIe slot is like building a new highway connection. Without this central city layout, none of the individual components could communicate with each other.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 3: THE CPU -->
+        <section class="slide" id="slide-3">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">03</span>
+                  <span class="badge-label tools-bg">Processor</span>
+                  <h2>The CPU (Central Processing Unit)</h2>
+                </div>
+                <p class="lead-text">Often called the <strong>'brain'</strong> of the computer, the CPU executes program instructions and processes arithmetic/logic data operations.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">1</div>
+                  <div>
+                    <strong>Instruction Execution:</strong> Carries out calculations and operations billions of times per second.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">2</div>
+                  <div>
+                    <strong>Clock Speed:</strong> Measured in Gigahertz (GHz). 1 GHz means 1 billion electrical cycles per second.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">3</div>
+                  <div>
+                    <strong>Cores:</strong> Separate processing units inside a single CPU. Multi-core processors allow parallel processing (multitasking).
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">4</div>
+                  <div>
+                    <strong>Cache Memory:</strong> A tiny, ultra-fast memory pool built right into the CPU chip to hold critical data close by.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/pc_cpu_install.jpg" alt="CPU Chip Installation" class="fill-img">
+                  <div class="caption">Mounting the CPU core processor inside the socket.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>The CPU, or Central Processing Unit, is the primary processor of a computer. It is responsible for executing software instructions and calculating numerical data. Inside the silicon chip, billions of microscopic switches process binary arithmetic operations. The CPU retrieves program code from memory and coordinates other system modules. For this reason, it is widely considered the brain of the computer.</p>
+              <p>CPU speed is determined by clock rate, measured in gigahertz. One gigahertz represents one billion electrical cycles ticking inside every second. Modern processors divide their silicon layout into multiple independent processing cores. Multi-core chips allow the computer to calculate different tasks in parallel. This parallel architecture prevents the system from freezing during heavy multitasking workloads.</p>
+              <p>CPU cache memory is a tiny, ultra-fast memory pool built into the chip. It keeps critical data immediately adjacent to the execution circuits to reduce latency. If the processor has to wait for data from RAM, it wastes cycles. Cache levels (L1, L2, L3) are arranged by capacity and access speed. Designing software to leverage cache locality is essential for high-performance applications.</p>
+              <p>Think of the Central Processing Unit as a head chef working inside a busy restaurant kitchen. The chef reads recipes, performs measurements, and coordinates assistant cooks to prepare dishes. For example, a quad-core CPU is like having four chefs working in parallel on different meals. The clock speed represents how fast the chef can chop ingredients and execute steps. Cache memory acts like a cutting board holding immediate ingredients right next to the chef.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 4: THE FETCH-DECODE-EXECUTE CYCLE -->
+        <section class="slide" id="slide-4">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">04</span>
+                  <span class="badge-label path-bg">Processing Loop</span>
+                  <h2>The Fetch-Decode-Execute Cycle</h2>
+                </div>
+                <p class="lead-text">This instruction cycle is repeated continuously by the CPU from the moment the computer is powered on.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">1</div>
+                  <div>
+                    <strong>Fetch:</strong> The Control Unit retrieves the next instruction code (in binary) from the computer's system memory (RAM).
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">2</div>
+                  <div>
+                    <strong>Decode:</strong> The CPU translates the fetched instruction to determine what actions are required (e.g. arithmetic, comparison).
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot path-bg">3</div>
+                  <div>
+                    <strong>Execute:</strong> The ALU (Arithmetic Logic Unit) performs the physical calculation, storing results back to registers or RAM.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/pc_cpu_cooler.jpg" alt="CPU Heatsink and Fan" class="fill-img">
+                  <div class="caption">The constant looping of instructions produces high heat, requiring robust cooling fans.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>The Fetch-Decode-Execute cycle represents the basic processing loop of a CPU. This loop repeats billions of times per second from power-on until shutdown. Each instruction must go through these three phases to be completed. The program counter keeps track of the next instruction's memory address. This simple sequential process enables the computer to run complex applications.</p>
+              <p>During the fetch phase, the CPU copies instruction binary code from RAM. This code is placed in the instruction register inside the control unit. Next, the decode phase translates the binary code into specific control signals. This translation determines which registers and math subunits are needed. Finally, the execute phase performs the calculated physical operation on the data.</p>
+              <p>The Arithmetic Logic Unit, or ALU, handles math and comparison steps. Registers temporarily store the immediate inputs and outputs of the ALU. Once execution is complete, the program counter increments to the next step. Modern CPUs use pipelining to fetch next instructions while decoding current ones. This parallel pipeline maximizes processing efficiency and speeds up code execution.</p>
+              <p>A simple analogy for this cycle is a constructor worker reading blueprints to assemble a structure. First, the worker fetches the next line of instructions from the blueprint folder. Second, the worker decodes the instruction to understand what tools and parts are required. Third, the worker executes the instruction by hammering a nail or placing a block. This three-step process is repeated line-by-line until the entire construction project is completed.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 5: RAM -->
+        <section class="slide" id="slide-5">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">05</span>
+                  <span class="badge-label ohs-bg">Memory</span>
+                  <h2>RAM (Random Access Memory)</h2>
+                </div>
+                <p class="lead-text"><strong>RAM</strong> is the computer's short-term system memory. It stores data and active programs that the CPU is currently using.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Volatile Memory:</strong> Temporary storage. When power is turned off, all data in RAM is instantly lost.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Random Access:</strong> The CPU can read and write to any location in RAM at the exact same lightning-fast speed, regardless of physical position.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Capacity:</strong> Typically measured in Gigabytes (GB). More RAM allows the computer to run more applications simultaneously without slowing down.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/pc_ram_install.jpg" alt="RAM Modules" class="fill-img">
+                  <div class="caption">Seating temporary RAM sticks into motherboard DIMM slots.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>RAM stands for Random Access Memory and is system temporary storage. It acts as the primary workspace where active programs store data. When you open an application, its files are loaded from storage into RAM. This loading step allows the CPU to access program data almost instantly. The capacity of system memory is measured in gigabytes of storage blocks.</p>
+              <p>A key feature of system RAM is its volatile memory property. This property means RAM requires constant electrical current to maintain its state. If you turn off the computer, all data in RAM disappears instantly. For this reason, unsaved documents are lost during sudden power failures. Therefore, permanent files must be written back to non-volatile storage drives.</p>
+              <p>The term 'random access' means memory locations are read at equal speed. The CPU does not need to scan sequentially to find a specific byte. It can jump directly to any address line in nanoseconds of travel time. Having sufficient RAM prevents the operating system from slowing down under load. Upgrading system RAM is one of the easiest ways to boost multitasking.</p>
+              <p>Think of system RAM as the physical surface of a large office desk. The papers and folders you are actively working on are laid out on the desk. For example, opening a web browser is like placing a folder on your desk surface. If the desk is small, you must file folders back in cabinets to make room. Turning off the computer is like sweeping the desk completely clean at night.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 6: STORAGE: SSDS VS. HDDS -->
+        <section class="slide" id="slide-6">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">06</span>
+                  <span class="badge-label tools-bg">Storage</span>
+                  <h2>Storage: SSDs vs. HDDs</h2>
+                </div>
+                <p class="lead-text">Unlike RAM, <strong>Storage</strong> is non-volatile, keeping files, programs, and the operating system permanently saved even when the computer is off.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">✦</div>
+                  <div>
+                    <strong>HDD (Hard Disk Drive):</strong> Uses spinning magnetic platters and a moving read/write head. Slow, noisy, prone to damage from drops, but cheap.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">✦</div>
+                  <div>
+                    <strong>SSD (Solid State Drive):</strong> Uses microchips (flash memory) to store data with no moving parts. Silent, durable, and exponentially faster than HDDs.
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot tools-bg">✦</div>
+                  <div>
+                    <strong>NVMe:</strong> The modern SSD standard that plugs directly into the motherboard, delivering speeds up to 10x faster than standard SATA SSDs.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/pc_hard_drive.jpg" alt="Hard Drive disk storage" class="fill-img">
+                  <div class="caption">Permanent storage drives maintain user files without electric current.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>Permanent storage drives preserve your operating system, programs, and user files. Unlike volatile memory, storage is non-volatile and retains data without power. When you turn on your PC, files boot from storage into RAM. Modern computers use two main storage technologies: HDDs and SSDs. Each option balances capacity, speed, cost, and reliability in different ways.</p>
+              <p>Mechanical Hard Disk Drives, or HDDs, write data onto spinning platters. A moving read arm scan sectors magnetizing the disk to store bits. This mechanical movement makes HDDs noisy and susceptible to physical damage. However, they remain a cheap option for archiving massive amounts of data. Many users keep HDDs as secondary storage for media libraries and archives.</p>
+              <p>Solid State Drives, or SSDs, use flash memory chips with no moving parts. This solid-state design makes them silent, durable, and exponentially faster than HDDs. NVMe SSDs plug directly into motherboard lanes to maximize transfer speeds. Installing an SSD reduces operating system boot times from minutes to seconds. For this reason, SSDs are the standard choice for primary system drives.</p>
+              <p>A good analogy for storage is a large metal filing cabinet in your office. Unlike the desk surface, files in the cabinet remain safe even when you leave. For instance, an HDD is like a mechanical filing cabinet where a clerk must walk to find folders. An SSD is like an electronic search indexing system that retrieves files almost instantly. You store your permanent documents here, loading them to your desk RAM when needed.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 7: LATENCY VISUALIZER -->
+        <section class="slide" id="slide-7">
+          <div class="slide-content">
+            <div class="section-title text-center">
+              <span class="slide-num">07</span>
+              <span class="badge-label quiz-bg">Interactive Widget</span>
+              <h2>Latency Scale: Hardware Speed</h2>
+              <p>Click a component below to compare its speed scaled to a human timeline (Cache = 1 Sec)</p>
+            </div>
+            
+            <div class="speed-visualizer">
+              <div class="speed-row" style="cursor: pointer;" onclick="selectLatencyComponent('cache')">
+                <div class="speed-label" id="lbl-cache">CPU L1 Cache</div>
+                <div class="speed-bar-container">
+                  <div class="speed-bar" id="bar-cache" style="width: 100%;"></div>
+                  <span class="speed-text">0.5 nanoseconds (1 Sec)</span>
+                </div>
+              </div>
+              
+              <div class="speed-row" style="cursor: pointer;" onclick="selectLatencyComponent('ram')">
+                <div class="speed-label" id="lbl-ram">RAM Memory</div>
+                <div class="speed-bar-container">
+                  <div class="speed-bar ram" id="bar-ram" style="width: 25%;"></div>
+                  <span class="speed-text">12 nanoseconds (24 Secs)</span>
+                </div>
+              </div>
+              
+              <div class="speed-row" style="cursor: pointer;" onclick="selectLatencyComponent('ssd')">
+                <div class="speed-label" id="lbl-ssd">NVMe SSD</div>
+                <div class="speed-bar-container">
+                  <div class="speed-bar ssd" id="bar-ssd" style="width: 5%;"></div>
+                  <span class="speed-text">100,000 nanoseconds (55 Hours)</span>
+                </div>
+              </div>
+              
+              <div class="speed-row" style="cursor: pointer;" onclick="selectLatencyComponent('hdd')">
+                <div class="speed-label" id="lbl-hdd">Mechanical HDD</div>
+                <div class="speed-bar-container">
+                  <div class="speed-bar hdd" id="bar-hdd" style="width: 1%;"></div>
+                  <span class="speed-text">10,000,000 nanoseconds (7.6 Months!)</span>
+                </div>
+              </div>
+
+              <div class="highlight-card" id="latency-details-box" style="margin-top: 15px; min-height: 100px; border-left-color: var(--color-accent-dark);">
+                <strong>Select a component above</strong> to inspect its technical details.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 8: PC SPEC BUILDER -->
+        <section class="slide" id="slide-8">
+          <div class="slide-content">
+            <div class="section-title text-center">
+              <span class="slide-num">08</span>
+              <span class="badge-label quiz-bg">Interactive Widget</span>
+              <h2>PC Spec Builder & Bottleneck Analyzer</h2>
+              <p>Configure a PC to analyze its speed score and see how mismatched parts bottleneck the system</p>
+            </div>
+            
+            <div class="spec-builder">
+              <div class="spec-selectors">
+                <div class="select-group">
+                  <label>Processor (CPU)</label>
+                  <div class="selector-options">
+                    <button class="opt-btn active" id="cpu-celeron" onclick="selectBuilderPart('cpu', 'celeron')">Celeron Dual-Core</button>
+                    <button class="opt-btn" id="cpu-i7" onclick="selectBuilderPart('cpu', 'i7')">Core i7 Octa-Core</button>
+                  </div>
+                </div>
+                <div class="select-group">
+                  <label>System Memory (RAM)</label>
+                  <div class="selector-options">
+                    <button class="opt-btn active" id="ram-4gb" onclick="selectBuilderPart('ram', '4gb')">4 GB DDR4</button>
+                    <button class="opt-btn" id="ram-16gb" onclick="selectBuilderPart('ram', '16gb')">16 GB DDR4</button>
+                  </div>
+                </div>
+                <div class="select-group">
+                  <label>Primary Storage</label>
+                  <div class="selector-options">
+                    <button class="opt-btn active" id="storage-hdd" onclick="selectBuilderPart('storage', 'hdd')">1 TB Mechanical HDD</button>
+                    <button class="opt-btn" id="storage-ssd" onclick="selectBuilderPart('storage', 'ssd')">512 GB NVMe SSD</button>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="spec-results">
+                <div class="rating-header">
+                  <span class="rating-title">System Rating</span>
+                  <div class="rating-value" id="system-rating-val">Budget PC (Slow)</div>
+                  <div class="meter-container">
+                    <div class="meter-bar" id="system-rating-bar"></div>
+                  </div>
+                </div>
+                <div class="spec-feedback" id="system-feedback-text">
+                  Configure components to see potential system bottlenecks.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 9: VOLATILE VS NON-VOLATILE MEMORY -->
+        <section class="slide" id="slide-9">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">09</span>
+                  <span class="badge-label ohs-bg">Persistence</span>
+                  <h2>Volatile vs. Non-Volatile Memory</h2>
+                </div>
+                <p class="lead-text">A fundamental concept in computer hardware is the division between temporary (volatile) and permanent (non-volatile) storage.</p>
+                
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Volatile Memory:</strong> CPU Cache and RAM system memory. Requires electric current to maintain data. <em>Ultra-fast, low capacity.</em>
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Non-Volatile Memory:</strong> SSDs, HDDs, USB Flash drives, and ROM chips. Retains data without power. <em>Slower, high capacity.</em>
+                  </div>
+                </div>
+                <div class="icon-list-item">
+                  <div class="list-dot ohs-bg">✓</div>
+                  <div>
+                    <strong>Virtual Memory (Paging):</strong> When RAM fills up, the OS uses part of the storage drive as temporary memory. If using a slow HDD, this causes a severe slowdown (thrashing).
+                  </div>
+                </div>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/pc_power_cables.jpg" alt="Memory architecture volatility types" class="fill-img">
+                  <div class="caption">Power cables provide continuous current for volatile RAM modules.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>Understanding the difference between memory types is crucial for system design. Memory is categorized based on whether it requires power to retain data. Volatile memory acts as the fast, temporary workspace for the processor. Non-volatile memory serves as the permanent archive for files and software. Balancing these two tiers determines the responsiveness of a computer system.</p>
+              <p>Volatile memory includes registers, CPU cache layers, and system RAM slots. These components operate at extreme speeds to match the processor clock. However, their physical cell designs require constant refreshing with electrical currents. Without this continuous charge, the stored binary states fade away immediately. This limitation requires saving active progress to a non-volatile drive.</p>
+              <p>Non-volatile memory includes SSDs, mechanical HDDs, flash drives, and ROM chips. ROM chips store boot instructions that must survive power cycles. Storage drives use flash cells or magnetic fields to lock data permanently. Although non-volatile memory is slower, it offers massive storage capacities. Together, these two memory tiers form the memory hierarchy of modern computing.</p>
+              <p>A simple analogy is comparing a standard classroom whiteboard to a printed textbook. The whiteboard is volatile because erasing it wipes the text completely from view. The textbook is non-volatile because the letters are printed permanently onto paper. For example, your unsaved text document resides on the volatile RAM whiteboard. Clicking save copies the document onto the non-volatile textbook of your SSD.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SLIDE 10: 15-ITEM QUIZ -->
+        <section class="slide" id="slide-10" data-section="quiz">
+          <div class="slide-content quiz-layout">
+            <div class="section-title text-center">
+              <span class="slide-num">10</span>
+              <span class="badge-label quiz-bg">Classroom Activity</span>
+              <h2>Core Components Check</h2>
+              <p>Test your knowledge on internal computer parts. Answer these 15 multiple-choice questions.</p>
+            </div>
+
+            <!-- Interactive Quiz Box -->
+            <div class="quiz-container glass-card" id="quizBox">
+              <div class="quiz-progress" id="quizProgress" style="display: flex; gap: 4px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap;">
+                <!-- Injected dynamically by JS -->
+              </div>
+              
+              <div class="question-container">
+                <span id="questionCategory" class="question-cat">Core Components</span>
+                <h3 id="questionText">Question Text?</h3>
+                <div class="options-grid" id="optionsGrid">
+                  <!-- Loaded via JS -->
+                </div>
+              </div>
+
+              <div class="feedback-container hidden" id="feedbackPanel">
+                <div class="feedback-indicator">
+                  <span class="feedback-icon" id="feedbackIcon">✓</span>
+                  <span class="feedback-title" id="feedbackTitle">Correct!</span>
+                </div>
+                <p id="feedbackText">Explanation here.</p>
+                <button class="btn btn-primary" id="nextQuestionBtn" onclick="nextQuestion()">Next Question</button>
+              </div>
+
+              <div class="quiz-footer">
+                <span id="quizScoreText">Score: 0 / 0</span>
+                <button class="btn btn-secondary" onclick="resetQuiz()">Restart Quiz</button>
+              </div>
+            </div>
+
+            <!-- Quiz Results Container (Hidden initially) -->
+            <div class="quiz-results-container glass-card hidden" id="quizResults">
+              <div class="results-header">
+                <div class="results-badge">🏆</div>
+                <h2>Module Complete!</h2>
+                <p>Here is how you scored on the Core Components quiz:</p>
+              </div>
+              <div class="score-circle" style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 800; margin: 20px auto; color: var(--text-primary);">
+                <span id="finalScoreText">15/15</span>
+              </div>
+              <p id="resultsMessage" class="text-center" style="margin-bottom: 20px; font-weight: 500;">Excellent work, future IT Professional!</p>
+              <button class="btn btn-primary" style="margin: 0 auto; display: block;" onclick="resetQuiz()">Take Quiz Again</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 11: SUMMARY & REVIEW -->
+        <section class="slide" id="slide-11">
+          <div class="slide-content">
+            <div class="split-layout">
+              <div class="split-left">
+                <div class="section-title">
+                  <span class="slide-num">11</span>
+                  <span class="badge-label ohs-bg">Conclusion</span>
+                  <h2>Hardware Part 2 Summary</h2>
+                </div>
+                
+                <ul class="slide-body-bullets">
+                  <li>The **Motherboard** links all physical components together via electrical bus lines.</li>
+                  <li>The **CPU** processes instructions using the Fetch-Decode-Execute cycle.</li>
+                  <li>**RAM** is fast, volatile short-term storage for active applications.</li>
+                  <li>**SSDs and HDDs** are non-volatile long-term storage, with SSDs being far superior in speed and durability.</li>
+                  <li>**System Balance** is critical: a fast CPU is wasted if bottlenecked by slow storage (HDD) or insufficient RAM.</li>
+                  <li>**Next Week:** We will discuss **Hardware Part 3** (Input/Output peripherals, expansion cards, Operating Systems, and device drivers).</li>
+                </ul>
+              </div>
+              
+              <div class="split-right centering">
+                <div class="illustration-container glass-card">
+                  <img src="assets/pc_cable_management.jpg" alt="A clean and well-built system casing" class="fill-img">
+                  <div class="caption">Balanced hardware configuration review.</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="article-divider"></div>
+            
+            <article class="slide-article-body">
+              <h3>Detailed Lecture Notes</h3>
+              <p>Core computer components must work in harmony to avoid system bottlenecks. The motherboard acts as the routing highway linking all processing circuits. The CPU processes instruction loops via the Fetch-Decode-Execute cycle. System RAM holds active program variables in fast volatile storage cells. Storage drives keep the operating system and files saved permanently.</p>
+              <p>A fast CPU is wasted if it sits idle waiting for data. Mismatching a high-end processor with a slow HDD causes a severe bottleneck. The slow mechanical drive will force the CPU to waste clock cycles. Similarly, having low RAM causes the system to swap memory files continuously. This swapping, or paging thrash, drastically slows down application responsiveness.</p>
+              <p>Building a balanced PC requires selecting components that match in performance. Solid state storage has replaced mechanical drives as the primary boot choice. Ample system memory ensures that multitasking runs without sluggish disk swaps. In the next module, we will explore external connectivity and software. We will cover physical ports, wireless links, operating systems, and drivers.</p>
+              <p>A final analogy is to view a computer assembly as a team of kitchen cooks. A fast chef is useless if the assistant takes hours to retrieve ingredients from cabinets. This delay represents a bottleneck caused by a slow mechanical hard drive. Similarly, a tiny counter space limits how many dishes can be prepped at once. Balancing CPU speed, RAM capacity, and SSD storage yields a highly efficient system.</p>
+            </article>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- Bottom Control Panel -->
+    <footer class="bottom-controls">
+      <div class="control-left">
+        <button id="prevBtn" class="btn btn-secondary" title="Previous Slide (Left Arrow / Backspace)">
+          ← Previous
+        </button>
+      </div>
+
+      <div class="control-center">
+        <!-- Interactive Slide Indicator dots -->
+        <div class="slide-dots" id="slideDots">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="control-right">
+        <button id="nextBtn" class="btn btn-primary" title="Next Slide (Right Arrow / Spacebar)">
+          Next Slide →
+        </button>
+      </div>
+    <!-- Floating Scroll Indicator -->
+    <div class="scroll-prompt hidden" id="scrollPrompt">
+      <div class="prompt-mouse">
+        <div class="prompt-wheel"></div>
+      </div>
+      <span>Scroll down to know more</span>
+    </div>
+
+  </div>
+
+  <!-- Keyboard Help Modal -->
+  <div class="help-modal modal-backdrop" id="helpModal">
+    <div class="help-modal-content modal-content glass-card">
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 16px;">
+        <h3>Keyboard Navigation Shortcuts</h3>
+        <button id="closeHelpModal" class="icon-btn" style="background: none; border: none; color: var(--text-secondary); font-size: 20px; cursor: pointer;">×</button>
+      </div>
+      <div class="modal-body">
+        <ul class="shortcuts-list" style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">→</kbd> or <kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">Space</kbd> <span>Next Slide</span></li>
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">←</kbd> <span>Previous Slide</span></li>
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">T</kbd> <span>Toggle Dark / Light Theme</span></li>
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">H</kbd> <span>Show / Hide this guide</span></li>
+          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">F</kbd> <span>Toggle Fullscreen Presentation</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portal Integration -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/progress.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -514,19 +514,21 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Admin Dashboard Page */
 .admin-page {
-  margin-top: 70px;
+  margin-top: 0;
   width: 100%;
-  min-height: calc(100vh - 70px);
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 /* Admin Split Container Layout */
 .admin-container {
   display: grid;
   grid-template-columns: 280px 1fr;
-  min-height: calc(100vh - 70px);
+  height: 100vh;
   width: 100%;
+  overflow: hidden;
 }
 
 .admin-sidebar {
@@ -535,13 +537,74 @@ h1, h2, h3, h4, h5, h6 {
   padding: 30px 20px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  justify-content: space-between;
+  height: 100%;
   backdrop-filter: blur(12px);
 }
 
-.sidebar-user-section {
+.sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--card-border);
+}
+
+.sidebar-badge-admin {
+  background-color: var(--danger);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  align-self: flex-start;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-user-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+}
+
+[data-theme="light"] .sidebar-user-section {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.user-info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-role-dot {
+  color: var(--success);
+  font-size: 10px;
+}
+
+.btn-sidebar-signout {
+  background: transparent;
+  border: 1px solid var(--text-secondary);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  font-family: var(--font-body);
+}
+
+.btn-sidebar-signout:hover {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
 }
 
 .admin-sidebar-nav {
@@ -583,6 +646,52 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.25);
 }
 
+.sidebar-nav-link-btn {
+  color: var(--text-secondary);
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.sidebar-nav-link-btn:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .sidebar-nav-link-btn:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
 .badge-count {
   margin-left: auto;
   background-color: var(--danger);
@@ -597,6 +706,27 @@ h1, h2, h3, h4, h5, h6 {
 .badge-count.warning-badge {
   background-color: var(--warning);
   color: #000;
+}
+
+.badge-role {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.badge-role.role-admin {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-role.role-student {
+  background-color: rgba(102, 126, 234, 0.15);
+  color: var(--accent-color);
+  border: 1px solid rgba(102, 126, 234, 0.3);
 }
 
 .admin-main-panel {

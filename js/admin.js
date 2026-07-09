@@ -55,7 +55,6 @@ function loadAdminDashboard() {
   showToast('Connecting to database...', 'info');
   
   adminDashboardUnsubscribe = db.collection('users')
-    .where('role', '==', 'student')
     .onSnapshot(async (snapshot) => {
       try {
         const approvedStudents = [];
@@ -65,6 +64,12 @@ function loadAdminDashboard() {
           const studentData = doc.data();
           studentData.uid = doc.id;
           
+          // Normalize role and approval status
+          const role = studentData.role || 'student';
+          studentData.role = role;
+          
+          const isApproved = studentData.approved === true || role === 'admin';
+          
           // Fetch quiz results subcollection
           const quizSnapshot = await db.collection('users').doc(doc.id).collection('quizResults').get();
           studentData.quizResults = {};
@@ -73,7 +78,7 @@ function loadAdminDashboard() {
             studentData.quizResults[qDoc.id] = qDoc.data();
           });
           
-          if (studentData.approved === true) {
+          if (isApproved) {
             approvedStudents.push(studentData);
           } else {
             pendingStudents.push(studentData);
@@ -206,7 +211,7 @@ function renderStudentTable(students) {
   if (students.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="${4 + availableModules.length}" class="text-center" style="color: var(--text-secondary); padding: 30px;">
+        <td colspan="${5 + availableModules.length}" class="text-center" style="color: var(--text-secondary); padding: 30px;">
           No approved students yet. Approve pending students above to see them here.
         </td>
       </tr>
@@ -263,6 +268,11 @@ function renderStudentTable(students) {
       <td class="student-name">
         ${student.name || 'Anonymous Student'}
       </td>
+      <td>
+        <span class="badge-role ${student.role === 'admin' ? 'role-admin' : 'role-student'}">
+          ${student.role === 'admin' ? 'Admin' : 'Student'}
+        </span>
+      </td>
       <td>${student.email || '—'}</td>
       ${scoreCells}
       <td style="color: var(--text-secondary); font-size: 13px;">${activeString}</td>
@@ -278,14 +288,16 @@ function calculateDashboardStats(approvedStudents, pendingStudents) {
   const completionRateEl = document.getElementById('completionRate');
   const pendingCountEl = document.getElementById('pendingStatCount');
   
-  if (totalStudentsEl) totalStudentsEl.textContent = approvedStudents.length;
+  const approvedStudentsOnly = approvedStudents.filter(s => s.role === 'student');
+  
+  if (totalStudentsEl) totalStudentsEl.textContent = approvedStudentsOnly.length;
   if (pendingCountEl) pendingCountEl.textContent = pendingStudents.length;
   
   const availableModules = MODULES.filter(m => m.status === 'available');
   let aggregatePercentages = 0;
   let quizCompletesCount = 0;
   
-  approvedStudents.forEach(student => {
+  approvedStudentsOnly.forEach(student => {
     availableModules.forEach(mod => {
       const quiz = student.quizResults[mod.id];
       if (quiz && quiz.bestPercentage !== undefined) {
@@ -302,7 +314,7 @@ function calculateDashboardStats(approvedStudents, pendingStudents) {
   
   // Completion rate
   if (completionRateEl) {
-    const totalPossibleQuizzes = approvedStudents.length * availableModules.length;
+    const totalPossibleQuizzes = approvedStudentsOnly.length * availableModules.length;
     completionRateEl.textContent = totalPossibleQuizzes > 0 ? Math.round((quizCompletesCount / totalPossibleQuizzes) * 100) + '%' : '—';
   }
 }

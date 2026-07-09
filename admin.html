@@ -10,27 +10,7 @@
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <!-- NAV BAR -->
-  <nav class="portal-nav" id="navbar">
-    <div class="nav-brand">
-      <span class="nav-logo">🎓</span>
-      <span class="nav-title">CC 101</span>
-      <span class="badge-admin">Admin Dashboard</span>
-    </div>
-    <div class="nav-links">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="admin.html" class="nav-link active" id="adminLink" style="display:none;">Admin Dashboard</a>
-    </div>
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" title="Toggle theme">☀️</button>
-      <div class="user-menu" id="userMenu" style="display:none;">
-        <span id="userDisplayName" class="user-name">Loading...</span>
-        <button class="btn-secondary" id="signOutBtn" style="padding: 6px 12px; font-size: 13px;">Sign Out</button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ACCESS DENIED WRAPPER -->
+  <!-- ACCESS DENIED WRAPPER (Displays when auth is not checked or is unauthorized) -->
   <div class="denied-container" id="accessDenied">
     <div class="denied-card">
       <h2>🔐 Checking Authorization</h2>
@@ -44,9 +24,20 @@
     <div class="admin-container">
       <!-- Admin Sidebar Navigation -->
       <aside class="admin-sidebar">
-        <div class="sidebar-user-section">
-          <div class="admin-badge" style="margin-left: 0; display: inline-block;">🔑 Course Instructor</div>
+        <div class="sidebar-brand">
+          <span class="nav-logo">🎓</span>
+          <span class="nav-title" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-size: 20px;">CC 101</span>
+          <span class="sidebar-badge-admin">Admin Portal</span>
         </div>
+        
+        <div class="sidebar-user-section" id="userMenu" style="display: none;">
+          <div class="user-info-row">
+            <span class="user-role-dot">●</span>
+            <span id="userDisplayName" class="user-name">Loading...</span>
+          </div>
+          <button class="btn-sidebar-signout" id="signOutBtn">Sign Out</button>
+        </div>
+
         <nav class="admin-sidebar-nav">
           <button class="sidebar-nav-btn active" data-tab="overview">
             <span class="nav-icon">📊</span> Overview & Stats
@@ -56,9 +47,17 @@
             <span class="badge-count warning-badge" id="pendingSidebarBadge" style="display: none;">0</span>
           </button>
           <button class="sidebar-nav-btn" data-tab="grades">
-            <span class="nav-icon">📝</span> Gradebook
+            <span class="nav-icon">📝</span> Gradebook / Users
           </button>
+          
+          <a href="index.html" class="sidebar-nav-link-btn">
+            <span class="nav-icon">🏡</span> Portal Home
+          </a>
         </nav>
+
+        <div class="sidebar-footer">
+          <button class="theme-toggle-btn" id="themeToggle" title="Toggle theme">🌙 Toggle Light Mode</button>
+        </div>
       </aside>
 
       <!-- Admin Main Panel Content -->
@@ -134,10 +133,10 @@
 
         <!-- PANEL 3: STUDENT GRADEBOOK -->
         <div class="admin-panel" id="panel-grades">
-          <div class="admin-panel-header" style="flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+          <div class="admin-panel-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
             <div>
-              <h2>📝 Student Grade Registry</h2>
-              <p class="panel-subtitle">Detailed record of quiz scores, number of attempts, completion dates, and activity logs.</p>
+              <h2>📝 Student Grade Registry & User List</h2>
+              <p class="panel-subtitle">Detailed record of roles, quiz scores, attempts, completion dates, and activity logs.</p>
             </div>
             <button class="btn-primary" id="exportCsvBtn">📥 Export Grade Sheet (CSV)</button>
           </div>
@@ -146,7 +145,7 @@
           <div class="admin-controls">
             <div class="search-container">
               <span class="search-icon">🔍</span>
-              <input type="text" id="searchInput" class="search-input" placeholder="Search students by name or email...">
+              <input type="text" id="searchInput" class="search-input" placeholder="Search accounts by name or email...">
             </div>
           </div>
 
@@ -156,7 +155,8 @@
               <thead>
                 <tr>
                   <th style="width: 60px;">#</th>
-                  <th>Student Name</th>
+                  <th>Name</th>
+                  <th>Role</th>
                   <th>Email</th>
                   <th style="text-align: center;">HW Part 1</th>
                   <th style="text-align: center;">HW Part 2</th>
@@ -176,11 +176,6 @@
       </section>
     </div>
   </main>
-
-  <!-- FOOTER -->
-  <footer class="portal-footer">
-    <p>© 2026 CC 101 — Introduction to Computing | MLG College of Learning</p>
-  </footer>
 
   <!-- Firebase Legacy SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>

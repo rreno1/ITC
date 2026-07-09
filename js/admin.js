@@ -376,6 +376,28 @@ function filterStudentsTable(query) {
   renderStudentTable(filtered);
 }
 
+// Theme management for Admin Portal
+function initTheme() {
+  const savedTheme = localStorage.getItem('itc-portal-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('itc-portal-theme', newTheme);
+  updateThemeIcon(newTheme);
+}
+
+function updateThemeIcon(theme) {
+  const btn = document.getElementById('themeToggle');
+  if (btn) {
+    btn.textContent = theme === 'dark' ? '☀️ Toggle Light Mode' : '🌙 Toggle Dark Mode';
+  }
+}
+
 // Tab Switching navigation logic
 function setupTabNavigation() {
   const buttons = document.querySelectorAll('.sidebar-nav-btn');

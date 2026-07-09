@@ -1,8 +1,7 @@
 // js/app.js
 
 // Auth gate — tracks whether a user is currently signed in AND approved
-let isUserSignedIn = false;
-let isUserApproved = false;
+// We read these from window (which are updated in real-time by auth.js)
 
 // Theme initialization and toggling
 function initTheme() {
@@ -39,8 +38,8 @@ function renderModuleCards() {
     
     // Determine if this card should be locked
     const isComingSoon = (mod.status === 'locked');
-    const isNotSignedIn = (mod.status === 'available' && !isUserSignedIn);
-    const isPendingApproval = (mod.status === 'available' && isUserSignedIn && !isUserApproved);
+    const isNotSignedIn = (mod.status === 'available' && !window.isUserSignedIn);
+    const isPendingApproval = (mod.status === 'available' && window.isUserSignedIn && !window.isUserApproved);
     const isLocked = isComingSoon || isNotSignedIn || isPendingApproval;
     
     card.className = `module-card ${isLocked ? 'locked' : ''} ${isPendingApproval ? 'pending' : ''} ${isNotSignedIn ? 'clickable-locked' : ''}`;
@@ -81,7 +80,7 @@ function renderModuleCards() {
     `;
     
     // Click action — only if fully unlocked (signed in + approved)
-    if (mod.status === 'available' && isUserSignedIn && isUserApproved) {
+    if (mod.status === 'available' && window.isUserSignedIn && window.isUserApproved) {
       card.addEventListener('click', () => {
         window.location.href = mod.path;
       });

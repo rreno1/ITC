@@ -29,11 +29,27 @@ function googleSignIn() {
           lastActive: firebase.firestore.FieldValue.serverTimestamp()
         });
       } else {
-        await userDocRef.update({
+        // User exists — verify role and update timestamps
+        const userData = userDoc.data();
+        const isAdmin = ADMIN_EMAILS.includes(user.email);
+        const currentRole = userData.role || 'student';
+        
+        const updates = {
           name: user.displayName,
           photoURL: user.photoURL,
           lastActive: firebase.firestore.FieldValue.serverTimestamp()
-        });
+        };
+        
+        // Dynamic downgrade/upgrade if email configuration changes
+        if (!isAdmin && currentRole === 'admin') {
+          updates.role = 'student';
+          updates.approved = false;
+        } else if (isAdmin && currentRole !== 'admin') {
+          updates.role = 'admin';
+          updates.approved = true;
+        }
+        
+        await userDocRef.update(updates);
       }
       
       showToast('Logged in successfully!', 'success');

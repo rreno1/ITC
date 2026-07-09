@@ -60,11 +60,15 @@ auth.onAuthStateChanged((user) => {
 
   if (user) {
     // User is signed in
+    isUserSignedIn = true;
     if (signInBtn) signInBtn.style.display = 'none';
     if (userMenu) {
       userMenu.style.display = 'flex';
       if (userDisplayName) userDisplayName.textContent = user.displayName;
     }
+    
+    // Re-render module cards as unlocked
+    if (typeof renderModuleCards === 'function') renderModuleCards();
     
     // Show admin link if matches admin email
     if (adminLink) {
@@ -91,9 +95,13 @@ auth.onAuthStateChanged((user) => {
     }
   } else {
     // User is signed out
+    isUserSignedIn = false;
     if (signInBtn) signInBtn.style.display = 'inline-flex';
     if (userMenu) userMenu.style.display = 'none';
     if (adminLink) adminLink.style.display = 'none';
+    
+    // Re-render module cards as locked
+    if (typeof renderModuleCards === 'function') renderModuleCards();
     
     // Trigger admin check on admin page with null
     if (typeof checkAdminAccess === 'function') {

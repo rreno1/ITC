@@ -1,5 +1,8 @@
 // js/app.js
 
+// Auth gate — tracks whether a user is currently signed in
+let isUserSignedIn = false;
+
 // Theme initialization and toggling
 function initTheme() {
   const savedTheme = localStorage.getItem('itc-portal-theme') || 'dark';
@@ -32,10 +35,26 @@ function renderModuleCards() {
   
   MODULES.forEach((mod, index) => {
     const card = document.createElement('div');
-    card.className = `module-card ${mod.status === 'locked' ? 'locked' : ''}`;
+    
+    // Determine if this card should be locked
+    const isComingSoon = (mod.status === 'locked');
+    const isAuthLocked = (mod.status === 'available' && !isUserSignedIn);
+    const isLocked = isComingSoon || isAuthLocked;
+    
+    card.className = `module-card ${isLocked ? 'locked' : ''}`;
     card.id = `card-${mod.id}`;
     card.style.setProperty('--card-color', mod.color);
     card.style.animationDelay = `${index * 0.06}s`;
+    
+    // Footer label
+    let footerLabel;
+    if (isComingSoon) {
+      footerLabel = '<span class="locked-label">🔒 Coming Soon</span>';
+    } else if (isAuthLocked) {
+      footerLabel = '<span class="locked-label">🔒 Sign in to access</span>';
+    } else {
+      footerLabel = '<span class="open-label">Open Module →</span>';
+    }
     
     // Card HTML structure
     card.innerHTML = `
@@ -52,15 +71,21 @@ function renderModuleCards() {
         <div class="progress-bar">
           <div class="progress-fill" style="width: 0%"></div>
         </div>
-        ${mod.status === 'locked' ? '<span class="locked-label">🔒 Coming Soon</span>' : '<span class="open-label">Open Module →</span>'}
+        ${footerLabel}
       </div>
-      ${mod.status === 'locked' ? '<div class="card-locked-overlay"></div>' : ''}
+      ${isLocked ? '<div class="card-locked-overlay"></div>' : ''}
     `;
     
-    // Click action for open modules
-    if (mod.status === 'available') {
+    // Click action — only if unlocked
+    if (mod.status === 'available' && isUserSignedIn) {
       card.addEventListener('click', () => {
         window.location.href = mod.path;
+      });
+      card.style.cursor = 'pointer';
+    } else if (isAuthLocked) {
+      // Clicking a sign-in-locked card triggers Google sign-in
+      card.addEventListener('click', () => {
+        if (typeof googleSignIn === 'function') googleSignIn();
       });
       card.style.cursor = 'pointer';
     }

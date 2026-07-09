@@ -55,7 +55,6 @@ function signOut() {
 auth.onAuthStateChanged((user) => {
   const signInBtn = document.getElementById('signInBtn');
   const userMenu = document.getElementById('userMenu');
-  const userAvatar = document.getElementById('userAvatar');
   const userDisplayName = document.getElementById('userDisplayName');
   const adminLink = document.getElementById('adminLink');
 
@@ -64,7 +63,6 @@ auth.onAuthStateChanged((user) => {
     if (signInBtn) signInBtn.style.display = 'none';
     if (userMenu) {
       userMenu.style.display = 'flex';
-      if (userAvatar) userAvatar.src = user.photoURL || '';
       if (userDisplayName) userDisplayName.textContent = user.displayName;
     }
     

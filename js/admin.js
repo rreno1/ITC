@@ -134,14 +134,12 @@ function renderStudentTable(students) {
     row.innerHTML = `
       <td>${index + 1}</td>
       <td class="student-name">
-        <img src="${student.photoURL || 'https://www.gstatic.com/images/branding/product/2x/avatar_anonymous_54dp.png'}" class="table-avatar" alt="">
         ${student.name || 'Anonymous Student'}
       </td>
       <td>${student.email || '—'}</td>
       ${scoreCells}
       <td style="color: var(--text-secondary); font-size: 13px;">${activeString}</td>
     `;
-    
     tbody.appendChild(row);
   });
 }

@@ -2,12 +2,12 @@
 // Firebase Configuration
 // IMPORTANT: Replace these placeholder values with your actual Firebase project config from Step 2 of the guide
 const firebaseConfig = {
-  apiKey: "PASTE_YOUR_API_KEY_HERE",
-  authDomain: "PASTE_YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "PASTE_YOUR_PROJECT_ID",
-  storageBucket: "PASTE_YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "PASTE_YOUR_SENDER_ID",
-  appId: "PASTE_YOUR_APP_ID"
+  apiKey: "AIzaSyBJgQq_Ks_B76biYvZx1vjd12XrFSmyrV0",
+  authDomain: "itc-learning-portal.firebaseapp.com",
+  projectId: "itc-learning-portal",
+  storageBucket: "itc-learning-portal.firebasestorage.app",
+  messagingSenderId: "100392208299",
+  appId: "1:100392208299:web:85cbef4fee4daa2fd334ee"
 };
 
 // Initialize Firebase if it hasn't been initialized yet
@@ -18,7 +18,7 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 // Admin email (hard-coded)
-const ADMIN_EMAIL = 'rrjrenomeron@mlgcl.edu.ph';
+const ADMIN_EMAIL = 'rrenomeronjr@gmail.com';
 
 // Module definitions
 const MODULES = [

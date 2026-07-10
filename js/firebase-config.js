@@ -21,6 +21,34 @@ const db = firebase.firestore();
 const ADMIN_EMAILS = ['rrenomeronjr@gmail.com'];
 const ADMIN_EMAIL = ADMIN_EMAILS[0]; // backward compat
 
+// Batch attendance schedule.
+// Attendance follows the user's requested checker schedule:
+// Batch B checks in on Tuesday, Batch A checks in on Friday, 4:00 PM to 5:30 PM.
+const BATCHES = {
+  A: {
+    id: 'A',
+    label: 'Batch A',
+    attendanceDay: 5,
+    attendanceDayName: 'Friday',
+    attendanceStart: '16:00',
+    attendanceEnd: '17:30'
+  },
+  B: {
+    id: 'B',
+    label: 'Batch B',
+    attendanceDay: 2,
+    attendanceDayName: 'Tuesday',
+    attendanceStart: '16:00',
+    attendanceEnd: '17:30'
+  }
+};
+
+const DEFAULT_BATCH = 'A';
+
+function getBatchConfig(batch) {
+  return BATCHES[String(batch || '').toUpperCase()] || null;
+}
+
 // Module definitions
 const MODULES = [
   {

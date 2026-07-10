@@ -1,17 +1,19 @@
 // js/admin.js
 
-// Check admin credentials
+let adminDashboardUnsubscribe = null;
+let pendingApprovalTarget = null;
+
 function checkAdminAccess(user) {
   const adminContent = document.getElementById('adminContent');
   const accessDenied = document.getElementById('accessDenied');
-  
+
   if (!user) {
     if (adminContent) adminContent.style.display = 'none';
     if (accessDenied) {
       accessDenied.style.display = 'flex';
       accessDenied.innerHTML = `
         <div class="denied-card">
-          <h2>🔐 Admin Sign-In Required</h2>
+          <h2>Admin Sign-In Required</h2>
           <p>Please log in with your credentials to access the teacher dashboard.</p>
           <button class="btn-primary google-btn" onclick="googleSignIn()">Sign in with Google</button>
         </div>
@@ -19,285 +21,432 @@ function checkAdminAccess(user) {
     }
     return;
   }
-  
+
   if (!ADMIN_EMAILS.includes(user.email)) {
     if (adminContent) adminContent.style.display = 'none';
     if (accessDenied) {
       accessDenied.style.display = 'flex';
       accessDenied.innerHTML = `
         <div class="denied-card">
-          <h2>⛔ Access Denied</h2>
+          <h2>Access Denied</h2>
           <p>This panel is restricted to course administrators.</p>
-          <p>Logged in as: <strong>${user.email}</strong></p>
+          <p>Logged in as: <strong>${escapeHTML(user.email)}</strong></p>
           <a href="index.html" class="btn-primary">Return to Home</a>
         </div>
       `;
     }
     return;
   }
-  
-  // User is admin
-  if (adminContent) adminContent.style.display = 'block';
+
+  if (adminContent) adminContent.style.display = 'grid';
   if (accessDenied) accessDenied.style.display = 'none';
-  
   loadAdminDashboard();
 }
 
-let adminDashboardUnsubscribe = null;
-
-// Load student progress and calculate aggregate stats in real-time
-function loadAdminDashboard() {
-  if (adminDashboardUnsubscribe) {
-    // Already listening
-    return;
-  }
-  
-  showToast('Connecting to database...', 'info');
-  
-  adminDashboardUnsubscribe = db.collection('users')
-    .onSnapshot(async (snapshot) => {
-      try {
-        const approvedStudents = [];
-        const pendingStudents = [];
-        
-        for (const doc of snapshot.docs) {
-          const studentData = doc.data();
-          studentData.uid = doc.id;
-          
-          // Normalize role and approval status
-          const role = studentData.role || 'student';
-          studentData.role = role;
-          
-          const isApproved = studentData.approved === true || role === 'admin';
-          
-          // Fetch quiz results subcollection
-          const quizSnapshot = await db.collection('users').doc(doc.id).collection('quizResults').get();
-          studentData.quizResults = {};
-          
-          quizSnapshot.forEach(qDoc => {
-            studentData.quizResults[qDoc.id] = qDoc.data();
-          });
-          
-          if (isApproved) {
-            approvedStudents.push(studentData);
-          } else {
-            pendingStudents.push(studentData);
-          }
-        }
-        
-        // Cache records globally
-        window.allStudentsCached = approvedStudents;
-        window.pendingStudentsCached = pendingStudents;
-        
-        renderPendingApprovals(pendingStudents);
-        renderStudentTable(approvedStudents);
-        calculateDashboardStats(approvedStudents, pendingStudents);
-        
-      } catch (error) {
-        console.error('Error processing student updates:', error);
-      }
-    }, (error) => {
-      console.error('Firestore subscription error:', error);
-      showToast('Connection to student database failed.', 'error');
-    });
+function escapeHTML(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
-// ——————————— PENDING APPROVALS ———————————
+function normalizeBatchValue(batch) {
+  const value = String(batch || '').toUpperCase();
+  return getBatchConfig(value) ? value : '';
+}
+
+function formatTimestamp(value, options = {}) {
+  if (!value) return '-';
+  const date = value.toDate ? value.toDate() : new Date(value.seconds ? value.seconds * 1000 : value);
+  if (Number.isNaN(date.getTime())) return '-';
+  return date.toLocaleString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    year: options.year ? 'numeric' : undefined,
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
+
+function getDateKeyForAdmin(date = new Date()) {
+  if (typeof formatDateKey === 'function') return formatDateKey(date);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function selectedAttendanceDate() {
+  const input = document.getElementById('attendanceDateInput');
+  const value = input && input.value ? input.value : getDateKeyForAdmin();
+  return new Date(`${value}T12:00:00`);
+}
+
+function batchPill(batch) {
+  const normalized = normalizeBatchValue(batch);
+  if (!normalized) return '<span class="batch-pill batch-none">No batch</span>';
+  return `<span class="batch-pill batch-${normalized.toLowerCase()}">Batch ${normalized}</span>`;
+}
+
+function statusPill(label, status) {
+  return `<span class="status-pill status-${status}">${escapeHTML(label)}</span>`;
+}
+
+function isApprovedAccount(account) {
+  return account.role === 'admin' || account.approved === true;
+}
+
+async function loadQuizResults(uid) {
+  try {
+    const quizSnapshot = await db.collection('users').doc(uid).collection('quizResults').get();
+    const quizResults = {};
+    quizSnapshot.forEach(qDoc => {
+      quizResults[qDoc.id] = qDoc.data();
+    });
+    return quizResults;
+  } catch (error) {
+    console.error('Unable to load quiz results:', error);
+    return {};
+  }
+}
+
+function loadAdminDashboard() {
+  if (adminDashboardUnsubscribe) return;
+
+  showToast('Connecting to database...', 'info');
+
+  adminDashboardUnsubscribe = db.collection('users').onSnapshot(async (snapshot) => {
+    try {
+      const accounts = await Promise.all(snapshot.docs.map(async (doc) => {
+        const data = doc.data();
+        const role = data.role || 'student';
+        const manual = data.manual === true;
+        return {
+          uid: doc.id,
+          ...data,
+          role,
+          manual,
+          approved: role === 'admin' ? true : data.approved === true,
+          batch: normalizeBatchValue(data.batch),
+          attendance: data.attendance || {},
+          quizResults: manual ? {} : await loadQuizResults(doc.id)
+        };
+      }));
+
+      const activeAccounts = accounts.filter(account => !account.manual);
+      const approvedAccounts = activeAccounts.filter(isApprovedAccount);
+      const pendingStudents = activeAccounts.filter(account => account.role === 'student' && !isApprovedAccount(account));
+
+      window.allAccountsCached = accounts;
+      window.allStudentsCached = approvedAccounts;
+      window.pendingStudentsCached = pendingStudents;
+
+      renderPendingApprovals(pendingStudents);
+      renderStudentTable(approvedAccounts);
+      renderAttendanceTable(approvedAccounts);
+      renderAccountsTable(accounts);
+      calculateDashboardStats(approvedAccounts, pendingStudents);
+    } catch (error) {
+      console.error('Error processing dashboard records:', error);
+      showToast('Unable to process dashboard records.', 'error');
+    }
+  }, (error) => {
+    console.error('Firestore subscription error:', error);
+    showToast('Connection to student database failed.', 'error');
+  });
+}
 
 function renderPendingApprovals(pending) {
   const container = document.getElementById('pendingContainer');
+  const list = document.getElementById('pendingList');
   const sidebarBadge = document.getElementById('pendingSidebarBadge');
   const noPendingMessage = document.getElementById('noPendingMessage');
-  
+
   if (sidebarBadge) {
     sidebarBadge.textContent = pending.length;
     sidebarBadge.style.display = pending.length > 0 ? 'inline-flex' : 'none';
   }
-  
+
+  if (!container || !list) return;
+  list.innerHTML = '';
+
   if (pending.length === 0) {
-    if (container) container.style.display = 'none';
+    container.style.display = 'none';
     if (noPendingMessage) noPendingMessage.style.display = 'flex';
     return;
   }
-  
-  if (container) container.style.display = 'block';
+
+  container.style.display = 'block';
   if (noPendingMessage) noPendingMessage.style.display = 'none';
-  
-  const list = container ? container.querySelector('#pendingList') : null;
-  if (!list) return;
-  list.innerHTML = '';
-  
+
   pending.forEach(student => {
-    const registeredDate = student.registeredAt
-      ? new Date(student.registeredAt.seconds * 1000).toLocaleDateString(undefined, {
-          month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
-        })
-      : 'Unknown';
-    
     const card = document.createElement('div');
     card.className = 'pending-card';
     card.id = `pending-${student.uid}`;
     card.innerHTML = `
       <div class="pending-info">
-        <div class="pending-name">${student.name || 'Anonymous Student'}</div>
-        <div class="pending-email">${student.email || '—'}</div>
-        <div class="pending-date">Registered: ${registeredDate}</div>
+        <div class="pending-name">${escapeHTML(student.name || 'Anonymous Student')}</div>
+        <div class="pending-email">${escapeHTML(student.email || '-')}</div>
+        <div class="pending-date">Registered: ${formatTimestamp(student.registeredAt, { year: true })}</div>
       </div>
       <div class="pending-actions">
-        <button class="btn-approve" onclick="approveStudent('${student.uid}', '${(student.name || '').replace(/'/g, "\\'")}')">✓ Approve</button>
-        <button class="btn-reject" onclick="rejectStudent('${student.uid}', '${(student.name || '').replace(/'/g, "\\'")}')">✕ Reject</button>
+        <button class="btn-approve" data-action="approve">Approve</button>
+        <button class="btn-reject" data-action="reject">Remove</button>
       </div>
     `;
+
+    card.querySelector('[data-action="approve"]').addEventListener('click', () => {
+      openBatchApprovalModal(student.uid, student.name || student.email || 'Student');
+    });
+    card.querySelector('[data-action="reject"]').addEventListener('click', () => {
+      removeAccount(student.uid, student.name || student.email || 'this student');
+    });
     list.appendChild(card);
   });
 }
 
-// Approve a student
-async function approveStudent(uid, name) {
+function openBatchApprovalModal(uid, name) {
+  pendingApprovalTarget = { uid, name };
+  const modal = document.getElementById('batchApprovalModal');
+  const label = document.getElementById('batchApprovalStudentName');
+  if (label) label.textContent = `Choose the batch for ${name} before approving access.`;
+  if (modal) {
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+}
+
+function closeBatchApprovalModal() {
+  pendingApprovalTarget = null;
+  const modal = document.getElementById('batchApprovalModal');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+}
+
+async function approveStudent(uid, batch) {
+  const normalizedBatch = normalizeBatchValue(batch);
+  if (!normalizedBatch) {
+    showToast('Choose Batch A or Batch B before approving.', 'error');
+    return;
+  }
+
   try {
-    await db.collection('users').doc(uid).update({ approved: true });
-    
-    // Remove from pending UI with animation
-    const card = document.getElementById(`pending-${uid}`);
-    if (card) {
-      card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-      card.style.opacity = '0';
-      card.style.transform = 'translateX(20px)';
-      setTimeout(() => card.remove(), 300);
-    }
-    
-    showToast(`${name || 'Student'} approved! ✅`, 'success');
-    
-    // Reload dashboard after a short delay to reflect changes
-    setTimeout(() => loadAdminDashboard(), 500);
+    await db.collection('users').doc(uid).update({
+      approved: true,
+      batch: normalizedBatch,
+      approvedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      approvedBy: auth.currentUser ? auth.currentUser.email : ADMIN_EMAIL
+    });
+    closeBatchApprovalModal();
+    showToast(`Student approved as Batch ${normalizedBatch}.`, 'success');
   } catch (error) {
     console.error('Error approving student:', error);
     showToast('Failed to approve student. Check Firestore rules.', 'error');
   }
 }
 
-// Reject (delete) a student
-async function rejectStudent(uid, name) {
-  if (!confirm(`Remove ${name || 'this student'}? They will need to sign in again and request access.`)) return;
-  
-  try {
-    await db.collection('users').doc(uid).delete();
-    
-    const card = document.getElementById(`pending-${uid}`);
-    if (card) {
-      card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-      card.style.opacity = '0';
-      card.style.transform = 'translateX(-20px)';
-      setTimeout(() => card.remove(), 300);
-    }
-    
-    showToast(`${name || 'Student'} removed.`, 'info');
-    setTimeout(() => loadAdminDashboard(), 500);
-  } catch (error) {
-    console.error('Error rejecting student:', error);
-    showToast('Failed to remove student. Check Firestore rules.', 'error');
+async function deleteKnownSubcollections(uid) {
+  const collections = ['quizResults'];
+  for (const collectionName of collections) {
+    const snapshot = await db.collection('users').doc(uid).collection(collectionName).get();
+    if (snapshot.empty) continue;
+    const batch = db.batch();
+    snapshot.docs.forEach(doc => batch.delete(doc.ref));
+    await batch.commit();
   }
 }
 
-// ——————————— APPROVED STUDENTS TABLE ———————————
+async function removeAccount(uid, name) {
+  if (auth.currentUser && uid === auth.currentUser.uid) {
+    showToast('You cannot remove the admin account currently signed in.', 'error');
+    return;
+  }
 
-function renderStudentTable(students) {
+  if (!confirm(`Remove ${name}? This deletes the registry record and saved quiz scores for this portal.`)) return;
+
+  try {
+    await deleteKnownSubcollections(uid);
+    await db.collection('users').doc(uid).delete();
+    showToast(`${name} removed.`, 'info');
+  } catch (error) {
+    console.error('Error removing account:', error);
+    showToast('Failed to remove account. Check Firestore rules.', 'error');
+  }
+}
+
+function renderStudentTable(accounts) {
   const tbody = document.getElementById('studentTableBody');
   if (!tbody) return;
   tbody.innerHTML = '';
-  
+
   const availableModules = MODULES.filter(m => m.status === 'available');
-  
-  if (students.length === 0) {
+  const rows = accounts.filter(account => !account.manual);
+
+  if (rows.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="${5 + availableModules.length}" class="text-center" style="color: var(--text-secondary); padding: 30px;">
-          No approved students yet. Approve pending students above to see them here.
+        <td colspan="${8 + availableModules.length}" class="text-center" style="color: var(--text-secondary); padding: 30px;">
+          No approved accounts yet. Approve pending students to see them here.
         </td>
       </tr>
     `;
     return;
   }
-  
-  students.forEach((student, index) => {
+
+  const todayKey = getDateKeyForAdmin();
+
+  rows.forEach((student, index) => {
     const row = document.createElement('tr');
-    
-    // Generate scores for available modules
     let scoreCells = '';
+
     availableModules.forEach(mod => {
       const quiz = student.quizResults[mod.id];
-      if (quiz) {
-        const percentage = quiz.bestPercentage || 0;
-        let scoreClass = 'score-none';
-        
-        if (percentage >= 85) scoreClass = 'score-high';
-        else if (percentage >= 60) scoreClass = 'score-mid';
-        else scoreClass = 'score-low';
-
-        let completedDateStr = 'Unknown Date';
-        if (quiz.completedAt) {
-          const dt = quiz.completedAt.toDate ? quiz.completedAt.toDate() : new Date(quiz.completedAt.seconds * 1000);
-          completedDateStr = dt.toLocaleDateString(undefined, {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-          });
-        }
-        
-        scoreCells += `<td class="score-cell ${scoreClass}" title="Completed: ${completedDateStr}&#10;Attempts: ${quiz.attempts}">${quiz.bestScore}/${quiz.total}</td>`;
-      } else {
-        scoreCells += `<td class="score-cell score-none">—</td>`;
+      if (!quiz) {
+        scoreCells += '<td class="score-cell score-none">-</td>';
+        return;
       }
+
+      const percentage = quiz.bestPercentage || quiz.percentage || 0;
+      let scoreClass = 'score-low';
+      if (percentage >= 85) scoreClass = 'score-high';
+      else if (percentage >= 60) scoreClass = 'score-mid';
+
+      const completedDate = formatTimestamp(quiz.completedAt, { year: true });
+      scoreCells += `<td class="score-cell ${scoreClass}" title="Completed: ${completedDate}; Attempts: ${quiz.attempts || 1}">${quiz.bestScore ?? quiz.score}/${quiz.total}</td>`;
     });
-    
-    // Format active timestamp
-    let activeString = '—';
-    if (student.lastActive) {
-      activeString = new Date(student.lastActive.seconds * 1000).toLocaleDateString(undefined, {
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-    }
-    
+
+    const attendanceRecord = student.attendance && student.attendance[todayKey];
+    const attendanceStatus = attendanceRecord && attendanceRecord.present
+      ? statusPill('Present today', 'present')
+      : statusPill('No check-in', 'muted');
+
     row.innerHTML = `
       <td>${index + 1}</td>
-      <td class="student-name">
-        ${student.name || 'Anonymous Student'}
-      </td>
+      <td class="student-name">${escapeHTML(student.name || 'Anonymous Student')}</td>
       <td>
         <span class="badge-role ${student.role === 'admin' ? 'role-admin' : 'role-student'}">
           ${student.role === 'admin' ? 'Admin' : 'Student'}
         </span>
       </td>
-      <td>${student.email || '—'}</td>
+      <td>${batchPill(student.batch)}</td>
+      <td>${escapeHTML(student.email || '-')}</td>
       ${scoreCells}
-      <td style="color: var(--text-secondary); font-size: 13px;">${activeString}</td>
+      <td>${student.role === 'student' ? attendanceStatus : statusPill('Exempt', 'muted')}</td>
+      <td style="color: var(--text-secondary); font-size: 13px;">${formatTimestamp(student.lastActive)}</td>
+      <td>
+        <div class="table-actions">
+          <button class="mini-btn" data-action="edit">Edit</button>
+          <button class="mini-btn danger" data-action="remove">Remove</button>
+        </div>
+      </td>
+    `;
+
+    row.querySelector('[data-action="edit"]').addEventListener('click', () => openAccountModal(student.uid));
+    row.querySelector('[data-action="remove"]').addEventListener('click', () => {
+      removeAccount(student.uid, student.name || student.email || 'this account');
+    });
+    tbody.appendChild(row);
+  });
+}
+
+function renderAttendanceTable(accounts) {
+  const tbody = document.getElementById('attendanceTableBody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+
+  const selectedDate = selectedAttendanceDate();
+  const dateKey = getDateKeyForAdmin(selectedDate);
+  const students = accounts
+    .filter(account => account.role === 'student' && isApprovedAccount(account) && !account.manual)
+    .sort((a, b) => `${a.batch || 'Z'}${a.name || ''}`.localeCompare(`${b.batch || 'Z'}${b.name || ''}`));
+
+  if (students.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" style="color: var(--text-secondary); padding: 30px; text-align: center;">No approved students yet.</td></tr>';
+    return;
+  }
+
+  students.forEach(student => {
+    const batchConfig = getBatchConfig(student.batch);
+    const record = student.attendance && student.attendance[dateKey];
+    const isExpected = !!batchConfig && selectedDate.getDay() === batchConfig.attendanceDay;
+    let status = statusPill('Not scheduled', 'muted');
+
+    if (!batchConfig) status = statusPill('No batch', 'pending');
+    else if (record && record.present) status = statusPill('Present', 'present');
+    else if (isExpected) status = statusPill('Missing', 'missing');
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td class="student-name">${escapeHTML(student.name || 'Anonymous Student')}</td>
+      <td>${batchPill(student.batch)}</td>
+      <td>${escapeHTML(student.email || '-')}</td>
+      <td>${batchConfig ? `${batchConfig.attendanceDayName}, ${batchConfig.attendanceStart}-${batchConfig.attendanceEnd}` : '-'}</td>
+      <td>${status}</td>
+      <td>${formatTimestamp(record && record.firstSeenAt)}</td>
+      <td>${formatTimestamp(record && record.lastSeenAt)}</td>
     `;
     tbody.appendChild(row);
   });
 }
 
-// Calculate summary counts
-function calculateDashboardStats(approvedStudents, pendingStudents) {
-  const totalStudentsEl = document.getElementById('totalStudents');
-  const avgScoreEl = document.getElementById('avgScore');
-  const completionRateEl = document.getElementById('completionRate');
-  const pendingCountEl = document.getElementById('pendingStatCount');
-  
-  const approvedStudentsOnly = approvedStudents.filter(s => s.role === 'student');
-  
-  if (totalStudentsEl) totalStudentsEl.textContent = approvedStudentsOnly.length;
-  if (pendingCountEl) pendingCountEl.textContent = pendingStudents.length;
-  
+function renderAccountsTable(accounts) {
+  const tbody = document.getElementById('accountsTableBody');
+  if (!tbody) return;
+
+  const searchValue = (document.getElementById('accountSearchInput')?.value || '').toLowerCase().trim();
+  const filtered = accounts.filter(account => {
+    const searchable = `${account.name || ''} ${account.email || ''} ${account.role || ''} ${account.batch || ''}`.toLowerCase();
+    return searchable.includes(searchValue);
+  });
+
+  tbody.innerHTML = '';
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" style="color: var(--text-secondary); padding: 30px; text-align: center;">No accounts found.</td></tr>';
+    return;
+  }
+
+  filtered.forEach(account => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td class="student-name">${escapeHTML(account.name || 'Unnamed Account')}</td>
+      <td>${escapeHTML(account.email || '-')}</td>
+      <td>
+        <span class="badge-role ${account.role === 'admin' ? 'role-admin' : 'role-student'}">
+          ${account.role === 'admin' ? 'Admin' : 'Student'}
+        </span>
+      </td>
+      <td>${batchPill(account.batch)}</td>
+      <td>${isApprovedAccount(account) ? statusPill('Approved', 'present') : statusPill('Pending', 'pending')}</td>
+      <td>${account.manual ? statusPill('Manual', 'muted') : statusPill('Google', 'muted')}</td>
+      <td>
+        <div class="table-actions">
+          <button class="mini-btn" data-action="edit">Edit</button>
+          <button class="mini-btn danger" data-action="remove">Remove</button>
+        </div>
+      </td>
+    `;
+
+    row.querySelector('[data-action="edit"]').addEventListener('click', () => openAccountModal(account.uid));
+    row.querySelector('[data-action="remove"]').addEventListener('click', () => {
+      removeAccount(account.uid, account.name || account.email || 'this account');
+    });
+    tbody.appendChild(row);
+  });
+}
+
+function calculateDashboardStats(approvedAccounts, pendingStudents) {
+  const approvedStudents = approvedAccounts.filter(s => s.role === 'student' && !s.manual);
   const availableModules = MODULES.filter(m => m.status === 'available');
+  const todayKey = getDateKeyForAdmin();
   let aggregatePercentages = 0;
   let quizCompletesCount = 0;
-  
-  approvedStudentsOnly.forEach(student => {
+
+  approvedStudents.forEach(student => {
     availableModules.forEach(mod => {
       const quiz = student.quizResults[mod.id];
       if (quiz && quiz.bestPercentage !== undefined) {
@@ -306,51 +455,51 @@ function calculateDashboardStats(approvedStudents, pendingStudents) {
       }
     });
   });
-  
-  // Calculate average score
-  if (avgScoreEl) {
-    avgScoreEl.textContent = quizCompletesCount > 0 ? Math.round(aggregatePercentages / quizCompletesCount) + '%' : '—';
-  }
-  
-  // Completion rate
-  if (completionRateEl) {
-    const totalPossibleQuizzes = approvedStudentsOnly.length * availableModules.length;
-    completionRateEl.textContent = totalPossibleQuizzes > 0 ? Math.round((quizCompletesCount / totalPossibleQuizzes) * 100) + '%' : '—';
-  }
+
+  const statMap = {
+    totalStudents: approvedStudents.length,
+    pendingStatCount: pendingStudents.length,
+    avgScore: quizCompletesCount > 0 ? `${Math.round(aggregatePercentages / quizCompletesCount)}%` : '-',
+    completionRate: approvedStudents.length > 0 ? `${Math.round((quizCompletesCount / (approvedStudents.length * availableModules.length)) * 100)}%` : '-',
+    batchAStudents: approvedStudents.filter(s => s.batch === 'A').length,
+    batchBStudents: approvedStudents.filter(s => s.batch === 'B').length,
+    todayAttendanceCount: approvedStudents.filter(s => s.attendance && s.attendance[todayKey] && s.attendance[todayKey].present).length
+  };
+
+  Object.entries(statMap).forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  });
 }
 
-// Export grade reports to CSV format
 function exportToCSV() {
-  const students = window.allStudentsCached;
-  if (!students || students.length === 0) {
+  const students = (window.allStudentsCached || []).filter(account => account.role === 'student');
+  if (students.length === 0) {
     showToast('No student data to export.', 'error');
     return;
   }
-  
+
   const availableModules = MODULES.filter(m => m.status === 'available');
-  
-  // Build header row
-  let csvContent = 'Name,Email,' + availableModules.map(m => `"${m.title} Score"`).join(',') + ',Last Active\n';
-  
-  // Add user rows
+  const header = ['Name', 'Email', 'Batch', ...availableModules.map(m => `${m.title} Score`), 'Last Active'];
+  const rows = [header];
+
   students.forEach(student => {
-    let row = `"${student.name || 'Anonymous'}","${student.email || ''}"`;
-    
-    availableModules.forEach(mod => {
-      const quiz = student.quizResults[mod.id];
-      row += `,${quiz ? `"${quiz.bestScore}/${quiz.total}"` : '"—"'}`;
-    });
-    
-    let activeString = '—';
-    if (student.lastActive) {
-      activeString = new Date(student.lastActive.seconds * 1000).toISOString().split('T')[0];
-    }
-    row += `,"${activeString}"`;
-    
-    csvContent += row + '\n';
+    rows.push([
+      student.name || 'Anonymous',
+      student.email || '',
+      student.batch ? `Batch ${student.batch}` : '',
+      ...availableModules.map(mod => {
+        const quiz = student.quizResults[mod.id];
+        return quiz ? `${quiz.bestScore ?? quiz.score}/${quiz.total}` : '';
+      }),
+      formatTimestamp(student.lastActive, { year: true })
+    ]);
   });
-  
-  // Download trigger
+
+  const csvContent = rows
+    .map(row => row.map(value => `"${String(value).replace(/"/g, '""')}"`).join(','))
+    .join('\n');
+
   const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
@@ -359,24 +508,99 @@ function exportToCSV() {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-  
-  showToast('CSV report exported!', 'success');
+  URL.revokeObjectURL(url);
+  showToast('CSV report exported.', 'success');
 }
 
-// Search utility
 function filterStudentsTable(query) {
   if (!window.allStudentsCached) return;
-  
   const lowercaseQuery = query.toLowerCase().trim();
   const filtered = window.allStudentsCached.filter(student => {
+    if (student.manual || !isApprovedAccount(student)) return false;
     return (student.name || '').toLowerCase().includes(lowercaseQuery) ||
-           (student.email || '').toLowerCase().includes(lowercaseQuery);
+      (student.email || '').toLowerCase().includes(lowercaseQuery) ||
+      (student.batch || '').toLowerCase().includes(lowercaseQuery);
   });
-  
   renderStudentTable(filtered);
 }
 
-// Theme management for Admin Portal
+function openAccountModal(uid = '') {
+  const modal = document.getElementById('accountModal');
+  const title = document.getElementById('accountModalTitle');
+  const account = uid ? (window.allAccountsCached || []).find(item => item.uid === uid) : null;
+
+  document.getElementById('accountUid').value = account ? account.uid : '';
+  document.getElementById('accountName').value = account ? (account.name || '') : '';
+  document.getElementById('accountEmail').value = account ? (account.email || '') : '';
+  document.getElementById('accountRole').value = account ? (account.role || 'student') : 'student';
+  document.getElementById('accountBatch').value = account ? (account.batch || '') : DEFAULT_BATCH;
+  document.getElementById('accountApproved').checked = account ? isApprovedAccount(account) : true;
+  if (title) title.textContent = account ? 'Edit Account' : 'Add Account';
+
+  if (modal) {
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+}
+
+function closeAccountModal() {
+  const modal = document.getElementById('accountModal');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+}
+
+function manualAccountIdForEmail(email) {
+  return `manual_${normalizeEmail(email).replace(/[^a-z0-9]+/g, '_')}`;
+}
+
+async function saveAccountFromForm(event) {
+  event.preventDefault();
+
+  const uid = document.getElementById('accountUid').value;
+  const role = document.getElementById('accountRole').value;
+  const email = normalizeEmail(document.getElementById('accountEmail').value);
+  const batch = role === 'student' ? normalizeBatchValue(document.getElementById('accountBatch').value) : '';
+  const approved = role === 'admin' ? true : document.getElementById('accountApproved').checked;
+
+  const payload = {
+    name: document.getElementById('accountName').value.trim(),
+    email,
+    role,
+    approved,
+    batch: batch || null,
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+    updatedBy: auth.currentUser ? auth.currentUser.email : ADMIN_EMAIL
+  };
+
+  if (!payload.name || !payload.email) {
+    showToast('Name and email are required.', 'error');
+    return;
+  }
+
+  try {
+    if (uid) {
+      await db.collection('users').doc(uid).update(payload);
+      showToast('Account updated.', 'success');
+    } else {
+      const newUid = manualAccountIdForEmail(payload.email);
+      await db.collection('users').doc(newUid).set({
+        ...payload,
+        manual: true,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        createdBy: auth.currentUser ? auth.currentUser.email : ADMIN_EMAIL,
+        registeredAt: firebase.firestore.FieldValue.serverTimestamp()
+      }, { merge: true });
+      showToast('Manual account added.', 'success');
+    }
+    closeAccountModal();
+  } catch (error) {
+    console.error('Error saving account:', error);
+    showToast('Failed to save account. Check Firestore rules.', 'error');
+  }
+}
+
 function initTheme() {
   const savedTheme = localStorage.getItem('itc-portal-theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
@@ -393,55 +617,59 @@ function toggleTheme() {
 
 function updateThemeIcon(theme) {
   const btn = document.getElementById('themeToggle');
-  if (btn) {
-    btn.textContent = theme === 'dark' ? '☀️ Toggle Light Mode' : '🌙 Toggle Dark Mode';
-  }
+  if (btn) btn.textContent = theme === 'dark' ? 'Toggle Light Mode' : 'Toggle Dark Mode';
 }
 
-// Tab Switching navigation logic
 function setupTabNavigation() {
-  const buttons = document.querySelectorAll('.sidebar-nav-btn');
+  const buttons = document.querySelectorAll('.sb-nav-item[data-tab]');
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       const targetTab = btn.getAttribute('data-tab');
-      
-      // Update buttons active class
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      
-      // Update panels active class
-      const panels = document.querySelectorAll('.admin-panel');
-      panels.forEach(panel => {
+
+      document.querySelectorAll('.adm-panel').forEach(panel => {
         panel.classList.remove('active-panel');
       });
-      
+
       const targetPanel = document.getElementById(`panel-${targetTab}`);
-      if (targetPanel) {
-        targetPanel.classList.add('active-panel');
-      }
+      if (targetPanel) targetPanel.classList.add('active-panel');
+
+      if (targetTab === 'attendance') renderAttendanceTable(window.allStudentsCached || []);
+      if (targetTab === 'accounts') renderAccountsTable(window.allAccountsCached || []);
     });
   });
 }
 
-// Bind admin controls
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   setupTabNavigation();
-  
-  const themeToggle = document.getElementById('themeToggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
+
+  const todayKey = getDateKeyForAdmin();
+  const attendanceDateInput = document.getElementById('attendanceDateInput');
+  if (attendanceDateInput) {
+    attendanceDateInput.value = todayKey;
+    attendanceDateInput.addEventListener('change', () => renderAttendanceTable(window.allStudentsCached || []));
   }
-  
-  const searchInput = document.getElementById('searchInput');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      filterStudentsTable(e.target.value);
+
+  document.getElementById('todayAttendanceBtn')?.addEventListener('click', () => {
+    if (attendanceDateInput) attendanceDateInput.value = getDateKeyForAdmin();
+    renderAttendanceTable(window.allStudentsCached || []);
+  });
+
+  document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+  document.getElementById('searchInput')?.addEventListener('input', (e) => filterStudentsTable(e.target.value));
+  document.getElementById('accountSearchInput')?.addEventListener('input', () => renderAccountsTable(window.allAccountsCached || []));
+  document.getElementById('exportCsvBtn')?.addEventListener('click', exportToCSV);
+  document.getElementById('addAccountBtn')?.addEventListener('click', () => openAccountModal());
+  document.getElementById('cancelAccountBtn')?.addEventListener('click', closeAccountModal);
+  document.getElementById('accountForm')?.addEventListener('submit', saveAccountFromForm);
+  document.getElementById('cancelBatchApprovalBtn')?.addEventListener('click', closeBatchApprovalModal);
+
+  document.querySelectorAll('[data-approve-batch]').forEach(button => {
+    button.addEventListener('click', () => {
+      if (!pendingApprovalTarget) return;
+      approveStudent(pendingApprovalTarget.uid, button.getAttribute('data-approve-batch'));
     });
-  }
-  
-  const exportCsvBtn = document.getElementById('exportCsvBtn');
-  if (exportCsvBtn) {
-    exportCsvBtn.addEventListener('click', exportToCSV);
-  }
+  });
 });

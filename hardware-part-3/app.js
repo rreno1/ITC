@@ -230,6 +230,9 @@ document.addEventListener("DOMContentLoaded", () => {
     setupKeyboardShortcuts();
     initMatchingActivity();
     resetQuiz();
+    if (typeof initOneTimeQuizGate === 'function') {
+        initOneTimeQuizGate({ moduleId: MODULE_ID, total: QUIZ_QUESTIONS.length, resetQuiz });
+    }
     setupScrollPromptListeners();
     setTimeout(updateScrollPrompt, 100);
     
@@ -323,6 +326,10 @@ function setupDots() {
 // Go to specific slide
 function goToSlide(slideNum) {
     if (slideNum < 1 || slideNum > totalSlides) return;
+    if (typeof isQuizNavigationLocked === 'function' && isQuizNavigationLocked() && slideNum !== currentSlide) {
+        if (typeof showToast === 'function') showToast('Finish the active quiz before leaving this slide.', 'error');
+        return;
+    }
 
     // Slide transition
     const oldSlide = document.getElementById(`slide-${currentSlide}`);
@@ -566,6 +573,7 @@ function checkMatch() {
 let isReviewMode = false;
 
 function resetQuiz() {
+    if (typeof canResetOneTimeQuiz === 'function' && !canResetOneTimeQuiz()) return;
     isReviewMode = false;
     quizCurrentQuestion = 0;
     quizScore = 0;
@@ -673,6 +681,10 @@ function loadQuestion() {
 }
 
 function selectOption(selectedIdx) {
+    if (typeof canAnswerOneTimeQuiz === 'function' && !canAnswerOneTimeQuiz()) {
+        if (typeof showToast === 'function') showToast('Click Start Quiz before answering.', 'error');
+        return;
+    }
     // Block multiple clicks
     const feedbackPanel = document.getElementById("feedbackPanel");
     if (feedbackPanel && !feedbackPanel.classList.contains("hidden")) return;
@@ -762,6 +774,9 @@ function showQuizResults() {
     if (typeof saveQuizResult === 'function') {
       saveQuizResult(MODULE_ID, quizScore, QUIZ_QUESTIONS.length);
     }
+    if (typeof completeOneTimeQuizAttempt === 'function') {
+      completeOneTimeQuizAttempt();
+    }
 
     if (resultsMsg) {
         const pct = (quizScore / QUIZ_QUESTIONS.length) * 100;
@@ -798,14 +813,17 @@ function updateQuizAccessUI(isApproved) {
     const quizBox = document.getElementById("quizBox");
     if (!quizBox) return;
     
-    let overlay = quizBox.querySelector(".quiz-lock-overlay");
+    let overlay = quizBox.querySelector('.quiz-lock-overlay[data-lock="access"]');
     if (isApproved) {
         if (overlay) overlay.remove();
         quizBox.classList.remove("gated-locked");
+        if (typeof refreshOneTimeQuizGate === 'function') refreshOneTimeQuizGate();
     } else {
+        if (typeof removeQuizGateOverlay === 'function') removeQuizGateOverlay();
         if (!overlay) {
             overlay = document.createElement("div");
             overlay.className = "quiz-lock-overlay";
+            overlay.dataset.lock = "access";
             quizBox.appendChild(overlay);
         }
         quizBox.classList.add("gated-locked");
@@ -863,4 +881,3 @@ function setupScrollPromptListeners() {
         });
     });
 }
-

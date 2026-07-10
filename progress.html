@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Progress — CC 101</title>
+  <meta name="description" content="Track lesson completion, quiz results, and recent learning activity for CC 101.">
+  <meta name="theme-color" content="#101417">
+  <link rel="stylesheet" href="styles/main.css?v=20260711">
+</head>
+<body class="portal-page progress-body">
+  <nav class="portal-nav" id="navbar">
+    <div class="nav-brand">
+      <span class="nav-logo" aria-hidden="true">🎓</span>
+      <span class="nav-title">CC 101</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">
+        <span class="nav-link-icon" aria-hidden="true">⌂</span>
+        <span>Home</span>
+      </a>
+      <a href="progress.html" class="nav-link active" aria-current="page">
+        <span class="nav-link-icon" aria-hidden="true">▥</span>
+        <span>My Progress</span>
+      </a>
+      <a href="admin.html" class="nav-link" id="adminLink" hidden>
+        <span class="nav-link-icon" aria-hidden="true">⚙</span>
+        <span>Admin</span>
+      </a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle color theme">☀</button>
+      <button class="btn-primary google-btn" id="signInBtn">
+        <svg class="google-icon" width="16" height="16" viewBox="0 0 18 18" aria-hidden="true">
+          <path fill="#4285F4" d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.47h4.84c-.21 1.12-.84 2.07-1.8 2.72v2.24h2.9c1.7-1.57 2.68-3.88 2.68-6.6z"/>
+          <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.2l-2.9-2.24c-.8.54-1.84.87-3.06.87-2.35 0-4.34-1.58-5.05-3.71H.95v2.3C2.43 15.89 5.5 18 9 18z"/>
+          <path fill="#FBBC05" d="M3.95 10.72A5.4 5.4 0 0 1 3.6 9c0-.6.1-1.19.35-1.72V4.98H.95A9.002 9.002 0 0 0 0 9c0 1.62.43 3.14 1.19 4.47l2.76-2.25z"/>
+          <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35L15 2.1C13.46.66 11.43 0 9 0 5.5 0 2.43 2.11.95 5.28l2.76 2.25C4.66 5.16 6.65 3.58 9 3.58z"/>
+        </svg>
+        <span class="google-btn-label">Sign in with Google</span>
+      </button>
+      <div class="user-menu" id="userMenu" hidden>
+        <span id="userDisplayName" class="user-name">Loading...</span>
+        <button class="btn-secondary btn-compact" id="signOutBtn">Sign Out</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="progress-page">
+    <header class="page-header">
+      <div>
+        <p class="page-eyebrow">Student dashboard</p>
+        <h1>My Progress</h1>
+        <p>Lesson completion, assessment results, and recent learning activity in one place.</p>
+      </div>
+      <a href="index.html#modules" class="btn-secondary">Continue learning</a>
+    </header>
+
+    <section class="state-panel" id="progressLoadingState" role="status">
+      <span class="loading-spinner" aria-hidden="true"></span>
+      <div>
+        <h2>Loading your progress</h2>
+        <p>Retrieving your latest course activity.</p>
+      </div>
+    </section>
+
+    <section class="state-panel" id="progressSignedOutState" hidden>
+      <span class="state-icon" aria-hidden="true">▥</span>
+      <div>
+        <h2>Sign in to view your progress</h2>
+        <p>Your lesson history and quiz results are connected to your approved Google account.</p>
+      </div>
+      <button class="btn-primary" id="progressSignInBtn">Sign in with Google</button>
+    </section>
+
+    <div id="progressContent" hidden>
+      <div class="notice-bar" id="progressApprovalNotice" hidden>
+        Your account is awaiting teacher approval. Existing activity is visible, but course access remains locked.
+      </div>
+
+      <section class="progress-overview" aria-labelledby="overviewTitle">
+        <div class="overall-progress-block">
+          <div class="progress-ring" id="overallProgressRing" style="--progress-value: 0;" role="img" aria-label="Overall completion 0 percent">
+            <span id="overallProgressValue">0%</span>
+          </div>
+          <div>
+            <p class="section-kicker">Overall completion</p>
+            <h2 id="overviewTitle">Course overview</h2>
+            <p id="overallProgressSummary">Start a lesson to begin tracking your progress.</p>
+          </div>
+        </div>
+
+        <div class="progress-stat-grid">
+          <article class="progress-stat-card">
+            <span class="stat-icon accent-teal" aria-hidden="true">✓</span>
+            <div>
+              <p>Completed lessons</p>
+              <strong id="completedLessonsCount">0</strong>
+            </div>
+          </article>
+          <article class="progress-stat-card">
+            <span class="stat-icon accent-amber" aria-hidden="true">○</span>
+            <div>
+              <p>Remaining lessons</p>
+              <strong id="remainingLessonsCount">0</strong>
+            </div>
+          </article>
+          <article class="progress-stat-card">
+            <span class="stat-icon accent-indigo" aria-hidden="true">%</span>
+            <div>
+              <p>Quiz average</p>
+              <strong id="quizAverageValue">—</strong>
+            </div>
+          </article>
+          <article class="progress-stat-card">
+            <span class="stat-icon accent-rose" aria-hidden="true">★</span>
+            <div>
+              <p>Completed modules</p>
+              <strong id="completedModulesCount">0 / 0</strong>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="progress-columns">
+        <section class="content-section" aria-labelledby="courseProgressTitle">
+          <div class="content-section-header">
+            <div>
+              <p class="section-kicker">All modules</p>
+              <h2 id="courseProgressTitle">Course progress</h2>
+            </div>
+          </div>
+          <div class="course-progress-list" id="courseProgressList"></div>
+        </section>
+
+        <aside class="content-section activity-section" aria-labelledby="recentActivityTitle">
+          <div class="content-section-header">
+            <div>
+              <p class="section-kicker">Latest updates</p>
+              <h2 id="recentActivityTitle">Recent activity</h2>
+            </div>
+          </div>
+          <div class="activity-list" id="recentActivityList"></div>
+        </aside>
+      </div>
+
+      <section class="content-section assessment-section" aria-labelledby="assessmentTitle">
+        <div class="content-section-header">
+          <div>
+            <p class="section-kicker">One-time assessments</p>
+            <h2 id="assessmentTitle">Quiz results</h2>
+          </div>
+        </div>
+        <div class="assessment-list" id="assessmentResultsList"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="portal-footer">
+    <p>© 2026 CC 101 — Introduction to Computing | MLG College of Learning</p>
+  </footer>
+
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script defer src="js/firebase-config.js?v=20260711"></script>
+  <script defer src="js/progress.js?v=20260711"></script>
+  <script defer src="js/auth.js?v=20260711"></script>
+  <script defer src="js/app.js?v=20260711"></script>
+</body>
+</html>

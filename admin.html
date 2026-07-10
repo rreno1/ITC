@@ -4,149 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CC 101 Admin Panel — Teacher Dashboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css">
-  <style>
-    /* Critical overrides — scoped to admin page to prevent any conflicts */
-    body { margin: 0; padding: 0; overflow: hidden; }
-    .portal-nav { display: none !important; } /* Hide any inherited navbar */
-
-    #adminContent {
-      display: none; /* JS will set to 'grid' when authorized */
-      grid-template-columns: 260px 1fr;
-      height: 100vh;
-      width: 100vw;
-    }
-
-    #adminContent.is-authorized,
-    #adminContent[style*="display: block"] {
-      display: grid !important;
-      grid-template-columns: 260px minmax(0, 1fr);
-    }
-
-    #adminSidebar {
-      background-color: var(--bg-secondary);
-      border-right: 1px solid var(--card-border);
-      padding: 24px 16px;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      overflow-y: auto;
-      box-sizing: border-box;
-    }
-
-    #adminSidebar .sidebar-top { flex: 1; display: flex; flex-direction: column; gap: 16px; }
-    #adminSidebar .sidebar-bottom { padding-top: 16px; border-top: 1px solid var(--card-border); }
-
-    .sb-brand { display: flex; align-items: center; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid var(--card-border); }
-    .sb-brand-title { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-size: 20px; font-family: var(--font-heading); }
-    .sb-badge { background-color: #ef4444; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-
-    .sb-user { display: flex; flex-direction: column; gap: 10px; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); border-radius: 10px; }
-    [data-theme="light"] .sb-user { background: rgba(0,0,0,0.02); }
-    .sb-user-name { font-size: 13px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 6px; }
-    .sb-user-name::before { content: '●'; color: var(--success); font-size: 8px; }
-
-    .sb-signout { background: transparent; border: 1px solid var(--text-secondary); color: var(--text-primary); padding: 7px 10px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; width: 100%; font-family: var(--font-body); transition: all 0.2s ease; }
-    .sb-signout:hover { background: #ef4444; border-color: #ef4444; color: #fff; }
-
-    .sb-nav { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
-
-    .sb-nav-item {
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--text-secondary);
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 600;
-      text-align: left;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.2s ease;
-      width: 100%;
-      text-decoration: none;
-    }
-    .sb-nav-item:hover { background-color: rgba(255,255,255,0.05); color: var(--text-primary); }
-    [data-theme="light"] .sb-nav-item:hover { background-color: rgba(0,0,0,0.04); }
-    .sb-nav-item.active { background: var(--accent-gradient); color: #fff; box-shadow: 0 4px 12px rgba(102,126,234,0.25); border-color: transparent; }
-    .sb-nav-icon { width: 20px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-
-    .sb-badge-count { margin-left: auto; background-color: #f59e0b; color: #000; font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 12px; }
-
-    .sb-theme-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); color: var(--text-primary); padding: 9px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: var(--font-body); transition: all 0.2s ease; }
-    .sb-theme-btn:hover { background: rgba(255,255,255,0.1); }
-
-    #adminMainPanel {
-      padding: 36px;
-      overflow-y: auto;
-      height: 100vh;
-      min-width: 0;
-      box-sizing: border-box;
-    }
-
-    .adm-panel { display: none; animation: fadeInUp 0.4s ease forwards; }
-    .adm-panel.active-panel { display: block; }
-
-    .admin-stats-row { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
-    .admin-action-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
-    .admin-actions-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .admin-schedule-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 18px 0 24px; }
-    .admin-schedule-card { background: var(--bg-secondary); border: 1px solid var(--card-border); border-radius: 12px; padding: 18px; }
-    .admin-schedule-card h3 { font-size: 16px; margin-bottom: 8px; }
-    .admin-schedule-card p { color: var(--text-secondary); font-size: 13px; line-height: 1.5; }
-    .batch-pill, .status-pill { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: 4px 9px; font-size: 12px; font-weight: 800; white-space: nowrap; }
-    .batch-pill.batch-a { background: rgba(59, 130, 246, 0.14); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-    .batch-pill.batch-b { background: rgba(20, 184, 166, 0.14); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.3); }
-    .batch-pill.batch-none { background: rgba(156, 163, 175, 0.12); color: var(--text-secondary); border: 1px solid var(--card-border); }
-    .status-pill.status-present { background: rgba(16, 185, 129, 0.14); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.35); }
-    .status-pill.status-missing { background: rgba(239, 68, 68, 0.14); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.35); }
-    .status-pill.status-pending { background: rgba(245, 158, 11, 0.14); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.35); }
-    .status-pill.status-muted { background: rgba(156, 163, 175, 0.12); color: var(--text-secondary); border: 1px solid var(--card-border); }
-    .table-actions { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
-    .mini-btn { border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-primary); border-radius: 8px; padding: 6px 10px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: var(--font-body); }
-    .mini-btn:hover { border-color: var(--accent-color); }
-    .mini-btn.danger { color: var(--danger); border-color: rgba(239, 68, 68, 0.4); }
-    .mini-btn.danger:hover { background: var(--danger); color: #fff; }
-    .admin-form-modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.58); z-index: 3000; padding: 20px; }
-    .admin-form-modal.active { display: flex; }
-    .admin-dialog { width: min(520px, 100%); background: var(--bg-secondary); border: 1px solid var(--card-border); border-radius: 14px; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45); padding: 24px; }
-    .admin-dialog h3 { margin-bottom: 8px; }
-    .admin-dialog p { color: var(--text-secondary); font-size: 13px; line-height: 1.5; margin-bottom: 18px; }
-    .dialog-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
-    .batch-choice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .batch-choice { border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-primary); border-radius: 12px; padding: 16px; text-align: left; cursor: pointer; font-family: var(--font-body); }
-    .batch-choice strong { display: block; font-size: 16px; margin-bottom: 5px; }
-    .batch-choice span { color: var(--text-secondary); font-size: 12px; }
-    .batch-choice:hover { border-color: var(--accent-color); transform: translateY(-1px); }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .form-field { display: flex; flex-direction: column; gap: 6px; }
-    .form-field.full { grid-column: 1 / -1; }
-    .form-field label { color: var(--text-secondary); font-size: 12px; font-weight: 700; }
-    .form-field input, .form-field select { width: 100%; border: 1px solid var(--card-border); border-radius: 10px; background: var(--bg-primary); color: var(--text-primary); padding: 10px 12px; font-family: var(--font-body); }
-    .checkbox-row { display: flex; align-items: center; gap: 8px; color: var(--text-primary); font-size: 13px; }
-    .checkbox-row.full { grid-column: 1 / -1; }
-    .checkbox-row input { width: auto; }
-    @media (max-width: 720px) {
-      #adminContent { grid-template-columns: 1fr; }
-      #adminContent.is-authorized,
-      #adminContent[style*="display: block"] { grid-template-columns: 1fr; }
-      #adminSidebar { height: auto; }
-      #adminMainPanel { height: auto; min-height: 100vh; padding: 24px 16px; }
-      .form-grid, .batch-choice-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <meta name="theme-color" content="#101417">
+  <link rel="stylesheet" href="styles/main.css?v=20260711">
 </head>
-<body>
+<body class="admin-body">
   <!-- ACCESS DENIED WRAPPER -->
   <div class="denied-container" id="accessDenied">
     <div class="denied-card">
-      <h2>🔐 Checking Authorization</h2>
+      <span class="loading-spinner" aria-hidden="true"></span>
+      <h2>Checking authorization</h2>
       <p>Verifying admin permissions. Please make sure you are signed in with the authorized account <strong>rrenomeronjr@gmail.com</strong>.</p>
       <button class="btn-primary google-btn" onclick="googleSignIn()">Sign in with Google</button>
     </div>
@@ -161,41 +27,41 @@
 
         <!-- Brand -->
         <div class="sb-brand">
-          <span style="font-size: 22px;">🎓</span>
+          <span class="nav-logo" aria-hidden="true">🎓</span>
           <span class="sb-brand-title">CC 101</span>
           <span class="sb-badge">Admin</span>
         </div>
 
         <!-- User -->
-        <div class="sb-user" id="userMenu" style="display: none;">
+        <div class="sb-user" id="userMenu" hidden>
           <span class="sb-user-name" id="userDisplayName">Loading...</span>
-          <button class="sb-signout" id="signOutBtn">Sign Out</button>
+          <button class="sb-signout" id="signOutBtn" aria-label="Sign out of the admin dashboard">Sign Out</button>
         </div>
 
         <!-- Navigation -->
         <nav class="sb-nav">
-          <button class="sb-nav-item active" data-tab="overview">
+          <button type="button" class="sb-nav-item active" data-tab="overview">
             <span class="sb-nav-icon">&#128202;</span>
             <span>Overview &amp; Stats</span>
           </button>
-          <button class="sb-nav-item" data-tab="pending">
+          <button type="button" class="sb-nav-item" data-tab="pending">
             <span class="sb-nav-icon">&#128276;</span>
             <span>Approvals</span>
-            <span class="sb-badge-count" id="pendingSidebarBadge" style="display: none;">0</span>
+            <span class="sb-badge-count" id="pendingSidebarBadge" hidden>0</span>
           </button>
-          <button class="sb-nav-item" data-tab="grades">
+          <button type="button" class="sb-nav-item" data-tab="grades">
             <span class="sb-nav-icon">&#128221;</span>
             <span>Gradebook</span>
           </button>
-          <button class="sb-nav-item" data-tab="attendance">
+          <button type="button" class="sb-nav-item" data-tab="attendance">
             <span class="sb-nav-icon">&#128197;</span>
             <span>Attendance</span>
           </button>
-          <button class="sb-nav-item" data-tab="accounts">
+          <button type="button" class="sb-nav-item" data-tab="accounts">
             <span class="sb-nav-icon">&#128101;</span>
             <span>Accounts</span>
           </button>
-          <a href="index.html" class="sb-nav-item" style="margin-top: 8px; border-top: 1px solid var(--card-border); padding-top: 16px;">
+          <a href="index.html" class="sb-nav-item sb-nav-home">
             <span class="sb-nav-icon">&#127968;</span>
             <span>Portal Home</span>
           </a>
@@ -203,7 +69,7 @@
       </div>
 
       <div class="sidebar-bottom">
-        <button class="sb-theme-btn" id="themeToggle">🌙 Toggle Light Mode</button>
+        <button class="sb-theme-btn" id="themeToggle" aria-label="Toggle color theme">Toggle theme</button>
       </div>
     </aside>
 
@@ -219,49 +85,49 @@
 
         <div class="admin-stats-row">
           <div class="admin-stat-card">
-            <div class="stat-icon-wrapper" style="background: rgba(102, 126, 234, 0.1); color: #667eea;">👥</div>
+            <div class="stat-icon-wrapper stat-tone-indigo">👥</div>
             <div class="stat-info">
               <div class="stat-label">Approved Students</div>
               <div class="stat-value" id="totalStudents">0</div>
             </div>
           </div>
           <div class="admin-stat-card stat-card-pending">
-            <div class="stat-icon-wrapper" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">⏳</div>
+            <div class="stat-icon-wrapper stat-tone-amber">⏳</div>
             <div class="stat-info">
               <div class="stat-label">Pending Requests</div>
               <div class="stat-value" id="pendingStatCount">0</div>
             </div>
           </div>
           <div class="admin-stat-card">
-            <div class="stat-icon-wrapper" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">🏆</div>
+            <div class="stat-icon-wrapper stat-tone-success">🏆</div>
             <div class="stat-info">
               <div class="stat-label">Average Score</div>
               <div class="stat-value" id="avgScore">—</div>
             </div>
           </div>
           <div class="admin-stat-card">
-            <div class="stat-icon-wrapper" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">📈</div>
+            <div class="stat-icon-wrapper stat-tone-rose">📈</div>
             <div class="stat-info">
               <div class="stat-label">Completion Rate</div>
               <div class="stat-value" id="completionRate">—</div>
             </div>
           </div>
           <div class="admin-stat-card">
-            <div class="stat-icon-wrapper" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">A</div>
+            <div class="stat-icon-wrapper stat-tone-indigo">A</div>
             <div class="stat-info">
               <div class="stat-label">Batch A Students</div>
               <div class="stat-value" id="batchAStudents">0</div>
             </div>
           </div>
           <div class="admin-stat-card">
-            <div class="stat-icon-wrapper" style="background: rgba(20, 184, 166, 0.1); color: #14b8a6;">B</div>
+            <div class="stat-icon-wrapper stat-tone-teal">B</div>
             <div class="stat-info">
               <div class="stat-label">Batch B Students</div>
               <div class="stat-value" id="batchBStudents">0</div>
             </div>
           </div>
           <div class="admin-stat-card">
-            <div class="stat-icon-wrapper" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">OK</div>
+            <div class="stat-icon-wrapper stat-tone-success">OK</div>
             <div class="stat-info">
               <div class="stat-label">Today Attendance</div>
               <div class="stat-value" id="todayAttendanceCount">0</div>
@@ -282,7 +148,7 @@
 
         <div class="admin-info-card glass-card">
           <h3>🏫 Class Administration Console</h3>
-          <p style="margin-top: 8px;">Welcome to your instructor console. From here you can approve student registrations in real-time, view their quiz attempts, check their scores, and export grades to a CSV file for your record book.</p>
+          <p>Welcome to your instructor console. From here you can approve student registrations in real-time, view their quiz attempts, check their scores, and export grades to a CSV file for your record book.</p>
         </div>
       </div>
 
@@ -293,22 +159,27 @@
           <p class="panel-subtitle">Review registration requests. Approved students will gain immediate access to course modules.</p>
         </div>
 
-        <div class="pending-section" id="pendingContainer" style="display: none; border: none; background: transparent; padding: 0;">
+        <div class="admin-loading-state" id="pendingLoadingState" role="status">
+          <span class="loading-spinner" aria-hidden="true"></span>
+          <span>Loading approval requests...</span>
+        </div>
+
+        <div class="pending-section" id="pendingContainer" hidden>
           <div class="pending-list" id="pendingList">
             <!-- Filled dynamically by js/admin.js -->
           </div>
         </div>
 
-        <div class="no-pending-message glass-card" id="noPendingMessage">
-          <div style="font-size: 40px; margin-bottom: 12px;">🎉</div>
+        <div class="no-pending-message glass-card" id="noPendingMessage" hidden>
+          <div class="empty-icon" aria-hidden="true">🎉</div>
           <h3>All Caught Up!</h3>
-          <p style="color: var(--text-secondary);">There are no pending approval requests at the moment.</p>
+          <p>There are no pending approval requests at the moment.</p>
         </div>
       </div>
 
       <!-- PANEL 3: STUDENT GRADEBOOK -->
       <div class="adm-panel" id="panel-grades">
-        <div class="admin-panel-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div class="admin-panel-header">
           <div>
             <h2>📝 Student Grade Registry &amp; User List</h2>
             <p class="panel-subtitle">Detailed record of roles, quiz scores, attempts, completion dates, and activity logs.</p>
@@ -327,23 +198,23 @@
           <table class="admin-table">
             <thead>
               <tr>
-                <th style="width: 60px;">#</th>
+                <th class="row-number">#</th>
                 <th>Name</th>
                 <th>Role</th>
                 <th>Batch</th>
                 <th>Email</th>
-                <th style="text-align: center;">HW Part 1</th>
-                <th style="text-align: center;">HW Part 2</th>
-                <th style="text-align: center;">HW Part 3</th>
-                <th style="text-align: center;">Internet Part 1</th>
-                <th style="text-align: center;">Internet Part 2</th>
+                <th class="numeric-column">HW Part 1</th>
+                <th class="numeric-column">HW Part 2</th>
+                <th class="numeric-column">HW Part 3</th>
+                <th class="numeric-column">Internet Part 1</th>
+                <th class="numeric-column">Internet Part 2</th>
                 <th>Attendance</th>
                 <th>Last Active</th>
-                <th style="text-align: right;">Actions</th>
+                <th class="actions-column">Actions</th>
               </tr>
             </thead>
             <tbody id="studentTableBody">
-              <!-- Filled dynamically by js/admin.js -->
+              <tr><td colspan="13" class="table-loading">Loading grade records...</td></tr>
             </tbody>
           </table>
         </div>
@@ -359,11 +230,11 @@
         <div class="admin-action-row">
           <div class="admin-actions-group">
             <label for="attendanceDateInput" class="panel-subtitle">Date</label>
-            <input type="date" id="attendanceDateInput" class="search-input" style="max-width: 190px; padding-left: 14px;">
+            <input type="date" id="attendanceDateInput" class="search-input attendance-input">
           </div>
           <div class="admin-actions-group">
             <label for="attendanceBatchFilter" class="panel-subtitle">Batch</label>
-            <select id="attendanceBatchFilter" class="search-input" style="max-width: 180px; padding-left: 14px;">
+            <select id="attendanceBatchFilter" class="search-input attendance-input">
               <option value="all">All batches</option>
               <option value="A">Batch A</option>
               <option value="B">Batch B</option>
@@ -397,7 +268,7 @@
               </tr>
             </thead>
             <tbody id="attendanceTableBody">
-              <!-- Filled dynamically by js/admin.js -->
+              <tr><td colspan="7" class="table-loading">Loading attendance records...</td></tr>
             </tbody>
           </table>
         </div>
@@ -405,7 +276,7 @@
 
       <!-- PANEL 5: ACCOUNTS -->
       <div class="adm-panel" id="panel-accounts">
-        <div class="admin-panel-header" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
+        <div class="admin-panel-header">
           <div>
             <h2>Account Management</h2>
             <p class="panel-subtitle">Add pre-approved records, edit batches, approve or suspend access, and remove registry accounts.</p>
@@ -430,11 +301,11 @@
                 <th>Batch</th>
                 <th>Status</th>
                 <th>Type</th>
-                <th style="text-align: right;">Actions</th>
+                <th class="actions-column">Actions</th>
               </tr>
             </thead>
             <tbody id="accountsTableBody">
-              <!-- Filled dynamically by js/admin.js -->
+              <tr><td colspan="7" class="table-loading">Loading accounts...</td></tr>
             </tbody>
           </table>
         </div>
@@ -443,9 +314,9 @@
     </section>
   </div>
 
-  <div class="admin-form-modal" id="batchApprovalModal" aria-hidden="true">
+  <div class="admin-form-modal" id="batchApprovalModal" role="dialog" aria-modal="true" aria-labelledby="batchApprovalTitle" aria-hidden="true">
     <div class="admin-dialog">
-      <h3>Assign Student Batch</h3>
+      <h3 id="batchApprovalTitle">Assign Student Batch</h3>
       <p id="batchApprovalStudentName">Choose the batch for this student before approving access.</p>
       <div class="batch-choice-grid">
         <button class="batch-choice" data-approve-batch="A">
@@ -463,7 +334,7 @@
     </div>
   </div>
 
-  <div class="admin-form-modal" id="accountModal" aria-hidden="true">
+  <div class="admin-form-modal" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle" aria-hidden="true">
     <div class="admin-dialog">
       <h3 id="accountModalTitle">Add Account</h3>
       <p>Manual accounts act as pre-approved registry records. When a matching Google email signs in later, the batch and approval settings are applied to that student profile.</p>
@@ -507,12 +378,11 @@
   </div>
 
   <!-- Firebase Legacy SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-  <script src="js/firebase-config.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/progress.js"></script>
-  <script src="js/admin.js?v=20260710-dashboard-filters"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script defer src="js/firebase-config.js?v=20260711"></script>
+  <script defer src="js/auth.js?v=20260711"></script>
+  <script defer src="js/admin.js?v=20260711"></script>
 </body>
 </html>

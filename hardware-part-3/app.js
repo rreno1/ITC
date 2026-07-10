@@ -358,6 +358,9 @@ function goToSlide(slideNum) {
     });
 
     updateProgress();
+    if (typeof recordLessonProgress === 'function') {
+        recordLessonProgress(MODULE_ID, currentSlide, totalSlides);
+    }
     setTimeout(updateScrollPrompt, 50); // Refresh floating indicator
 }
 
@@ -394,7 +397,7 @@ function setupTheme() {
     const htmlEl = document.documentElement;
 
     // Load saved preference
-    const savedTheme = localStorage.getItem("itc-theme") || "dark";
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || "dark";
     htmlEl.setAttribute("data-theme", savedTheme);
 
     if (themeToggle) {
@@ -402,7 +405,7 @@ function setupTheme() {
             const currentTheme = htmlEl.getAttribute("data-theme");
             const newTheme = currentTheme === "dark" ? "light" : "dark";
             htmlEl.setAttribute("data-theme", newTheme);
-            localStorage.setItem("itc-theme", newTheme);
+            localStorage.setItem(THEME_STORAGE_KEY, newTheme);
         });
     }
 }
@@ -807,6 +810,9 @@ function startQuizReview() {
 // Auth callbacks for quiz gating
 function onAuthGateChanged(user, isApproved) {
     updateQuizAccessUI(isApproved);
+    if (user && isApproved && typeof recordLessonProgress === 'function') {
+        recordLessonProgress(MODULE_ID, currentSlide, totalSlides);
+    }
 }
 
 function updateQuizAccessUI(isApproved) {

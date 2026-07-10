@@ -5,145 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CC 101 - Hardware Part 2: Core Components of a Computer</title>
   <meta name="description" content="Introduction to Computing: Motherboard, CPU, RAM, and Storage (SSDs/HDDs).">
-  <link rel="stylesheet" href="styles.css">
-  <!-- Google Fonts for premium typography -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <style>
-    .portal-back-btn {
-      position: fixed;
-      top: 12px;
-      left: 12px;
-      z-index: 10000;
-      background: rgba(102, 126, 234, 0.9);
-      color: #fff;
-      text-decoration: none;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-    }
-    .portal-back-btn:hover {
-      background: rgba(102, 126, 234, 1);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
-    }
-    /* Quiz Lock & Approval Overlay styles */
-    .quiz-lock-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(10, 10, 26, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-      text-align: center;
-      border-radius: 16px;
-      transition: all 0.3s ease;
-    }
-    [data-theme="light"] .quiz-lock-overlay {
-      background: rgba(240, 242, 245, 0.95);
-    }
-    .quiz-lock-card {
-      max-width: 450px;
-      background: var(--card-bg, rgba(255,255,255,0.05));
-      border: 1px solid var(--card-border, rgba(255,255,255,0.1));
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-    .quiz-lock-title {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--text-primary);
-      font-family: 'Outfit', sans-serif;
-    }
-    .quiz-lock-desc {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 24px;
-      font-family: 'Inter', sans-serif;
-    }
-    .quiz-disclaimer {
-      font-size: 12px;
-      color: var(--text-secondary);
-      opacity: 0.6;
-      margin-top: 15px;
-      text-align: center;
-      line-height: 1.4;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 10px;
-      width: 100%;
-      font-family: 'Inter', sans-serif;
-    }
-    [data-theme="light"] .quiz-disclaimer {
-      border-top-color: rgba(0, 0, 0, 0.1);
-    }
-    .btn-lock-signin {
-      background: #667eea;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-family: 'Inter', sans-serif;
-    }
-    .btn-lock-signin:hover {
-      background: #764ba2;
-      transform: translateY(-1px);
-    }
-    .option-btn.selected-correct {
-      border-color: #10b981 !important;
-      background: rgba(16, 185, 129, 0.15) !important;
-      color: #10b981 !important;
-    }
-    .option-btn.selected-incorrect {
-      border-color: #ef4444 !important;
-      background: rgba(239, 68, 68, 0.15) !important;
-      color: #ef4444 !important;
-    }
-    .option-btn.selected-temp {
-      border-color: #667eea !important;
-      background: rgba(102, 126, 234, 0.15) !important;
-    }
-    .quiz-container {
-      position: relative;
-    }
-    .quiz-container.gated-locked > *:not(.quiz-lock-overlay) {
-      pointer-events: none;
-      filter: blur(4px);
-      opacity: 0.2;
-    }
-    .quiz-container.gated-locked .quiz-lock-overlay {
-      pointer-events: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="../styles/course.css?v=20260711">
 </head>
-<body>
-  <a href="../index.html" class="portal-back-btn" title="Back to Portal">← Portal</a>
-
-
-  <!-- App Shell -->
+<body class="course-protected">
+<!-- App Shell -->
   <div class="app-container">
     
     <!-- Top Navigation Bar -->
     <header class="top-navbar">
       <div class="nav-left">
+        <a href="../index.html" class="portal-back-btn" title="Back to Portal" aria-label="Back to course portal">&larr;</a>
         <span class="badge">CC 101</span>
         <span class="nav-title">Hardware Part 2: Core Components</span>
       </div>
@@ -258,7 +129,7 @@
               
               <div class="split-right centering">
                 <div class="illustration-container glass-card">
-                  <img src="assets/pc_motherboard_install.jpg" alt="A computer motherboard" class="fill-img">
+                  <img loading="lazy" decoding="async" draggable="false" src="assets/pc_motherboard_install.jpg" alt="A computer motherboard" class="fill-img">
                   <div class="caption">The central printed circuit board of a modern PC.</div>
                 </div>
               </div>
@@ -316,7 +187,7 @@
               
               <div class="split-right centering">
                 <div class="illustration-container glass-card">
-                  <img src="assets/pc_cpu_install.jpg" alt="CPU Chip Installation" class="fill-img">
+                  <img loading="lazy" decoding="async" draggable="false" src="assets/pc_cpu_install.jpg" alt="CPU Chip Installation" class="fill-img">
                   <div class="caption">Mounting the CPU core processor inside the socket.</div>
                 </div>
               </div>
@@ -368,7 +239,7 @@
               
               <div class="split-right centering">
                 <div class="illustration-container glass-card">
-                  <img src="assets/pc_cpu_cooler.jpg" alt="CPU Heatsink and Fan" class="fill-img">
+                  <img loading="lazy" decoding="async" draggable="false" src="assets/pc_cpu_cooler.jpg" alt="CPU Heatsink and Fan" class="fill-img">
                   <div class="caption">The constant looping of instructions produces high heat, requiring robust cooling fans.</div>
                 </div>
               </div>
@@ -420,7 +291,7 @@
               
               <div class="split-right centering">
                 <div class="illustration-container glass-card">
-                  <img src="assets/pc_ram_install.jpg" alt="RAM Modules" class="fill-img">
+                  <img loading="lazy" decoding="async" draggable="false" src="assets/pc_ram_install.jpg" alt="RAM Modules" class="fill-img">
                   <div class="caption">Seating temporary RAM sticks into motherboard DIMM slots.</div>
                 </div>
               </div>
@@ -472,7 +343,7 @@
               
               <div class="split-right centering">
                 <div class="illustration-container glass-card">
-                  <img src="assets/pc_hard_drive.jpg" alt="Hard Drive disk storage" class="fill-img">
+                  <img loading="lazy" decoding="async" draggable="false" src="assets/pc_hard_drive.jpg" alt="Hard Drive disk storage" class="fill-img">
                   <div class="caption">Permanent storage drives maintain user files without electric current.</div>
                 </div>
               </div>
@@ -625,7 +496,7 @@
               
               <div class="split-right centering">
                 <div class="illustration-container glass-card">
-                  <img src="assets/pc_power_cables.jpg" alt="Memory architecture volatility types" class="fill-img">
+                  <img loading="lazy" decoding="async" draggable="false" src="assets/pc_power_cables.jpg" alt="Memory architecture volatility types" class="fill-img">
                   <div class="caption">Power cables provide continuous current for volatile RAM modules.</div>
                 </div>
               </div>
@@ -655,7 +526,7 @@
 
             <!-- Interactive Quiz Box -->
             <div class="quiz-container glass-card" id="quizBox">
-              <div class="quiz-progress" id="quizProgress" style="display: flex; gap: 4px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap;">
+              <div class="quiz-progress" id="quizProgress">
                 <!-- Injected dynamically by JS -->
               </div>
               
@@ -693,11 +564,11 @@
                 <h2>Module Complete!</h2>
                 <p>Here is how you scored on the Core Components quiz:</p>
               </div>
-              <div class="score-circle" style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 800; margin: 20px auto; color: var(--text-primary);">
+              <div class="score-circle">
                 <span id="finalScoreText">15/15</span>
               </div>
-              <p id="resultsMessage" class="text-center" style="margin-bottom: 20px; font-weight: 500;">Excellent work, future IT Professional!</p>
-              <div class="results-actions" style="display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap;">
+              <p id="resultsMessage" class="text-center">Excellent work, future IT Professional!</p>
+              <div class="results-actions">
                 <button class="btn btn-primary" onclick="resetQuiz()">Take Quiz Again</button>
                 <button class="btn btn-secondary" id="reviewQuizBtn" onclick="startQuizReview()">🔍 Review Answers</button>
               </div>
@@ -728,7 +599,7 @@
               
               <div class="split-right centering">
                 <div class="illustration-container glass-card">
-                  <img src="assets/pc_cable_management.jpg" alt="A clean and well-built system casing" class="fill-img">
+                  <img loading="lazy" decoding="async" draggable="false" src="assets/pc_cable_management.jpg" alt="A clean and well-built system casing" class="fill-img">
                   <div class="caption">Balanced hardware configuration review.</div>
                 </div>
               </div>
@@ -769,6 +640,8 @@
           Next Slide →
         </button>
       </div>
+    </footer>
+
     <!-- Floating Scroll Indicator -->
     <div class="scroll-prompt hidden" id="scrollPrompt">
       <div class="prompt-mouse">
@@ -782,29 +655,30 @@
   <!-- Keyboard Help Modal -->
   <div class="help-modal modal-backdrop" id="helpModal">
     <div class="help-modal-content modal-content glass-card">
-      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 16px;">
+      <div class="modal-header">
         <h3>Keyboard Navigation Shortcuts</h3>
-        <button id="closeHelpModal" class="icon-btn" style="background: none; border: none; color: var(--text-secondary); font-size: 20px; cursor: pointer;">×</button>
+        <button id="closeHelpModal" class="icon-btn">×</button>
       </div>
       <div class="modal-body">
-        <ul class="shortcuts-list" style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
-          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">→</kbd> or <kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">Space</kbd> <span>Next Slide</span></li>
-          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">←</kbd> <span>Previous Slide</span></li>
-          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">T</kbd> <span>Toggle Dark / Light Theme</span></li>
-          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">H</kbd> <span>Show / Hide this guide</span></li>
-          <li style="display: flex; justify-content: space-between; font-size: 14px;"><kbd style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px;">F</kbd> <span>Toggle Fullscreen Presentation</span></li>
+        <ul class="shortcuts-list">
+          <li><kbd>→</kbd> or <kbd>Space</kbd> <span>Next Slide</span></li>
+          <li><kbd>←</kbd> <span>Previous Slide</span></li>
+          <li><kbd>T</kbd> <span>Toggle Dark / Light Theme</span></li>
+          <li><kbd>H</kbd> <span>Show / Hide this guide</span></li>
+          <li><kbd>F</kbd> <span>Toggle Fullscreen Presentation</span></li>
         </ul>
       </div>
     </div>
   </div>
 
   <!-- Portal Integration -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-  <script src="../js/firebase-config.js"></script>
-  <script src="../js/progress.js"></script>
-  <script src="../js/auth.js"></script>
-  <script src="app.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script defer src="../js/firebase-config.js?v=20260711"></script>
+  <script defer src="../js/progress.js?v=20260711"></script>
+  <script defer src="../js/auth.js?v=20260711"></script>
+  <script defer src="../js/course-protection.js?v=20260711"></script>
+  <script defer src="app.js?v=20260711"></script>
 </body>
 </html>

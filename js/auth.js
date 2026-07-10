@@ -159,7 +159,8 @@ function signOut() {
   auth.signOut().then(() => {
     showToast('Signed out.', 'info');
     setTimeout(() => {
-      window.location.href = 'index.html';
+      const isModulePage = /\/(hardware|internet)-part-\d+\//.test(window.location.pathname);
+      window.location.href = isModulePage ? '../index.html' : 'index.html';
     }, 1000);
   });
 }
@@ -172,9 +173,9 @@ auth.onAuthStateChanged(async (user) => {
 
   if (user) {
     window.isUserSignedIn = true;
-    if (signInBtn) signInBtn.style.display = 'none';
+    if (signInBtn) signInBtn.hidden = true;
     if (userMenu) {
-      userMenu.style.display = 'flex';
+      userMenu.hidden = false;
       if (userDisplayName) userDisplayName.textContent = user.displayName || user.email;
     }
 
@@ -204,7 +205,7 @@ auth.onAuthStateChanged(async (user) => {
     if (typeof renderModuleCards === 'function') renderModuleCards();
 
     if (adminLink) {
-      adminLink.style.display = window.isUserAdmin ? 'inline-block' : 'none';
+      adminLink.hidden = !window.isUserAdmin;
     }
 
     db.collection('users').doc(user.uid).update({
@@ -215,7 +216,7 @@ auth.onAuthStateChanged(async (user) => {
       markAttendanceIfEligible(user, window.currentUserData);
     }
 
-    if (typeof loadUserProgress === 'function') {
+    if (typeof loadUserProgress === 'function' && document.getElementById('progressContent')) {
       loadUserProgress(user.uid);
     }
 
@@ -232,12 +233,12 @@ auth.onAuthStateChanged(async (user) => {
     window.isUserAdmin = false;
     window.currentUserData = null;
 
-    if (signInBtn) signInBtn.style.display = 'inline-flex';
-    if (userMenu) userMenu.style.display = 'none';
-    if (adminLink) adminLink.style.display = 'none';
+    if (signInBtn) signInBtn.hidden = false;
+    if (userMenu) userMenu.hidden = true;
+    if (adminLink) adminLink.hidden = true;
 
     if (typeof renderModuleCards === 'function') renderModuleCards();
-    if (typeof resetStudentDashboard === 'function') resetStudentDashboard();
+    if (typeof showSignedOutProgressState === 'function') showSignedOutProgressState();
 
     if (typeof checkAdminAccess === 'function') {
       checkAdminAccess(null);

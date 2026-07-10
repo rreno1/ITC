@@ -2,12 +2,25 @@
 
 let adminDashboardUnsubscribe = null;
 let pendingApprovalTarget = null;
+let adminUserDocsCache = [];
+let adminQuizResultsCache = {};
+let groupedQuizListenerAvailable = true;
+
+function stopAdminDashboard() {
+  if (!adminDashboardUnsubscribe) return;
+  adminDashboardUnsubscribe();
+  adminDashboardUnsubscribe = null;
+  adminUserDocsCache = [];
+  adminQuizResultsCache = {};
+  groupedQuizListenerAvailable = true;
+}
 
 function checkAdminAccess(user) {
   const adminContent = document.getElementById('adminContent');
   const accessDenied = document.getElementById('accessDenied');
 
   if (!user) {
+    stopAdminDashboard();
     if (adminContent) {
       adminContent.classList.remove('is-authorized');
       adminContent.style.display = 'none';
@@ -26,6 +39,7 @@ function checkAdminAccess(user) {
   }
 
   if (!ADMIN_EMAILS.includes(user.email)) {
+    stopAdminDashboard();
     if (adminContent) {
       adminContent.classList.remove('is-authorized');
       adminContent.style.display = 'none';
@@ -127,50 +141,97 @@ async function loadQuizResults(uid) {
   }
 }
 
+async function loadQuizResultsFallback(userDocs) {
+  const entries = await Promise.all(userDocs.map(async doc => {
+    if (doc.data().manual === true) return [doc.id, {}];
+    return [doc.id, await loadQuizResults(doc.id)];
+  }));
+  return Object.fromEntries(entries);
+}
+
+function renderAdminDashboardRecords() {
+  try {
+    const accounts = adminUserDocsCache.map(doc => {
+      const data = doc.data();
+      const role = data.role || 'student';
+      const manual = data.manual === true;
+      return {
+        uid: doc.id,
+        ...data,
+        role,
+        manual,
+        approved: role === 'admin' ? true : data.approved === true,
+        batch: normalizeBatchValue(data.batch),
+        attendance: data.attendance || {},
+        quizResults: manual ? {} : (adminQuizResultsCache[doc.id] || {})
+      };
+    });
+
+    const activeAccounts = accounts.filter(account => !account.manual);
+    const approvedAccounts = activeAccounts.filter(isApprovedAccount);
+    const pendingStudents = activeAccounts.filter(account => account.role === 'student' && !isApprovedAccount(account));
+
+    window.allAccountsCached = accounts;
+    window.allStudentsCached = approvedAccounts;
+    window.pendingStudentsCached = pendingStudents;
+
+    renderPendingApprovals(pendingStudents);
+    renderStudentTable(approvedAccounts);
+    renderAttendanceTable(approvedAccounts);
+    renderAccountsTable(accounts);
+    calculateDashboardStats(approvedAccounts, pendingStudents);
+  } catch (error) {
+    console.error('Error processing dashboard records:', error);
+    showToast('Unable to process dashboard records.', 'error');
+  }
+}
+
+async function refreshQuizResultsFallback() {
+  adminQuizResultsCache = await loadQuizResultsFallback(adminUserDocsCache);
+  if (adminDashboardUnsubscribe) renderAdminDashboardRecords();
+}
+
 function loadAdminDashboard() {
   if (adminDashboardUnsubscribe) return;
 
   showToast('Connecting to database...', 'info');
+  const unsubscribers = [];
+  adminDashboardUnsubscribe = () => {
+    unsubscribers.splice(0).forEach(unsubscribe => unsubscribe());
+  };
 
-  adminDashboardUnsubscribe = db.collection('users').onSnapshot(async (snapshot) => {
-    try {
-      const accounts = await Promise.all(snapshot.docs.map(async (doc) => {
-        const data = doc.data();
-        const role = data.role || 'student';
-        const manual = data.manual === true;
-        return {
-          uid: doc.id,
-          ...data,
-          role,
-          manual,
-          approved: role === 'admin' ? true : data.approved === true,
-          batch: normalizeBatchValue(data.batch),
-          attendance: data.attendance || {},
-          quizResults: manual ? {} : await loadQuizResults(doc.id)
-        };
-      }));
-
-      const activeAccounts = accounts.filter(account => !account.manual);
-      const approvedAccounts = activeAccounts.filter(isApprovedAccount);
-      const pendingStudents = activeAccounts.filter(account => account.role === 'student' && !isApprovedAccount(account));
-
-      window.allAccountsCached = accounts;
-      window.allStudentsCached = approvedAccounts;
-      window.pendingStudentsCached = pendingStudents;
-
-      renderPendingApprovals(pendingStudents);
-      renderStudentTable(approvedAccounts);
-      renderAttendanceTable(approvedAccounts);
-      renderAccountsTable(accounts);
-      calculateDashboardStats(approvedAccounts, pendingStudents);
-    } catch (error) {
-      console.error('Error processing dashboard records:', error);
-      showToast('Unable to process dashboard records.', 'error');
-    }
-  }, (error) => {
-    console.error('Firestore subscription error:', error);
+  const usersUnsubscribe = db.collection('users').onSnapshot(snapshot => {
+    adminUserDocsCache = snapshot.docs;
+    if (groupedQuizListenerAvailable) renderAdminDashboardRecords();
+    else refreshQuizResultsFallback();
+  }, error => {
+    console.error('Users subscription error:', error);
     showToast('Connection to student database failed.', 'error');
   });
+  unsubscribers.push(usersUnsubscribe);
+
+  try {
+    const quizUnsubscribe = db.collectionGroup('quizResults').onSnapshot(snapshot => {
+      const resultsByUser = {};
+      snapshot.forEach(doc => {
+        const userRef = doc.ref.parent.parent;
+        if (!userRef) return;
+        resultsByUser[userRef.id] ||= {};
+        resultsByUser[userRef.id][doc.id] = doc.data();
+      });
+      adminQuizResultsCache = resultsByUser;
+      renderAdminDashboardRecords();
+    }, error => {
+      console.warn('Live grouped quiz results unavailable; using account reads.', error);
+      groupedQuizListenerAvailable = false;
+      refreshQuizResultsFallback();
+    });
+    unsubscribers.push(quizUnsubscribe);
+  } catch (error) {
+    console.warn('Unable to start grouped quiz listener; using account reads.', error);
+    groupedQuizListenerAvailable = false;
+    refreshQuizResultsFallback();
+  }
 }
 
 function renderPendingApprovals(pending) {
@@ -178,23 +239,25 @@ function renderPendingApprovals(pending) {
   const list = document.getElementById('pendingList');
   const sidebarBadge = document.getElementById('pendingSidebarBadge');
   const noPendingMessage = document.getElementById('noPendingMessage');
+  const loadingState = document.getElementById('pendingLoadingState');
+  if (loadingState) loadingState.hidden = true;
 
   if (sidebarBadge) {
     sidebarBadge.textContent = pending.length;
-    sidebarBadge.style.display = pending.length > 0 ? 'inline-flex' : 'none';
+    sidebarBadge.hidden = pending.length === 0;
   }
 
   if (!container || !list) return;
   list.innerHTML = '';
 
   if (pending.length === 0) {
-    container.style.display = 'none';
-    if (noPendingMessage) noPendingMessage.style.display = 'flex';
+    container.hidden = true;
+    if (noPendingMessage) noPendingMessage.hidden = false;
     return;
   }
 
-  container.style.display = 'block';
-  if (noPendingMessage) noPendingMessage.style.display = 'none';
+  container.hidden = false;
+  if (noPendingMessage) noPendingMessage.hidden = true;
 
   pending.forEach(student => {
     const card = document.createElement('div');
@@ -230,6 +293,7 @@ function openBatchApprovalModal(uid, name) {
   if (modal) {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
+    setTimeout(() => modal.querySelector('[data-approve-batch]')?.focus(), 0);
   }
 }
 
@@ -275,13 +339,25 @@ async function deleteKnownSubcollections(uid) {
   }
 }
 
+function applyResponsiveTableLabels(tbody) {
+  const table = tbody?.closest('table');
+  if (!table) return;
+  const labels = Array.from(table.querySelectorAll('thead th')).map(header => header.textContent.trim());
+  tbody.querySelectorAll('tr').forEach(row => {
+    Array.from(row.children).forEach((cell, index) => {
+      if (cell.colSpan > 1) return;
+      cell.dataset.label = labels[index] || '';
+    });
+  });
+}
+
 async function removeAccount(uid, name) {
   if (auth.currentUser && uid === auth.currentUser.uid) {
     showToast('You cannot remove the admin account currently signed in.', 'error');
     return;
   }
 
-  if (!confirm(`Remove ${name}? This deletes the registry record and saved quiz scores for this portal.`)) return;
+  if (!confirm(`Remove ${name}? This deletes the registry record, learning progress, and saved quiz scores for this portal.`)) return;
 
   try {
     await deleteKnownSubcollections(uid);
@@ -366,6 +442,7 @@ function renderStudentTable(accounts) {
     });
     tbody.appendChild(row);
   });
+  applyResponsiveTableLabels(tbody);
 }
 
 function renderAttendanceTable(accounts) {
@@ -408,6 +485,7 @@ function renderAttendanceTable(accounts) {
     `;
     tbody.appendChild(row);
   });
+  applyResponsiveTableLabels(tbody);
 }
 
 function renderAccountsTable(accounts) {
@@ -454,6 +532,7 @@ function renderAccountsTable(accounts) {
     });
     tbody.appendChild(row);
   });
+  applyResponsiveTableLabels(tbody);
 }
 
 function calculateDashboardStats(approvedAccounts, pendingStudents) {
@@ -553,10 +632,27 @@ function openAccountModal(uid = '') {
   document.getElementById('accountBatch').value = account ? (account.batch || '') : DEFAULT_BATCH;
   document.getElementById('accountApproved').checked = account ? isApprovedAccount(account) : true;
   if (title) title.textContent = account ? 'Edit Account' : 'Add Account';
+  syncAccountRoleFields();
 
   if (modal) {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
+    setTimeout(() => document.getElementById('accountName')?.focus(), 0);
+  }
+}
+
+function syncAccountRoleFields() {
+  const isAdmin = document.getElementById('accountRole')?.value === 'admin';
+  const batch = document.getElementById('accountBatch');
+  const approved = document.getElementById('accountApproved');
+
+  if (batch) {
+    batch.disabled = isAdmin;
+    if (isAdmin) batch.value = '';
+  }
+  if (approved) {
+    approved.disabled = isAdmin;
+    if (isAdmin) approved.checked = true;
   }
 }
 
@@ -619,7 +715,9 @@ async function saveAccountFromForm(event) {
 }
 
 function initTheme() {
-  const savedTheme = localStorage.getItem('itc-portal-theme') || 'dark';
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY)
+    || localStorage.getItem('itc-portal-theme')
+    || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeIcon(savedTheme);
 }
@@ -628,13 +726,13 @@ function toggleTheme() {
   const currentTheme = document.documentElement.getAttribute('data-theme');
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('itc-portal-theme', newTheme);
+  localStorage.setItem(THEME_STORAGE_KEY, newTheme);
   updateThemeIcon(newTheme);
 }
 
 function updateThemeIcon(theme) {
   const btn = document.getElementById('themeToggle');
-  if (btn) btn.textContent = theme === 'dark' ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+  if (btn) btn.textContent = theme === 'dark' ? 'Light theme' : 'Dark theme';
 }
 
 function setupTabNavigation() {
@@ -651,6 +749,10 @@ function setupTabNavigation() {
 
       const targetPanel = document.getElementById(`panel-${targetTab}`);
       if (targetPanel) targetPanel.classList.add('active-panel');
+
+      if (window.innerWidth <= 900) {
+        document.getElementById('adminMainPanel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
 
       if (targetTab === 'attendance') renderAttendanceTable(window.allStudentsCached || []);
       if (targetTab === 'accounts') renderAccountsTable(window.allAccountsCached || []);
@@ -684,7 +786,22 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('addAccountBtn')?.addEventListener('click', () => openAccountModal());
   document.getElementById('cancelAccountBtn')?.addEventListener('click', closeAccountModal);
   document.getElementById('accountForm')?.addEventListener('submit', saveAccountFromForm);
+  document.getElementById('accountRole')?.addEventListener('change', syncAccountRoleFields);
   document.getElementById('cancelBatchApprovalBtn')?.addEventListener('click', closeBatchApprovalModal);
+
+  document.querySelectorAll('.admin-form-modal').forEach(modal => {
+    modal.addEventListener('click', event => {
+      if (event.target !== modal) return;
+      if (modal.id === 'accountModal') closeAccountModal();
+      else closeBatchApprovalModal();
+    });
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    if (document.getElementById('accountModal')?.classList.contains('active')) closeAccountModal();
+    if (document.getElementById('batchApprovalModal')?.classList.contains('active')) closeBatchApprovalModal();
+  });
 
   document.querySelectorAll('[data-approve-batch]').forEach(button => {
     button.addEventListener('click', () => {

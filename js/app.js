@@ -1,11 +1,10 @@
-// js/app.js
+// Shared portal behavior for Home and My Progress.
 
-// Auth gate — tracks whether a user is currently signed in AND approved
-// We read these from window (which are updated in real-time by auth.js)
-
-// Theme initialization and toggling
 function initTheme() {
-  const savedTheme = localStorage.getItem('itc-portal-theme') || 'dark';
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY)
+    || localStorage.getItem('itc-portal-theme')
+    || localStorage.getItem('itc-theme')
+    || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeToggleBtn(savedTheme);
 }
@@ -13,109 +12,91 @@ function initTheme() {
 function toggleTheme() {
   const currentTheme = document.documentElement.getAttribute('data-theme');
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
   document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('itc-portal-theme', newTheme);
+  localStorage.setItem(THEME_STORAGE_KEY, newTheme);
   updateThemeToggleBtn(newTheme);
 }
 
 function updateThemeToggleBtn(theme) {
-  const btn = document.getElementById('themeToggle');
-  if (btn) {
-    btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-  }
+  const button = document.getElementById('themeToggle');
+  if (!button) return;
+  button.textContent = theme === 'dark' ? '☀' : '☾';
+  button.title = theme === 'dark' ? 'Use light theme' : 'Use dark theme';
 }
 
-// Render dynamic module grid
 function renderModuleCards() {
   const grid = document.getElementById('moduleGrid');
   if (!grid) return;
-  
   grid.innerHTML = '';
-  
-  MODULES.forEach((mod, index) => {
-    const card = document.createElement('div');
-    
-    // Determine if this card should be locked
-    const isComingSoon = (mod.status === 'locked');
-    const isNotSignedIn = (mod.status === 'available' && !window.isUserSignedIn);
-    const isPendingApproval = (mod.status === 'available' && window.isUserSignedIn && !window.isUserApproved);
-    const isLocked = isComingSoon || isNotSignedIn || isPendingApproval;
-    
-    card.className = `module-card ${isLocked ? 'locked' : ''} ${isPendingApproval ? 'pending' : ''} ${isNotSignedIn ? 'clickable-locked' : ''}`;
-    card.id = `card-${mod.id}`;
-    card.style.setProperty('--card-color', mod.color);
-    card.style.animationDelay = `${index * 0.06}s`;
-    
-    // Footer label
-    let footerLabel;
-    if (isComingSoon) {
-      footerLabel = '<span class="locked-label">🔒 Coming Soon</span>';
-    } else if (isNotSignedIn) {
-      footerLabel = '<span class="locked-label">🔒 Sign in to access</span>';
-    } else if (isPendingApproval) {
-      footerLabel = '<span class="locked-label pending-label">⏳ Awaiting teacher approval</span>';
-    } else {
-      footerLabel = '<span class="open-label">Open Module →</span>';
-    }
-    
-    // Card HTML structure
+
+  MODULES.forEach((module, index) => {
+    const isComingSoon = module.status === 'locked';
+    const isNotSignedIn = module.status === 'available' && !window.isUserSignedIn;
+    const isPendingApproval = module.status === 'available' && window.isUserSignedIn && !window.isUserApproved;
+    const isAccessible = module.status === 'available' && window.isUserSignedIn && window.isUserApproved;
+    const isInteractive = isAccessible || isNotSignedIn;
+
+    let footerLabel = 'Open module';
+    if (isComingSoon) footerLabel = 'Coming soon';
+    else if (isNotSignedIn) footerLabel = 'Sign in to access';
+    else if (isPendingApproval) footerLabel = 'Awaiting teacher approval';
+
+    const card = document.createElement('article');
+    card.className = [
+      'module-card',
+      isComingSoon || isPendingApproval ? 'locked' : '',
+      isPendingApproval ? 'pending' : '',
+      isInteractive ? 'interactive' : ''
+    ].filter(Boolean).join(' ');
+    card.style.setProperty('--card-color', module.color);
+    card.style.animationDelay = `${index * 40}ms`;
     card.innerHTML = `
       <div class="card-header">
-        <div class="card-icon" style="background: ${mod.color}20; color: ${mod.color}">${mod.icon}</div>
-        <span class="score-badge" id="score-${mod.id}"></span>
+        <span class="card-icon" aria-hidden="true">${module.icon}</span>
+        <span class="module-state">${isComingSoon ? 'Locked' : 'Module'}</span>
       </div>
       <div class="card-body">
-        <h3 class="card-title">${mod.title}</h3>
-        <p class="card-subtitle" style="color: ${mod.color}">${mod.subtitle}</p>
-        <p class="card-description">${mod.description}</p>
+        <h3 class="card-title">${module.title}</h3>
+        <p class="card-subtitle">${module.subtitle}</p>
+        <p class="card-description">${module.description}</p>
       </div>
       <div class="card-footer">
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 0%"></div>
-        </div>
-        ${footerLabel}
+        <span class="${isAccessible ? 'open-label' : 'locked-label'}">${footerLabel}</span>
+        <span aria-hidden="true">${isAccessible || isNotSignedIn ? '→' : '•'}</span>
       </div>
-      ${isLocked ? '<div class="card-locked-overlay"></div>' : ''}
     `;
-    
-    // Click action — only if fully unlocked (signed in + approved)
-    if (mod.status === 'available' && window.isUserSignedIn && window.isUserApproved) {
-      card.addEventListener('click', () => {
-        window.location.href = mod.path;
+
+    const activate = () => {
+      if (isAccessible) window.location.href = module.path;
+      else if (isNotSignedIn && typeof googleSignIn === 'function') googleSignIn();
+    };
+
+    if (isInteractive) {
+      card.tabIndex = 0;
+      card.setAttribute('role', 'link');
+      card.setAttribute('aria-label', `${footerLabel}: ${module.title}`);
+      card.addEventListener('click', activate);
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          activate();
+        }
       });
-      card.style.cursor = 'pointer';
-    } else if (isNotSignedIn) {
-      // Clicking a sign-in-locked card triggers Google sign-in
-      card.addEventListener('click', () => {
-        if (typeof googleSignIn === 'function') googleSignIn();
-      });
-      card.style.cursor = 'pointer';
     }
-    
+
     grid.appendChild(card);
   });
 }
 
-// Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   renderModuleCards();
-  
-  const themeToggle = document.getElementById('themeToggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
-  }
-  
-  // Smooth scrolling for Hero CTA button
-  const exploreBtn = document.querySelector('.hero-content .btn-primary');
-  if (exploreBtn) {
-    exploreBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const modulesSection = document.getElementById('modules');
-      if (modulesSection) {
-        modulesSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  }
+  document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+
+  document.querySelector('.hero-content .btn-primary')?.addEventListener('click', event => {
+    const modulesSection = document.getElementById('modules');
+    if (!modulesSection) return;
+    event.preventDefault();
+    modulesSection.scrollIntoView({ behavior: 'smooth' });
+  });
 });

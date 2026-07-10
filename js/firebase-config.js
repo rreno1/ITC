@@ -16,6 +16,7 @@ if (!firebase.apps.length) {
 }
 const auth = firebase.auth();
 const db = firebase.firestore();
+const THEME_STORAGE_KEY = 'cc101-theme';
 
 // Admin emails (array for multi-admin support)
 const ADMIN_EMAILS = ['rrenomeronjr@gmail.com'];
@@ -59,6 +60,7 @@ const MODULES = [
     icon: '💻',
     color: '#3b82f6',
     path: 'hardware-part-1/hardware-part-1.html',
+    lessonTotal: 12,
     quizTotal: 15,
     status: 'available'
   },
@@ -70,6 +72,7 @@ const MODULES = [
     icon: '⚙️',
     color: '#8b5cf6',
     path: 'hardware-part-2/hardware-part-2.html',
+    lessonTotal: 11,
     quizTotal: 15,
     status: 'available'
   },
@@ -81,6 +84,7 @@ const MODULES = [
     icon: '🔌',
     color: '#14b8a6',
     path: 'hardware-part-3/hardware-part-3.html',
+    lessonTotal: 11,
     quizTotal: 15,
     status: 'available'
   },
@@ -92,6 +96,7 @@ const MODULES = [
     icon: '🌐',
     color: '#06b6d4',
     path: 'internet-part-1/internet-part-1.html',
+    lessonTotal: 10,
     quizTotal: 15,
     status: 'available'
   },
@@ -103,6 +108,7 @@ const MODULES = [
     icon: '📡',
     color: '#6366f1',
     path: 'internet-part-2/internet-part-2.html',
+    lessonTotal: 10,
     quizTotal: 15,
     status: 'available'
   },

@@ -8,7 +8,10 @@ function checkAdminAccess(user) {
   const accessDenied = document.getElementById('accessDenied');
 
   if (!user) {
-    if (adminContent) adminContent.style.display = 'none';
+    if (adminContent) {
+      adminContent.classList.remove('is-authorized');
+      adminContent.style.display = 'none';
+    }
     if (accessDenied) {
       accessDenied.style.display = 'flex';
       accessDenied.innerHTML = `
@@ -23,7 +26,10 @@ function checkAdminAccess(user) {
   }
 
   if (!ADMIN_EMAILS.includes(user.email)) {
-    if (adminContent) adminContent.style.display = 'none';
+    if (adminContent) {
+      adminContent.classList.remove('is-authorized');
+      adminContent.style.display = 'none';
+    }
     if (accessDenied) {
       accessDenied.style.display = 'flex';
       accessDenied.innerHTML = `
@@ -38,7 +44,10 @@ function checkAdminAccess(user) {
     return;
   }
 
-  if (adminContent) adminContent.style.display = 'grid';
+  if (adminContent) {
+    adminContent.style.display = '';
+    adminContent.classList.add('is-authorized');
+  }
   if (accessDenied) accessDenied.style.display = 'none';
   loadAdminDashboard();
 }

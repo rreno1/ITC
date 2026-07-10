@@ -111,6 +111,101 @@ async function loadUserProgress(userId) {
       }
     }
   });
+
+  renderStudentDashboard(results);
+}
+
+function resetStudentDashboard() {
+  const section = document.getElementById('studentDashboardSection');
+  if (section) section.style.display = 'none';
+}
+
+function escapePortalHTML(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function formatProgressDate(value) {
+  if (!value) return 'No submission yet';
+  const date = value.toDate ? value.toDate() : new Date(value.seconds ? value.seconds * 1000 : value);
+  if (Number.isNaN(date.getTime())) return 'Submission date unavailable';
+  return date.toLocaleDateString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+}
+
+function renderStudentDashboard(results = {}) {
+  const section = document.getElementById('studentDashboardSection');
+  const list = document.getElementById('studentProgressList');
+  if (!section || !list) return;
+
+  if (!window.isUserSignedIn) {
+    resetStudentDashboard();
+    return;
+  }
+
+  const availableModules = MODULES.filter(mod => mod.status === 'available');
+  const completedResults = availableModules
+    .map(mod => ({ module: mod, result: results[mod.id] }))
+    .filter(item => !!item.result);
+
+  const completedCount = completedResults.length;
+  const totalModules = availableModules.length;
+  const totalPercentage = completedResults.reduce((sum, item) => sum + (item.result.bestPercentage || item.result.percentage || 0), 0);
+  const totalAttempts = completedResults.reduce((sum, item) => sum + (item.result.attempts || 1), 0);
+  const bestItem = completedResults
+    .slice()
+    .sort((a, b) => (b.result.bestPercentage || 0) - (a.result.bestPercentage || 0))[0];
+
+  const completedEl = document.getElementById('studentCompletedCount');
+  const averageEl = document.getElementById('studentAverageScore');
+  const bestEl = document.getElementById('studentBestModule');
+  const attemptEl = document.getElementById('studentAttemptCount');
+
+  if (completedEl) completedEl.textContent = `${completedCount} / ${totalModules}`;
+  if (averageEl) averageEl.textContent = completedCount > 0 ? `${Math.round(totalPercentage / completedCount)}%` : '-';
+  if (bestEl) bestEl.textContent = bestItem ? bestItem.module.title : '-';
+  if (attemptEl) attemptEl.textContent = totalAttempts;
+
+  list.innerHTML = '';
+  availableModules.forEach(mod => {
+    const result = results[mod.id];
+    const percentage = result ? (result.bestPercentage || result.percentage || 0) : 0;
+    const scoreText = result ? `${result.bestScore ?? result.score}/${result.total}` : '-';
+    const statusClass = result ? 'completed' : 'pending';
+    const statusLabel = result ? 'Completed' : 'Not started';
+    const dateText = result ? formatProgressDate(result.completedAt) : 'No quiz submitted';
+    const attemptsText = result ? `${result.attempts || 1} attempt${(result.attempts || 1) === 1 ? '' : 's'}` : 'One-time quiz';
+
+    const row = document.createElement('div');
+    row.className = 'student-progress-row';
+    row.innerHTML = `
+      <div>
+        <div class="student-module-title">${escapePortalHTML(mod.title)}</div>
+        <div class="student-module-subtitle">${escapePortalHTML(mod.subtitle)}</div>
+      </div>
+      <div>
+        <span class="student-status-pill ${statusClass}">${statusLabel}</span>
+        <div class="student-progress-meta">${escapePortalHTML(dateText)}</div>
+      </div>
+      <div class="student-row-progress">
+        <div class="student-progress-score">${scoreText} <span class="student-progress-meta">(${percentage}%)</span></div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: ${percentage}%; background: ${mod.color};"></div>
+        </div>
+        <div class="student-progress-meta">${escapePortalHTML(attemptsText)}</div>
+      </div>
+    `;
+    list.appendChild(row);
+  });
+
+  section.style.display = 'block';
 }
 
 // Shared one-time quiz gate for module pages.

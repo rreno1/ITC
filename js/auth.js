@@ -237,6 +237,7 @@ auth.onAuthStateChanged(async (user) => {
     if (adminLink) adminLink.style.display = 'none';
 
     if (typeof renderModuleCards === 'function') renderModuleCards();
+    if (typeof resetStudentDashboard === 'function') resetStudentDashboard();
 
     if (typeof checkAdminAccess === 'function') {
       checkAdminAccess(null);

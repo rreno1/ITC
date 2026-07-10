@@ -49,6 +49,49 @@
     </div>
   </section>
 
+  <!-- STUDENT DASHBOARD -->
+  <section class="student-dashboard-section" id="studentDashboardSection" style="display:none;">
+    <div class="section-header dashboard-header">
+      <h2>My Progress</h2>
+      <p>Track your module quiz scores and completion status.</p>
+    </div>
+
+    <div class="student-stats-row">
+      <div class="student-stat-card">
+        <span class="student-stat-icon">📚</span>
+        <div>
+          <div class="student-stat-label">Completed</div>
+          <div class="student-stat-value" id="studentCompletedCount">0 / 0</div>
+        </div>
+      </div>
+      <div class="student-stat-card">
+        <span class="student-stat-icon">🎯</span>
+        <div>
+          <div class="student-stat-label">Average</div>
+          <div class="student-stat-value" id="studentAverageScore">—</div>
+        </div>
+      </div>
+      <div class="student-stat-card">
+        <span class="student-stat-icon">🏆</span>
+        <div>
+          <div class="student-stat-label">Best Module</div>
+          <div class="student-stat-value compact" id="studentBestModule">—</div>
+        </div>
+      </div>
+      <div class="student-stat-card">
+        <span class="student-stat-icon">📝</span>
+        <div>
+          <div class="student-stat-label">Quiz Attempts</div>
+          <div class="student-stat-value" id="studentAttemptCount">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="student-progress-list" id="studentProgressList">
+      <!-- Filled by js/progress.js -->
+    </div>
+  </section>
+
   <!-- MODULES SECTION -->
   <section class="modules-section" id="modules">
     <div class="section-header">
@@ -70,8 +113,8 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   <script src="js/firebase-config.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/progress.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/auth.js?v=20260710-student-dashboard"></script>
+  <script src="js/progress.js?v=20260710-student-dashboard"></script>
+  <script src="js/app.js?v=20260710-student-dashboard"></script>
 </body>
 </html>

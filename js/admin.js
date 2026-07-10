@@ -93,6 +93,12 @@ function selectedAttendanceDate() {
   return new Date(`${value}T12:00:00`);
 }
 
+function selectedAttendanceBatch() {
+  const filter = document.getElementById('attendanceBatchFilter');
+  const value = filter ? filter.value : 'all';
+  return value === 'A' || value === 'B' ? value : 'all';
+}
+
 function batchPill(batch) {
   const normalized = normalizeBatchValue(batch);
   if (!normalized) return '<span class="batch-pill batch-none">No batch</span>';
@@ -369,12 +375,14 @@ function renderAttendanceTable(accounts) {
 
   const selectedDate = selectedAttendanceDate();
   const dateKey = getDateKeyForAdmin(selectedDate);
+  const batchFilter = selectedAttendanceBatch();
   const students = accounts
     .filter(account => account.role === 'student' && isApprovedAccount(account) && !account.manual)
+    .filter(account => batchFilter === 'all' || account.batch === batchFilter)
     .sort((a, b) => `${a.batch || 'Z'}${a.name || ''}`.localeCompare(`${b.batch || 'Z'}${b.name || ''}`));
 
   if (students.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="7" style="color: var(--text-secondary); padding: 30px; text-align: center;">No approved students yet.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" style="color: var(--text-secondary); padding: 30px; text-align: center;">No approved students match this attendance filter.</td></tr>';
     return;
   }
 
@@ -660,6 +668,9 @@ document.addEventListener('DOMContentLoaded', () => {
     attendanceDateInput.value = todayKey;
     attendanceDateInput.addEventListener('change', () => renderAttendanceTable(window.allStudentsCached || []));
   }
+  document.getElementById('attendanceBatchFilter')?.addEventListener('change', () => {
+    renderAttendanceTable(window.allStudentsCached || []);
+  });
 
   document.getElementById('todayAttendanceBtn')?.addEventListener('click', () => {
     if (attendanceDateInput) attendanceDateInput.value = getDateKeyForAdmin();

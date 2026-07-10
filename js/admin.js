@@ -5,14 +5,29 @@ let pendingApprovalTarget = null;
 let adminUserDocsCache = [];
 let adminQuizResultsCache = {};
 let groupedQuizListenerAvailable = true;
+let adminUsersReady = false;
+let adminQuizReady = false;
+let adminRenderFrame = null;
+const ADMIN_PAGE_SIZE = 20;
+const adminPageState = {
+  grades: 1,
+  attendance: 1,
+  accounts: 1
+};
 
 function stopAdminDashboard() {
-  if (!adminDashboardUnsubscribe) return;
-  adminDashboardUnsubscribe();
+  if (adminDashboardUnsubscribe) adminDashboardUnsubscribe();
   adminDashboardUnsubscribe = null;
+  if (adminRenderFrame !== null) {
+    window.cancelAnimationFrame(adminRenderFrame);
+    adminRenderFrame = null;
+  }
   adminUserDocsCache = [];
   adminQuizResultsCache = {};
   groupedQuizListenerAvailable = true;
+  adminUsersReady = false;
+  adminQuizReady = false;
+  Object.keys(adminPageState).forEach(key => { adminPageState[key] = 1; });
 }
 
 function checkAdminAccess(user) {
@@ -35,6 +50,7 @@ function checkAdminAccess(user) {
         </div>
       `;
     }
+    if (typeof markPageReady === 'function') markPageReady();
     return;
   }
 
@@ -55,6 +71,7 @@ function checkAdminAccess(user) {
         </div>
       `;
     }
+    if (typeof markPageReady === 'function') markPageReady();
     return;
   }
 
@@ -127,6 +144,79 @@ function isApprovedAccount(account) {
   return account.role === 'admin' || account.approved === true;
 }
 
+function scheduleAdminDashboardRender() {
+  if (adminRenderFrame !== null) return;
+  adminRenderFrame = window.requestAnimationFrame(() => {
+    adminRenderFrame = null;
+    renderAdminDashboardRecords();
+  });
+}
+
+function resetAdminPage(key) {
+  if (Object.prototype.hasOwnProperty.call(adminPageState, key)) {
+    adminPageState[key] = 1;
+  }
+}
+
+function paginateItems(items, key) {
+  const totalItems = items.length;
+  const totalPages = Math.max(1, Math.ceil(totalItems / ADMIN_PAGE_SIZE));
+  const currentPage = Math.min(Math.max(adminPageState[key] || 1, 1), totalPages);
+  const startIndex = (currentPage - 1) * ADMIN_PAGE_SIZE;
+  adminPageState[key] = currentPage;
+
+  return {
+    currentPage,
+    totalPages,
+    totalItems,
+    startIndex,
+    items: items.slice(startIndex, startIndex + ADMIN_PAGE_SIZE)
+  };
+}
+
+function renderTablePagination(containerId, key, page, rerender) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  container.hidden = page.totalItems <= ADMIN_PAGE_SIZE;
+  if (container.hidden) {
+    container.innerHTML = '';
+    return;
+  }
+
+  const firstItem = page.startIndex + 1;
+  const lastItem = Math.min(page.startIndex + ADMIN_PAGE_SIZE, page.totalItems);
+  container.innerHTML = `
+    <button type="button" data-page-action="previous" aria-label="Previous page" title="Previous page" ${page.currentPage === 1 ? 'disabled' : ''}>&#8249;</button>
+    <span>${firstItem}-${lastItem} of ${page.totalItems} &middot; Page ${page.currentPage} of ${page.totalPages}</span>
+    <button type="button" data-page-action="next" aria-label="Next page" title="Next page" ${page.currentPage === page.totalPages ? 'disabled' : ''}>&#8250;</button>
+  `;
+
+  container.querySelector('[data-page-action="previous"]')?.addEventListener('click', () => {
+    adminPageState[key] -= 1;
+    rerender();
+  });
+  container.querySelector('[data-page-action="next"]')?.addEventListener('click', () => {
+    adminPageState[key] += 1;
+    rerender();
+  });
+}
+
+function updatePendingBadge(count) {
+  const sidebarBadge = document.getElementById('pendingSidebarBadge');
+  if (!sidebarBadge) return;
+  sidebarBadge.textContent = count;
+  sidebarBadge.hidden = count === 0;
+}
+
+function renderActiveAdminPanel() {
+  const activeTab = document.querySelector('.sb-nav-item[data-tab].active')?.dataset.tab || 'overview';
+  if (activeTab === 'pending') renderPendingApprovals(window.pendingStudentsCached || []);
+  if (activeTab === 'grades') renderStudentTable(window.allStudentsCached || []);
+  if (activeTab === 'attendance') renderAttendanceTable(window.allStudentsCached || []);
+  if (activeTab === 'accounts') renderAccountsTable(window.allAccountsCached || []);
+}
+
 async function loadQuizResults(uid) {
   try {
     const quizSnapshot = await db.collection('users').doc(uid).collection('quizResults').get();
@@ -175,26 +265,38 @@ function renderAdminDashboardRecords() {
     window.allStudentsCached = approvedAccounts;
     window.pendingStudentsCached = pendingStudents;
 
-    renderPendingApprovals(pendingStudents);
-    renderStudentTable(approvedAccounts);
-    renderAttendanceTable(approvedAccounts);
-    renderAccountsTable(accounts);
+    updatePendingBadge(pendingStudents.length);
     calculateDashboardStats(approvedAccounts, pendingStudents);
+    renderActiveAdminPanel();
+
+    if (adminUsersReady && adminQuizReady && typeof markPageReady === 'function') {
+      markPageReady();
+    }
   } catch (error) {
     console.error('Error processing dashboard records:', error);
     showToast('Unable to process dashboard records.', 'error');
   }
 }
 
-async function refreshQuizResultsFallback() {
-  adminQuizResultsCache = await loadQuizResultsFallback(adminUserDocsCache);
-  if (adminDashboardUnsubscribe) renderAdminDashboardRecords();
+async function refreshQuizResultsFallback(userDocs = adminUserDocsCache) {
+  if (!adminUsersReady) return;
+  const activeUserIds = new Set(adminUserDocsCache.map(doc => doc.id));
+  Object.keys(adminQuizResultsCache).forEach(uid => {
+    if (!activeUserIds.has(uid)) delete adminQuizResultsCache[uid];
+  });
+
+  const changedResults = await loadQuizResultsFallback(userDocs);
+  if (!adminDashboardUnsubscribe) return;
+  adminQuizResultsCache = { ...adminQuizResultsCache, ...changedResults };
+  adminQuizReady = true;
+  scheduleAdminDashboardRender();
 }
 
 function loadAdminDashboard() {
   if (adminDashboardUnsubscribe) return;
 
-  showToast('Connecting to database...', 'info');
+  adminUsersReady = false;
+  adminQuizReady = false;
   const unsubscribers = [];
   adminDashboardUnsubscribe = () => {
     unsubscribers.splice(0).forEach(unsubscribe => unsubscribe());
@@ -202,11 +304,18 @@ function loadAdminDashboard() {
 
   const usersUnsubscribe = db.collection('users').onSnapshot(snapshot => {
     adminUserDocsCache = snapshot.docs;
-    if (groupedQuizListenerAvailable) renderAdminDashboardRecords();
-    else refreshQuizResultsFallback();
+    adminUsersReady = true;
+    if (groupedQuizListenerAvailable) scheduleAdminDashboardRender();
+    else {
+      const changedDocs = snapshot.docChanges()
+        .filter(change => change.type !== 'removed')
+        .map(change => change.doc);
+      refreshQuizResultsFallback(changedDocs);
+    }
   }, error => {
     console.error('Users subscription error:', error);
     showToast('Connection to student database failed.', 'error');
+    if (typeof markPageReady === 'function') markPageReady();
   });
   unsubscribers.push(usersUnsubscribe);
 
@@ -220,16 +329,19 @@ function loadAdminDashboard() {
         resultsByUser[userRef.id][doc.id] = doc.data();
       });
       adminQuizResultsCache = resultsByUser;
-      renderAdminDashboardRecords();
+      adminQuizReady = true;
+      scheduleAdminDashboardRender();
     }, error => {
       console.warn('Live grouped quiz results unavailable; using account reads.', error);
       groupedQuizListenerAvailable = false;
+      adminQuizReady = false;
       refreshQuizResultsFallback();
     });
     unsubscribers.push(quizUnsubscribe);
   } catch (error) {
     console.warn('Unable to start grouped quiz listener; using account reads.', error);
     groupedQuizListenerAvailable = false;
+    adminQuizReady = false;
     refreshQuizResultsFallback();
   }
 }
@@ -237,15 +349,11 @@ function loadAdminDashboard() {
 function renderPendingApprovals(pending) {
   const container = document.getElementById('pendingContainer');
   const list = document.getElementById('pendingList');
-  const sidebarBadge = document.getElementById('pendingSidebarBadge');
   const noPendingMessage = document.getElementById('noPendingMessage');
   const loadingState = document.getElementById('pendingLoadingState');
   if (loadingState) loadingState.hidden = true;
 
-  if (sidebarBadge) {
-    sidebarBadge.textContent = pending.length;
-    sidebarBadge.hidden = pending.length === 0;
-  }
+  updatePendingBadge(pending.length);
 
   if (!container || !list) return;
   list.innerHTML = '';
@@ -259,6 +367,7 @@ function renderPendingApprovals(pending) {
   container.hidden = false;
   if (noPendingMessage) noPendingMessage.hidden = true;
 
+  const fragment = document.createDocumentFragment();
   pending.forEach(student => {
     const card = document.createElement('div');
     card.className = 'pending-card';
@@ -281,8 +390,9 @@ function renderPendingApprovals(pending) {
     card.querySelector('[data-action="reject"]').addEventListener('click', () => {
       removeAccount(student.uid, student.name || student.email || 'this student');
     });
-    list.appendChild(card);
+    fragment.appendChild(card);
   });
+  list.appendChild(fragment);
 }
 
 function openBatchApprovalModal(uid, name) {
@@ -375,7 +485,17 @@ function renderStudentTable(accounts) {
   tbody.innerHTML = '';
 
   const availableModules = MODULES.filter(m => m.status === 'available');
-  const rows = accounts.filter(account => !account.manual);
+  const searchValue = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+  const rows = accounts
+    .filter(account => !account.manual)
+    .filter(account => {
+      const searchable = `${account.name || ''} ${account.email || ''} ${account.batch || ''}`.toLowerCase();
+      return searchable.includes(searchValue);
+    });
+  const page = paginateItems(rows, 'grades');
+  renderTablePagination('gradesPagination', 'grades', page, () => {
+    renderStudentTable(window.allStudentsCached || []);
+  });
 
   if (rows.length === 0) {
     tbody.innerHTML = `
@@ -389,8 +509,9 @@ function renderStudentTable(accounts) {
   }
 
   const todayKey = getDateKeyForAdmin();
+  const fragment = document.createDocumentFragment();
 
-  rows.forEach((student, index) => {
+  page.items.forEach((student, index) => {
     const row = document.createElement('tr');
     let scoreCells = '';
 
@@ -416,7 +537,7 @@ function renderStudentTable(accounts) {
       : statusPill('No check-in', 'muted');
 
     row.innerHTML = `
-      <td>${index + 1}</td>
+      <td>${page.startIndex + index + 1}</td>
       <td class="student-name">${escapeHTML(student.name || 'Anonymous Student')}</td>
       <td>
         <span class="badge-role ${student.role === 'admin' ? 'role-admin' : 'role-student'}">
@@ -440,8 +561,9 @@ function renderStudentTable(accounts) {
     row.querySelector('[data-action="remove"]').addEventListener('click', () => {
       removeAccount(student.uid, student.name || student.email || 'this account');
     });
-    tbody.appendChild(row);
+    fragment.appendChild(row);
   });
+  tbody.appendChild(fragment);
   applyResponsiveTableLabels(tbody);
 }
 
@@ -457,13 +579,18 @@ function renderAttendanceTable(accounts) {
     .filter(account => account.role === 'student' && isApprovedAccount(account) && !account.manual)
     .filter(account => batchFilter === 'all' || account.batch === batchFilter)
     .sort((a, b) => `${a.batch || 'Z'}${a.name || ''}`.localeCompare(`${b.batch || 'Z'}${b.name || ''}`));
+  const page = paginateItems(students, 'attendance');
+  renderTablePagination('attendancePagination', 'attendance', page, () => {
+    renderAttendanceTable(window.allStudentsCached || []);
+  });
 
   if (students.length === 0) {
     tbody.innerHTML = '<tr><td colspan="7" style="color: var(--text-secondary); padding: 30px; text-align: center;">No approved students match this attendance filter.</td></tr>';
     return;
   }
 
-  students.forEach(student => {
+  const fragment = document.createDocumentFragment();
+  page.items.forEach(student => {
     const batchConfig = getBatchConfig(student.batch);
     const record = student.attendance && student.attendance[dateKey];
     const isExpected = !!batchConfig && selectedDate.getDay() === batchConfig.attendanceDay;
@@ -483,8 +610,9 @@ function renderAttendanceTable(accounts) {
       <td>${formatTimestamp(record && record.firstSeenAt)}</td>
       <td>${formatTimestamp(record && record.lastSeenAt)}</td>
     `;
-    tbody.appendChild(row);
+    fragment.appendChild(row);
   });
+  tbody.appendChild(fragment);
   applyResponsiveTableLabels(tbody);
 }
 
@@ -497,6 +625,10 @@ function renderAccountsTable(accounts) {
     const searchable = `${account.name || ''} ${account.email || ''} ${account.role || ''} ${account.batch || ''}`.toLowerCase();
     return searchable.includes(searchValue);
   });
+  const page = paginateItems(filtered, 'accounts');
+  renderTablePagination('accountsPagination', 'accounts', page, () => {
+    renderAccountsTable(window.allAccountsCached || []);
+  });
 
   tbody.innerHTML = '';
 
@@ -505,7 +637,8 @@ function renderAccountsTable(accounts) {
     return;
   }
 
-  filtered.forEach(account => {
+  const fragment = document.createDocumentFragment();
+  page.items.forEach(account => {
     const row = document.createElement('tr');
     row.innerHTML = `
       <td class="student-name">${escapeHTML(account.name || 'Unnamed Account')}</td>
@@ -530,8 +663,9 @@ function renderAccountsTable(accounts) {
     row.querySelector('[data-action="remove"]').addEventListener('click', () => {
       removeAccount(account.uid, account.name || account.email || 'this account');
     });
-    tbody.appendChild(row);
+    fragment.appendChild(row);
   });
+  tbody.appendChild(fragment);
   applyResponsiveTableLabels(tbody);
 }
 
@@ -608,16 +742,9 @@ function exportToCSV() {
   showToast('CSV report exported.', 'success');
 }
 
-function filterStudentsTable(query) {
-  if (!window.allStudentsCached) return;
-  const lowercaseQuery = query.toLowerCase().trim();
-  const filtered = window.allStudentsCached.filter(student => {
-    if (student.manual || !isApprovedAccount(student)) return false;
-    return (student.name || '').toLowerCase().includes(lowercaseQuery) ||
-      (student.email || '').toLowerCase().includes(lowercaseQuery) ||
-      (student.batch || '').toLowerCase().includes(lowercaseQuery);
-  });
-  renderStudentTable(filtered);
+function filterStudentsTable() {
+  resetAdminPage('grades');
+  renderStudentTable(window.allStudentsCached || []);
 }
 
 function openAccountModal(uid = '') {
@@ -714,27 +841,6 @@ async function saveAccountFromForm(event) {
   }
 }
 
-function initTheme() {
-  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY)
-    || localStorage.getItem('itc-portal-theme')
-    || 'dark';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
-}
-
-function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem(THEME_STORAGE_KEY, newTheme);
-  updateThemeIcon(newTheme);
-}
-
-function updateThemeIcon(theme) {
-  const btn = document.getElementById('themeToggle');
-  if (btn) btn.textContent = theme === 'dark' ? 'Light theme' : 'Dark theme';
-}
-
 function setupTabNavigation() {
   const buttons = document.querySelectorAll('.sb-nav-item[data-tab]');
   buttons.forEach(btn => {
@@ -754,34 +860,39 @@ function setupTabNavigation() {
         document.getElementById('adminMainPanel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
-      if (targetTab === 'attendance') renderAttendanceTable(window.allStudentsCached || []);
-      if (targetTab === 'accounts') renderAccountsTable(window.allAccountsCached || []);
+      renderActiveAdminPanel();
     });
   });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initTheme();
   setupTabNavigation();
 
   const todayKey = getDateKeyForAdmin();
   const attendanceDateInput = document.getElementById('attendanceDateInput');
   if (attendanceDateInput) {
     attendanceDateInput.value = todayKey;
-    attendanceDateInput.addEventListener('change', () => renderAttendanceTable(window.allStudentsCached || []));
+    attendanceDateInput.addEventListener('change', () => {
+      resetAdminPage('attendance');
+      renderAttendanceTable(window.allStudentsCached || []);
+    });
   }
   document.getElementById('attendanceBatchFilter')?.addEventListener('change', () => {
+    resetAdminPage('attendance');
     renderAttendanceTable(window.allStudentsCached || []);
   });
 
   document.getElementById('todayAttendanceBtn')?.addEventListener('click', () => {
     if (attendanceDateInput) attendanceDateInput.value = getDateKeyForAdmin();
+    resetAdminPage('attendance');
     renderAttendanceTable(window.allStudentsCached || []);
   });
 
-  document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
-  document.getElementById('searchInput')?.addEventListener('input', (e) => filterStudentsTable(e.target.value));
-  document.getElementById('accountSearchInput')?.addEventListener('input', () => renderAccountsTable(window.allAccountsCached || []));
+  document.getElementById('searchInput')?.addEventListener('input', filterStudentsTable);
+  document.getElementById('accountSearchInput')?.addEventListener('input', () => {
+    resetAdminPage('accounts');
+    renderAccountsTable(window.allAccountsCached || []);
+  });
   document.getElementById('exportCsvBtn')?.addEventListener('click', exportToCSV);
   document.getElementById('addAccountBtn')?.addEventListener('click', () => openAccountModal());
   document.getElementById('cancelAccountBtn')?.addEventListener('click', closeAccountModal);

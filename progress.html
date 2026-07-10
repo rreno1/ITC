@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" class="page-loading">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Progress — CC 101</title>
   <meta name="description" content="Track lesson completion, quiz results, and recent learning activity for CC 101.">
   <meta name="theme-color" content="#101417">
+  <link rel="stylesheet" href="styles/theme.css?v=20260711">
   <link rel="stylesheet" href="styles/main.css?v=20260711">
 </head>
 <body class="portal-page progress-body">
+  <div class="page-loader" id="pageLoader" role="status" aria-live="polite" aria-busy="true">
+    <span class="page-loader-spinner" aria-hidden="true"></span>
+    <p>Loading your progress...</p>
+  </div>
   <nav class="portal-nav" id="navbar">
     <div class="nav-brand">
       <span class="nav-logo" aria-hidden="true">🎓</span>
       <span class="nav-title">CC 101</span>
     </div>
-    <div class="nav-links">
+    <div class="nav-links" id="primaryNav">
       <a href="index.html" class="nav-link">
         <span class="nav-link-icon" aria-hidden="true">⌂</span>
         <span>Home</span>
@@ -29,7 +34,12 @@
       </a>
     </div>
     <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle color theme">☀</button>
+      <button class="mobile-menu-toggle" type="button" aria-label="Toggle navigation" aria-controls="primaryNav" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <button class="theme-toggle" id="themeToggle" type="button" data-theme-toggle>
+        <span class="theme-toggle-icon" aria-hidden="true">☀</span>
+      </button>
       <button class="btn-primary google-btn" id="signInBtn">
         <svg class="google-icon" width="16" height="16" viewBox="0 0 18 18" aria-hidden="true">
           <path fill="#4285F4" d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.47h4.84c-.21 1.12-.84 2.07-1.8 2.72v2.24h2.9c1.7-1.57 2.68-3.88 2.68-6.6z"/>
@@ -160,6 +170,9 @@
     <p>© 2026 CC 101 — Introduction to Computing | MLG College of Learning</p>
   </footer>
 
+  <script defer src="js/theme.js?v=20260711"></script>
+  <script defer src="js/loading.js?v=20260711"></script>
+  <script defer src="js/navigation.js?v=20260711"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>

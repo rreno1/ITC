@@ -1,41 +1,5 @@
-/* Industrial Tech Dashboard Theme Variables */
 :root {
-  /* HSL Color Palette matching user constraints */
-  --primary-hue: 191;
-  --primary-sat: 100%;
-  --primary-lightness: 23%; /* #005F73 Navy */
-  --color-primary: hsl(var(--primary-hue), var(--primary-sat), var(--primary-lightness));
-  --color-primary-light: hsl(var(--primary-hue), var(--primary-sat), 35%);
-  --color-primary-glow: hsla(var(--primary-hue), var(--primary-sat), 35%, 0.15);
-  
-  --accent-hue: 161;
-  --accent-sat: 46%;
-  --accent-lightness: 70%; /* #94D2BD Soft Teal */
-  --color-accent: hsl(var(--accent-hue), var(--accent-sat), var(--accent-lightness));
-  --color-accent-dark: hsl(var(--accent-hue), var(--accent-sat), 40%);
-  --color-accent-glow: hsla(var(--accent-hue), var(--accent-sat), var(--accent-lightness), 0.2);
-
-  /* Alert Colors matching guidelines */
-  --color-error: hsl(0, 84%, 60%);
-  --color-error-text: hsl(0, 72%, 35%);
-  --color-error-bg: hsl(0, 96%, 95%);
-  
-  --color-success: hsl(142, 70%, 45%);
-  --color-success-bg: hsl(142, 70%, 95%);
-  --color-success-text: hsl(142, 75%, 25%);
-
-  /* Dark Industrial Dashboard Colors */
-  --bg-primary: #080C14;      /* Deep black-slate */
-  --bg-secondary: #0E1524;    /* Structured slate panels */
-  --bg-accent: #172136;       /* Highlighted sections */
-  --text-primary: #F8FAFC;    /* High contrast text */
-  --text-secondary: #94A3B8;  /* Muted grey-blue */
-  --border-color: #1E293B;    /* Sharp grid borders */
-  --shadow-color: rgba(0, 0, 0, 0.5);
-
-  /* Typography Sizing (min 14pt body to prevent squishing) */
-  --font-title: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-title: var(--font-heading);
   --font-size-base: 16px;
   --font-size-lg: 18px;
   --font-size-h1: 34px;
@@ -46,17 +10,6 @@
   --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   --border-radius: 8px;
-}
-
-/* Light Industrial Dashboard Colors */
-html[data-theme="light"] {
-  --bg-primary: #F1F5F9;
-  --bg-secondary: #FFFFFF;
-  --bg-accent: #E2E8F0;
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --border-color: #CBD5E1;
-  --shadow-color: rgba(0, 0, 0, 0.08);
 }
 
 /* Reset & Base Rules */
@@ -114,7 +67,8 @@ textarea {
   justify-content: space-between;
   align-items: center;
   padding: 0 24px;
-  background: var(--bg-secondary);
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-color);
   box-shadow: 0 2px 10px var(--shadow-color);
   z-index: 100;
@@ -225,6 +179,36 @@ textarea {
   padding: 16px;
 }
 
+.course-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.course-sidebar-header .sidebar-title {
+  flex: 1;
+}
+
+.course-sidebar-close,
+.course-sidebar-overlay {
+  display: none;
+}
+
+.course-sidebar-close {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--bg-accent);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 25px;
+  line-height: 1;
+}
+
 .sidebar-title {
   font-family: var(--font-title);
   font-size: 12px;
@@ -267,15 +251,8 @@ textarea {
   border-color: var(--color-accent-dark);
   font-weight: 600;
 }
-html[data-theme="light"] .sidebar-item.active {
-  border-color: var(--color-primary-light);
-}
-
 .sidebar-item.completed {
   color: var(--color-accent-dark);
-}
-html[data-theme="light"] .sidebar-item.completed {
-  color: var(--color-primary);
 }
 
 .step-indicator-dot {
@@ -294,11 +271,6 @@ html[data-theme="light"] .sidebar-item.completed {
 .active .step-indicator-dot {
   border-color: var(--color-accent-dark);
   background: var(--color-accent-dark);
-  color: #000;
-}
-html[data-theme="light"] .active .step-indicator-dot {
-  border-color: var(--color-primary-light);
-  background: var(--color-primary-light);
   color: #fff;
 }
 
@@ -385,10 +357,6 @@ html[data-theme="light"] .active .step-indicator-dot {
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-html[data-theme="light"] .sub-category {
-  color: var(--color-primary-light);
-}
-
 .hero-header h1 {
   font-family: var(--font-title);
   font-size: 50px;
@@ -404,10 +372,6 @@ html[data-theme="light"] .sub-category {
   background: var(--color-accent-dark);
   margin: 16px auto;
 }
-html[data-theme="light"] .accent-line {
-  background: var(--color-primary);
-}
-
 .hero-desc {
   font-size: var(--font-size-lg);
   color: var(--text-secondary);
@@ -440,10 +404,6 @@ html[data-theme="light"] .accent-line {
   color: var(--color-accent-dark);
   flex-shrink: 0;
 }
-html[data-theme="light"] .info-card svg {
-  color: var(--color-primary);
-}
-
 .info-card h4 {
   font-size: 12px;
   text-transform: uppercase;
@@ -461,10 +421,6 @@ html[data-theme="light"] .info-card svg {
 .teacher-highlight {
   color: var(--color-accent-dark) !important;
 }
-html[data-theme="light"] .teacher-highlight {
-  color: var(--color-primary-light) !important;
-}
-
 .welcome-tip {
   margin-top: 10px;
   font-size: 14px;
@@ -501,11 +457,6 @@ html[data-theme="light"] .teacher-highlight {
   border-radius: 2px;
   margin-right: 10px;
 }
-html[data-theme="light"] .slide-num {
-  color: var(--color-primary-light);
-  border-color: var(--color-primary-light);
-}
-
 .badge-label {
   font-size: 11px;
   font-weight: 700;
@@ -668,10 +619,6 @@ html[data-theme="light"] .slide-num {
   background: var(--color-primary-glow);
   color: var(--text-primary);
 }
-html[data-theme="light"] .quiz-progress-step.active-q {
-  border-color: var(--color-primary-light);
-}
-
 .quiz-progress-step.completed-q {
   background: var(--color-success);
   border-color: var(--color-success);
@@ -691,10 +638,6 @@ html[data-theme="light"] .quiz-progress-step.active-q {
   color: var(--color-accent-dark);
   letter-spacing: 0.5px;
 }
-html[data-theme="light"] .question-cat {
-  color: var(--color-primary-light);
-}
-
 .question-container h3 {
   font-family: var(--font-title);
   font-size: var(--font-size-h2);
@@ -832,10 +775,6 @@ html[data-theme="light"] .question-cat {
   align-items: center;
   justify-content: center;
 }
-html[data-theme="light"] .score-circle {
-  border-color: var(--color-primary-light);
-}
-
 .score-circle span {
   font-family: var(--font-title);
   font-size: 32px;
@@ -863,9 +802,9 @@ html[data-theme="light"] .score-circle {
 }
 
 .btn-primary {
-  background-color: var(--color-accent-dark);
-  color: #080C14; /* Dark contrast text */
-  border-color: var(--color-accent-dark);
+  background-color: var(--accent-strong);
+  color: #fff;
+  border-color: var(--accent-strong);
 }
 .btn-primary:hover:not(:disabled) {
   background-color: var(--color-accent);
@@ -876,17 +815,6 @@ html[data-theme="light"] .score-circle {
 .btn-primary:active:not(:disabled) {
   transform: translateY(0);
 }
-html[data-theme="light"] .btn-primary {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  border-color: var(--color-primary);
-}
-html[data-theme="light"] .btn-primary:hover:not(:disabled) {
-  background-color: var(--color-primary-light);
-  border-color: var(--color-primary-light);
-  box-shadow: 0 0 12px var(--color-primary-glow);
-}
-
 .btn-secondary {
   background-color: transparent;
   color: var(--text-primary);
@@ -935,7 +863,8 @@ html[data-theme="light"] .btn-primary:hover:not(:disabled) {
 .bottom-controls {
   min-height: 64px;
   border-top: 1px solid var(--border-color);
-  background: var(--bg-secondary);
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -967,10 +896,6 @@ html[data-theme="light"] .btn-primary:hover:not(:disabled) {
   background-color: var(--color-accent-dark);
   transform: scale(1.2);
 }
-html[data-theme="light"] .dot.active-dot {
-  background-color: var(--color-primary-light);
-}
-
 /* Modals & Guides */
 .modal-backdrop {
   position: fixed;
@@ -1064,11 +989,66 @@ html[data-theme="light"] .dot.active-dot {
 /* Responsive Rules */
 @media (max-width: 1100px) {
   .workspace-grid {
-    grid-template-columns: 1fr; /* Collapse sidebar on medium/small viewports */
+    grid-template-columns: 1fr;
   }
+
+  .course-sidebar-toggle {
+    display: inline-flex;
+  }
+
   .steps-sidebar {
-    display: none;
+    position: fixed;
+    top: 64px;
+    bottom: 64px;
+    left: 0;
+    z-index: 250;
+    width: min(320px, 88vw);
+    display: flex;
+    box-shadow: 18px 0 44px var(--shadow-color);
+    transform: translateX(-103%);
+    transition: transform var(--transition-normal);
   }
+
+  .course-sidebar-header {
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .course-sidebar-header .sidebar-title {
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .course-sidebar-close {
+    display: inline-flex;
+  }
+
+  .course-sidebar-overlay {
+    position: fixed;
+    inset: 64px 0;
+    z-index: 240;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.52);
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    pointer-events: none;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
+  }
+
+  .course-sidebar-open .steps-sidebar {
+    transform: translateX(0);
+  }
+
+  .course-sidebar-open .course-sidebar-overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
   .split-layout {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -1295,16 +1275,16 @@ html[data-theme="light"] .dot.active-dot {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(18, 18, 29, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--nav-bg);
+  border: 1px solid var(--border-color);
   padding: 10px 18px;
   border-radius: 30px;
   backdrop-filter: blur(8px);
-  color: #ffffff;
+  color: var(--text-primary);
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 500;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px var(--shadow-color);
   pointer-events: none;
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
   z-index: 100;
@@ -1349,22 +1329,6 @@ html[data-theme="light"] .dot.active-dot {
   100% { top: 12px; opacity: 0; }
 }
 
-/* Floating Scroll Indicator - Light Mode Overrides */
-html[data-theme="light"] .scroll-prompt {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #1a1a2e;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-html[data-theme="light"] .prompt-mouse {
-  border-color: var(--color-primary);
-}
-
-html[data-theme="light"] .prompt-wheel {
-  background-color: var(--color-primary);
-}
-
 /* Balance title, widgets, quizzes, and slide presentations */
 .slide-content.title-layout,
 .slide-content.quiz-layout,
@@ -1393,12 +1357,8 @@ html[data-theme="light"] .prompt-wheel {
   justify-content: center;
   padding: 24px;
   border-radius: var(--border-radius);
-  background: rgba(8, 12, 20, 0.96);
+  background: color-mix(in srgb, var(--bg-primary) 96%, transparent);
   text-align: center;
-}
-
-html[data-theme="light"] .quiz-lock-overlay {
-  background: rgba(241, 245, 249, 0.97);
 }
 
 .quiz-lock-card {
@@ -1838,6 +1798,14 @@ html[data-theme="light"] .quiz-lock-overlay {
     min-height: 60px;
     padding: 0 10px;
     gap: 8px;
+  }
+
+  .steps-sidebar {
+    top: 60px;
+  }
+
+  .course-sidebar-overlay {
+    top: 60px;
   }
 
   .portal-back-btn,

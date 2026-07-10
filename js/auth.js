@@ -217,7 +217,12 @@ auth.onAuthStateChanged(async (user) => {
     }
 
     if (typeof loadUserProgress === 'function' && document.getElementById('progressContent')) {
-      loadUserProgress(user.uid);
+      try {
+        await loadUserProgress(user.uid);
+      } catch (error) {
+        console.error('Unable to load progress page data:', error);
+        showToast('Your progress could not be loaded. Please refresh and try again.', 'error');
+      }
     }
 
     if (typeof checkAdminAccess === 'function') {
@@ -225,7 +230,15 @@ auth.onAuthStateChanged(async (user) => {
     }
 
     if (typeof onAuthGateChanged === 'function') {
-      onAuthGateChanged(user, window.isUserApproved);
+      try {
+        await Promise.resolve(onAuthGateChanged(user, window.isUserApproved));
+      } catch (error) {
+        console.error('Unable to update protected course state:', error);
+      }
+    }
+
+    if (!document.getElementById('adminContent') && typeof markPageReady === 'function') {
+      markPageReady();
     }
   } else {
     window.isUserSignedIn = false;
@@ -245,7 +258,15 @@ auth.onAuthStateChanged(async (user) => {
     }
 
     if (typeof onAuthGateChanged === 'function') {
-      onAuthGateChanged(null, false);
+      try {
+        await Promise.resolve(onAuthGateChanged(null, false));
+      } catch (error) {
+        console.error('Unable to update protected course state:', error);
+      }
+    }
+
+    if (!document.getElementById('adminContent') && typeof markPageReady === 'function') {
+      markPageReady();
     }
   }
 });

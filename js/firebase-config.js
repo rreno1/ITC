@@ -16,7 +16,6 @@ if (!firebase.apps.length) {
 }
 const auth = firebase.auth();
 const db = firebase.firestore();
-const THEME_STORAGE_KEY = 'cc101-theme';
 
 // Admin emails (array for multi-admin support)
 const ADMIN_EMAILS = ['rrenomeronjr@gmail.com'];

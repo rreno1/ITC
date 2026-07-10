@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" class="page-loading">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101417">
   <title>CC 101 - Internet Part 1: Networking & IP Addressing</title>
   <meta name="description" content="Introduction to Computing: Clients, servers, routers, IP addressing (IPv4/IPv6), DHCP, and the Physical Layer.">
+  <link rel="stylesheet" href="../styles/theme.css?v=20260711">
   <link rel="stylesheet" href="../styles/course.css?v=20260711">
 </head>
 <body class="course-protected">
+  <div class="page-loader" id="pageLoader" role="status" aria-live="polite" aria-busy="true">
+    <span class="page-loader-spinner" aria-hidden="true"></span>
+    <p>Loading course module...</p>
+  </div>
 <!-- App Shell -->
   <div class="app-container">
     
@@ -15,6 +21,7 @@
     <header class="top-navbar">
       <div class="nav-left">
         <a href="../index.html" class="portal-back-btn" title="Back to Portal" aria-label="Back to course portal">&larr;</a>
+        <button class="mobile-menu-toggle course-sidebar-toggle" id="courseSidebarToggle" type="button" aria-label="Open lesson outline" aria-controls="courseSidebar" aria-expanded="false"><span></span><span></span></button>
         <span class="badge">CC 101</span>
         <span class="nav-title">Internet Part 1: Networking & IP</span>
       </div>
@@ -29,10 +36,7 @@
 
       <div class="nav-right">
         <!-- Theme Toggle -->
-        <button id="themeToggle" class="icon-btn" aria-label="Toggle Theme" title="Toggle Theme (T)">
-          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-        </button>
+        <button id="themeToggle" class="theme-toggle" type="button" data-theme-toggle><span class="theme-toggle-icon" aria-hidden="true">&#9728;</span></button>
         <!-- Keyboard Shortcuts Help -->
         <button id="helpToggle" class="icon-btn" aria-label="Keyboard Shortcuts Help" title="Keyboard Shortcuts (H)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
@@ -44,12 +48,16 @@
     <div class="workspace-grid">
       
       <!-- Left Steps Progress Checklist Sidebar -->
-      <aside class="steps-sidebar">
-        <div class="sidebar-title">Lecture Outline</div>
+      <aside class="steps-sidebar" id="courseSidebar" aria-label="Course lessons">
+        <div class="course-sidebar-header">
+          <div class="sidebar-title">Lecture Outline</div>
+          <button class="course-sidebar-close" id="courseSidebarClose" type="button" aria-label="Close lesson outline">&times;</button>
+        </div>
         <ul class="sidebar-checklist" id="sidebarChecklist">
           <!-- Populated dynamically via JS -->
         </ul>
       </aside>
+      <button class="course-sidebar-overlay" id="courseSidebarOverlay" type="button" aria-label="Close lesson outline"></button>
 
       <!-- Right Presentation Viewport -->
       <main class="presentation-viewport">
@@ -586,6 +594,9 @@
   </div>
 
   <!-- Portal Integration -->
+  <script defer src="../js/theme.js?v=20260711"></script>
+  <script defer src="../js/loading.js?v=20260711"></script>
+  <script defer src="../js/navigation.js?v=20260711"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>

@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" class="page-loading">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CC 101 Admin Panel — Teacher Dashboard</title>
   <meta name="theme-color" content="#101417">
+  <link rel="stylesheet" href="styles/theme.css?v=20260711">
   <link rel="stylesheet" href="styles/main.css?v=20260711">
 </head>
 <body class="admin-body">
+  <div class="page-loader" id="pageLoader" role="status" aria-live="polite" aria-busy="true">
+    <span class="page-loader-spinner" aria-hidden="true"></span>
+    <p>Loading the admin dashboard...</p>
+  </div>
   <!-- ACCESS DENIED WRAPPER -->
   <div class="denied-container" id="accessDenied">
     <div class="denied-card">
@@ -30,6 +35,9 @@
           <span class="nav-logo" aria-hidden="true">🎓</span>
           <span class="sb-brand-title">CC 101</span>
           <span class="sb-badge">Admin</span>
+          <button class="mobile-menu-toggle" type="button" aria-label="Toggle admin navigation" aria-controls="adminNav" aria-expanded="false">
+            <span></span><span></span>
+          </button>
         </div>
 
         <!-- User -->
@@ -39,7 +47,7 @@
         </div>
 
         <!-- Navigation -->
-        <nav class="sb-nav">
+        <nav class="sb-nav" id="adminNav">
           <button type="button" class="sb-nav-item active" data-tab="overview">
             <span class="sb-nav-icon">&#128202;</span>
             <span>Overview &amp; Stats</span>
@@ -69,7 +77,9 @@
       </div>
 
       <div class="sidebar-bottom">
-        <button class="sb-theme-btn" id="themeToggle" aria-label="Toggle color theme">Toggle theme</button>
+        <button class="theme-toggle" id="themeToggle" type="button" data-theme-toggle>
+          <span class="theme-toggle-icon" aria-hidden="true">☀</span>
+        </button>
       </div>
     </aside>
 
@@ -218,6 +228,7 @@
             </tbody>
           </table>
         </div>
+        <nav class="table-pagination" id="gradesPagination" aria-label="Gradebook pages" hidden></nav>
       </div>
 
       <!-- PANEL 4: ATTENDANCE -->
@@ -272,6 +283,7 @@
             </tbody>
           </table>
         </div>
+        <nav class="table-pagination" id="attendancePagination" aria-label="Attendance pages" hidden></nav>
       </div>
 
       <!-- PANEL 5: ACCOUNTS -->
@@ -309,6 +321,7 @@
             </tbody>
           </table>
         </div>
+        <nav class="table-pagination" id="accountsPagination" aria-label="Account pages" hidden></nav>
       </div>
 
     </section>
@@ -378,6 +391,9 @@
   </div>
 
   <!-- Firebase Legacy SDKs -->
+  <script defer src="js/theme.js?v=20260711"></script>
+  <script defer src="js/loading.js?v=20260711"></script>
+  <script defer src="js/navigation.js?v=20260711"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>

@@ -210,7 +210,6 @@ let isTCPSimulating = false;
 // Initialize on Load
 document.addEventListener("DOMContentLoaded", () => {
     setupNavigation();
-    setupTheme();
     setupKeyboardShortcuts();
     resetQuiz();
     if (typeof initOneTimeQuizGate === 'function') {
@@ -265,6 +264,9 @@ function populateSidebar() {
         const li = document.createElement("li");
         li.className = `sidebar-item ${slideNum === currentSlide ? 'active' : ''} ${slideNum < currentSlide ? 'completed' : ''}`;
         li.setAttribute("data-target", slideNum);
+        li.setAttribute("role", "button");
+        li.setAttribute("tabindex", "0");
+        if (slideNum === currentSlide) li.setAttribute("aria-current", "step");
         
         const dot = document.createElement("span");
         dot.className = "step-indicator-dot";
@@ -325,6 +327,8 @@ function goToSlide(slideNum) {
         const itemNum = idx + 1;
         item.classList.toggle("active", itemNum === currentSlide);
         item.classList.toggle("completed", itemNum < currentSlide);
+        if (itemNum === currentSlide) item.setAttribute("aria-current", "step");
+        else item.removeAttribute("aria-current");
     });
 
     // Update dots indicator
@@ -368,25 +372,6 @@ function updateProgress() {
     if (progressBar) {
         const percentage = ((currentSlide - 1) / (totalSlides - 1)) * 100;
         progressBar.style.width = `${percentage}%`;
-    }
-}
-
-// Theme System Control (Dark / Light)
-function setupTheme() {
-    const themeToggle = document.getElementById("themeToggle");
-    const htmlEl = document.documentElement;
-
-    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || "dark";
-    htmlEl.setAttribute("data-theme", savedTheme);
-
-    if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-            const currentTheme = htmlEl.getAttribute("data-theme");
-            const newTheme = currentTheme === "dark" ? "light" : "dark";
-            htmlEl.setAttribute("data-theme", newTheme);
-            localStorage.setItem(THEME_STORAGE_KEY, newTheme);
-            setTimeout(updateScrollPrompt, 50); // Color updates
-        });
     }
 }
 

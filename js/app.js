@@ -1,29 +1,5 @@
 // Shared portal behavior for Home and My Progress.
 
-function initTheme() {
-  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY)
-    || localStorage.getItem('itc-portal-theme')
-    || localStorage.getItem('itc-theme')
-    || 'dark';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeToggleBtn(savedTheme);
-}
-
-function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem(THEME_STORAGE_KEY, newTheme);
-  updateThemeToggleBtn(newTheme);
-}
-
-function updateThemeToggleBtn(theme) {
-  const button = document.getElementById('themeToggle');
-  if (!button) return;
-  button.textContent = theme === 'dark' ? '☀' : '☾';
-  button.title = theme === 'dark' ? 'Use light theme' : 'Use dark theme';
-}
-
 function renderModuleCards() {
   const grid = document.getElementById('moduleGrid');
   if (!grid) return;
@@ -89,9 +65,7 @@ function renderModuleCards() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initTheme();
   renderModuleCards();
-  document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
 
   document.querySelector('.hero-content .btn-primary')?.addEventListener('click', event => {
     const modulesSection = document.getElementById('modules');

@@ -2514,9 +2514,13 @@ a {
     justify-content: stretch;
   }
 
-  #adminSidebar .sidebar-top {
+  #adminSidebar .sidebar-top,
+  .admin-nav-drawer .sidebar-top {
     min-height: 0;
     display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .sb-nav {
@@ -2568,17 +2572,23 @@ a {
     margin-left: auto;
   }
 
-  #adminSidebar .sidebar-bottom {
+  #adminSidebar .sidebar-bottom,
+  .admin-nav-drawer .sidebar-bottom {
+    display: flex;
+    flex-direction: column;
     margin-top: auto;
     gap: 9px;
     padding: 14px 2px 0;
+    border-top: 1px solid var(--card-border);
   }
 
-  #adminSidebar .theme-toggle {
+  #adminSidebar .theme-toggle,
+  .admin-nav-drawer .theme-toggle {
     align-self: flex-start;
   }
 
-  #adminSidebar .sb-user {
+  #adminSidebar .sb-user,
+  .admin-nav-drawer .sb-user {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
@@ -2586,7 +2596,8 @@ a {
     padding: 10px;
   }
 
-  #adminSidebar .sb-user-name {
+  #adminSidebar .sb-user-name,
+  .admin-nav-drawer .sb-user-name {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -395,12 +395,18 @@ function loadAdminDashboard() {
   };
 
   const usersUnsubscribe = db.collection('users').onSnapshot(snapshot => {
-    adminUserDocsCache = snapshot.docs;
+    adminUserDocsCache = snapshot.docs.filter(doc => (
+      doc.id !== COURSE_MODULE_SETTINGS_DOC_ID && doc.data().documentType !== 'courseSettings'
+    ));
     adminUsersReady = true;
     if (groupedQuizListenerAvailable) scheduleAdminDashboardRender();
     else {
       const changedDocs = snapshot.docChanges()
-        .filter(change => change.type !== 'removed')
+        .filter(change => (
+          change.type !== 'removed'
+          && change.doc.id !== COURSE_MODULE_SETTINGS_DOC_ID
+          && change.doc.data().documentType !== 'courseSettings'
+        ))
         .map(change => change.doc);
       refreshQuizResultsFallback(changedDocs);
     }

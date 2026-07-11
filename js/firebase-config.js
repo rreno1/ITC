@@ -93,7 +93,7 @@ const MODULES = [
   {
     id: 'internet-part-1',
     title: 'Internet Part 1',
-    subtitle: 'Networks & Packet Delivery',
+    subtitle: 'NETWORKS & PACKET DELIVERY',
     description: 'Explore how devices connect through local networks and Internet service providers. Learn how IP addresses, routers, packets, TCP, UDP, DHCP, and NAT allow data to travel between computers.',
     objectives: ['Distinguish the Internet from the Web and identify network devices.', 'Explain addressing, configuration, packet switching, routing, and the TCP/IP model.', 'Compare TCP and UDP and interpret common network-performance measures.'],
     icon: '🌐',
@@ -106,7 +106,7 @@ const MODULES = [
   {
     id: 'internet-part-2',
     title: 'Internet Part 2',
-    subtitle: 'DNS, Web & Internet Security',
+    subtitle: 'DNS, WEB & INTERNET SECURITY',
     description: 'Follow the complete journey of a webpage—from entering a URL and resolving DNS to establishing secure connections, exchanging HTTP messages, rendering content, and troubleshooting common Internet problems.',
     objectives: ['Trace the complete journey from entering a URL to rendering a webpage.', 'Interpret DNS, HTTP, HTTPS, cookies, caching, certificates, and hosting services.', 'Recognize online threats and diagnose basic connectivity and DNS problems.'],
     icon: '📡',
@@ -222,7 +222,9 @@ const MODULES = [
   }
 ];
 
-const COURSE_MODULE_SETTINGS_PATH = ['settings', 'courseModules'];
+// Stored under /users because the published project rules grant signed-in reads
+// and administrator writes only within that established collection.
+const COURSE_MODULE_SETTINGS_DOC_ID = '__course_settings__';
 let moduleAvailabilityState = Object.fromEntries(MODULES.map(module => [module.id, module.status === 'available']));
 let moduleAvailabilityRequest = null;
 
@@ -252,7 +254,7 @@ function publishModuleAvailability(availability = {}) {
 function loadModuleAvailability(force = false) {
   if (moduleAvailabilityRequest && !force) return moduleAvailabilityRequest;
 
-  const settingsRef = db.collection(COURSE_MODULE_SETTINGS_PATH[0]).doc(COURSE_MODULE_SETTINGS_PATH[1]);
+  const settingsRef = db.collection('users').doc(COURSE_MODULE_SETTINGS_DOC_ID);
   moduleAvailabilityRequest = settingsRef.get()
     .then(snapshot => publishModuleAvailability(snapshot.exists ? snapshot.data().availability : {}))
     .catch(error => {
@@ -269,7 +271,7 @@ async function setModuleOpen(moduleId, open) {
   if (!module || module.status !== 'available') throw new Error('Unknown course module.');
   if (!isAdmin) throw new Error('Only an administrator can change module availability.');
 
-  const settingsRef = db.collection(COURSE_MODULE_SETTINGS_PATH[0]).doc(COURSE_MODULE_SETTINGS_PATH[1]);
+  const settingsRef = db.collection('users').doc(COURSE_MODULE_SETTINGS_DOC_ID);
   const availability = await db.runTransaction(async transaction => {
     const snapshot = await transaction.get(settingsRef);
     const current = snapshot.exists && snapshot.data().availability
@@ -277,6 +279,7 @@ async function setModuleOpen(moduleId, open) {
       : {};
     const next = { ...current, [moduleId]: Boolean(open) };
     transaction.set(settingsRef, {
+      documentType: 'courseSettings',
       availability: next,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
       updatedBy: user.uid

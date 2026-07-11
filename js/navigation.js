@@ -17,6 +17,15 @@
     const overlay = document.querySelector(`[data-mobile-overlay-for="${menuId}"]`);
     const closeButton = menu.querySelector('[data-mobile-menu-close]');
     const isMobile = () => window.innerWidth <= MOBILE_NAV_BREAKPOINT;
+    const originalParent = menu.parentNode;
+    const originalNextSibling = menu.nextSibling;
+    const mountMenuForViewport = () => {
+      if (isMobile() && menu.parentNode !== document.body) {
+        document.body.appendChild(menu);
+      } else if (!isMobile() && menu.parentNode !== originalParent) {
+        originalParent.insertBefore(menu, originalNextSibling);
+      }
+    };
     const backgroundTargets = () => [
       document.getElementById('adminMainPanel'),
       document.querySelector('main'),
@@ -103,15 +112,20 @@
     window.addEventListener('resize', () => {
       if (!isMobile()) {
         setOpen(false);
+        mountMenuForViewport();
         menu.removeAttribute('aria-hidden');
         menu.inert = false;
         backgroundTargets().forEach(element => { element.inert = false; });
-      } else if (!menu.classList.contains('menu-open')) {
-        menu.setAttribute('aria-hidden', 'true');
-        menu.inert = true;
+      } else {
+        mountMenuForViewport();
+        if (!menu.classList.contains('menu-open')) {
+          menu.setAttribute('aria-hidden', 'true');
+          menu.inert = true;
+        }
       }
     });
 
+    mountMenuForViewport();
     if (isMobile()) {
       menu.setAttribute('aria-hidden', 'true');
       menu.inert = true;

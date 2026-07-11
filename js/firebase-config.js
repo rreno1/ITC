@@ -93,7 +93,7 @@ const MODULES = [
   {
     id: 'internet-part-1',
     title: 'Internet Part 1',
-    subtitle: 'Networks & Packet Delivery',
+    subtitle: 'NETWORKS & PACKET DELIVERY',
     description: 'Explore how devices connect through local networks and Internet service providers. Learn how IP addresses, routers, packets, TCP, UDP, DHCP, and NAT allow data to travel between computers.',
     objectives: ['Distinguish the Internet from the Web and identify network devices.', 'Explain addressing, configuration, packet switching, routing, and the TCP/IP model.', 'Compare TCP and UDP and interpret common network-performance measures.'],
     icon: '🌐',
@@ -106,7 +106,7 @@ const MODULES = [
   {
     id: 'internet-part-2',
     title: 'Internet Part 2',
-    subtitle: 'DNS, Web & Internet Security',
+    subtitle: 'DNS, WEB & INTERNET SECURITY',
     description: 'Follow the complete journey of a webpage—from entering a URL and resolving DNS to establishing secure connections, exchanging HTTP messages, rendering content, and troubleshooting common Internet problems.',
     objectives: ['Trace the complete journey from entering a URL to rendering a webpage.', 'Interpret DNS, HTTP, HTTPS, cookies, caching, certificates, and hosting services.', 'Recognize online threats and diagnose basic connectivity and DNS problems.'],
     icon: '📡',
@@ -225,6 +225,7 @@ const MODULES = [
 // Stored under /users because the published project rules grant signed-in reads
 // and administrator writes only within that established collection.
 const COURSE_MODULE_SETTINGS_DOC_ID = '__course_settings__';
+const COURSE_MODULE_SETTINGS_FIELD = 'courseModuleSettings';
 let moduleAvailabilityState = Object.fromEntries(MODULES.map(module => [module.id, module.status === 'available']));
 let moduleAvailabilityRequest = null;
 
@@ -251,12 +252,43 @@ function publishModuleAvailability(availability = {}) {
   return window.moduleAvailability;
 }
 
+function readAvailabilityFromProfile(profile = {}) {
+  const settings = profile[COURSE_MODULE_SETTINGS_FIELD];
+  return settings && settings.availability && typeof settings.availability === 'object'
+    ? settings.availability
+    : null;
+}
+
+async function findSavedModuleAvailability() {
+  const user = auth.currentUser;
+  if (user && ADMIN_EMAILS.includes(user.email)) {
+    const ownProfile = await db.collection('users').doc(user.uid).get();
+    const ownAvailability = ownProfile.exists
+      ? readAvailabilityFromProfile(ownProfile.data())
+      : null;
+    if (ownAvailability) return ownAvailability;
+  }
+
+  const adminProfiles = await Promise.all(ADMIN_EMAILS.map(email => (
+    db.collection('users').where('email', '==', email.toLowerCase()).limit(5).get()
+  )));
+  for (const snapshot of adminProfiles) {
+    for (const profile of snapshot.docs) {
+      const availability = readAvailabilityFromProfile(profile.data());
+      if (availability) return availability;
+    }
+  }
+
+  // Read the previous location once so any successfully saved state is retained.
+  const legacySettings = await db.collection('users').doc(COURSE_MODULE_SETTINGS_DOC_ID).get();
+  return legacySettings.exists ? legacySettings.data().availability : {};
+}
+
 function loadModuleAvailability(force = false) {
   if (moduleAvailabilityRequest && !force) return moduleAvailabilityRequest;
 
-  const settingsRef = db.collection('users').doc(COURSE_MODULE_SETTINGS_DOC_ID);
-  moduleAvailabilityRequest = settingsRef.get()
-    .then(snapshot => publishModuleAvailability(snapshot.exists ? snapshot.data().availability : {}))
+  moduleAvailabilityRequest = findSavedModuleAvailability()
+    .then(availability => publishModuleAvailability(availability))
     .catch(error => {
       console.warn('Unable to load course module availability; using default access.', error);
       return publishModuleAvailability({});
@@ -271,18 +303,21 @@ async function setModuleOpen(moduleId, open) {
   if (!module || module.status !== 'available') throw new Error('Unknown course module.');
   if (!isAdmin) throw new Error('Only an administrator can change module availability.');
 
-  const settingsRef = db.collection('users').doc(COURSE_MODULE_SETTINGS_DOC_ID);
+  // Saving in the admin's own profile is permitted by the existing user rule
+  // even when the deployed rules do not allow a separate settings document.
+  const settingsRef = db.collection('users').doc(user.uid);
   const availability = await db.runTransaction(async transaction => {
     const snapshot = await transaction.get(settingsRef);
-    const current = snapshot.exists && snapshot.data().availability
-      ? snapshot.data().availability
-      : {};
+    const current = snapshot.exists
+      ? readAvailabilityFromProfile(snapshot.data())
+      : null;
     const next = { ...current, [moduleId]: Boolean(open) };
     transaction.set(settingsRef, {
-      documentType: 'courseSettings',
-      availability: next,
-      updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-      updatedBy: user.uid
+      [COURSE_MODULE_SETTINGS_FIELD]: {
+        availability: next,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        updatedBy: user.uid
+      }
     }, { merge: true });
     return next;
   });

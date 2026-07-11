@@ -106,11 +106,12 @@ service cloud.firestore {
   }
 }
 ```
-The portal stores module availability in the reserved document
-`users/__course_settings__`. The administrator can update it through the
-existing `isAdmin()` rule, while signed-in students can read the current module
-availability through the existing users collection read rule. The dashboard
-automatically excludes this reserved document from account and grade lists.
+The portal stores module availability in the `courseModuleSettings` field of
+the signed-in administrator's own user document. This uses the existing rule
+that lets every user update their own document, while signed-in students can
+read the setting through the existing users collection read rule. The reserved
+`users/__course_settings__` document is read only as a compatibility fallback
+for older saved settings.
 3. Click **Publish**
 
 ---

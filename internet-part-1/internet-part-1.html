@@ -69,7 +69,7 @@
               <span class="sub-category">CC 101 - INTRODUCTION TO COMPUTING</span>
               <h1>Internet Part 1: Networks & Packet Delivery</h1>
               <div class="accent-line"></div>
-              <p class="hero-desc">How devices connect and data travels through physical links, local networks, ISPs, routers, and the practical four-layer TCP/IP model.</p>
+              <p class="hero-desc"><strong>How Devices Connect and Data Travels.</strong> Follow data through physical links, local networks, ISPs, routers, and the practical four-layer TCP/IP model.</p>
             </div>
             
             <div class="welcome-grid">
@@ -103,339 +103,20 @@
           </div>
         </section>
 
-        <!-- SLIDE 2: CLIENTS, SERVERS, AND ROUTERS -->
-        <section class="slide" id="slide-2">
-          <div class="slide-content">
-            <div class="split-layout">
-              <div class="split-left">
-                <div class="section-title">
-                  <span class="slide-num">02</span>
-                  <span class="badge-label ohs-bg">Nodes</span>
-                  <h2>Internet Fundamentals & Network Devices</h2>
-                </div>
-                <p class="lead-text">Computers on a network occupy specific functional roles to request, distribute, and coordinate raw data packets.</p>
-                
-                <div class="icon-list-item">
-                  <div class="list-dot ohs-bg">✓</div>
-                  <div>
-                    <strong>Clients:</strong> The devices we use to request files (smartphones, laptops running web browsers).
-                  </div>
-                </div>
-                <div class="icon-list-item">
-                  <div class="list-dot ohs-bg">✓</div>
-                  <div>
-                    <strong>Servers:</strong> Powerful remote computers that store web files, processing requests and returning answers.
-                  </div>
-                </div>
-                <div class="icon-list-item">
-                  <div class="list-dot ohs-bg">✓</div>
-                  <div>
-                    <strong>Routers:</strong> Traffic coordinators. They check target addresses and direct packets along the fastest pathways.
-                  </div>
-                </div>
-              </div>
-              
-              <div class="split-right centering">
-                <div class="illustration-container glass-card">
-                  <img loading="lazy" decoding="async" draggable="false" src="assets/esd_wrist_strap.jpg" alt="Client server connection nodes" class="fill-img">
-                  <div class="caption">Network client connections require grounded connection links.</div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="article-divider"></div>
-            
-            <article class="slide-article-body">
-              <h3>Detailed Lecture Notes</h3>
-              <p>The internet operates as a distributed network of client and server machines. Clients represent the endpoint devices, like laptops or smartphones, that request web files. Servers are powerful remote host systems that store databases and serve requests. When you open a browser, it issues a request to a server node. The server coordinates the response by sending back files containing layout data.</p>
-              <p>Connecting these endpoints together is a complex grid of routing devices. Routers act as traffic coordinators that guide packets to their destination addresses. They inspect the destination header of each incoming packet of information. Using path routing tables, they direct the data along the fastest path. Without these network routers, data packets would get lost in transit.</p>
-              <p>The client-server relationship is structured around standard software request cycles. A user initiates a transaction by clicking a web link icon. The request travels through local routers out to the wider web. The host server receives the transaction details and replies with information. Understanding this structural division is essential for troubleshooting web connectivity errors.</p>
-              <p>A simple analogy is ordering a package from a large online retail warehouse. You are the client requesting an item using your web browser catalog. The retail warehouse is the server hosting the items and dispatching deliveries. The mail carrier delivery trucks acting as path finders represent network routers. They inspect the address labels to drive packets along optimal highway routes.</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- SLIDE 3: IP ADDRESSING -->
-        <section class="slide" id="slide-3">
-          <div class="slide-content">
-            <div class="split-layout">
-              <div class="split-left">
-                <div class="section-title">
-                  <span class="slide-num">03</span>
-                  <span class="badge-label tools-bg">Addressing</span>
-                  <h2>MAC, IPv4, IPv6 & Network Prefixes</h2>
-                </div>
-                <p class="lead-text">An <strong>IP (Internet Protocol) Address</strong> is a unique numerical label assigned to every device on a network so packets know where to go.</p>
-                
-                <div class="icon-list-item">
-                  <div class="list-dot tools-bg">1</div>
-                  <div>
-                    <strong>IPv4 Standard:</strong> 32-bit addresses written in dotted-decimal format (e.g. <code>192.168.1.1</code>).
-                  </div>
-                </div>
-                <div class="icon-list-item">
-                  <div class="list-dot tools-bg">2</div>
-                  <div>
-                    <strong>Four Octets:</strong> Four numbers separated by dots. Each number is 8 bits (range from 0 to 255).
-                  </div>
-                </div>
-                <div class="icon-list-item">
-                  <div class="list-dot tools-bg">3</div>
-                  <div>
-                    <strong>Network vs Host:</strong> The IP designates both the local network path and the specific device interface (host node).
-                  </div>
-                </div>
-              </div>
-              
-              <div class="split-right centering">
-                <div class="illustration-container glass-card">
-                  <img loading="lazy" decoding="async" draggable="false" src="assets/text_encoding.jpg" alt="IP Addressing octets structure" class="fill-img">
-                  <div class="caption">Octet formatting divides address fields for precise packet delivery routing.</div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="article-divider"></div>
-            
-            <article class="slide-article-body">
-              <h3>Detailed Lecture Notes</h3>
-              <p>Every device connected to the internet must have a unique identifier. This identifier is called an IP address, representing the Internet Protocol. IP addresses act like mailing addresses, ensuring information reaches correct hosts. The most common standard is IPv4, composed of thirty-two bits. These addresses are formatted as four numeric octets separated by dots.</p>
-              <p>An octet represents an eight-bit block holding a range from 0-255. An example of an IPv4 address is one hundred ninety-two dot one. This format is easily read by humans but processed as binary. Each IP address is divided into network and host identification portions. Subnet masks specify where the network section ends and hosts begin.</p>
-              <p>If two computers share the exact same IP, address conflicts occur. This collision causes both hosts to lose connection to the network. Standard public addresses are registered and assigned by global naming authorities. Local network routers manage private namespaces to prevent these conflicts. Understanding IP formatting is the baseline of modern network configuration steps.</p>
-              <p>Think of an IP address as a standard telephone number with area codes. The area code designates the city network, while local digits identify the phone. For example, the network portion of the IP groups devices in the same office. The host portion identifies your specific laptop connected to that router. Without these unique numbers, you could not dial and connect to other hosts.</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- SLIDE 4: THE TRANSITION TO IPV6 -->
-        <section class="slide" id="slide-4">
-          <div class="slide-content">
-            <div class="split-layout">
-              <div class="split-left">
-                <div class="section-title">
-                  <span class="slide-num">04</span>
-                  <span class="badge-label path-bg">Exhaustion</span>
-                  <h2>Packet Switching & the TCP/IP Model</h2>
-                </div>
-                <p class="lead-text">IPv4 capacity is limited to 2<sup>32</sup> ~ **4.3 billion** addresses, which has been fully exhausted by global smartphone and IoT expansion.</p>
-                
-                <div class="icon-list-item">
-                  <div class="list-dot path-bg">1</div>
-                  <div>
-                    <strong>IPv6 Standard:</strong> A 128-bit address architecture providing 2<sup>128</sup> (undecillions) of unique address nodes.
-                  </div>
-                </div>
-                <div class="icon-list-item">
-                  <div class="list-dot path-bg">2</div>
-                  <div>
-                    <strong>Hexadecimal Format:</strong> Grouped into eight blocks separated by colons (e.g. <code>2001:db8::ff00:42:8329</code>).
-                  </div>
-                </div>
-                <div class="icon-list-item">
-                  <div class="list-dot path-bg">3</div>
-                  <div>
-                    <strong>Hex Digits:</strong> Uses numbers 0-9 and letters A-F. Eliminates the need for Network Address Translation.
-                  </div>
-                </div>
-              </div>
-              
-              <div class="split-right centering">
-                <div class="illustration-container glass-card">
-                  <img loading="lazy" decoding="async" draggable="false" src="https://commons.wikimedia.org/wiki/Special:FilePath/Network_cables_in_server_room.jpg?width=1280" alt="Network cables connected inside a server room" class="fill-img">
-                  <div class="caption">Physical network links carry packets between connected equipment. Photo: ProjectManhattan, CC BY-SA 3.0, via Wikimedia Commons.</div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="article-divider"></div>
-            
-            <article class="slide-article-body">
-              <h3>Detailed Lecture Notes</h3>
-              <p>IPv4 provides a theoretical maximum of four point three billion addresses. When the internet was designed, this capacity seemed more than sufficient. However, the explosion of smart devices led to IPv4 address exhaustion. Every smartphone, laptop, and smart appliance required its own unique link. This rapid growth forced the industry to develop a replacement standard.</p>
-              <p>The new standard is IPv6, which uses a 128-bit architecture. This massive increase provides octillions of unique address combination paths. Instead of decimal numbers, IPv6 is written in hexadecimal notation. Hexadecimal uses sixteen characters: digits zero through nine and letters A-F. This design ensures the world will not run out of addresses.</p>
-              <p>Transitioning the global internet to IPv6 is a long, gradual process. Many routers must run dual-stack configurations supporting both protocols concurrently. IPv6 also offers built-in security features and automated configuration routines. It eliminates the need for complex address translations on local routers. Studying IPv6 formats is critical for modern network engineers and administrators.</p>
-              <p>A good analogy is a rapidly expanding city running out of telephone numbers. To solve this, the city adds extra digits to every phone prefix number. For instance, IPv4 was like having a seven-digit phone system that filled up. IPv6 acts like a twenty-digit numbering system that will never run out of lines. This massive directory ensures every smart sensor on earth gets a unique identifier.</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- SLIDE 5: PUBLIC VS PRIVATE & DHCP -->
-        <section class="slide" id="slide-5">
-          <div class="slide-content">
-            <div class="split-layout">
-              <div class="split-left">
-                <div class="section-title">
-                  <span class="slide-num">05</span>
-                  <span class="badge-label ohs-bg">Protocols</span>
-                  <h2>Automatic Configuration: DHCP, NAT & Gateways</h2>
-                </div>
-                <p class="lead-text">How devices within local spaces connect securely without wasting globally registered addresses.</p>
-                
-                <div class="icon-list-item">
-                  <div class="list-dot ohs-bg">✓</div>
-                  <div>
-                    <strong>Private IPs:</strong> Addresses like <code>192.168.1.x</code>. Used internally. Routers translate these to a single public IP to route onto the web.
-                  </div>
-                </div>
-                <div class="icon-list-item">
-                  <div class="list-dot ohs-bg">✓</div>
-                  <div>
-                    <strong>DHCP Role:</strong> Dynamic Host Configuration Protocol. Automates address distribution by leasing IPs to client devices.
-                  </div>
-                </div>
-                <div class="icon-list-item">
-                  <div class="list-dot ohs-bg">✓</div>
-                  <div>
-                    <strong>DORA Cycle:</strong> The four-step handshaking exchange: **Discover** (client), **Offer** (server), **Request** (client), **Acknowledge** (server).
-                  </div>
-                </div>
-              </div>
-              
-              <div class="split-right centering">
-                <div class="illustration-container glass-card">
-                  <img loading="lazy" decoding="async" draggable="false" src="assets/pc_cables_disconnect.jpg" alt="DHCP configuration disconnects" class="fill-img">
-                  <div class="caption">DHCP lease expiration disconnects old clients to recycle inactive address pools.</div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="article-divider"></div>
-            
-            <article class="slide-article-body">
-              <h3>Detailed Lecture Notes</h3>
-              <p>IP addresses are divided into public and private scopes for routing. Public IP addresses are globally unique and accessible across the web. Private IP addresses are reserved for internal home or office networks. Local routers use Network Address Translation to link private addresses out. This division conserves public IPv4 addresses and enhances local system security.</p>
-              <p>DHCP stands for Dynamic Host Configuration Protocol, an automated system. Manually assigning IP addresses to every connected device is highly inefficient. Instead, a DHCP server leases temporary IP configurations to client machines. When you connect to Wi-Fi, your device automatically requests an IP. The router assigns a lease from a pre-configured local pool.</p>
-              <p>The DHCP lease process consists of four basic transaction exchange stages. These stages are Discover, Offer, Request, and Acknowledgment, forming DORA. A client broadcasts a discover message looking for available network leaseholders. The server responds with an offer containing a valid local address. Once acknowledged, the client binds the configuration until the lease expires.</p>
-              <p>Think of a private IP as an office extension number like extension four-one. You can call extensions inside the building, but outsiders cannot dial them directly. The main company telephone number represents the public IP routing traffic. DHCP acts like a hotel receptionist assigning room keys to checking-in guests. Once a guest checks out, the key IP is recycled for the next visitor.</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- SLIDE 6: THE PHYSICAL LAYER -->
-        <section class="slide" id="slide-6">
-          <div class="slide-content">
-            <div class="split-layout">
-              <div class="split-left">
-                <div class="section-title">
-                  <span class="slide-num">06</span>
-                  <span class="badge-label tools-bg">Physical Layer</span>
-                  <h2>Physical Internet Infrastructure</h2>
-                  <p class="lead-text">All logical binary packets must ultimately travel over physical mediums acting as electrical, optical, or wireless transceivers.</p>
-                </div>
-                
-                <div class="icon-list-item">
-                  <div class="list-dot tools-bg">✦</div>
-                  <div>
-                    <strong>Copper Cables (Ethernet):</strong> Uses electrical voltage pulses down copper twisted-pairs. Reliable, cheap, but limited to short distances.
-                  </div>
-                </div>
-                <div class="icon-list-item">
-                  <div class="list-dot tools-bg">✦</div>
-                  <div>
-                    <strong>Fiber-Optic Cables:</strong> Transmits binary as light flashes inside glass strands. Extreme speeds over massive distances.
-                  </div>
-                </div>
-                <div class="icon-list-item">
-                  <div class="list-dot tools-bg">✦</div>
-                  <div>
-                    <strong>Wireless Waves:</strong> Transmits using radio microwave bands. Wi-Fi links local scopes, while cellular 4G/5G links wider areas.
-                  </div>
-                </div>
-              </div>
-              
-              <div class="split-right centering">
-                <div class="illustration-container glass-card">
-                  <img loading="lazy" decoding="async" draggable="false" src="assets/connectivity.jpg" alt="Networking copper and optical fiber transceivers" class="fill-img">
-                  <div class="caption">Network routing ports manage physical links via optical fiber transceivers.</div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="article-divider"></div>
-            
-            <article class="slide-article-body">
-              <h3>Detailed Lecture Notes</h3>
-              <p>The physical layer represents the actual medium carrying data signals. All binary information must be converted into physical pulses for travel. These pulses can be electrical currents, light beams, or microwaves. The choice of physical medium determines the speed and range limit. Every network connection depends on these base transmission components.</p>
-              <p>Copper Ethernet cables transmit binary digits using varying electrical voltage states. They are cheap and reliable but limited to short distances. Fiber-optic cables transmit information as rapid pulses of laser light rays. These light signals travel down thin glass strands at incredible speeds. Fiber-optics form the high-speed backbone connecting continents across undersea trenches.</p>
-              <p>Wireless transmissions rely on radio frequency waves to send binary blocks. Cellular networks use tower arrays to transmit data over wide areas. Modern 5G links deliver massive bandwidth but have limited obstacle penetration. Each physical medium has distinct advantages in cost, speed, and deployment. Understanding these physical cables is essential for troubleshooting connection speed drops.</p>
-              <p>A simple analogy is sending messages using different physical transit channels. Copper Ethernet cables are like sending notes down metal tubes using electricity. Fiber-optic cables are like sending Morse code flashes down long glass pipes. Wireless Wi-Fi is like shouting words across a room using air wave vibrations. Each medium converts binary zeros and ones into physical pulses for travel.</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- SLIDE 7: INTERACTIVE DHCP SIMULATOR -->
-        <section class="slide" id="slide-7">
-          <div class="slide-content">
-            <div class="section-title text-center">
-              <span class="slide-num">07</span>
-              <span class="badge-label quiz-bg">Interactive Widget</span>
-              <h2>Laboratory: Join a Network with DHCP</h2>
-              <p>Step through the DORA network address negotiation process to obtain a private IP configuration</p>
-            </div>
-            
-            <div class="interactive-container">
-              <div class="dhcp-workspace" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; margin-top: 15px;">
-                <div class="dhcp-control-panel glass-card" style="padding: 20px; display: flex; flex-direction: column; gap: 15px; justify-content: center; align-items: center;">
-                  <button class="btn btn-primary" id="dhcp-action-btn" onclick="triggerDHCPStep()" style="font-size: 15px; padding: 12px 24px;">Start DHCP Discover</button>
-                  <div class="dhcp-state-monitor" style="text-align: center;">
-                    <div style="font-size: 12px; color: var(--text-secondary); text-transform: uppercase;">Connection State</div>
-                    <div id="dhcp-status-text" style="font-size: 20px; font-weight: 700; color: var(--text-primary);">Disconnected</div>
-                  </div>
-                  <div id="dhcp-lease-timer" class="hidden" style="font-size: 14px; color: var(--color-accent);">Lease Time remaining: <span id="dhcp-time-val">60</span>s</div>
-                </div>
-                
-                <div class="dhcp-packet-trace glass-card" style="padding: 20px; display: flex; flex-direction: column; gap: 12px; max-height: 280px; overflow-y: auto;">
-                  <div style="font-size: 13px; font-weight: bold; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">DORA Transaction Log</div>
-                  <div id="dhcp-log-box" style="display: flex; flex-direction: column; gap: 8px; font-family: monospace; font-size: 12px; color: var(--text-secondary);">
-                    <div style="color: var(--text-secondary);">System ready. Click button to broadcast DISCOVER packet.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SLIDE 8: INTERACTIVE IP CONVERTER -->
-        <section class="slide" id="slide-8">
-          <div class="slide-content">
-            <div class="section-title text-center">
-              <span class="slide-num">08</span>
-              <span class="badge-label quiz-bg">Interactive Widget</span>
-              <h2>Address, Port & Route Explorer</h2>
-              <p>Type any IPv4 address below to analyze its 32-bit structure, Class category, and routing routing scope</p>
-            </div>
-            
-            <div class="ascii-converter-widget" style="margin-top: 15px;">
-              <div class="ascii-input-col">
-                <label for="ip-address-input">IPv4 Address</label>
-                <input type="text" id="ip-address-input" value="192.168.1.50" style="width: 100%; padding: 14px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--border-radius); color: var(--text-primary); font-size: 16px; font-family: monospace; font-weight: bold;" oninput="processIPInput()">
-                
-                <div class="ip-meta-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px;">
-                  <div class="glass-card" style="padding: 12px; text-align: center;">
-                    <div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase;">IP Address Class</div>
-                    <div id="ip-class-val" style="font-size: 18px; font-weight: 700; color: var(--color-accent); margin-top: 4px;">Class C</div>
-                  </div>
-                  <div class="glass-card" style="padding: 12px; text-align: center;">
-                    <div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase;">Routing Scope</div>
-                    <div id="ip-scope-val" style="font-size: 18px; font-weight: 700; color: var(--color-accent); margin-top: 4px;">Private</div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="ascii-input-col">
-                <label>32-Bit Binary Representation</label>
-                <div class="binary-output-box" id="ip-binary-output" style="height: auto; font-size: 16px; letter-spacing: 1px; padding: 18px; text-align: center; font-weight: 700;">
-                  <!-- Loaded via JS -->
-                </div>
-                
-                <div class="ip-breakdown-explanation" id="ip-breakdown-desc" style="font-size: 13px; line-height: 1.5; color: var(--text-secondary); margin-top: 15px; padding: 10px; border-left: 3px solid var(--color-accent);">
-                  Class C networks support up to 254 unique host nodes per router interface.
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
+        <!-- SLIDE 2: CURRICULUM RENDER TARGET -->
+        <section class="slide" id="slide-2"><div class="slide-content" data-curriculum-render-target="2"></div></section>
+        <!-- SLIDE 3: CURRICULUM RENDER TARGET -->
+        <section class="slide" id="slide-3"><div class="slide-content" data-curriculum-render-target="3"></div></section>
+        <!-- SLIDE 4: CURRICULUM RENDER TARGET -->
+        <section class="slide" id="slide-4"><div class="slide-content" data-curriculum-render-target="4"></div></section>
+        <!-- SLIDE 5: CURRICULUM RENDER TARGET -->
+        <section class="slide" id="slide-5"><div class="slide-content" data-curriculum-render-target="5"></div></section>
+        <!-- SLIDE 6: CURRICULUM RENDER TARGET -->
+        <section class="slide" id="slide-6"><div class="slide-content" data-curriculum-render-target="6"></div></section>
+        <!-- SLIDE 7: CURRICULUM RENDER TARGET -->
+        <section class="slide" id="slide-7"><div class="slide-content" data-curriculum-render-target="7"></div></section>
+        <!-- SLIDE 8: CURRICULUM RENDER TARGET -->
+        <section class="slide" id="slide-8"><div class="slide-content" data-curriculum-render-target="8"></div></section>
         <!-- SLIDE 9: 15-ITEM QUIZ -->
         <section class="slide" id="slide-9" data-section="quiz">
           <div class="slide-content quiz-layout">
@@ -443,7 +124,7 @@
               <span class="slide-num">09</span>
               <span class="badge-label quiz-bg">Classroom Activity</span>
               <h2>Internet Part 1 Assessment</h2>
-              <p>Test your knowledge on clients, routers, IP formats, and DHCP leases. Answer these 15 questions.</p>
+              <p>Test your understanding of networks, infrastructure, packets, TCP/IP, addressing, routing, transport, and performance. Answer these 15 questions.</p>
             </div>
 
             <!-- Interactive Quiz Box -->
@@ -498,47 +179,8 @@
           </div>
         </section>
 
-        <!-- SLIDE 10: SUMMARY & REVIEW -->
-        <section class="slide" id="slide-10">
-          <div class="slide-content">
-            <div class="split-layout">
-              <div class="split-left">
-                <div class="section-title">
-                  <span class="slide-num">10</span>
-                  <span class="badge-label ohs-bg">Conclusion</span>
-                  <h2>Internet Part 1 Summary</h2>
-                </div>
-                
-                <ul class="slide-body-bullets">
-                  <li>The **Internet** is distributed infrastructure connecting networks; the **Web** is one service using it.</li>
-                  <li>NICs, switches, access points, routers, modems/ONTs, firewalls, ISPs, IXPs, and servers each have distinct roles.</li>
-                  <li>Data is divided into packets; the TCP/IP layers encapsulate and deliver it across possible routes.</li>
-                  <li>MAC, IPv4/IPv6, public/private addresses, prefixes, gateways, DHCP, and NAT solve different addressing tasks.</li>
-                  <li>Ports identify services; routing tables, next hops, TTL, autonomous systems, and BGP enable distributed routing.</li>
-                  <li>TCP and UDP serve different application needs; bandwidth, throughput, latency, jitter, loss, and congestion describe performance.</li>
-                </ul>
-              </div>
-              
-              <div class="split-right centering">
-                <div class="illustration-container glass-card">
-                  <img loading="lazy" decoding="async" draggable="false" src="assets/what_is_hardware.jpg" alt="Global networking summary" class="fill-img">
-                  <div class="caption">Review of connectivity nodes, IP directories, and physical routing layers.</div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="article-divider"></div>
-            
-            <article class="slide-article-body">
-              <h3>Detailed Lecture Notes</h3>
-              <p>Internet Part 1 established the core foundations of network data transit. We explored the client-server relationship and the routing of packets. Clients request web files, while servers store and distribute them. Routers guide these packets along path channels using target IPs. Every device needs a unique address to participate in this network.</p>
-              <p>IPv4 is the thirty-two bit standard separated into four numeric octets. IPv6 is the modern hexadecimal standard utilizing a 128-bit address. Public IP addresses route globally, while private addresses manage local spaces. DHCP automates configuration by dynamically leasing local IPs using DORA. The physical layer carries these binary pulses over copper, fiber, or air.</p>
-              <p>The practical TCP/IP model has four layers: application, transport, internet, and network access. TCP manages ordered reliable delivery; UDP provides connectionless datagrams with less overhead. Neither is universally “fast” or “slow”: applications choose according to reliability, timing, and latency needs.</p>
-              <p>A final analogy is to compare network infrastructure to a global shipping port. The shipping containers represent binary packets traveling across physical layers. The unique port registration codes correspond to IPv4 and IPv6 addresses. The automated dock managers leasing storage bays function like DHCP servers. Together, these layers connect local interfaces to the wider global internet.</p>
-            </article>
-          </div>
-        </section>
-
+        <!-- SLIDE 10: CURRICULUM REVIEW -->
+        <section class="slide" id="slide-10"><div class="slide-content" data-curriculum-render-target="10"></div></section>
       </main>
     </div>
 
@@ -600,7 +242,7 @@
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-  <script defer src="../js/firebase-config.js?v=20260712"></script>
+  <script defer src="../js/firebase-config.js?v=20260712-save2"></script>
   <script defer src="../js/course-shell.js?v=20260712"></script>
   <script defer src="../js/progress.js?v=20260712"></script>
   <script defer src="../js/auth.js?v=20260712"></script>

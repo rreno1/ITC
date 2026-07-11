@@ -508,6 +508,7 @@ function renderStudentTable(accounts) {
   tbody.innerHTML = '';
 
   const availableModules = MODULES.filter(m => m.status === 'available');
+  renderGradebookHeader(availableModules);
   const searchValue = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
   const rows = accounts
     .filter(account => !account.manual)
@@ -588,6 +589,28 @@ function renderStudentTable(accounts) {
   });
   tbody.appendChild(fragment);
   applyResponsiveTableLabels(tbody);
+}
+
+function renderGradebookHeader(availableModules = MODULES.filter(module => module.status === 'available')) {
+  const row = document.getElementById('gradebookHeaderRow');
+  const table = document.getElementById('gradebookTable');
+  if (!row) return;
+
+  const moduleHeaders = availableModules
+    .map(module => `<th class="numeric-column">${escapeHTML(module.title)}</th>`)
+    .join('');
+  row.innerHTML = `
+    <th class="row-number">#</th>
+    <th>Name</th>
+    <th>Role</th>
+    <th>Batch</th>
+    <th>Email</th>
+    ${moduleHeaders}
+    <th>Attendance</th>
+    <th>Last Active</th>
+    <th class="actions-column">Actions</th>
+  `;
+  if (table) table.style.minWidth = `${760 + (availableModules.length * 112)}px`;
 }
 
 function renderAttendanceTable(accounts) {
@@ -709,20 +732,44 @@ function calculateDashboardStats(approvedAccounts, pendingStudents) {
     });
   });
 
+  const possibleAssessments = approvedStudents.length * availableModules.length;
+  const completionPercent = possibleAssessments > 0
+    ? Math.round((quizCompletesCount / possibleAssessments) * 100)
+    : 0;
+  const scheduledStudents = approvedStudents.filter(student => {
+    const batch = getBatchConfig(student.batch);
+    return batch && batch.attendanceDay === new Date().getDay();
+  });
+  const presentToday = approvedStudents.filter(student => {
+    return student.attendance && student.attendance[todayKey] && student.attendance[todayKey].present;
+  }).length;
+  const attendancePercent = scheduledStudents.length > 0
+    ? Math.round((presentToday / scheduledStudents.length) * 100)
+    : 0;
+
   const statMap = {
     totalStudents: approvedStudents.length,
     pendingStatCount: pendingStudents.length,
     avgScore: quizCompletesCount > 0 ? `${Math.round(aggregatePercentages / quizCompletesCount)}%` : '-',
-    completionRate: approvedStudents.length > 0 ? `${Math.round((quizCompletesCount / (approvedStudents.length * availableModules.length)) * 100)}%` : '-',
+    completionRate: possibleAssessments > 0 ? `${completionPercent}%` : '-',
+    completionRateDetail: `${completionPercent}%`,
     batchAStudents: approvedStudents.filter(s => s.batch === 'A').length,
     batchBStudents: approvedStudents.filter(s => s.batch === 'B').length,
-    todayAttendanceCount: approvedStudents.filter(s => s.attendance && s.attendance[todayKey] && s.attendance[todayKey].present).length
+    todayAttendanceCount: presentToday,
+    todayAttendanceRate: scheduledStudents.length > 0 ? `${attendancePercent}%` : 'No class',
+    assessmentSubmittedCount: `${quizCompletesCount} / ${possibleAssessments}`,
+    activeModulesCount: availableModules.length
   };
 
   Object.entries(statMap).forEach(([id, value]) => {
     const el = document.getElementById(id);
     if (el) el.textContent = value;
   });
+
+  const completionMeter = document.getElementById('completionMeter');
+  const attendanceMeter = document.getElementById('attendanceMeter');
+  if (completionMeter) completionMeter.style.width = `${completionPercent}%`;
+  if (attendanceMeter) attendanceMeter.style.width = `${Math.min(100, attendancePercent)}%`;
 }
 
 function exportToCSV() {
@@ -890,6 +937,18 @@ function setupTabNavigation() {
 
 document.addEventListener('DOMContentLoaded', () => {
   setupTabNavigation();
+  renderGradebookHeader();
+
+  const cockpitDate = document.getElementById('cockpitDate');
+  if (cockpitDate) {
+    const now = new Date();
+    cockpitDate.dateTime = getDateKeyForAdmin(now);
+    cockpitDate.textContent = now.toLocaleDateString(undefined, {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric'
+    });
+  }
 
   const todayKey = getDateKeyForAdmin();
   const attendanceDateInput = document.getElementById('attendanceDateInput');

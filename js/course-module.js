@@ -80,6 +80,16 @@
     return visuals[type] || visuals.algorithm;
   }
 
+  function renderLessonMedia(lesson) {
+    if (!lesson.image) return renderVisual(lesson.visual);
+    return `
+      <figure class="concept-photo">
+        <img src="${escapeHTML(lesson.image.src)}" alt="${escapeHTML(lesson.image.alt)}" loading="lazy" decoding="async">
+        ${lesson.image.credit ? `<figcaption>${escapeHTML(lesson.image.credit)}</figcaption>` : ''}
+      </figure>
+    `;
+  }
+
   function renderLesson(lesson, slideNumber) {
     const definitions = lesson.definitions.map(item => `
       <div class="definition-item">
@@ -103,7 +113,7 @@
                 ${lesson.paragraphs.map(paragraph => `<p>${escapeHTML(paragraph)}</p>`).join('')}
               </div>
             </div>
-            ${renderVisual(lesson.visual)}
+            ${renderLessonMedia(lesson)}
           </div>
           <div class="article-divider"></div>
           <article class="slide-article-body syllabus-notes">
@@ -300,18 +310,30 @@
             <section class="slide active-slide" id="slide-1">
               <div class="slide-content title-layout syllabus-welcome">
                 <div class="hero-header">
-                  <span class="sub-category">CC 101 - UNDERSTANDING TECHNOLOGY</span>
-                  <h1>${escapeHTML(data.title)}</h1>
+                  <span class="sub-category">INTRODUCTION TO COMPUTING</span>
+                  <h1>Introduction to Computing</h1>
+                  <p class="module-intro-title">${escapeHTML(data.title)}: ${escapeHTML(data.subtitle)}</p>
                   <div class="accent-line"></div>
                   <p class="hero-desc">${escapeHTML(data.description)}</p>
                 </div>
-                <div class="syllabus-intro-grid">
-                  <section>
-                    <h2>Learning objectives</h2>
-                    ${renderList(data.objectives, 'slide-body-bullets')}
-                  </section>
-                  ${renderVisual(data.introVisual)}
+                <div class="welcome-grid">
+                  <div class="info-card uniform-welcome-card">
+                    <span class="welcome-card-mark" aria-hidden="true">01</span>
+                    <div><h4>Current Module</h4><p>${escapeHTML(data.title)}</p></div>
+                  </div>
+                  <div class="info-card uniform-welcome-card">
+                    <span class="welcome-card-mark" aria-hidden="true">CC</span>
+                    <div><h4>Course</h4><p>Introduction to Computing</p></div>
+                  </div>
+                  <div class="info-card uniform-welcome-card">
+                    <span class="welcome-card-mark" aria-hidden="true">GO</span>
+                    <div><h4>Learning Flow</h4><p>Lessons, activity, quiz, and review</p></div>
+                  </div>
                 </div>
+                <section class="welcome-objectives">
+                  <h2>Learning objectives</h2>
+                  ${renderList(data.objectives, 'slide-body-bullets')}
+                </section>
                 <div class="welcome-tip"><strong>How to learn:</strong> Read each lesson, try the activity, complete the one-time quiz, then select Finish Module on the summary page.</div>
               </div>
             </section>
@@ -355,8 +377,9 @@
     document.getElementById('progressBar').style.width = `${((currentSlide - 1) / (totalSlides - 1)) * 100}%`;
     document.getElementById('prevBtn').disabled = currentSlide === 1 || isQuizNavigationLocked?.();
     const next = document.getElementById('nextBtn');
-    next.disabled = currentSlide === totalSlides || isQuizNavigationLocked?.();
-    next.textContent = currentSlide === totalSlides ? 'End of Module' : 'Next Slide ->';
+    next.hidden = currentSlide === totalSlides;
+    next.disabled = isQuizNavigationLocked?.();
+    next.textContent = 'Next Slide ->';
 
     const activeSlide = document.getElementById(`slide-${currentSlide}`);
     if (activeSlide) activeSlide.scrollTop = 0;

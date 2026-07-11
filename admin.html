@@ -87,77 +87,127 @@
 
       <!-- PANEL 1: OVERVIEW -->
       <div class="adm-panel active-panel" id="panel-overview">
-        <div class="admin-panel-header">
-          <h2>Course Overview Dashboard</h2>
-          <p class="panel-subtitle">Key metrics and overall performance of CC 101 students.</p>
+        <div class="admin-panel-header cockpit-header">
+          <div>
+            <p class="page-eyebrow">Instructor command center</p>
+            <h2>Course Overview</h2>
+            <p class="panel-subtitle">A quick operational view of students, progress, attendance, and pending work.</p>
+          </div>
+          <div class="cockpit-live-status" aria-label="Dashboard status">
+            <span class="cockpit-live-dot" aria-hidden="true"></span>
+            <span>Live data</span>
+            <time id="cockpitDate">Today</time>
+          </div>
         </div>
 
-        <div class="admin-stats-row">
+        <section class="admin-stats-row cockpit-kpis" aria-label="Key course metrics">
           <div class="admin-stat-card">
-            <div class="stat-icon-wrapper stat-tone-indigo">👥</div>
+            <div class="stat-icon-wrapper stat-tone-indigo" aria-hidden="true">ST</div>
             <div class="stat-info">
               <div class="stat-label">Approved Students</div>
               <div class="stat-value" id="totalStudents">0</div>
+              <div class="stat-context">Active student roster</div>
             </div>
           </div>
           <div class="admin-stat-card stat-card-pending">
-            <div class="stat-icon-wrapper stat-tone-amber">⏳</div>
+            <div class="stat-icon-wrapper stat-tone-amber" aria-hidden="true">RQ</div>
             <div class="stat-info">
               <div class="stat-label">Pending Requests</div>
               <div class="stat-value" id="pendingStatCount">0</div>
+              <div class="stat-context">Waiting for review</div>
             </div>
           </div>
           <div class="admin-stat-card">
-            <div class="stat-icon-wrapper stat-tone-success">🏆</div>
+            <div class="stat-icon-wrapper stat-tone-success" aria-hidden="true">AV</div>
             <div class="stat-info">
               <div class="stat-label">Average Score</div>
-              <div class="stat-value" id="avgScore">—</div>
+              <div class="stat-value" id="avgScore">-</div>
+              <div class="stat-context">Across submitted quizzes</div>
             </div>
           </div>
           <div class="admin-stat-card">
-            <div class="stat-icon-wrapper stat-tone-rose">📈</div>
+            <div class="stat-icon-wrapper stat-tone-rose" aria-hidden="true">CP</div>
             <div class="stat-info">
-              <div class="stat-label">Completion Rate</div>
-              <div class="stat-value" id="completionRate">—</div>
+              <div class="stat-label">Course Completion</div>
+              <div class="stat-value" id="completionRate">-</div>
+              <div class="stat-context">Submitted assessment units</div>
             </div>
           </div>
-          <div class="admin-stat-card">
-            <div class="stat-icon-wrapper stat-tone-indigo">A</div>
-            <div class="stat-info">
-              <div class="stat-label">Batch A Students</div>
-              <div class="stat-value" id="batchAStudents">0</div>
-            </div>
-          </div>
-          <div class="admin-stat-card">
-            <div class="stat-icon-wrapper stat-tone-teal">B</div>
-            <div class="stat-info">
-              <div class="stat-label">Batch B Students</div>
-              <div class="stat-value" id="batchBStudents">0</div>
-            </div>
-          </div>
-          <div class="admin-stat-card">
-            <div class="stat-icon-wrapper stat-tone-success">OK</div>
-            <div class="stat-info">
-              <div class="stat-label">Today Attendance</div>
-              <div class="stat-value" id="todayAttendanceCount">0</div>
-            </div>
-          </div>
-        </div>
+        </section>
 
-        <div class="admin-schedule-grid">
-          <div class="admin-schedule-card">
-            <h3>Batch A Attendance</h3>
-            <p>Students are marked present when they open the portal on Friday from 4:00 PM to 5:30 PM.</p>
-          </div>
-          <div class="admin-schedule-card">
-            <h3>Batch B Attendance</h3>
-            <p>Students are marked present when they open the portal on Tuesday from 4:00 PM to 5:30 PM.</p>
-          </div>
-        </div>
+        <div class="cockpit-grid">
+          <section class="cockpit-panel cockpit-pulse" aria-labelledby="coursePulseTitle">
+            <div class="cockpit-panel-heading">
+              <div>
+                <p class="page-eyebrow">Learning operations</p>
+                <h3 id="coursePulseTitle">Course Pulse</h3>
+              </div>
+              <span class="status-pill status-present">Tracking</span>
+            </div>
+            <div class="cockpit-meter-group">
+              <div class="cockpit-meter-row">
+                <div><span>Assessment completion</span><strong id="completionRateDetail">0%</strong></div>
+                <div class="cockpit-meter" aria-hidden="true"><span id="completionMeter"></span></div>
+              </div>
+              <div class="cockpit-meter-row">
+                <div><span>Today's attendance</span><strong id="todayAttendanceRate">0%</strong></div>
+                <div class="cockpit-meter" aria-hidden="true"><span id="attendanceMeter"></span></div>
+              </div>
+            </div>
+            <dl class="cockpit-detail-list">
+              <div><dt>Assessments submitted</dt><dd id="assessmentSubmittedCount">0</dd></div>
+              <div><dt>Active modules</dt><dd id="activeModulesCount">0</dd></div>
+              <div><dt>Present today</dt><dd id="todayAttendanceCount">0</dd></div>
+            </dl>
+          </section>
 
-        <div class="admin-info-card glass-card">
-          <h3>🏫 Class Administration Console</h3>
-          <p>Welcome to your instructor console. From here you can approve student registrations in real-time, view their quiz attempts, check their scores, and export grades to a CSV file for your record book.</p>
+          <section class="cockpit-panel" aria-labelledby="cohortBalanceTitle">
+            <div class="cockpit-panel-heading">
+              <div>
+                <p class="page-eyebrow">Roster distribution</p>
+                <h3 id="cohortBalanceTitle">Cohort Balance</h3>
+              </div>
+            </div>
+            <div class="cohort-balance-list">
+              <div class="cohort-balance-row batch-a-row">
+                <span class="batch-pill batch-a">Batch A</span>
+                <strong id="batchAStudents">0</strong>
+                <span>Friday, 4:00 PM-5:30 PM</span>
+              </div>
+              <div class="cohort-balance-row batch-b-row">
+                <span class="batch-pill batch-b">Batch B</span>
+                <strong id="batchBStudents">0</strong>
+                <span>Tuesday, 4:00 PM-5:30 PM</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="cockpit-panel cockpit-schedule" aria-labelledby="weeklyScheduleTitle">
+            <div class="cockpit-panel-heading">
+              <div>
+                <p class="page-eyebrow">Weekly rhythm</p>
+                <h3 id="weeklyScheduleTitle">Attendance Windows</h3>
+              </div>
+            </div>
+            <div class="schedule-timeline">
+              <div><span class="schedule-day">Tue</span><div><strong>Batch B online check-in</strong><p>4:00 PM to 5:30 PM</p></div></div>
+              <div><span class="schedule-day">Fri</span><div><strong>Batch A online check-in</strong><p>4:00 PM to 5:30 PM</p></div></div>
+            </div>
+          </section>
+
+          <section class="cockpit-panel cockpit-next-actions" aria-labelledby="nextActionsTitle">
+            <div class="cockpit-panel-heading">
+              <div>
+                <p class="page-eyebrow">Instructor workflow</p>
+                <h3 id="nextActionsTitle">Next Actions</h3>
+              </div>
+            </div>
+            <ul class="cockpit-action-list">
+              <li><span aria-hidden="true">1</span><p>Review registration requests in Approvals.</p></li>
+              <li><span aria-hidden="true">2</span><p>Scan Gradebook for missing one-time quizzes.</p></li>
+              <li><span aria-hidden="true">3</span><p>Check attendance after each scheduled window.</p></li>
+            </ul>
+          </section>
         </div>
       </div>
 
@@ -203,24 +253,11 @@
           </div>
         </div>
 
-        <div class="table-wrapper">
-          <table class="admin-table">
+        <p class="table-scroll-hint" id="gradebookScrollHint">Scroll horizontally to compare all module scores and student details.</p>
+        <div class="table-wrapper preserve-mobile-table gradebook-table-wrapper" role="region" aria-label="Student gradebook" aria-describedby="gradebookScrollHint" tabindex="0">
+          <table class="admin-table gradebook-table" id="gradebookTable">
             <thead>
-              <tr>
-                <th class="row-number">#</th>
-                <th>Name</th>
-                <th>Role</th>
-                <th>Batch</th>
-                <th>Email</th>
-                <th class="numeric-column">HW Part 1</th>
-                <th class="numeric-column">HW Part 2</th>
-                <th class="numeric-column">HW Part 3</th>
-                <th class="numeric-column">Internet Part 1</th>
-                <th class="numeric-column">Internet Part 2</th>
-                <th>Attendance</th>
-                <th>Last Active</th>
-                <th class="actions-column">Actions</th>
-              </tr>
+              <tr id="gradebookHeaderRow"></tr>
             </thead>
             <tbody id="studentTableBody">
               <tr><td colspan="13" class="table-loading">Loading grade records...</td></tr>
@@ -300,8 +337,9 @@
           </div>
         </div>
 
-        <div class="table-wrapper">
-          <table class="admin-table">
+        <p class="table-scroll-hint" id="accountsScrollHint">Scroll horizontally to view account status, type, and actions.</p>
+        <div class="table-wrapper preserve-mobile-table accounts-table-wrapper" role="region" aria-label="Account records" aria-describedby="accountsScrollHint" tabindex="0">
+          <table class="admin-table accounts-table">
             <thead>
               <tr>
                 <th>Name</th>

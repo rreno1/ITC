@@ -234,6 +234,6 @@ window.CC101_MODULE_DATA = {
       "Explain how a loop, condition, and function could cooperate in one program.",
       "Describe a disciplined debugging cycle for an intermittent wrong result."
     ],
-    next: "You have reached the final CS50 Understanding Technology topic. Review My Progress, revisit completed modules, and apply the full course sequence to practical computing problems."
+    next: "You have reached the final Introduction to Computing topic. Review My Progress, revisit completed modules, and apply the full course sequence to practical computing problems."
   }
 };

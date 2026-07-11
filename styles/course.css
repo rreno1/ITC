@@ -354,7 +354,7 @@ textarea {
   font-size: var(--font-size-cat);
   font-weight: 700;
   color: var(--color-accent-dark);
-  letter-spacing: 2px;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 .hero-header h1 {
@@ -364,6 +364,15 @@ textarea {
   line-height: 1.1;
   color: var(--text-primary);
   letter-spacing: 0;
+}
+
+.module-intro-title {
+  margin-top: 9px;
+  color: var(--color-accent-dark);
+  font-family: var(--font-title);
+  font-size: 20px;
+  font-weight: 750;
+  line-height: 1.35;
 }
 
 .accent-line {
@@ -408,7 +417,35 @@ textarea {
   font-size: 12px;
   text-transform: uppercase;
   color: var(--text-secondary);
-  letter-spacing: 0.5px;
+  letter-spacing: 0;
+}
+
+.welcome-card-mark {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--color-primary-glow);
+  color: var(--color-accent-dark);
+  font: 800 11px/1 var(--font-title);
+}
+
+.welcome-objectives {
+  width: min(100%, 1050px);
+  padding: 16px 0 4px;
+  border-top: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.welcome-objectives h2 {
+  margin-bottom: 10px;
+  color: var(--text-primary);
+  font-family: var(--font-title);
+  font-size: 17px;
 }
 
 .info-card p {
@@ -1881,6 +1918,31 @@ textarea {
   background: var(--bg-secondary);
 }
 
+.concept-photo {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--bg-secondary);
+}
+
+.concept-photo img {
+  width: 100%;
+  min-height: 220px;
+  aspect-ratio: 16 / 10;
+  display: block;
+  object-fit: cover;
+}
+
+.concept-photo figcaption {
+  padding: 8px 11px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
 .visual-label-row {
   width: 100%;
   display: flex;
@@ -2473,6 +2535,14 @@ textarea {
   .concept-visual {
     min-height: 210px;
     padding: 16px;
+  }
+
+  .concept-photo {
+    min-height: 210px;
+  }
+
+  .concept-photo img {
+    min-height: 190px;
   }
 
   .visual-flow {

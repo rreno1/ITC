@@ -28,26 +28,23 @@
 
     <!-- ===== SIDEBAR ===== -->
     <aside id="adminSidebar">
-      <div class="sidebar-top">
+      <button class="mobile-menu-toggle" type="button" aria-label="Open admin navigation" aria-controls="adminNav" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <a class="sb-brand" href="index.html" aria-label="Return to CC 101 home">
+        <span class="nav-logo" aria-hidden="true">🎓</span>
+        <span class="sb-brand-title">CC 101</span>
+        <span class="sb-badge">Admin</span>
+      </a>
 
-        <!-- Brand -->
-        <div class="sb-brand">
-          <span class="nav-logo" aria-hidden="true">🎓</span>
-          <span class="sb-brand-title">CC 101</span>
-          <span class="sb-badge">Admin</span>
-          <button class="mobile-menu-toggle" type="button" aria-label="Toggle admin navigation" aria-controls="adminNav" aria-expanded="false">
-            <span></span><span></span>
-          </button>
+      <div class="admin-nav-drawer mobile-nav-panel" id="adminNav">
+        <div class="mobile-drawer-header">
+          <strong>Admin navigation</strong>
+          <button class="mobile-drawer-close" type="button" data-mobile-menu-close aria-label="Close admin navigation">&times;</button>
         </div>
 
-        <!-- User -->
-        <div class="sb-user" id="userMenu" hidden>
-          <span class="sb-user-name" id="userDisplayName">Loading...</span>
-          <button class="sb-signout" id="signOutBtn" aria-label="Sign out of the admin dashboard">Sign Out</button>
-        </div>
-
-        <!-- Navigation -->
-        <nav class="sb-nav" id="adminNav">
+        <div class="sidebar-top">
+          <nav class="sb-nav" aria-label="Admin sections">
           <button type="button" class="sb-nav-item active" data-tab="overview">
             <span class="sb-nav-icon">&#128202;</span>
             <span>Overview &amp; Stats</span>
@@ -69,19 +66,21 @@
             <span class="sb-nav-icon">&#128101;</span>
             <span>Accounts</span>
           </button>
-          <a href="index.html" class="sb-nav-item sb-nav-home">
-            <span class="sb-nav-icon">&#127968;</span>
-            <span>Portal Home</span>
-          </a>
-        </nav>
-      </div>
+          </nav>
+        </div>
 
-      <div class="sidebar-bottom">
-        <button class="theme-toggle" id="themeToggle" type="button" data-theme-toggle>
-          <span class="theme-toggle-icon" aria-hidden="true">☀</span>
-        </button>
+        <div class="sidebar-bottom">
+          <div class="sb-user" id="userMenu" hidden>
+            <span class="sb-user-name" id="userDisplayName">Loading...</span>
+            <button class="sb-signout" id="signOutBtn" aria-label="Sign out of the admin dashboard">Sign Out</button>
+          </div>
+          <button class="theme-toggle" id="themeToggle" type="button" data-theme-toggle>
+            <span class="theme-toggle-icon" aria-hidden="true">☀</span>
+          </button>
+        </div>
       </div>
     </aside>
+    <button class="mobile-nav-overlay" type="button" data-mobile-overlay-for="adminNav" aria-label="Close admin navigation"></button>
 
     <!-- ===== MAIN PANEL ===== -->
     <section id="adminMainPanel">
@@ -241,32 +240,30 @@
         <div class="admin-action-row">
           <div class="admin-actions-group">
             <label for="attendanceDateInput" class="panel-subtitle">Date</label>
-            <input type="date" id="attendanceDateInput" class="search-input attendance-input">
+            <input type="date" id="attendanceDateInput" class="search-input attendance-input" aria-label="Attendance date">
           </div>
-          <div class="admin-actions-group">
-            <label for="attendanceBatchFilter" class="panel-subtitle">Batch</label>
-            <select id="attendanceBatchFilter" class="search-input attendance-input">
-              <option value="all">All batches</option>
-              <option value="A">Batch A</option>
-              <option value="B">Batch B</option>
-            </select>
-          </div>
-          <button class="btn-secondary" id="todayAttendanceBtn">Today</button>
+          <button class="btn-secondary" id="todayAttendanceBtn" type="button">Today</button>
         </div>
 
-        <div class="admin-schedule-grid">
-          <div class="admin-schedule-card">
-            <h3>Batch A</h3>
-            <p>Expected check-in: Friday, 4:00 PM to 5:30 PM.</p>
-          </div>
-          <div class="admin-schedule-card">
-            <h3>Batch B</h3>
-            <p>Expected check-in: Tuesday, 4:00 PM to 5:30 PM.</p>
-          </div>
+        <div class="admin-schedule-grid attendance-batch-filters" role="group" aria-label="Filter attendance by batch">
+          <button class="admin-schedule-card attendance-batch-filter batch-a-filter" type="button" data-attendance-batch="A" aria-pressed="false">
+            <span class="batch-filter-check" aria-hidden="true">&#10003;</span>
+            <span class="batch-filter-title">Batch A</span>
+            <span class="batch-filter-schedule">Expected check-in: Friday, 4:00 PM to 5:30 PM.</span>
+            <span class="batch-filter-state">Show Batch A only</span>
+          </button>
+          <button class="admin-schedule-card attendance-batch-filter batch-b-filter" type="button" data-attendance-batch="B" aria-pressed="false">
+            <span class="batch-filter-check" aria-hidden="true">&#10003;</span>
+            <span class="batch-filter-title">Batch B</span>
+            <span class="batch-filter-schedule">Expected check-in: Tuesday, 4:00 PM to 5:30 PM.</span>
+            <span class="batch-filter-state">Show Batch B only</span>
+          </button>
         </div>
+        <p class="visually-hidden" id="attendanceFilterStatus" aria-live="polite">Showing all batches.</p>
 
-        <div class="table-wrapper">
-          <table class="admin-table">
+        <p class="table-scroll-hint" id="attendanceScrollHint">Scroll horizontally to view all attendance details.</p>
+        <div class="table-wrapper attendance-table-wrapper" role="region" aria-label="Attendance records" aria-describedby="attendanceScrollHint" tabindex="0">
+          <table class="admin-table attendance-table">
             <thead>
               <tr>
                 <th>Name</th>

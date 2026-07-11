@@ -35,12 +35,12 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Packets & Routing",
-        question: "How do packets reach their destination if routing paths are congested?",
+        question: "How can an IP network continue delivering packets when one route becomes congested?",
         options: [
-            "They stop moving and wait until the line clears.",
-            "They route independently across different hops, taking different paths.",
-            "They automatically increase their size to force through gates.",
-            "They fail and corrupt the client operating system."
+            "Every packet waits at its sender until the original route is empty.",
+            "Routers may forward packets independently through other available paths.",
+            "Every packet increases its payload until the congested link accepts it.",
+            "Routers remove destination addresses so packets can bypass routing rules."
         ],
         answer: 1,
         explanation: "Packets travel independently. Routers dynamic-path packet chunks around network congestion blocks."
@@ -59,12 +59,12 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "TCP Protocol",
-        question: "What action does TCP take if a packet segment is lost in transit?",
+        question: "How does TCP normally recover when a required segment does not arrive?",
         options: [
-            "It drops the entire connection and restarts the download.",
-            "It requests retransmission of only the lost packet segment.",
-            "It maps the IP address class to Class D.",
-            "It redirects the packet to a local loopback."
+            "It restarts every completed application request from the beginning.",
+            "It detects the missing data and retransmits the needed segment.",
+            "It changes the destination address into a multicast address.",
+            "It converts the missing segment into a DNS response record."
         ],
         answer: 1,
         explanation: "TCP uses error recovery tracking. If a segment is missing, the client requests retransmission of that specific sequence block."
@@ -83,15 +83,15 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Domain Name System",
-        question: "Which DNS server is queried first after your browser checks its local cache?",
+        question: "After local caches and host settings, which service does a device normally ask to resolve a domain?",
         options: [
-            "Authoritative Server",
-            "TLD Name Server",
-            "Root Name Server",
-            "SSL Certificate Authority"
+            "The domain's authoritative name server directly",
+            "The relevant top-level-domain name server directly",
+            "A configured recursive DNS resolver",
+            "A website certificate authority"
         ],
         answer: 2,
-        explanation: "The DNS query path resolves hierarchically, starting at Root name servers, moving to TLD (.com/.org), and then Authoritative servers."
+        explanation: "A client normally asks a recursive resolver, which uses its cache and queries the DNS hierarchy when it needs more information."
     },
     {
         category: "HTTP Protocol",
@@ -119,36 +119,36 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Web Security",
-        question: "What is the primary purpose of the HTTPS protocol?",
+        question: "What protection does HTTPS primarily add to communication between a browser and a website?",
         options: [
-            "To make files download at higher speeds.",
-            "To encrypt the request-response data stream using SSL/TLS.",
-            "To assign class subnets dynamically.",
-            "To loop data back to local hosts."
+            "It guarantees that every claim on the website is honest.",
+            "It encrypts traffic and authenticates the site using TLS.",
+            "It assigns private addresses to all visiting browser devices.",
+            "It selects the fastest physical route for every packet."
         ],
         answer: 1,
         explanation: "HTTPS secures standard HTTP streams using SSL/TLS protocols to encrypt data transit."
     },
     {
         category: "Web Security",
-        question: "What type of cryptography does HTTPS use to verify server identity during a handshake?",
+        question: "What role does public-key cryptography play when an HTTPS session is established?",
         options: [
-            "Symmetric key cryptography only",
-            "Asymmetric (Public-Private key) cryptography",
-            "Binary ASCII tables",
-            "Dynamic DHCP leases"
+            "It compresses all page resources before transmission begins.",
+            "It helps authenticate the server and establish session secrets.",
+            "It replaces domain-name resolution with certificate file names.",
+            "It assigns temporary IP addresses to browser applications."
         ],
         answer: 1,
         explanation: "HTTPS uses asymmetric public-private key cryptography during SSL handshakes to verify host certificates."
     },
     {
         category: "HTTP statelessness",
-        question: "Since HTTP is a stateless protocol, how do modern websites remember your active login state?",
+        question: "How do many websites connect later HTTP requests with an authenticated login session?",
         options: [
-            "Using hardware MAC addresses.",
-            "By writing temporary files called cookies to your browser.",
-            "By locking the TCP socket permanently.",
-            "Using DHCP lease timers."
+            "They identify the user only from the device's hardware address.",
+            "They send a session identifier that the browser returns, often in a cookie.",
+            "They keep one TCP connection permanently open for the account's lifetime.",
+            "They reuse the device's DHCP lease as the authentication credential."
         ],
         answer: 1,
         explanation: "HTTP is stateless. Sites store session tokens in cookies saved locally in your browser to remember login states."
@@ -167,7 +167,7 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "HTTP Protocol",
-        question: "Which HTTP request method is used when submitting form data (like usernames and passwords) to a server?",
+        question: "Which HTTP method is commonly chosen when a form asks a server to process submitted data?",
         options: [
             "GET",
             "POST",
@@ -179,15 +179,15 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Web Security",
-        question: "What visual indicator in the browser URL bar guarantees a site is running HTTPS?",
+        question: "Which check best confirms that the current browser connection uses HTTPS for the displayed domain?",
         options: [
-            "A blue circular badge",
-            "A padlock icon next to the address",
-            "A blinking green dot",
-            "A secure banner in the footer"
+            "A blue badge placed anywhere inside the page content",
+            "The browser's site information reports a secure HTTPS connection",
+            "A blinking green image supplied by the website footer",
+            "The page title includes the words verified and secure"
         ],
         answer: 1,
-        explanation: "Modern browsers display a padlock icon next to domain names to indicate an active secure TLS encryption layer."
+        explanation: "Use browser-controlled site information and the HTTPS URL. Page content can imitate badges, and encryption does not prove that a site's claims are honest."
     },
     {
         category: "Packets & Routing",
@@ -215,6 +215,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof initOneTimeQuizGate === 'function') {
         initOneTimeQuizGate({ moduleId: MODULE_ID, total: QUIZ_QUESTIONS.length, resetQuiz });
     }
+    if (typeof initFinishModuleControl === 'function') {
+        initFinishModuleControl({ moduleId: MODULE_ID, totalLessons: totalSlides, requiresQuiz: true });
+    }
+    if (typeof openRequestedLesson === 'function') openRequestedLesson(goToSlide, totalSlides);
     
     // Scroll Prompt setup
     setupScrollPromptListeners();
@@ -642,6 +646,7 @@ let isReviewMode = false;
 
 function resetQuiz() {
     if (typeof canResetOneTimeQuiz === 'function' && !canResetOneTimeQuiz()) return;
+    if (typeof randomizeQuizInPlace === 'function') randomizeQuizInPlace(QUIZ_QUESTIONS);
     isReviewMode = false;
     quizCurrentQuestion = 0;
     quizScore = 0;
@@ -682,16 +687,7 @@ function loadQuestion() {
     if (textEl) textEl.innerText = q.question;
     
     if (optionsGrid) {
-        optionsGrid.innerHTML = "";
-        q.options.forEach((opt, idx) => {
-            const btn = document.createElement("button");
-            btn.className = "option-btn";
-            btn.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + idx)}</span> <span class="option-text">${opt}</span>`;
-            if (!isReviewMode) {
-                btn.addEventListener("click", () => selectOption(idx));
-            }
-            optionsGrid.appendChild(btn);
-        });
+        renderQuizChoices(optionsGrid, q, selectOption, !isReviewMode);
     }
 
     // Update progress steps
@@ -713,6 +709,7 @@ function loadQuestion() {
         const studentAns = quizAnswers[quizCurrentQuestion];
         const correctAns = q.answer;
         const buttons = document.querySelectorAll("#optionsGrid .option-btn");
+        if (typeof markQuizChoice === 'function') markQuizChoice(buttons, studentAns);
         buttons.forEach((btn, idx) => {
             btn.disabled = true;
             if (idx === correctAns) {
@@ -762,6 +759,7 @@ function selectOption(selectedIdx) {
 
     // Highlight selected option neutrally
     const buttons = document.querySelectorAll("#optionsGrid .option-btn");
+    if (typeof markQuizChoice === 'function') markQuizChoice(buttons, selectedIdx);
     buttons.forEach((btn, idx) => {
         btn.disabled = true;
         if (idx === selectedIdx) {
@@ -875,6 +873,7 @@ function startQuizReview() {
 // Auth callbacks for quiz gating
 function onAuthGateChanged(user, isApproved) {
     updateQuizAccessUI(isApproved);
+    if (typeof refreshFinishModuleControl === 'function') refreshFinishModuleControl();
     if (user && isApproved && typeof recordLessonProgress === 'function') {
         recordLessonProgress(MODULE_ID, currentSlide, totalSlides);
     }

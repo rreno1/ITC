@@ -509,15 +509,15 @@
                 <!-- Injected dynamically by JS -->
               </div>
               
-              <div class="question-container">
+              <fieldset class="question-container">
+                <legend id="questionText">Question Text?</legend>
                 <span id="questionCategory" class="question-cat">Ports & OS</span>
-                <h3 id="questionText">Question Text?</h3>
                 <div class="options-grid" id="optionsGrid">
                   <!-- Loaded via JS -->
                 </div>
-              </div>
+              </fieldset>
 
-              <div class="feedback-container hidden" id="feedbackPanel">
+              <div class="feedback-container hidden" id="feedbackPanel" role="status" aria-live="polite">
                 <div class="feedback-indicator">
                   <span class="feedback-icon" id="feedbackIcon">✓</span>
                   <span class="feedback-title" id="feedbackTitle">Correct!</span>
@@ -540,7 +540,7 @@
             <div class="quiz-results-container glass-card hidden" id="quizResults">
               <div class="results-header">
                 <div class="results-badge">🏆</div>
-                <h2>Module Complete!</h2>
+                <h2>Quiz Submitted</h2>
                 <p>Here is how you scored on the Connectivity & OS quiz:</p>
               </div>
               <div class="score-circle">
@@ -661,6 +661,7 @@
   <script defer src="../js/progress.js?v=20260711"></script>
   <script defer src="../js/auth.js?v=20260711"></script>
   <script defer src="../js/course-protection.js?v=20260711"></script>
+  <script defer src="../js/quiz-utils.js?v=20260711"></script>
   <script defer src="app.js?v=20260711"></script>
 </body>
 </html>

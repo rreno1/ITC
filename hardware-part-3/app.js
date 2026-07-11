@@ -36,12 +36,12 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "I/O Devices",
-        question: "Which input device translates mechanical physical movements on a flat surface into a screen cursor?",
+        question: "Which device is designed to translate movement across a surface into pointer movement?",
         options: [
-            "Keyboard",
-            "Mouse",
-            "Printer",
-            "Audio Speaker"
+            "Typing keyboard",
+            "Pointing mouse",
+            "Document scanner",
+            "Touch display"
         ],
         answer: 1,
         explanation: "A mouse acts as an input sensor that tracks flat coordinates and sends pointer coordinate adjustments to the operating system."
@@ -72,24 +72,24 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Video Interfaces",
-        question: "Which port is the standard interface for connecting modern high-definition monitors and gaming consoles?",
+        question: "Which interface commonly carries digital high-definition video and audio to a display?",
         options: [
-            "HDMI",
-            "VGA (analog D-sub)",
-            "RJ45 Ethernet",
-            "DB9 Serial Connector"
+            "HDMI display interface",
+            "VGA analog interface",
+            "RJ45 network interface",
+            "DB9 serial interface"
         ],
         answer: 0,
         explanation: "HDMI (High-Definition Multimedia Interface) transmits uncompressed digital audio and video streams together."
     },
     {
         category: "Wireless RF",
-        question: "Which radio frequency protocol operates on 2.4 GHz, 5 GHz, or 6 GHz to connect local devices to the internet?",
+        question: "Which wireless standard commonly connects local devices through 2.4, 5, or 6 GHz bands?",
         options: [
-            "Bluetooth",
-            "Wi-Fi",
-            "NFC (Near Field)",
-            "Infrared Light"
+            "Bluetooth accessory networking",
+            "Wi-Fi local networking",
+            "Near-field communication",
+            "Infrared device control"
         ],
         answer: 1,
         explanation: "Wi-Fi (Wireless Fidelity) utilizes microwaves to establish local area network connections without cabling."
@@ -132,12 +132,12 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Operating Systems",
-        question: "Which operating system is free, open-source, and powers the majority of global web servers?",
+        question: "Which operating-system family is open source and widely used to run web servers?",
         options: [
-            "Microsoft Windows",
-            "Apple macOS",
-            "Linux",
-            "ChromeOS"
+            "Microsoft Windows family",
+            "Apple macOS family",
+            "GNU/Linux family",
+            "Google ChromeOS family"
         ],
         answer: 2,
         explanation: "Linux is open-source. Due to its stability and security, it runs over 90% of cloud servers and forms the core of Android."
@@ -156,48 +156,48 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Device Drivers",
-        question: "What happens if a computer lacks the correct device driver for a newly plugged-in printer?",
+        question: "What is the most likely result when the operating system lacks a compatible printer driver?",
         options: [
-            "The physical printer hardware components will overheat.",
-            "The Operating System cannot communicate with or send print files to the printer.",
-            "The processor clock speed drops by half.",
-            "The volatile RAM system memory fills up instantly."
+            "The printer receives pages but changes every document font automatically.",
+            "The system cannot translate print requests into commands for that printer.",
+            "The processor stops executing unrelated applications until a cable is changed.",
+            "The system memory permanently stores every print job after shutdown."
         ],
         answer: 1,
         explanation: "Without the driver translation file, the OS has no way to formulate instructions that the printer can understand."
     },
     {
         category: "Networking Ports",
-        question: "Which port is used to link a network interface card directly to a local router via copper cables?",
+        question: "Which connector normally links an Ethernet network adapter to a router through twisted-pair cable?",
         options: [
-            "USB-C port",
-            "HDMI port",
-            "RJ45 Ethernet port",
-            "VGA connector"
+            "USB-C data connector",
+            "HDMI display connector",
+            "RJ45 Ethernet connector",
+            "VGA display connector"
         ],
         answer: 2,
         explanation: "The RJ45 (Registered Jack 45) port is the standard interface for modular 8P8C Ethernet copper networking plugs."
     },
     {
         category: "Operating Systems",
-        question: "Which Operating System is developed by Apple and optimized exclusively for Macintosh desktop models?",
+        question: "Which operating system is developed by Apple for its Mac computer line?",
         options: [
-            "Windows 11",
-            "Linux Ubuntu",
-            "macOS",
-            "ChromeOS Flex"
+            "Microsoft Windows",
+            "Ubuntu Linux",
+            "Apple macOS",
+            "Google ChromeOS"
         ],
         answer: 2,
         explanation: "macOS is proprietary Unix-based system software designed by Apple to run specifically on their Mac hardware."
     },
     {
         category: "Expansion Cards",
-        question: "Which card adds high-fidelity audio output channels and dedicated jacks to a computer system?",
+        question: "Which expansion card is designed to add dedicated audio processing and connection jacks?",
         options: [
-            "Graphics Card (GPU)",
-            "Sound Card",
-            "Network Interface Card (NIC)",
-            "Video Capture Card"
+            "Graphics processing card",
+            "Audio sound card",
+            "Network interface card",
+            "Video capture card"
         ],
         answer: 1,
         explanation: "Sound cards convert digital sound files to clean analog voltages to drive speaker coils."
@@ -232,6 +232,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof initOneTimeQuizGate === 'function') {
         initOneTimeQuizGate({ moduleId: MODULE_ID, total: QUIZ_QUESTIONS.length, resetQuiz });
     }
+    if (typeof initFinishModuleControl === 'function') {
+        initFinishModuleControl({ moduleId: MODULE_ID, totalLessons: totalSlides, requiresQuiz: true });
+    }
+    if (typeof openRequestedLesson === 'function') openRequestedLesson(goToSlide, totalSlides);
     setupScrollPromptListeners();
     setTimeout(updateScrollPrompt, 100);
     
@@ -562,6 +566,7 @@ let isReviewMode = false;
 
 function resetQuiz() {
     if (typeof canResetOneTimeQuiz === 'function' && !canResetOneTimeQuiz()) return;
+    if (typeof randomizeQuizInPlace === 'function') randomizeQuizInPlace(QUIZ_QUESTIONS);
     isReviewMode = false;
     quizCurrentQuestion = 0;
     quizScore = 0;
@@ -602,16 +607,7 @@ function loadQuestion() {
     if (textEl) textEl.innerText = q.question;
     
     if (optionsGrid) {
-        optionsGrid.innerHTML = "";
-        q.options.forEach((opt, idx) => {
-            const btn = document.createElement("button");
-            btn.className = "option-btn";
-            btn.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + idx)}</span> <span class="option-text">${opt}</span>`;
-            if (!isReviewMode) {
-                btn.addEventListener("click", () => selectOption(idx));
-            }
-            optionsGrid.appendChild(btn);
-        });
+        renderQuizChoices(optionsGrid, q, selectOption, !isReviewMode);
     }
 
     // Update progress steps
@@ -633,6 +629,7 @@ function loadQuestion() {
         const studentAns = quizAnswers[quizCurrentQuestion];
         const correctAns = q.answer;
         const buttons = document.querySelectorAll("#optionsGrid .option-btn");
+        if (typeof markQuizChoice === 'function') markQuizChoice(buttons, studentAns);
         buttons.forEach((btn, idx) => {
             btn.disabled = true;
             if (idx === correctAns) {
@@ -682,6 +679,7 @@ function selectOption(selectedIdx) {
 
     // Highlight selected option neutrally
     const buttons = document.querySelectorAll("#optionsGrid .option-btn");
+    if (typeof markQuizChoice === 'function') markQuizChoice(buttons, selectedIdx);
     buttons.forEach((btn, idx) => {
         btn.disabled = true;
         if (idx === selectedIdx) {
@@ -795,6 +793,7 @@ function startQuizReview() {
 // Auth callbacks for quiz gating
 function onAuthGateChanged(user, isApproved) {
     updateQuizAccessUI(isApproved);
+    if (typeof refreshFinishModuleControl === 'function') refreshFinishModuleControl();
     if (user && isApproved && typeof recordLessonProgress === 'function') {
         recordLessonProgress(MODULE_ID, currentSlide, totalSlides);
     }

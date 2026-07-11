@@ -37,12 +37,12 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Binary Basics",
-        question: "What is the native binary digit system utilized by computer hardware?",
+        question: "Which unit stores exactly one of two possible binary states?",
         options: [
-            "Decimal",
+            "Nibble",
             "Bit",
             "Byte",
-            "Kilobyte"
+            "Machine word"
         ],
         answer: 1,
         explanation: "A bit (short for binary digit) is the smallest, most fundamental unit of information in computing, representing a 0 or 1."
@@ -109,12 +109,12 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Encoding Limitations",
-        question: "Why did the ASCII standard become insufficient as computing went global?",
+        question: "Why could ASCII not meet the needs of worldwide digital communication?",
         options: [
-            "It was too slow to compute.",
-            "It only supported 128 characters, lacking accents, foreign scripts, and emojis.",
-            "It required too much storage space per letter.",
-            "It lost its memory when power was turned off."
+            "Its codes required a separate processor for every alphabet.",
+            "Its small character set omitted most scripts, symbols, and emojis.",
+            "Its codes could be stored only on magnetic disk systems.",
+            "Its character values changed whenever a file was copied."
         ],
         answer: 1,
         explanation: "ASCII's 128 characters can only accommodate English. It cannot support European accents, Asian logographs, Arabic, or emojis."
@@ -169,12 +169,12 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Character Encoding",
-        question: "What is the definition of character encoding?",
+        question: "Which description best explains a character encoding?",
         options: [
-            "A lookup table mapping binary code values to human-readable characters",
-            "A method of compressing video files",
-            "A firewall security mechanism",
-            "A hardware motherboard architecture"
+            "A standard mapping between numeric codes and written characters",
+            "A standard mapping between image frames and display refresh rates",
+            "A standard mapping between network ports and application services",
+            "A standard mapping between processor sockets and motherboard models"
         ],
         answer: 0,
         explanation: "Character encoding acts as a lookup dictionary matching electronic binary numbers to text characters."
@@ -220,6 +220,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof initOneTimeQuizGate === 'function') {
         initOneTimeQuizGate({ moduleId: MODULE_ID, total: QUIZ_QUESTIONS.length, resetQuiz });
     }
+    if (typeof initFinishModuleControl === 'function') {
+        initFinishModuleControl({ moduleId: MODULE_ID, totalLessons: totalSlides, requiresQuiz: true });
+    }
+    if (typeof openRequestedLesson === 'function') openRequestedLesson(goToSlide, totalSlides);
     setupScrollPromptListeners();
     setTimeout(updateScrollPrompt, 100);
     
@@ -499,6 +503,7 @@ let isReviewMode = false;
 
 function resetQuiz() {
     if (typeof canResetOneTimeQuiz === 'function' && !canResetOneTimeQuiz()) return;
+    if (typeof randomizeQuizInPlace === 'function') randomizeQuizInPlace(QUIZ_QUESTIONS);
     isReviewMode = false;
     quizCurrentQuestion = 0;
     quizScore = 0;
@@ -539,16 +544,7 @@ function loadQuestion() {
     if (textEl) textEl.innerText = q.question;
     
     if (optionsGrid) {
-        optionsGrid.innerHTML = "";
-        q.options.forEach((opt, idx) => {
-            const btn = document.createElement("button");
-            btn.className = "option-btn";
-            btn.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + idx)}</span> <span class="option-text">${opt}</span>`;
-            if (!isReviewMode) {
-                btn.addEventListener("click", () => selectOption(idx));
-            }
-            optionsGrid.appendChild(btn);
-        });
+        renderQuizChoices(optionsGrid, q, selectOption, !isReviewMode);
     }
 
     // Update progress steps
@@ -570,6 +566,7 @@ function loadQuestion() {
         const studentAns = quizAnswers[quizCurrentQuestion];
         const correctAns = q.answer;
         const buttons = document.querySelectorAll("#optionsGrid .option-btn");
+        if (typeof markQuizChoice === 'function') markQuizChoice(buttons, studentAns);
         buttons.forEach((btn, idx) => {
             btn.disabled = true;
             if (idx === correctAns) {
@@ -619,6 +616,7 @@ function selectOption(selectedIdx) {
 
     // Highlight selected option neutrally
     const buttons = document.querySelectorAll("#optionsGrid .option-btn");
+    if (typeof markQuizChoice === 'function') markQuizChoice(buttons, selectedIdx);
     buttons.forEach((btn, idx) => {
         btn.disabled = true;
         if (idx === selectedIdx) {
@@ -732,6 +730,7 @@ function startQuizReview() {
 // Auth callbacks for quiz gating
 function onAuthGateChanged(user, isApproved) {
     updateQuizAccessUI(isApproved);
+    if (typeof refreshFinishModuleControl === 'function') refreshFinishModuleControl();
     if (user && isApproved && typeof recordLessonProgress === 'function') {
         recordLessonProgress(MODULE_ID, currentSlide, totalSlides);
     }

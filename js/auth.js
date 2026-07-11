@@ -159,7 +159,7 @@ function signOut() {
   auth.signOut().then(() => {
     showToast('Signed out.', 'info');
     setTimeout(() => {
-      const isModulePage = /\/(hardware|internet)-part-\d+\//.test(window.location.pathname);
+      const isModulePage = document.body.classList.contains('course-protected');
       window.location.href = isModulePage ? '../index.html' : 'index.html';
     }, 1000);
   });

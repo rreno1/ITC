@@ -168,6 +168,13 @@ a {
 .nav-brand {
   min-width: 0;
   gap: 9px;
+  border-radius: 6px;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.nav-brand:hover {
+  color: var(--accent-color);
 }
 
 .nav-logo {
@@ -661,7 +668,7 @@ a {
 
 .course-progress-item {
   display: grid;
-  grid-template-columns: minmax(190px, 1fr) auto minmax(190px, 1.15fr) 42px;
+  grid-template-columns: minmax(190px, 1fr) auto minmax(190px, 1.15fr) minmax(112px, auto);
   gap: 14px;
   align-items: center;
   padding: 15px 0;
@@ -783,16 +790,18 @@ a {
 }
 
 .course-progress-action {
-  width: 40px;
-  height: 40px;
+  min-width: 112px;
+  min-height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--card-border);
-  border-radius: 50%;
+  border-radius: 6px;
   color: var(--text-primary);
-  font-size: 18px;
+  font-size: 11px;
+  font-weight: 800;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .course-progress-action:hover {
@@ -891,6 +900,13 @@ a {
   background: var(--bg-secondary);
 }
 
+.admin-nav-drawer {
+  min-height: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
 #adminSidebar .sidebar-top {
   display: flex;
   flex: 1;
@@ -899,6 +915,9 @@ a {
 }
 
 #adminSidebar .sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding-top: 14px;
   border-top: 1px solid var(--card-border);
 }
@@ -909,6 +928,19 @@ a {
   gap: 9px;
   padding: 4px 6px 16px;
   border-bottom: 1px solid var(--card-border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.sb-brand:hover {
+  color: var(--accent-color);
+  background: var(--accent-soft);
+}
+
+.sb-brand:active {
+  background: var(--bg-tertiary);
 }
 
 .sb-brand-title {
@@ -1152,6 +1184,91 @@ a {
   color: var(--text-secondary);
   font-size: 13px;
   line-height: 1.55;
+}
+
+#panel-attendance .admin-action-row {
+  justify-content: flex-start;
+}
+
+.attendance-batch-filter {
+  --batch-filter-color: var(--indigo);
+  position: relative;
+  min-height: 116px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 6px;
+  border-left: 4px solid var(--batch-filter-color);
+  color: var(--text-primary);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.attendance-batch-filter.batch-b-filter {
+  --batch-filter-color: var(--accent-color);
+}
+
+.attendance-batch-filter:hover {
+  border-color: var(--batch-filter-color);
+  background: color-mix(in srgb, var(--batch-filter-color) 8%, var(--bg-secondary));
+}
+
+.attendance-batch-filter.is-selected {
+  border-color: var(--batch-filter-color);
+  background: color-mix(in srgb, var(--batch-filter-color) 13%, var(--bg-secondary));
+  box-shadow: inset 0 0 0 1px var(--batch-filter-color);
+}
+
+.batch-filter-check {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  color: transparent;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.attendance-batch-filter.is-selected .batch-filter-check {
+  border-color: var(--batch-filter-color);
+  background: var(--batch-filter-color);
+  color: #fff;
+}
+
+.batch-filter-title {
+  padding-right: 34px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.batch-filter-schedule {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.batch-filter-state {
+  color: var(--batch-filter-color);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.table-scroll-hint {
+  display: none;
+  margin: 0 0 8px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .admin-action-row,
@@ -1700,83 +1817,6 @@ a {
     order: 2;
   }
 
-  .admin-body {
-    overflow: auto;
-  }
-
-  #adminContent.is-authorized {
-    display: block;
-  }
-
-  #adminSidebar {
-    position: sticky;
-    top: 0;
-    z-index: 1200;
-    height: auto;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto auto;
-    grid-template-areas: "brand nav user theme";
-    gap: 10px;
-    align-items: center;
-    overflow: visible;
-    padding: 10px 14px;
-    border-right: none;
-    border-bottom: 1px solid var(--card-border);
-  }
-
-  #adminSidebar .sidebar-top {
-    display: contents;
-  }
-
-  .sb-brand {
-    grid-area: brand;
-    padding: 0;
-    border: none;
-  }
-
-  .sb-user {
-    grid-area: user;
-    display: block;
-    padding: 0;
-    border: none;
-    background: transparent;
-  }
-
-  .sb-user-name {
-    display: none;
-  }
-
-  .sb-signout {
-    width: auto;
-    min-height: 40px;
-    padding: 8px 10px;
-  }
-
-  .sb-nav {
-    grid-area: nav;
-    min-width: 0;
-    flex-direction: row;
-    overflow-x: auto;
-    scrollbar-width: thin;
-  }
-
-  .sb-nav-item {
-    width: auto;
-    flex: 0 0 auto;
-  }
-
-  #adminSidebar .sidebar-bottom {
-    grid-area: theme;
-    padding: 0;
-    border: none;
-  }
-
-  #adminMainPanel {
-    height: auto;
-    min-height: calc(100dvh - 66px);
-    overflow: visible;
-    padding: 24px 18px 48px;
-  }
 }
 
 @media (max-width: 720px) {
@@ -1785,43 +1825,19 @@ a {
   }
 
   .portal-nav {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 10px;
     padding: 0 14px;
   }
 
-  .nav-links {
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 12px;
-    left: 12px;
-    z-index: 1100;
-    display: flex;
-    max-height: 0;
-    flex-direction: column;
-    gap: 3px;
-    overflow: hidden;
-    padding: 0 8px;
-    border: 1px solid transparent;
-    border-radius: var(--radius);
-    background: var(--nav-bg);
-    backdrop-filter: blur(14px);
-    box-shadow: 0 14px 34px var(--shadow-color);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px);
-    pointer-events: none;
-    transition: max-height 220ms ease, padding 180ms ease, border-color 180ms ease,
-      opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  .portal-nav > .mobile-menu-toggle {
+    grid-column: 1;
   }
 
-  .nav-links.menu-open {
-    max-height: 240px;
-    padding: 8px;
-    border-color: var(--card-border);
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
+  .portal-nav > .nav-brand {
+    grid-column: 2;
+    justify-self: start;
+    overflow: hidden;
   }
 
   .nav-link {
@@ -1842,7 +1858,7 @@ a {
   }
 
   .nav-actions {
-    grid-column: 2;
+    grid-column: 3;
   }
 
   .hero-section {
@@ -1946,7 +1962,10 @@ a {
   }
 
   .course-progress-action {
-    display: none;
+    grid-column: 1 / -1;
+    width: 100%;
+    min-height: 44px;
+    display: inline-flex;
   }
 
   .assessment-result {
@@ -1963,15 +1982,42 @@ a {
   }
 
   #adminSidebar {
-    grid-template-columns: minmax(0, 1fr) auto auto;
-    grid-template-areas:
-      "brand user theme"
-      "nav nav nav";
-    padding: 8px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1200;
+    width: 100%;
+    height: 60px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    overflow: visible;
+    padding: 0 14px;
+    border-right: none;
+    border-bottom: 1px solid var(--card-border);
+    background: var(--nav-bg);
+    backdrop-filter: blur(14px);
   }
 
-  .sb-brand .mobile-menu-toggle {
-    margin-left: auto;
+  .admin-body {
+    overflow: auto;
+  }
+
+  #adminContent.is-authorized {
+    display: block;
+  }
+
+  #adminSidebar > .mobile-menu-toggle {
+    grid-column: 1;
+  }
+
+  .sb-brand {
+    grid-column: 2;
+    min-width: 0;
+    justify-self: start;
+    overflow: hidden;
+    padding: 4px;
+    border: none;
   }
 
   .sb-brand-title {
@@ -1982,29 +2028,25 @@ a {
     display: none;
   }
 
-  .sb-nav {
-    max-height: 0;
-    flex-direction: column;
-    gap: 3px;
-    overflow: hidden;
-    padding-top: 0;
-    border-top: 1px solid transparent;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-6px);
-    pointer-events: none;
-    transition: max-height 240ms ease, padding 180ms ease, border-color 180ms ease,
-      opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  .admin-nav-drawer {
+    justify-content: stretch;
   }
 
-  .sb-nav.menu-open {
-    max-height: min(420px, calc(100dvh - 76px));
-    overflow-y: auto;
-    padding-top: 8px;
-    border-top-color: var(--card-border);
+  #adminSidebar .sidebar-top {
+    min-height: 0;
+    display: flex;
+  }
+
+  .sb-nav {
+    width: 100%;
+    max-height: none;
+    flex-direction: column;
+    gap: 3px;
+    overflow: visible;
+    padding-top: 0;
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: none;
     pointer-events: auto;
   }
 
@@ -2026,9 +2068,22 @@ a {
     margin-left: auto;
   }
 
+  #adminSidebar .sidebar-bottom {
+    margin-top: auto;
+    padding-top: 12px;
+  }
+
+  #adminSidebar .theme-toggle {
+    align-self: flex-start;
+  }
+
   #adminMainPanel {
+    height: auto;
+    min-height: calc(100dvh - 60px);
+    overflow: visible;
     padding: 20px 12px 42px;
   }
+
 
   .admin-panel-header,
   .admin-action-row,
@@ -2133,6 +2188,89 @@ a {
 
   .admin-table .score-cell {
     text-align: right;
+  }
+
+  #panel-attendance .admin-action-row {
+    gap: 10px;
+  }
+
+  #panel-attendance .admin-actions-group,
+  #panel-attendance .attendance-input,
+  #panel-attendance #todayAttendanceBtn {
+    width: 100%;
+    max-width: none;
+  }
+
+  .attendance-batch-filter {
+    min-height: 112px;
+  }
+
+  .table-scroll-hint {
+    display: block;
+  }
+
+  #panel-attendance .attendance-table-wrapper {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    border: 1px solid var(--card-border);
+    background: var(--bg-secondary);
+    box-shadow: inset -14px 0 14px -16px var(--text-secondary);
+    scrollbar-width: thin;
+  }
+
+  #panel-attendance .attendance-table {
+    width: 100%;
+    min-width: 900px;
+    display: table;
+    border-collapse: collapse;
+  }
+
+  #panel-attendance .attendance-table thead {
+    display: table-header-group;
+  }
+
+  #panel-attendance .attendance-table tbody {
+    display: table-row-group;
+  }
+
+  #panel-attendance .attendance-table tr {
+    display: table-row;
+    margin: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  #panel-attendance .attendance-table th,
+  #panel-attendance .attendance-table td {
+    min-height: 0;
+    display: table-cell;
+    padding: 12px 14px;
+    overflow-wrap: normal;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  #panel-attendance .attendance-table th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  #panel-attendance .attendance-table td::before {
+    display: none;
+  }
+
+  #panel-attendance .attendance-table td[colspan] {
+    display: table-cell;
+    text-align: center;
+  }
+
+  #panel-attendance .attendance-table .student-name {
+    display: table-cell;
+    min-width: 180px;
   }
 
   .table-actions {

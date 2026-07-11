@@ -71,24 +71,24 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "IPv6 Standard",
-        question: "Why was the 128-bit IPv6 address standard developed?",
+        question: "What central limitation of IPv4 does the much larger IPv6 address space address?",
         options: [
-            "To make internet transmissions travel at the speed of light.",
-            "Because the 4.3 billion addresses of IPv4 were completely exhausted.",
-            "To force all local systems to use private cabling.",
-            "To replace binary logic with base 10 arithmetic."
+            "IPv4 cannot carry packets through more than one network router.",
+            "IPv4 has too few globally unique addresses for long-term growth.",
+            "IPv4 requires every local device to use a wired connection.",
+            "IPv4 stores addresses as decimal values instead of binary values."
         ],
         answer: 1,
-        explanation: "The global growth of smartphones and IoT devices exhausted the 4.3 billion available addresses under the 32-bit IPv4 layout."
+        explanation: "IPv4 provides about 4.3 billion values, which is too small for long-term global growth without address-sharing workarounds."
     },
     {
         category: "IPv6 Standard",
-        question: "How are IPv6 addresses written and formatted?",
+        question: "Which notation is normally used to make an IPv6 address readable to people?",
         options: [
-            "Dotted decimal blocks (e.g. 192.168.1.1)",
-            "Hexadecimal characters grouped by colons (e.g. 2001:db8::1)",
-            "Eight octets of raw binary numbers",
-            "Dotted alphanumeric classes"
+            "Decimal values grouped by periods, such as 192.168.1.1",
+            "Hexadecimal groups separated by colons, such as 2001:db8::1",
+            "Binary groups separated by slashes, such as 1010/0011/0101",
+            "Alphabetic groups separated by periods, such as host.local.net"
         ],
         answer: 1,
         explanation: "IPv6 uses 128 bits formatted as hexadecimal characters (0-9, A-F) grouped into blocks separated by colons."
@@ -167,15 +167,15 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Subnetting Classes",
-        question: "An IP address starting with 10.50.1.10 belongs to which default IPv4 class?",
+        question: "A laptop receives 10.50.1.10 on a school network. Which description is most accurate?",
         options: [
-            "Class A",
-            "Class B",
-            "Class C",
-            "Class D"
+            "It is inside a private address range for local networks.",
+            "It is a public multicast address for internet broadcasts.",
+            "It is a loopback address that always means this device.",
+            "It is a public DNS resolver address shared by all networks."
         ],
         answer: 0,
-        explanation: "Class A covers 0.0.0.0 to 127.255.255.255, characterized by having a large host field (up to 16 million nodes)."
+        explanation: "The 10.0.0.0/8 block is reserved for private networks and is not routed directly on the public internet."
     },
     {
         category: "Physical Layer",
@@ -191,12 +191,12 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Network Architectures",
-        question: "Which node is responsible for listening on ports and serving web layouts to multiple concurrent browsers?",
+        question: "Which node normally listens for HTTP requests and returns page resources to many browser clients?",
         options: [
-            "Client laptop",
-            "Web Server",
-            "Subnet router",
-            "LAN testing tool"
+            "Browser client device",
+            "Web server process",
+            "Packet-forwarding router",
+            "Cable-testing device"
         ],
         answer: 1,
         explanation: "Servers are configured with host daemons that wait for client requests and dispatch HTML/CSS layout files back."
@@ -224,6 +224,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof initOneTimeQuizGate === 'function') {
         initOneTimeQuizGate({ moduleId: MODULE_ID, total: QUIZ_QUESTIONS.length, resetQuiz });
     }
+    if (typeof initFinishModuleControl === 'function') {
+        initFinishModuleControl({ moduleId: MODULE_ID, totalLessons: totalSlides, requiresQuiz: true });
+    }
+    if (typeof openRequestedLesson === 'function') openRequestedLesson(goToSlide, totalSlides);
     processIPInput();
     
     // Scroll Prompt setup
@@ -626,6 +630,7 @@ let isReviewMode = false;
 
 function resetQuiz() {
     if (typeof canResetOneTimeQuiz === 'function' && !canResetOneTimeQuiz()) return;
+    if (typeof randomizeQuizInPlace === 'function') randomizeQuizInPlace(QUIZ_QUESTIONS);
     isReviewMode = false;
     quizCurrentQuestion = 0;
     quizScore = 0;
@@ -666,16 +671,7 @@ function loadQuestion() {
     if (textEl) textEl.innerText = q.question;
     
     if (optionsGrid) {
-        optionsGrid.innerHTML = "";
-        q.options.forEach((opt, idx) => {
-            const btn = document.createElement("button");
-            btn.className = "option-btn";
-            btn.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + idx)}</span> <span class="option-text">${opt}</span>`;
-            if (!isReviewMode) {
-                btn.addEventListener("click", () => selectOption(idx));
-            }
-            optionsGrid.appendChild(btn);
-        });
+        renderQuizChoices(optionsGrid, q, selectOption, !isReviewMode);
     }
 
     // Update progress steps
@@ -697,6 +693,7 @@ function loadQuestion() {
         const studentAns = quizAnswers[quizCurrentQuestion];
         const correctAns = q.answer;
         const buttons = document.querySelectorAll("#optionsGrid .option-btn");
+        if (typeof markQuizChoice === 'function') markQuizChoice(buttons, studentAns);
         buttons.forEach((btn, idx) => {
             btn.disabled = true;
             if (idx === correctAns) {
@@ -746,6 +743,7 @@ function selectOption(selectedIdx) {
 
     // Highlight selected option neutrally
     const buttons = document.querySelectorAll("#optionsGrid .option-btn");
+    if (typeof markQuizChoice === 'function') markQuizChoice(buttons, selectedIdx);
     buttons.forEach((btn, idx) => {
         btn.disabled = true;
         if (idx === selectedIdx) {
@@ -859,6 +857,7 @@ function startQuizReview() {
 // Auth callbacks for quiz gating
 function onAuthGateChanged(user, isApproved) {
     updateQuizAccessUI(isApproved);
+    if (typeof refreshFinishModuleControl === 'function') refreshFinishModuleControl();
     if (user && isApproved && typeof recordLessonProgress === 'function') {
         recordLessonProgress(MODULE_ID, currentSlide, totalSlides);
     }

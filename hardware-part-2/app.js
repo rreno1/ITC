@@ -24,12 +24,12 @@ const SLIDE_TITLES = [
 const QUIZ_QUESTIONS = [
     {
         category: "Motherboard",
-        question: "Which computer component acts as the 'nervous system' linking the CPU, RAM, and storage?",
+        question: "Which component provides the main board and pathways connecting the CPU, RAM, and storage?",
         options: [
-            "Power Supply Unit (PSU)",
+            "Power conversion unit",
             "Motherboard",
-            "Hard Disk Drive (HDD)",
-            "Graphics Processing Unit (GPU)"
+            "Storage controller drive",
+            "Graphics processing card"
         ],
         answer: 1,
         explanation: "The motherboard is the main printed circuit board (PCB) that houses and connects all core computer hardware components."
@@ -48,12 +48,12 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "CPU Basics",
-        question: "What is the primary role of the CPU?",
+        question: "Which description best states the CPU's primary role?",
         options: [
-            "To store user files permanently",
+            "Preserve user files after shutdown",
             "To execute program instructions and process data calculations",
-            "To convert AC wall power into DC power",
-            "To output sound signals to audio speakers"
+            "Convert incoming wall power into regulated direct current",
+            "Produce analog audio signals for connected speaker systems"
         ],
         answer: 1,
         explanation: "The Central Processing Unit (CPU) is the main processor or 'brain' that executes code instructions and coordinates tasks."
@@ -84,24 +84,24 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "CPU Cycle",
-        question: "Where does the CPU fetch its next instruction from during the fetch phase?",
+        question: "During normal program execution, where does the CPU fetch the next loaded instruction?",
         options: [
-            "Solid State Drive (SSD)",
-            "System RAM",
-            "Motherboard BIOS ROM",
-            "Graphics Card VRAM"
+            "Long-term system storage",
+            "Active system memory",
+            "Firmware configuration memory",
+            "Dedicated graphics memory"
         ],
         answer: 1,
         explanation: "Active software and files must be loaded into Random Access Memory (RAM) so the CPU can fetch them rapidly."
     },
     {
         category: "CPU Architecture",
-        question: "Which component performs the actual mathematical and logical calculations inside the CPU?",
+        question: "Which CPU section directly performs arithmetic and logical comparisons?",
         options: [
-            "Control Unit (CU)",
-            "Arithmetic Logic Unit (ALU)",
-            "Cache Memory Pool",
-            "Clock Generator"
+            "Instruction control unit",
+            "Arithmetic logic unit",
+            "High-speed cache unit",
+            "Timing clock generator"
         ],
         answer: 1,
         explanation: "The ALU (Arithmetic Logic Unit) is the mathematical subsystem of the CPU that handles all arithmetic and logical comparisons."
@@ -132,12 +132,12 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Storage Drives",
-        question: "What is a key structural difference between a Solid State Drive (SSD) and a Hard Disk Drive (HDD)?",
+        question: "Which comparison best explains a practical difference between an SSD and an HDD?",
         options: [
-            "SSDs use spinning magnetic platters; HDDs use silicon microchips.",
-            "SSDs have no moving parts and are much faster; HDDs use mechanical platters and are slower.",
-            "HDDs lose data when powered off; SSDs retain data without power.",
-            "SSDs require high-power fans; HDDs generate zero noise."
+            "SSDs use moving heads, while HDDs use only flash-memory cells.",
+            "SSDs use flash with no moving parts, while HDDs use spinning platters.",
+            "SSDs lose stored files at shutdown, while HDDs retain their files.",
+            "SSDs connect only through USB, while HDDs connect only through PCIe."
         ],
         answer: 1,
         explanation: "HDDs are mechanical, relying on spinning disks and moving magnetic read arms. SSDs store data electronically on flash memory chips, making them faster and shock-resistant."
@@ -168,12 +168,12 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "Operating Systems",
-        question: "What is Virtual Memory (or paging)?",
+        question: "Which description best explains virtual memory or paging?",
         options: [
-            "A memory card hosted on a remote cloud server",
-            "Using a portion of the storage drive as overflow RAM when system memory is full",
-            "A software simulation of CPU registers",
-            "A graphic card memory buffer"
+            "Using remote cloud storage as the processor's permanent register set",
+            "Using drive space to hold memory pages when physical RAM is pressured",
+            "Using firmware memory to duplicate every active processor instruction",
+            "Using graphics memory to preserve all files after the system shuts down"
         ],
         answer: 1,
         explanation: "When system RAM is full, the operating system swaps less-active memory blocks to a hidden file on the storage drive (paging file) to prevent crashes."
@@ -192,12 +192,12 @@ const QUIZ_QUESTIONS = [
     },
     {
         category: "System Bottlenecks",
-        question: "Why does a mechanical HDD cause a severe bottleneck for a fast Core i7 processor?",
+        question: "Why can a mechanical HDD limit a system even when its processor is fast?",
         options: [
-            "The CPU draws too much current, causing the disk platters to warp.",
-            "The HDD's physical disk sector search latency forces the CPU to waste millions of clock cycles waiting for data.",
-            "The motherboard bus lines are too narrow to carry HDD signals.",
-            "The mechanical HDD generates electromagnetic fields that freeze the CPU."
+            "The processor must lower its clock permanently to match the drive motor.",
+            "Mechanical seek and transfer delays make programs wait for requested data.",
+            "The motherboard can carry either processor data or drive data, but not both.",
+            "Magnetic storage converts every processor instruction into a slower format."
         ],
         answer: 1,
         explanation: "Mechanical HDDs take milliseconds (millions of nanoseconds) to locate files. A fast CPU operates in nanoseconds, meaning it sits idle waiting for the disk to retrieve data."
@@ -219,6 +219,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof initOneTimeQuizGate === 'function') {
         initOneTimeQuizGate({ moduleId: MODULE_ID, total: QUIZ_QUESTIONS.length, resetQuiz });
     }
+    if (typeof initFinishModuleControl === 'function') {
+        initFinishModuleControl({ moduleId: MODULE_ID, totalLessons: totalSlides, requiresQuiz: true });
+    }
+    if (typeof openRequestedLesson === 'function') openRequestedLesson(goToSlide, totalSlides);
     setupScrollPromptListeners();
     setTimeout(updateScrollPrompt, 100);
     
@@ -563,6 +567,7 @@ let isReviewMode = false;
 
 function resetQuiz() {
     if (typeof canResetOneTimeQuiz === 'function' && !canResetOneTimeQuiz()) return;
+    if (typeof randomizeQuizInPlace === 'function') randomizeQuizInPlace(QUIZ_QUESTIONS);
     isReviewMode = false;
     quizCurrentQuestion = 0;
     quizScore = 0;
@@ -603,16 +608,7 @@ function loadQuestion() {
     if (textEl) textEl.innerText = q.question;
     
     if (optionsGrid) {
-        optionsGrid.innerHTML = "";
-        q.options.forEach((opt, idx) => {
-            const btn = document.createElement("button");
-            btn.className = "option-btn";
-            btn.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + idx)}</span> <span class="option-text">${opt}</span>`;
-            if (!isReviewMode) {
-                btn.addEventListener("click", () => selectOption(idx));
-            }
-            optionsGrid.appendChild(btn);
-        });
+        renderQuizChoices(optionsGrid, q, selectOption, !isReviewMode);
     }
 
     // Update progress steps
@@ -634,6 +630,7 @@ function loadQuestion() {
         const studentAns = quizAnswers[quizCurrentQuestion];
         const correctAns = q.answer;
         const buttons = document.querySelectorAll("#optionsGrid .option-btn");
+        if (typeof markQuizChoice === 'function') markQuizChoice(buttons, studentAns);
         buttons.forEach((btn, idx) => {
             btn.disabled = true;
             if (idx === correctAns) {
@@ -683,6 +680,7 @@ function selectOption(selectedIdx) {
 
     // Highlight selected option neutrally
     const buttons = document.querySelectorAll("#optionsGrid .option-btn");
+    if (typeof markQuizChoice === 'function') markQuizChoice(buttons, selectedIdx);
     buttons.forEach((btn, idx) => {
         btn.disabled = true;
         if (idx === selectedIdx) {
@@ -796,6 +794,7 @@ function startQuizReview() {
 // Auth callbacks for quiz gating
 function onAuthGateChanged(user, isApproved) {
     updateQuizAccessUI(isApproved);
+    if (typeof refreshFinishModuleControl === 'function') refreshFinishModuleControl();
     if (user && isApproved && typeof recordLessonProgress === 'function') {
         recordLessonProgress(MODULE_ID, currentSlide, totalSlides);
     }

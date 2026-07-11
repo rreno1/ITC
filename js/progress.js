@@ -39,6 +39,9 @@ async function saveQuizResult(moduleId, score, total) {
     });
 
     showToast(`Quiz score saved: ${score}/${total}`, 'success');
+    document.dispatchEvent(new CustomEvent('quiz:submitted', {
+      detail: { moduleId, score, total }
+    }));
     return { saved: true, attempts };
   } catch (error) {
     console.error('Error saving quiz score:', error);
@@ -213,15 +216,19 @@ function getModuleProgress(module, quizResult, learningResult) {
     ? totalLessons
     : Math.min(validLessons.length, totalLessons);
   const quizCompleted = !!quizResult;
-  const completedUnits = completedLessons + (quizCompleted ? 1 : 0);
-  const totalUnits = totalLessons + 1;
+  const isCompleted = learningResult?.completed === true;
+  const completedUnits = completedLessons + (quizCompleted ? 1 : 0) + (isCompleted ? 1 : 0);
+  const totalUnits = totalLessons + 2;
   const percentage = Math.round((completedUnits / totalUnits) * 100);
 
   let status = 'Not started';
   let statusClass = 'not-started';
-  if (percentage === 100) {
+  if (isCompleted) {
     status = 'Completed';
     statusClass = 'completed';
+  } else if (completedLessons === totalLessons && quizCompleted) {
+    status = 'Ready to finish';
+    statusClass = 'quiz-pending';
   } else if (completedLessons === totalLessons) {
     status = 'Quiz remaining';
     statusClass = 'quiz-pending';
@@ -237,6 +244,7 @@ function getModuleProgress(module, quizResult, learningResult) {
     totalLessons,
     completedLessons,
     quizCompleted,
+    isCompleted,
     completedUnits,
     totalUnits,
     percentage,
@@ -271,7 +279,7 @@ function renderProgressPage(quizResults = {}, learningProgress = {}) {
   const completedLessons = moduleProgress.reduce((sum, item) => sum + item.completedLessons, 0);
   const completedUnits = moduleProgress.reduce((sum, item) => sum + item.completedUnits, 0);
   const totalUnits = moduleProgress.reduce((sum, item) => sum + item.totalUnits, 0);
-  const completedModules = moduleProgress.filter(item => item.percentage === 100).length;
+  const completedModules = moduleProgress.filter(item => item.isCompleted).length;
   const completedQuizzes = moduleProgress.filter(item => item.quizCompleted);
   const quizAverage = completedQuizzes.length
     ? Math.round(completedQuizzes.reduce((sum, item) => {
@@ -291,7 +299,7 @@ function renderProgressPage(quizResults = {}, learningProgress = {}) {
   const summary = document.getElementById('overallProgressSummary');
   if (summary) {
     summary.textContent = overallPercentage === 100
-      ? 'All lessons and one-time assessments are complete.'
+      ? 'Every lesson, assessment, and module completion is recorded.'
       : `${completedModules} of ${moduleProgress.length} modules fully completed.`;
   }
 
@@ -321,9 +329,15 @@ function renderCourseProgress(moduleProgress) {
     const quizLabel = item.quizCompleted
       ? `Quiz ${item.quizResult.bestScore ?? item.quizResult.score}/${item.quizResult.total}`
       : 'Quiz not submitted';
+    const hasActivity = item.completedLessons > 0 || item.quizCompleted;
+    const actionLabel = item.isCompleted ? 'Review Module' : (hasActivity ? 'Continue Module' : 'Start Module');
+    const lastLesson = Math.min(item.totalLessons, Math.max(1, Number(item.learningResult?.lastLesson || 1)));
+    const destination = item.isCompleted
+      ? item.module.path
+      : `${item.module.path}?lesson=${lastLesson}`;
     const action = window.isUserApproved
-      ? `<a class="course-progress-action" href="${escapePortalHTML(item.module.path)}" aria-label="Open ${escapePortalHTML(item.module.title)}">&rarr;</a>`
-      : '<span class="course-progress-action disabled" aria-hidden="true">&rarr;</span>';
+      ? `<a class="course-progress-action" href="${escapePortalHTML(destination)}" aria-label="${actionLabel}: ${escapePortalHTML(item.module.title)}">${actionLabel}</a>`
+      : `<span class="course-progress-action disabled" aria-hidden="true">${actionLabel}</span>`;
 
     const row = document.createElement('article');
     row.className = 'course-progress-item';
@@ -413,6 +427,15 @@ function renderRecentActivity(moduleProgress) {
         timestamp: item.quizResult.completedAt
       });
     }
+
+    if (item.learningResult?.completedAt) {
+      activities.push({
+        type: 'completion',
+        title: `${item.module.title} completed`,
+        detail: 'Module completion recorded',
+        timestamp: item.learningResult.completedAt
+      });
+    }
   });
 
   activities.sort((a, b) => {
@@ -446,6 +469,216 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('progressSignInBtn')?.addEventListener('click', () => {
     if (typeof googleSignIn === 'function') googleSignIn();
   });
+});
+
+window.finishModuleState = {
+  moduleId: null,
+  totalLessons: 0,
+  requiresQuiz: true,
+  initialized: false,
+  saving: false
+};
+
+function ensureFinishModulePanel() {
+  const state = window.finishModuleState;
+  if (!state?.initialized) return null;
+
+  let panel = document.getElementById('finishModulePanel');
+  if (panel) return panel;
+
+  const finalSlide = document.getElementById(`slide-${state.totalLessons}`)
+    || document.querySelector('.presentation-viewport .slide:last-of-type');
+  const host = finalSlide?.querySelector('.slide-content') || finalSlide;
+  if (!host) return null;
+
+  panel = document.createElement('section');
+  panel.className = 'finish-module-panel';
+  panel.id = 'finishModulePanel';
+  panel.setAttribute('aria-labelledby', 'finishModuleTitle');
+  panel.innerHTML = `
+    <div class="finish-module-copy">
+      <h3 id="finishModuleTitle">Finish this module</h3>
+      <p id="finishModuleStatus" role="status" aria-live="polite">Complete the one-time quiz before recording this module as finished.</p>
+    </div>
+    <button class="btn btn-primary finish-module-button" id="finishModuleBtn" type="button" disabled>
+      <span class="finish-module-check" aria-hidden="true">&#10003;</span>
+      <span class="finish-module-label">Finish Module</span>
+    </button>
+  `;
+  host.appendChild(panel);
+
+  panel.querySelector('#finishModuleBtn')?.addEventListener('click', completeCurrentModule);
+  return panel;
+}
+
+function setFinishModuleUI({ label, message, disabled, completed = false, busy = false, error = false }) {
+  const panel = ensureFinishModulePanel();
+  const button = panel?.querySelector('#finishModuleBtn');
+  const labelElement = panel?.querySelector('.finish-module-label');
+  const status = panel?.querySelector('#finishModuleStatus');
+  if (!panel || !button || !labelElement || !status) return;
+
+  panel.classList.toggle('is-completed', completed);
+  panel.classList.toggle('has-error', error);
+  panel.setAttribute('aria-busy', String(busy));
+  button.disabled = disabled;
+  button.classList.toggle('is-loading', busy);
+  labelElement.textContent = label;
+  status.textContent = message;
+}
+
+async function saveModuleCompletion(moduleId, totalLessons) {
+  const user = auth.currentUser;
+  if (!user || !window.isUserApproved || isCurrentUserAdmin()) {
+    return { saved: false, reason: 'not-eligible' };
+  }
+
+  const userRef = db.collection('users').doc(user.uid);
+  try {
+    const result = await db.runTransaction(async transaction => {
+      const snapshot = await transaction.get(userRef);
+      if (!snapshot.exists) throw new Error('Student progress record was not found.');
+      const existing = snapshot.data()?.learningProgress?.[moduleId];
+      if (existing?.completed === true) return { saved: true, alreadyCompleted: true };
+
+      const basePath = `learningProgress.${moduleId}`;
+      transaction.update(userRef, {
+        [`${basePath}.moduleId`]: moduleId,
+        [`${basePath}.totalLessons`]: totalLessons,
+        [`${basePath}.completed`]: true,
+        [`${basePath}.completedAt`]: firebase.firestore.FieldValue.serverTimestamp(),
+        [`${basePath}.lastActiveAt`]: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      return { saved: true, alreadyCompleted: false };
+    });
+
+    window.currentUserData ||= { uid: user.uid };
+    window.currentUserData.learningProgress ||= {};
+    window.currentUserData.learningProgress[moduleId] = {
+      ...(window.currentUserData.learningProgress[moduleId] || {}),
+      moduleId,
+      totalLessons,
+      completed: true,
+      completedAt: new Date(),
+      lastActiveAt: new Date()
+    };
+    window.currentLearningProgress = window.currentUserData.learningProgress;
+    document.dispatchEvent(new CustomEvent('module:completed', { detail: { moduleId } }));
+    return result;
+  } catch (error) {
+    console.error('Unable to save module completion:', error);
+    return { saved: false, reason: 'error', error };
+  }
+}
+
+async function completeCurrentModule() {
+  const state = window.finishModuleState;
+  if (!state?.initialized || state.saving) return;
+
+  state.saving = true;
+  setFinishModuleUI({
+    label: 'Saving...',
+    message: 'Recording your module completion.',
+    disabled: true,
+    busy: true
+  });
+
+  const result = await saveModuleCompletion(state.moduleId, state.totalLessons);
+  state.saving = false;
+  if (result.saved) {
+    setFinishModuleUI({
+      label: 'Module Completed',
+      message: result.alreadyCompleted
+        ? 'This module was already recorded as complete.'
+        : 'Completion saved. My Progress has been updated.',
+      disabled: true,
+      completed: true
+    });
+    if (!result.alreadyCompleted) showToast('Module completion saved.', 'success');
+    return;
+  }
+
+  setFinishModuleUI({
+    label: 'Try Again',
+    message: 'Completion could not be saved. Check your connection and try again.',
+    disabled: false,
+    error: true
+  });
+  showToast('Unable to save module completion.', 'error');
+}
+
+async function refreshFinishModuleControl() {
+  const state = window.finishModuleState;
+  if (!state?.initialized || state.saving) return;
+  ensureFinishModulePanel();
+
+  const user = auth.currentUser;
+  if (!user || !window.isUserApproved) {
+    setFinishModuleUI({
+      label: 'Finish Module',
+      message: 'Sign in with an approved student account to save completion.',
+      disabled: true
+    });
+    return;
+  }
+
+  if (isCurrentUserAdmin()) {
+    setFinishModuleUI({
+      label: 'Student Progress Only',
+      message: 'Admin practice does not create a student completion record.',
+      disabled: true
+    });
+    return;
+  }
+
+  const learningResult = window.currentUserData?.learningProgress?.[state.moduleId];
+  if (learningResult?.completed === true) {
+    setFinishModuleUI({
+      label: 'Module Completed',
+      message: 'This completion is saved in My Progress.',
+      disabled: true,
+      completed: true
+    });
+    return;
+  }
+
+  const quizResult = state.requiresQuiz ? await getQuizResult(user.uid, state.moduleId) : true;
+  if (!quizResult) {
+    setFinishModuleUI({
+      label: 'Finish Module',
+      message: 'Submit the one-time quiz, then return here to finish the module.',
+      disabled: true
+    });
+    return;
+  }
+
+  setFinishModuleUI({
+    label: 'Finish Module',
+    message: 'Your assessment is submitted. Record this module as complete when you are ready.',
+    disabled: false
+  });
+}
+
+function initFinishModuleControl(options) {
+  window.finishModuleState = {
+    moduleId: options.moduleId,
+    totalLessons: Number(options.totalLessons),
+    requiresQuiz: options.requiresQuiz !== false,
+    initialized: true,
+    saving: false
+  };
+  ensureFinishModulePanel();
+  refreshFinishModuleControl();
+}
+
+function openRequestedLesson(navigate, totalLessons) {
+  const lesson = Number(new URLSearchParams(window.location.search).get('lesson'));
+  if (!Number.isInteger(lesson) || lesson < 1 || lesson > totalLessons || typeof navigate !== 'function') return;
+  window.requestAnimationFrame(() => navigate(lesson));
+}
+
+document.addEventListener('quiz:submitted', event => {
+  if (event.detail?.moduleId === window.finishModuleState?.moduleId) refreshFinishModuleControl();
 });
 
 // Shared one-time quiz gate for module pages.
@@ -621,7 +854,7 @@ function updateQuizAttemptControls() {
   const shouldDisableReset = !!(state?.initialized && !isAdmin && (state.attemptActive || state.completed));
   const shouldLockNavigation = !!(state?.initialized && state.attemptActive);
 
-  document.querySelectorAll('button[onclick="resetQuiz()"]')
+  document.querySelectorAll('button[onclick="resetQuiz()"], [data-quiz-reset]')
     .forEach(button => {
       button.disabled = shouldDisableReset;
       if (shouldDisableReset) {

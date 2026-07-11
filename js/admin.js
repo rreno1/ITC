@@ -8,6 +8,7 @@ let groupedQuizListenerAvailable = true;
 let adminUsersReady = false;
 let adminQuizReady = false;
 let adminRenderFrame = null;
+let selectedAttendanceBatchValue = 'all';
 const ADMIN_PAGE_SIZE = 20;
 const adminPageState = {
   grades: 1,
@@ -125,9 +126,31 @@ function selectedAttendanceDate() {
 }
 
 function selectedAttendanceBatch() {
-  const filter = document.getElementById('attendanceBatchFilter');
-  const value = filter ? filter.value : 'all';
-  return value === 'A' || value === 'B' ? value : 'all';
+  return selectedAttendanceBatchValue;
+}
+
+function setAttendanceBatchFilter(batch) {
+  const normalized = batch === 'A' || batch === 'B' ? batch : 'all';
+  selectedAttendanceBatchValue = selectedAttendanceBatchValue === normalized ? 'all' : normalized;
+
+  document.querySelectorAll('[data-attendance-batch]').forEach(button => {
+    const buttonBatch = button.getAttribute('data-attendance-batch');
+    const selected = buttonBatch === selectedAttendanceBatchValue;
+    button.classList.toggle('is-selected', selected);
+    button.setAttribute('aria-pressed', String(selected));
+    const state = button.querySelector('.batch-filter-state');
+    if (state) state.textContent = selected ? `Selected: showing Batch ${buttonBatch} only` : `Show Batch ${buttonBatch} only`;
+  });
+
+  const status = document.getElementById('attendanceFilterStatus');
+  if (status) {
+    status.textContent = selectedAttendanceBatchValue === 'all'
+      ? 'Showing attendance for all batches.'
+      : `Showing attendance for Batch ${selectedAttendanceBatchValue} only.`;
+  }
+
+  resetAdminPage('attendance');
+  renderAttendanceTable(window.allStudentsCached || []);
 }
 
 function batchPill(batch) {
@@ -856,7 +879,7 @@ function setupTabNavigation() {
       const targetPanel = document.getElementById(`panel-${targetTab}`);
       if (targetPanel) targetPanel.classList.add('active-panel');
 
-      if (window.innerWidth <= 900) {
+      if (window.innerWidth <= 720) {
         document.getElementById('adminMainPanel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
@@ -877,9 +900,10 @@ document.addEventListener('DOMContentLoaded', () => {
       renderAttendanceTable(window.allStudentsCached || []);
     });
   }
-  document.getElementById('attendanceBatchFilter')?.addEventListener('change', () => {
-    resetAdminPage('attendance');
-    renderAttendanceTable(window.allStudentsCached || []);
+  document.querySelectorAll('[data-attendance-batch]').forEach(button => {
+    button.addEventListener('click', () => {
+      setAttendanceBatchFilter(button.getAttribute('data-attendance-batch'));
+    });
   });
 
   document.getElementById('todayAttendanceBtn')?.addEventListener('click', () => {

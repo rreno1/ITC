@@ -112,39 +112,51 @@ const MODULES = [
     status: 'available'
   },
   {
-    id: 'multimedia-part-1',
-    title: 'Multimedia Part 1',
-    subtitle: 'Images & Graphics',
-    description: 'Digital images, color models, compression, and how multimedia is represented in computers.',
+    id: 'multimedia',
+    title: 'Multimedia',
+    subtitle: 'Audio, Images, and Video',
+    description: 'Understand sampling, pixels, color, compression, codecs, containers, metadata, 3D graphics, and accessible media.',
     icon: '🎨',
     color: '#f59e0b',
-    status: 'locked'
+    path: 'multimedia/multimedia.html',
+    lessonTotal: 10,
+    quizTotal: 15,
+    status: 'available'
   },
   {
-    id: 'multimedia-part-2',
-    title: 'Multimedia Part 2',
-    subtitle: 'Audio & Video',
-    description: 'Digital audio, video encoding, streaming technology, and multimedia formats.',
+    id: 'security',
+    title: 'Security',
+    subtitle: 'Privacy, Trust, and Defense',
+    description: 'Protect privacy, accounts, networks, and data using authentication, encryption, verification, and layered defenses.',
     icon: '🎵',
     color: '#ec4899',
-    status: 'locked'
+    path: 'security/security.html',
+    lessonTotal: 10,
+    quizTotal: 15,
+    status: 'available'
   },
   {
-    id: 'security-part-1',
-    title: 'Security Part 1',
-    subtitle: 'Threats & Privacy',
-    description: 'Cybersecurity threats, malware types, social engineering, and privacy protection.',
+    id: 'web-development',
+    title: 'Web Development',
+    subtitle: 'HTTP, HTML, Forms, and CSS',
+    description: 'Trace browser-server requests and build meaningful, accessible, responsive pages with HTML, forms, and CSS.',
     icon: '🔒',
     color: '#ef4444',
-    status: 'locked'
+    path: 'web-development/web-development.html',
+    lessonTotal: 10,
+    quizTotal: 15,
+    status: 'available'
   },
   {
-    id: 'security-part-2',
-    title: 'Security Part 2',
-    subtitle: 'Encryption & Defense',
-    description: 'Encryption methods, firewalls, secure passwords, and network defense strategies.',
+    id: 'programming',
+    title: 'Programming',
+    subtitle: 'Algorithms, Logic, and Code',
+    description: 'Apply algorithms, variables, conditions, loops, functions, language translation, events, and systematic debugging.',
     icon: '🛡️',
     color: '#f97316',
-    status: 'locked'
+    path: 'programming/programming.html',
+    lessonTotal: 10,
+    quizTotal: 15,
+    status: 'available'
   }
 ];

@@ -1,46 +1,106 @@
 (function setupSharedNavigation() {
-  function initializeCollapsibleMenu(button) {
+  const MOBILE_NAV_BREAKPOINT = 720;
+  const FOCUSABLE_SELECTOR = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])'
+  ].join(',');
+
+  function initializeMobileDrawer(button) {
     const menuId = button.getAttribute('aria-controls');
     const menu = menuId ? document.getElementById(menuId) : null;
     if (!menu) return;
 
-    const close = () => {
-      button.setAttribute('aria-expanded', 'false');
-      menu.classList.remove('menu-open');
-      if (window.innerWidth <= 720) menu.setAttribute('aria-hidden', 'true');
+    const overlay = document.querySelector(`[data-mobile-overlay-for="${menuId}"]`);
+    const closeButton = menu.querySelector('[data-mobile-menu-close]');
+    const isMobile = () => window.innerWidth <= MOBILE_NAV_BREAKPOINT;
+
+    const focusableElements = () => Array.from(menu.querySelectorAll(FOCUSABLE_SELECTOR))
+      .filter(element => !element.hidden && element.getAttribute('aria-hidden') !== 'true');
+
+    const setOpen = (open, restoreFocus = false) => {
+      const shouldOpen = isMobile() && open;
+      button.setAttribute('aria-expanded', String(shouldOpen));
+      button.setAttribute('aria-label', shouldOpen ? 'Close navigation' : 'Open navigation');
+      menu.classList.toggle('menu-open', shouldOpen);
+      menu.setAttribute('aria-hidden', String(isMobile() && !shouldOpen));
+      menu.inert = isMobile() && !shouldOpen;
+      overlay?.setAttribute('aria-hidden', String(!shouldOpen));
+
+      if (shouldOpen) {
+        document.body.classList.add('mobile-nav-open');
+        window.requestAnimationFrame(() => (closeButton || focusableElements()[0])?.focus());
+      } else {
+        if (!document.querySelector('.mobile-nav-panel.menu-open')) {
+          document.body.classList.remove('mobile-nav-open');
+        }
+        if (restoreFocus && isMobile()) button.focus();
+      }
     };
 
-    button.addEventListener('click', event => {
-      event.stopPropagation();
-      const shouldOpen = button.getAttribute('aria-expanded') !== 'true';
-      button.setAttribute('aria-expanded', String(shouldOpen));
-      menu.classList.toggle('menu-open', shouldOpen);
-      menu.setAttribute('aria-hidden', String(!shouldOpen));
+    button.addEventListener('click', () => {
+      setOpen(button.getAttribute('aria-expanded') !== 'true');
     });
 
+    closeButton?.addEventListener('click', () => setOpen(false, true));
+    overlay?.addEventListener('click', () => setOpen(false, true));
+
     menu.addEventListener('click', event => {
-      if (event.target.closest('a, button[data-tab]')) close();
+      if (event.target.closest('a, button[data-tab]')) setOpen(false, true);
     });
 
     document.addEventListener('click', event => {
       if (!menu.classList.contains('menu-open')) return;
-      if (!menu.contains(event.target) && !button.contains(event.target)) close();
+      if (!menu.contains(event.target) && !button.contains(event.target)) setOpen(false, true);
     });
 
     document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') close();
-    });
+      if (!menu.classList.contains('menu-open')) return;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setOpen(false, true);
+        return;
+      }
 
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 720) {
-        menu.removeAttribute('aria-hidden');
-        close();
-      } else if (!menu.classList.contains('menu-open')) {
-        menu.setAttribute('aria-hidden', 'true');
+      if (event.key !== 'Tab') return;
+      const focusable = focusableElements();
+      if (!focusable.length) {
+        event.preventDefault();
+        return;
+      }
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     });
 
-    if (window.innerWidth <= 720) menu.setAttribute('aria-hidden', 'true');
+    window.addEventListener('resize', () => {
+      if (!isMobile()) {
+        setOpen(false);
+        menu.removeAttribute('aria-hidden');
+        menu.inert = false;
+      } else if (!menu.classList.contains('menu-open')) {
+        menu.setAttribute('aria-hidden', 'true');
+        menu.inert = true;
+      }
+    });
+
+    if (isMobile()) {
+      menu.setAttribute('aria-hidden', 'true');
+      menu.inert = true;
+    } else {
+      menu.removeAttribute('aria-hidden');
+      menu.inert = false;
+    }
+    overlay?.setAttribute('aria-hidden', 'true');
   }
 
   function initializeCourseSidebar() {
@@ -49,14 +109,24 @@
     const overlay = document.getElementById('courseSidebarOverlay');
     const closeButton = document.getElementById('courseSidebarClose');
     if (!toggle || !sidebar || !overlay) return;
+    if (sidebar.dataset.navigationReady === 'true') return;
+    sidebar.dataset.navigationReady = 'true';
+    const background = [
+      document.querySelector('.presentation-viewport'),
+      document.querySelector('.bottom-controls')
+    ].filter(Boolean);
+    const getSidebarFocusable = () => Array.from(sidebar.querySelectorAll(FOCUSABLE_SELECTOR))
+      .filter(element => !element.hidden && !element.disabled);
 
     const setOpen = (open, returnFocus = false) => {
       const isMobile = window.innerWidth <= 1100;
       document.body.classList.toggle('course-sidebar-open', open);
       toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close lesson outline' : 'Open lesson outline');
       sidebar.setAttribute('aria-hidden', String(isMobile && !open));
       sidebar.inert = isMobile && !open;
       overlay.setAttribute('aria-hidden', String(!open));
+      background.forEach(element => { element.inert = isMobile && open; });
       if (open) closeButton?.focus();
       else if (returnFocus) toggle.focus();
     };
@@ -71,9 +141,24 @@
     });
     sidebar.addEventListener('keydown', event => {
       const lesson = event.target.closest('.sidebar-item');
-      if (!lesson || (event.key !== 'Enter' && event.key !== ' ')) return;
-      event.preventDefault();
-      lesson.click();
+      if (lesson && (event.key === 'Enter' || event.key === ' ')) {
+        event.preventDefault();
+        lesson.click();
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+      const focusable = getSidebarFocusable();
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     });
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape' && document.body.classList.contains('course-sidebar-open')) {
@@ -85,6 +170,7 @@
       const isClosedMobile = window.innerWidth <= 1100 && !document.body.classList.contains('course-sidebar-open');
       sidebar.setAttribute('aria-hidden', String(isClosedMobile));
       sidebar.inert = isClosedMobile;
+      if (!isClosedMobile) background.forEach(element => { element.inert = false; });
     });
     sidebar.setAttribute('aria-hidden', String(window.innerWidth <= 1100));
     sidebar.inert = window.innerWidth <= 1100;
@@ -92,7 +178,9 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.mobile-menu-toggle[aria-controls]:not(.course-sidebar-toggle)').forEach(initializeCollapsibleMenu);
+    document.querySelectorAll('.mobile-menu-toggle[aria-controls]:not(.course-sidebar-toggle)').forEach(initializeMobileDrawer);
     initializeCourseSidebar();
   });
+
+  window.initializeCourseSidebar = initializeCourseSidebar;
 })();

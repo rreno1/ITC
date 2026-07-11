@@ -8,246 +8,198 @@ const MODULE_ID = 'internet-part-2';
 // Slide Titles for Left Sidebar Checklist
 const SLIDE_TITLES = [
     "Welcome & Intro",
-    "URLs & Client–Server",
-    "DNS Resolution",
-    "Complete Web Journey",
-    "HTTP, State & Caching",
-    "TLS & Browser Rendering",
-    "Hosting, Services & Governance",
-    "Security & Troubleshooting Lab",
+    "URLs & DNS",
+    "Website Request Journey",
+    "HTTP & Status Codes",
+    "State, Cookies & Cache",
+    "HTTPS, TLS & Certificates",
+    "Rendering, Hosting & CDNs",
+    "Security & Troubleshooting",
     "Quiz Assessment",
     "Summary & Review"
 ];
 
-function renderStrictCurriculum() {
-    const lessons = {
-        2: `
-          <div class="section-title"><span class="slide-num">02</span><span class="badge-label ohs-bg">Web Addresses</span><h2>Anatomy of a URL & Client–Server Communication</h2></div>
-          <p class="lead-text"><code>https://www.example.com:443/courses/internet?id=10#review</code></p>
-          <div class="split-layout">
-            <div class="split-left glass-card" style="padding:18px">
-              <h3>Read the URL</h3>
-              <ul class="slide-body-bullets"><li><strong>Scheme:</strong> <code>https</code></li><li><strong>Subdomain:</strong> <code>www</code>; <strong>domain:</strong> <code>example</code>; <strong>top-level domain:</strong> <code>.com</code></li><li><strong>Port:</strong> <code>443</code>; <strong>path:</strong> <code>/courses/internet</code></li><li><strong>Query string:</strong> <code>?id=10</code>; <strong>fragment:</strong> <code>#review</code></li></ul>
-              <p>A <strong>URL</strong> identifies a resource. A <strong>domain name</strong> is its human-readable host name; an <strong>IP address</strong> identifies a network destination. A <strong>website</strong> contains related resources, a <strong>webpage</strong> is one document, and a <strong>web server</strong> provides them.</p>
-            </div>
-            <div class="split-right glass-card" style="padding:18px">
-              <h3>Client–server model</h3>
-              <ul class="slide-body-bullets"><li>A client initiates a request; a server listens, processes requests, and may serve many clients.</li><li>A site may rely on several servers and external services.</li><li>The <strong>frontend</strong> runs the user-facing interface; the <strong>backend</strong> applies server-side logic and works with databases.</li><li>A <strong>static</strong> site returns stored resources; a <strong>dynamic</strong> site generates or personalizes responses.</li><li>Web servers handle web traffic, application servers run logic, and databases store/query data.</li></ul>
-            </div>
-          </div>`,
-        3: `
-          <div class="section-title"><span class="slide-num">03</span><span class="badge-label path-bg">DNS</span><h2>Domain Name System: Resolution & Records</h2></div>
-          <p class="lead-text">DNS translates human-readable names into information computers use to locate Internet services. It stores more than website addresses.</p>
-          <div class="split-layout">
-            <div class="split-left glass-card" style="padding:18px">
-              <h3>A typical lookup</h3>
-              <ol class="slide-body-bullets"><li>The browser and operating system check their caches.</li><li>The device asks its configured <strong>recursive resolver</strong>.</li><li>If not cached, the resolver follows referrals from a <strong>root</strong> server to a <strong>TLD</strong> server.</li><li>The resolver asks the domain’s <strong>authoritative name server</strong>.</li><li>The answer, such as an IP address, returns to the device and is cached temporarily.</li></ol>
-            </div>
-            <div class="split-right glass-card" style="padding:18px">
-              <h3>Common DNS records</h3>
-              <table style="width:100%;border-collapse:collapse"><tr><th>Record</th><th>Purpose</th></tr><tr><td>A</td><td>IPv4 address</td></tr><tr><td>AAAA</td><td>IPv6 address</td></tr><tr><td>CNAME</td><td>Alias to another name</td></tr><tr><td>MX</td><td>Mail server</td></tr><tr><td>NS</td><td>Authoritative name server</td></tr><tr><td>TXT</td><td>Text used for policies and verification</td></tr></table>
-            </div>
-          </div>
-          <div class="article-divider"></div><article class="slide-article-body"><h3>Do not collapse the roles</h3><p>The recursive resolver performs work for the client; root and TLD servers normally provide referrals; the authoritative server supplies the domain’s definitive records. DNS can fail even when basic IP connectivity still works.</p></article>`,
-        4: `
-          <div class="section-title"><span class="slide-num">04</span><span class="badge-label tools-bg">Central Lesson</span><h2>The Complete Journey of a Web Request</h2></div>
-          <p class="lead-text">What happens from entering a URL to seeing the page?</p>
-          <div class="glass-card" style="padding:18px">
-            <ol class="slide-body-bullets"><li>The browser interprets the URL and checks relevant caches.</li><li>DNS resolves the domain name to an address.</li><li>Packets go to the default gateway and are forwarded through one or more networks.</li><li>A transport connection is established; for HTTPS, the browser creates a secure TLS session.</li><li>The browser sends an HTTP request.</li><li>The server—or its application and database—processes the request and sends an HTTP response.</li><li>The browser requests additional HTML, CSS, JavaScript, images, fonts, and other resources, possibly from other servers.</li><li>The browser parses the resources, runs scripts, calculates layout, and renders the page.</li></ol>
-          </div>
-          <div class="article-divider"></div><article class="slide-article-body"><h3>Layer the explanation</h3><p>DNS locates the service, IP and routers move packets, TCP or another transport communicates end to end, TLS protects HTTPS traffic, HTTP carries web requests and responses, and the browser assembles and renders the resources. Each technology has a distinct responsibility.</p></article>`,
-        5: `
-          <div class="section-title"><span class="slide-num">05</span><span class="badge-label ohs-bg">Web Protocol</span><h2>HTTP, Status Codes, State & Caching</h2></div>
-          <p class="lead-text"><strong>HTTP</strong> is an application-layer, request–response protocol for transferring web resources between clients and servers.</p>
-          <div class="split-layout">
-            <div class="split-left glass-card" style="padding:18px">
-              <h3>HTTP request and response</h3>
-              <pre style="white-space:pre-wrap"><code>GET /modules/internet HTTP/1.1
-Host: example.com
-
-HTTP/1.1 200 OK
-Content-Type: text/html</code></pre>
-              <p>Common methods: <strong>GET</strong> retrieves; <strong>POST</strong> submits; <strong>PUT</strong> replaces; <strong>PATCH</strong> partly updates; <strong>DELETE</strong> removes.</p>
-              <p>Status groups: 1xx informational, 2xx success, 3xx redirection, 4xx client-side error, 5xx server-side error.</p>
-            </div>
-            <div class="split-right glass-card" style="padding:18px">
-              <h3>Recognize and interpret</h3>
-              <p><strong>200 OK</strong>, <strong>301 Moved Permanently</strong>, <strong>403 Forbidden</strong>, <strong>404 Not Found</strong>, <strong>500 Internal Server Error</strong>, and <strong>503 Service Unavailable</strong>.</p>
-              <h3>HTTP is generally stateless</h3>
-              <p>Requests are independent. <strong>Cookies</strong>, server-side <strong>sessions</strong>, and authentication <strong>tokens</strong> support login persistence and shopping carts. Browser and server caches reuse responses until expiration rules require revalidation or replacement.</p>
-              <p>Cookies are small data values, not automatically viruses; they can serve legitimate functions and can also support tracking.</p>
-            </div>
-          </div>`,
-        6: `
-          <div class="section-title"><span class="slide-num">06</span><span class="badge-label tools-bg">Secure Rendering</span><h2>HTTPS, TLS, Certificates & Browser Rendering</h2></div>
-          <div class="split-layout">
-            <div class="split-left glass-card" style="padding:18px">
-              <h3>What HTTPS adds</h3>
-              <ul class="slide-body-bullets"><li><strong>Confidentiality:</strong> transmitted information is encrypted against easy reading.</li><li><strong>Integrity:</strong> modification in transit can be detected.</li><li><strong>Authentication:</strong> a certificate helps verify the server identity for the domain.</li></ul>
-              <p><strong>TLS</strong> establishes the secure session. A digital certificate binds identity information to a public key and is validated through trusted certificate authorities. Browsers warn about expired, mismatched, or untrusted certificates.</p>
-              <p>A padlock means the connection is protected; it does <strong>not</strong> prove that the website or business is honest.</p>
-            </div>
-            <div class="split-right glass-card" style="padding:18px">
-              <h3>Receiving HTML is not the end</h3>
-              <p>The browser parses HTML, downloads CSS and JavaScript, requests images and fonts, builds internal page structures, calculates layout, renders pixels, executes scripts, and may make additional API requests.</p>
-              <p>A webpage is assembled from many resources, sometimes retrieved from multiple servers. Developer tools expose these individual requests and their timing.</p>
-              <p>Cryptographic mathematics is outside this introductory module; the goal is to understand what TLS provides and what it does not.</p>
-            </div>
-          </div>`,
-        7: `
-          <div class="section-title"><span class="slide-num">07</span><span class="badge-label path-bg">Beyond One Server</span><h2>Hosting, Internet Services & Governance</h2></div>
-          <div class="split-layout">
-            <div class="split-left glass-card" style="padding:18px">
-              <h3>How sites stay available</h3>
-              <p>A <strong>domain registrar</strong> registers names; <strong>DNS hosting</strong> publishes records; <strong>web hosting</strong> serves content. Options include shared hosting, virtual private servers, cloud platforms, and data centers.</p>
-              <p><strong>CDNs</strong> cache resources near users; <strong>load balancing</strong> distributes requests; <strong>replication</strong> and <strong>redundancy</strong> reduce the impact of load or failure.</p>
-              <h3>The Internet is more than the Web</h3>
-              <p>Email (SMTP, IMAP, POP), file transfer (FTP, SFTP), remote access (SSH), VoIP and real-time video, streaming, messaging, cloud storage, gaming, and IoT all use Internet infrastructure. Their designs highlight streaming buffers and adaptive quality, messaging with persistent connections and notifications, cloud synchronization, gaming latency and matchmaking servers, and connected IoT sensors and devices.</p>
-            </div>
-            <div class="split-right glass-card" style="padding:18px">
-              <h3>No single owner</h3>
-              <ul class="slide-body-bullets"><li><strong>IETF</strong> develops many technical standards; <strong>RFCs</strong> contain specifications.</li><li><strong>ICANN</strong> coordinates important parts of the domain-name system.</li><li><strong>Regional Internet registries</strong> distribute Internet number resources.</li><li><strong>ISPs</strong> connect networks; governments create laws and telecommunications rules.</li><li>Website and cloud operators manage their own services.</li></ul>
-              <p>These organizations have different responsibilities; no single company owns the entire Internet.</p>
-            </div>
-          </div>`,
-        8: `
-          <div class="section-title"><span class="slide-num">08</span><span class="badge-label quiz-bg">Activity & Laboratory</span><h2>Security, Website Trace & Troubleshooting</h2></div>
-          <div class="split-layout">
-            <div class="split-left glass-card" style="padding:18px">
-              <h3>Practical Internet security</h3>
-              <p>Recognize phishing, social engineering, malware, fake sites, password reuse, public Wi-Fi risk, unsafe downloads, and excessive browser permissions. Use unique passwords, MFA, software updates, secure downloads, firewalls, encryption, and backups.</p>
-              <ul class="slide-body-bullets"><li>Incognito mode does not make you anonymous.</li><li>A VPN does not make every activity safe.</li><li>HTTPS does not prove a business is legitimate.</li><li>Antivirus cannot prevent every attack.</li><li>A strong password should not be reused.</li></ul>
-              <h3>Activity: trace a website request</h3>
-              <p>Create and annotate: User → Browser → DNS → Router → ISP → Internet routers → Web server → HTTP response → Browser rendering. Mark where IP, TCP or UDP, TLS, HTTP, DNS, routers, and ports are involved.</p>
-            </div>
-            <div class="split-right glass-card" style="padding:18px">
-              <h3>Systematic troubleshooting</h3>
-              <ol class="slide-body-bullets"><li>Check power and physical links; confirm Wi-Fi/Ethernet.</li><li>Use <code>ipconfig /all</code> to confirm an IP, prefix, gateway, and DNS server.</li><li><code>ping &lt;gateway&gt;</code>, then <code>ping 8.8.8.8</code>, then <code>ping example.com</code>.</li><li>Use <code>nslookup example.com</code> for DNS and <code>tracert example.com</code> for visible hops.</li><li>Test the service and compare another device or network. Record errors and observations. Restart only for a reason.</li></ol>
-              <h3>Browser developer-tools lab</h3>
-              <p>In the Network tab, load a site; identify the main HTML, CSS, JavaScript, image, and font requests; inspect status codes and transferred/resource sizes; count requests; reload and observe caching.</p>
-            </div>
-          </div>`,
-        10: `
-          <div class="section-title"><span class="slide-num">10</span><span class="badge-label ohs-bg">Review</span><h2>Internet Part 2: Required Outcomes</h2></div>
-          <p class="lead-text">You should now be able to trace a webpage and reason about security and failures.</p>
-          <div class="split-layout">
-            <div class="split-left glass-card" style="padding:18px"><h3>I can…</h3><ul class="slide-body-bullets"><li>distinguish a URL, domain, website, webpage, web server, and IP address;</li><li>trace DNS and the complete journey after entering a URL;</li><li>interpret common HTTP methods, status codes, cookies, sessions, and caches;</li><li>explain TLS encryption, integrity, authentication, and certificates;</li><li>describe browser rendering, hosting, CDNs, Internet services, and distributed governance;</li><li>identify common threats and diagnose connectivity and DNS problems systematically.</li></ul></div>
-            <div class="split-right glass-card" style="padding:18px"><h3>Final mental model</h3><p>The Internet is distributed infrastructure; the Web is one application ecosystem on top. DNS locates services, IP routes packets, transport connects endpoints, TLS protects HTTPS, HTTP exchanges resources, and browsers render them.</p><h3>Keep the scope introductory</h3><p>Do not replace understanding with rote OSI-layer lists, binary subnetting, router configuration, detailed BGP rules, full TCP headers, cryptographic mathematics, dozens of ports, or every historical protocol.</p></div>
-          </div>`
-    };
-
-    Object.entries(lessons).forEach(([number, html]) => {
-        const content = document.querySelector(`#slide-${number} .slide-content`);
-        if (content) content.innerHTML = html;
-    });
-}
-
 // Quiz Database (15 Questions matching constraints)
 const QUIZ_QUESTIONS = [
     {
-        category: "URL Anatomy",
-        question: "In https://www.example.com:443/courses?id=10#review, which part is the query string?",
-        options: ["https", "www", "?id=10", "#review"],
-        answer: 2,
-        explanation: "The query string begins with ?, while the fragment begins with #."
-    },
-    {
-        category: "Client–Server",
-        question: "Which statement correctly describes a dynamic website?",
-        options: ["It can generate or personalize responses using application logic and data.", "It never uses a server.", "It contains only one HTML file and cannot change.", "It is another name for a private IP address."],
-        answer: 0,
-        explanation: "Dynamic sites use backend logic and often databases to build or personalize responses."
-    },
-    {
-        category: "DNS",
-        question: "Which sequence best represents a cache miss handled by a recursive DNS resolver?",
-        options: ["Authoritative → browser → root → switch", "Root referral → TLD referral → authoritative answer", "HTTP → TLS → DHCP → FTP", "Router → cookie → database → certificate"],
+        category: "Packets & Routing",
+        question: "What is the standard maximum size of a typical internet Ethernet packet?",
+        options: [
+            "128 bytes",
+            "1,500 bytes",
+            "64,000 bytes",
+            "1 Megabyte"
+        ],
         answer: 1,
-        explanation: "The resolver follows the DNS hierarchy from root to TLD to the authoritative server."
+        explanation: "The standard MTU (Maximum Transmission Unit) for Ethernet packets on the web is 1,500 bytes."
     },
     {
-        category: "DNS Records",
-        question: "Which DNS record maps a name to an IPv6 address?",
-        options: ["A", "AAAA", "MX", "TXT"],
+        category: "Packets & Routing",
+        question: "How can an IP network continue delivering packets when one route becomes congested?",
+        options: [
+            "Every packet waits at its sender until the original route is empty.",
+            "Routers may forward packets independently through other available paths.",
+            "Every packet increases its payload until the congested link accepts it.",
+            "Routers remove destination addresses so packets can bypass routing rules."
+        ],
         answer: 1,
-        explanation: "AAAA records hold IPv6 addresses; A records hold IPv4 addresses."
+        explanation: "Packets travel independently. Routers dynamic-path packet chunks around network congestion blocks."
     },
     {
-        category: "Web Request Journey",
-        question: "Which ordering is most accurate after a user enters an HTTPS URL?",
-        options: ["Render → DNS → HTTP → URL", "Interpret URL → DNS → transport/TLS → HTTP request → response/resources → render", "HTTP response → DHCP → DNS → keyboard", "TLS → delete cache → power off → render"],
+        category: "TCP Protocol",
+        question: "Which of the following describes the first step of the TCP 3-way handshake?",
+        options: [
+            "Client sends ACK (Acknowledgment)",
+            "Client sends SYN (Synchronize)",
+            "Server sends SYN-ACK",
+            "Server sends FIN (Finish)"
+        ],
         answer: 1,
-        explanation: "The browser resolves the destination, establishes communication and TLS, exchanges HTTP, retrieves dependencies, and renders."
+        explanation: "The client starts the TCP handshake by sending a SYN packet to synchronize sequence numbers."
     },
     {
-        category: "HTTP",
-        question: "Which HTTP method is normally used to retrieve a resource without asking the server to replace it?",
-        options: ["GET", "PUT", "PATCH", "DELETE"],
-        answer: 0,
-        explanation: "GET requests a representation of a resource."
-    },
-    {
-        category: "HTTP Status",
-        question: "What does HTTP 503 Service Unavailable usually mean?",
-        options: ["The request succeeded.", "The resource moved permanently.", "The server is temporarily unable to handle the request.", "TLS verified that the business is honest."],
-        answer: 2,
-        explanation: "503 is a server-side availability error in the 5xx group."
-    },
-    {
-        category: "State and Caching",
-        question: "Why do sites use cookies or session tokens?",
-        options: ["To add state such as login persistence to otherwise independent HTTP requests", "To increase fiber speed", "To replace all DNS records", "To prove that advertisements are trustworthy"],
-        answer: 0,
-        explanation: "Cookies and tokens help connect requests to state such as a login or shopping cart."
-    },
-    {
-        category: "HTTPS and TLS",
-        question: "Which three goals does HTTPS through TLS provide?",
-        options: ["Compression, routing, and storage", "Confidentiality, integrity, and server authentication", "Anonymity, honesty, and malware removal", "Bandwidth, latency, and jitter"],
+        category: "TCP Protocol",
+        question: "How does TCP normally recover when a required segment does not arrive?",
+        options: [
+            "It restarts every completed application request from the beginning.",
+            "It detects the missing data and retransmits the needed segment.",
+            "It changes the destination address into a multicast address.",
+            "It converts the missing segment into a DNS response record."
+        ],
         answer: 1,
-        explanation: "TLS encrypts traffic, detects modification, and authenticates the server identity for the domain."
+        explanation: "TCP uses error recovery tracking. If a segment is missing, the client requests retransmission of that specific sequence block."
     },
     {
-        category: "Certificates",
-        question: "What does a valid HTTPS padlock not guarantee?",
-        options: ["The connection is encrypted.", "The certificate matches the site identity checked by the browser.", "The business and every claim on the page are honest.", "Traffic has integrity protection."],
+        category: "Domain Name System",
+        question: "What is the primary role of the Domain Name System (DNS)?",
+        options: [
+            "To encrypt HTML tags inside browser files.",
+            "To map human-readable domain names to numerical IP addresses.",
+            "To assign local IP addresses to wifi clients dynamically.",
+            "To check motherboard voltages during startup."
+        ],
+        answer: 1,
+        explanation: "DNS acts as the web phonebook, resolving domain names (like google.com) to numeric IP targets."
+    },
+    {
+        category: "Domain Name System",
+        question: "After local caches and host settings, which service does a device normally ask to resolve a domain?",
+        options: [
+            "The domain's authoritative name server directly",
+            "The relevant top-level-domain name server directly",
+            "A configured recursive DNS resolver",
+            "A website certificate authority"
+        ],
         answer: 2,
-        explanation: "HTTPS protects the connection; it cannot establish that the site's content or operator is trustworthy."
+        explanation: "A client normally asks a recursive resolver, which uses its cache and queries the DNS hierarchy when it needs more information."
     },
     {
-        category: "Browser Rendering",
-        question: "After receiving the main HTML, what may the browser do next?",
-        options: ["Request CSS, JavaScript, images, and fonts, then calculate layout and render", "Stop all network activity permanently", "Convert the URL into a MAC address", "Ask BGP to create a cookie"],
-        answer: 0,
-        explanation: "A webpage is commonly assembled from many resources and processed before pixels appear."
+        category: "HTTP Protocol",
+        question: "Which HTTP request method is used by a browser to retrieve layout page files from a web server?",
+        options: [
+            "POST",
+            "GET",
+            "PUT",
+            "DELETE"
+        ],
+        answer: 1,
+        explanation: "Browsers use the GET method to retrieve documents or assets from a target server."
     },
     {
-        category: "Hosting",
-        question: "How can a CDN improve a website?",
-        options: ["By serving cached content from locations closer to users", "By guaranteeing every claim is factual", "By replacing all servers with one laptop", "By assigning private Wi-Fi addresses"],
-        answer: 0,
-        explanation: "CDNs distribute copies of content so users can retrieve it from nearby infrastructure."
-    },
-    {
-        category: "Internet Services",
-        question: "Which example shows that the Internet is broader than the Web?",
-        options: ["Email using SMTP and IMAP", "An HTML heading", "A browser bookmark", "A webpage fragment"],
-        answer: 0,
-        explanation: "Email is a separate Internet service with its own protocols."
-    },
-    {
-        category: "Security",
-        question: "Which statement is accurate?",
-        options: ["Incognito mode makes a user anonymous to every network.", "A VPN makes every download safe.", "A unique password plus MFA reduces account risk.", "Antivirus prevents every possible attack."],
+        category: "HTTP Protocol",
+        question: "What does an HTTP 404 response status code indicate?",
+        options: [
+            "Request succeeded (OK)",
+            "Server error occurred",
+            "Resource not found",
+            "Connection encrypted securely"
+        ],
         answer: 2,
-        explanation: "Unique passwords and MFA are practical defenses; incognito, VPNs, and antivirus have limited scopes."
+        explanation: "A 404 status code is returned by a web host indicating that the requested URL page was not found."
     },
     {
-        category: "Troubleshooting",
-        question: "A device has no valid IP configuration. What should be checked before blaming DNS or the website?",
-        options: ["The physical/Wi-Fi link and DHCP configuration", "The website's CSS colors", "The browser bookmark title", "The email inbox"],
+        category: "Web Security",
+        question: "What protection does HTTPS primarily add to communication between a browser and a website?",
+        options: [
+            "It guarantees that every claim on the website is honest.",
+            "It encrypts traffic and authenticates the site using TLS.",
+            "It assigns private addresses to all visiting browser devices.",
+            "It selects the fastest physical route for every packet."
+        ],
+        answer: 1,
+        explanation: "HTTPS secures standard HTTP streams using SSL/TLS protocols to encrypt data transit."
+    },
+    {
+        category: "Web Security",
+        question: "What role does public-key cryptography play when an HTTPS session is established?",
+        options: [
+            "It compresses all page resources before transmission begins.",
+            "It helps authenticate the server and establish session secrets.",
+            "It replaces domain-name resolution with certificate file names.",
+            "It assigns temporary IP addresses to browser applications."
+        ],
+        answer: 1,
+        explanation: "HTTPS uses asymmetric public-private key cryptography during SSL handshakes to verify host certificates."
+    },
+    {
+        category: "HTTP statelessness",
+        question: "How do many websites connect later HTTP requests with an authenticated login session?",
+        options: [
+            "They identify the user only from the device's hardware address.",
+            "They send a session identifier that the browser returns, often in a cookie.",
+            "They keep one TCP connection permanently open for the account's lifetime.",
+            "They reuse the device's DHCP lease as the authentication credential."
+        ],
+        answer: 1,
+        explanation: "HTTP is stateless. Sites store session tokens in cookies saved locally in your browser to remember login states."
+    },
+    {
+        category: "Domain Name System",
+        question: "Which DNS server holds the final, definitive mapping record for a domain's IP address?",
+        options: [
+            "Root Name Server",
+            "TLD Name Server (.com)",
+            "Authoritative Name Server",
+            "Local DHCP client"
+        ],
+        answer: 2,
+        explanation: "The Authoritative Name Server is the final step in DNS queries, holding the actual IP mapping record for a domain."
+    },
+    {
+        category: "HTTP Protocol",
+        question: "Which HTTP method is commonly chosen when a form asks a server to process submitted data?",
+        options: [
+            "GET",
+            "POST",
+            "OPTIONS",
+            "TRACE"
+        ],
+        answer: 1,
+        explanation: "The POST method wraps form data inside the request body rather than URL queries, ideal for logins."
+    },
+    {
+        category: "Web Security",
+        question: "Which check best confirms that the current browser connection uses HTTPS for the displayed domain?",
+        options: [
+            "A blue badge placed anywhere inside the page content",
+            "The browser's site information reports a secure HTTPS connection",
+            "A blinking green image supplied by the website footer",
+            "The page title includes the words verified and secure"
+        ],
+        answer: 1,
+        explanation: "Use browser-controlled site information and the HTTPS URL. Page content can imitate badges, and encryption does not prove that a site's claims are honest."
+    },
+    {
+        category: "Packets & Routing",
+        question: "What parameter in a packet header tells the router how many hops a packet can survive before being dropped?",
+        options: [
+            "TTL (Time to Live)",
+            "Sequence ID",
+            "DHCP Lease Limit",
+            "Port Number"
+        ],
         answer: 0,
-        explanation: "Troubleshooting proceeds from link and IP configuration to gateway, IP reachability, DNS, and then the service."
+        explanation: "TTL (Time to Live) limits packet lifespan. Every router hop decrements TTL. If TTL reaches 0, the packet is discarded."
     }
 ];
 
@@ -257,7 +209,6 @@ let isTCPSimulating = false;
 
 // Initialize on Load
 document.addEventListener("DOMContentLoaded", () => {
-    renderStrictCurriculum();
     setupNavigation();
     setupKeyboardShortcuts();
     resetQuiz();
@@ -898,7 +849,7 @@ function showQuizResults() {
         if (pct === 100) {
             resultsMsg.innerText = "Perfect! Excellent work, future IT Professional! 🏆";
         } else if (pct >= 80) {
-            resultsMsg.innerText = "Great job! Very strong understanding of web requests, security, and troubleshooting! 🌟";
+            resultsMsg.innerText = "Great job! Very strong understanding of packets, handshakes, and encryption! 🌟";
         } else if (pct >= 50) {
             resultsMsg.innerText = "Passed! Review the slides to strengthen your knowledge.";
         } else {

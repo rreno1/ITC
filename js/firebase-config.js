@@ -93,7 +93,7 @@ const MODULES = [
   {
     id: 'internet-part-1',
     title: 'Internet Part 1',
-    subtitle: 'NETWORKS & PACKET DELIVERY',
+    subtitle: 'Networks & Packet Delivery',
     description: 'Explore how devices connect through local networks and Internet service providers. Learn how IP addresses, routers, packets, TCP, UDP, DHCP, and NAT allow data to travel between computers.',
     objectives: ['Distinguish the Internet from the Web and identify network devices.', 'Explain addressing, configuration, packet switching, routing, and the TCP/IP model.', 'Compare TCP and UDP and interpret common network-performance measures.'],
     icon: '🌐',
@@ -106,7 +106,7 @@ const MODULES = [
   {
     id: 'internet-part-2',
     title: 'Internet Part 2',
-    subtitle: 'DNS, WEB & INTERNET SECURITY',
+    subtitle: 'DNS, Web & Internet Security',
     description: 'Follow the complete journey of a webpage—from entering a URL and resolving DNS to establishing secure connections, exchanging HTTP messages, rendering content, and troubleshooting common Internet problems.',
     objectives: ['Trace the complete journey from entering a URL to rendering a webpage.', 'Interpret DNS, HTTP, HTTPS, cookies, caching, certificates, and hosting services.', 'Recognize online threats and diagnose basic connectivity and DNS problems.'],
     icon: '📡',

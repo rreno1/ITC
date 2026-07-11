@@ -8,13 +8,13 @@ const MODULE_ID = 'internet-part-2';
 // Slide Titles for Left Sidebar Checklist
 const SLIDE_TITLES = [
     "Welcome & Intro",
-    "Packets & Routing",
-    "TCP/IP Handshake",
-    "DNS Resolution",
-    "HTTP Requests",
-    "HTTPS Security",
-    "DNS Route Tracer",
-    "TCP Simulator",
+    "URLs & DNS",
+    "Website Request Journey",
+    "HTTP & Status Codes",
+    "State, Cookies & Cache",
+    "HTTPS, TLS & Certificates",
+    "Rendering, Hosting & CDNs",
+    "Security & Troubleshooting",
     "Quiz Assessment",
     "Summary & Review"
 ];

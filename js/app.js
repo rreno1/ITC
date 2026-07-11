@@ -7,20 +7,26 @@ function renderModuleCards() {
 
   MODULES.forEach((module, index) => {
     const isComingSoon = module.status === 'locked';
-    const isNotSignedIn = module.status === 'available' && !window.isUserSignedIn;
-    const isPendingApproval = module.status === 'available' && window.isUserSignedIn && !window.isUserApproved;
-    const isAccessible = module.status === 'available' && window.isUserSignedIn && window.isUserApproved;
+    const isOpen = typeof isModuleOpen !== 'function' || isModuleOpen(module);
+    const isClosed = module.status === 'available' && !isOpen;
+    const isNotSignedIn = isOpen && !window.isUserSignedIn;
+    const isPendingApproval = isOpen && window.isUserSignedIn && !window.isUserApproved;
+    const isAccessible = isOpen && window.isUserSignedIn && window.isUserApproved;
     const isInteractive = isAccessible || isNotSignedIn;
 
     let footerLabel = 'Open module';
     if (isComingSoon) footerLabel = 'Coming soon';
+    else if (isClosed) footerLabel = 'Closed by instructor';
     else if (isNotSignedIn) footerLabel = 'Sign in to access';
     else if (isPendingApproval) footerLabel = 'Awaiting teacher approval';
+    const stateLabel = isComingSoon ? 'Coming soon' : (isClosed ? 'Closed' : 'Available');
+    const stateIcon = isComingSoon ? '&#9203;' : (isClosed ? '&#128274;' : '&#10003;');
 
     const card = document.createElement('article');
     card.className = [
       'module-card',
-      isComingSoon || isPendingApproval ? 'locked' : '',
+      isComingSoon || isClosed || isPendingApproval ? 'locked' : '',
+      isClosed ? 'module-closed' : '',
       isPendingApproval ? 'pending' : '',
       isInteractive ? 'interactive' : ''
     ].filter(Boolean).join(' ');
@@ -29,7 +35,10 @@ function renderModuleCards() {
     card.innerHTML = `
       <div class="card-header">
         <span class="card-icon" aria-hidden="true">${module.icon}</span>
-        <span class="module-state">${isComingSoon ? 'Locked' : 'Module'}</span>
+        <span class="module-state ${isClosed ? 'is-closed' : 'is-open'}" title="${stateLabel}">
+          <span aria-hidden="true">${stateIcon}</span>
+          <span class="visually-hidden">${stateLabel}</span>
+        </span>
       </div>
       <div class="card-body">
         <h3 class="card-title">${module.title}</h3>
@@ -38,7 +47,7 @@ function renderModuleCards() {
       </div>
       <div class="card-footer">
         <span class="${isAccessible ? 'open-label' : 'locked-label'}">${footerLabel}</span>
-        <span aria-hidden="true">${isAccessible || isNotSignedIn ? '→' : '•'}</span>
+        <span class="card-footer-icon" aria-hidden="true">${isAccessible || isNotSignedIn ? '&#8599;' : '&#8212;'}</span>
       </div>
     `;
 
@@ -73,4 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault();
     modulesSection.scrollIntoView({ behavior: 'smooth' });
   });
+});
+
+document.addEventListener('moduleavailabilitychange', () => {
+  if (document.getElementById('moduleGrid')) renderModuleCards();
 });

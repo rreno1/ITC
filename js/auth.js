@@ -202,6 +202,11 @@ auth.onAuthStateChanged(async (user) => {
       window.currentUserData = null;
     }
 
+    if (typeof loadModuleAvailability === 'function') {
+      await loadModuleAvailability(true);
+    }
+    if (typeof refreshModuleAvailabilityGate === 'function') refreshModuleAvailabilityGate();
+
     if (typeof renderModuleCards === 'function') renderModuleCards();
 
     if (adminLink) {
@@ -245,6 +250,11 @@ auth.onAuthStateChanged(async (user) => {
     window.isUserApproved = false;
     window.isUserAdmin = false;
     window.currentUserData = null;
+
+    if (typeof loadModuleAvailability === 'function') {
+      await loadModuleAvailability();
+    }
+    if (typeof refreshModuleAvailabilityGate === 'function') refreshModuleAvailabilityGate();
 
     if (signInBtn) signInBtn.hidden = false;
     if (userMenu) userMenu.hidden = true;

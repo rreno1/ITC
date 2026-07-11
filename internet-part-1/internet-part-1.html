@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#101417">
-  <title>CC 101 - Internet Part 1: Networking & IP Addressing</title>
-  <meta name="description" content="Introduction to Computing: Clients, servers, routers, IP addressing (IPv4/IPv6), DHCP, and the Physical Layer.">
+  <title>CC 101 - Internet Part 1: Networks & Packet Delivery</title>
+  <meta name="description" content="How devices connect and data travels: infrastructure, packets, TCP/IP, addressing, DHCP, NAT, ports, routing, TCP/UDP, and performance.">
   <link rel="stylesheet" href="../styles/theme.css?v=20260711">
   <link rel="stylesheet" href="../styles/course.css?v=20260711">
 </head>
@@ -23,7 +23,7 @@
         <a href="../index.html" class="portal-back-btn" title="Back to Portal" aria-label="Back to course portal">&larr;</a>
         <button class="mobile-menu-toggle course-sidebar-toggle" id="courseSidebarToggle" type="button" aria-label="Open lesson outline" aria-controls="courseSidebar" aria-expanded="false"><span></span><span></span></button>
         <span class="badge">CC 101</span>
-        <span class="nav-title">Internet Part 1: Networking & IP</span>
+        <span class="nav-title">Internet Part 1: Networks & Packet Delivery</span>
       </div>
       
       <div class="nav-center">
@@ -67,9 +67,9 @@
           <div class="slide-content title-layout">
             <div class="hero-header">
               <span class="sub-category">CC 101 - INTRODUCTION TO COMPUTING</span>
-              <h1>Internet Part 1: Networking & IP Addressing</h1>
+              <h1>Internet Part 1: Networks & Packet Delivery</h1>
               <div class="accent-line"></div>
-              <p class="hero-desc">An exploration of network nodes (clients/servers/routers), IP formats (IPv4/IPv6), automated DHCP systems, and the Physical Layer transmission mediums</p>
+              <p class="hero-desc">How devices connect and data travels through physical links, local networks, ISPs, routers, and the practical four-layer TCP/IP model.</p>
             </div>
             
             <div class="welcome-grid">
@@ -111,7 +111,7 @@
                 <div class="section-title">
                   <span class="slide-num">02</span>
                   <span class="badge-label ohs-bg">Nodes</span>
-                  <h2>Clients, Servers & Routers</h2>
+                  <h2>Internet Fundamentals & Network Devices</h2>
                 </div>
                 <p class="lead-text">Computers on a network occupy specific functional roles to request, distribute, and coordinate raw data packets.</p>
                 
@@ -163,7 +163,7 @@
                 <div class="section-title">
                   <span class="slide-num">03</span>
                   <span class="badge-label tools-bg">Addressing</span>
-                  <h2>IP Addresses: Web Phone Numbers</h2>
+                  <h2>MAC, IPv4, IPv6 & Network Prefixes</h2>
                 </div>
                 <p class="lead-text">An <strong>IP (Internet Protocol) Address</strong> is a unique numerical label assigned to every device on a network so packets know where to go.</p>
                 
@@ -215,7 +215,7 @@
                 <div class="section-title">
                   <span class="slide-num">04</span>
                   <span class="badge-label path-bg">Exhaustion</span>
-                  <h2>The Transition to IPv6</h2>
+                  <h2>Packet Switching & the TCP/IP Model</h2>
                 </div>
                 <p class="lead-text">IPv4 capacity is limited to 2<sup>32</sup> ~ **4.3 billion** addresses, which has been fully exhausted by global smartphone and IoT expansion.</p>
                 
@@ -267,7 +267,7 @@
                 <div class="section-title">
                   <span class="slide-num">05</span>
                   <span class="badge-label ohs-bg">Protocols</span>
-                  <h2>Public/Private IPs & DHCP</h2>
+                  <h2>Automatic Configuration: DHCP, NAT & Gateways</h2>
                 </div>
                 <p class="lead-text">How devices within local spaces connect securely without wasting globally registered addresses.</p>
                 
@@ -319,7 +319,7 @@
                 <div class="section-title">
                   <span class="slide-num">06</span>
                   <span class="badge-label tools-bg">Physical Layer</span>
-                  <h2>The Physical Layer: Wires & Light</h2>
+                  <h2>Physical Internet Infrastructure</h2>
                   <p class="lead-text">All logical binary packets must ultimately travel over physical mediums acting as electrical, optical, or wireless transceivers.</p>
                 </div>
                 
@@ -369,7 +369,7 @@
             <div class="section-title text-center">
               <span class="slide-num">07</span>
               <span class="badge-label quiz-bg">Interactive Widget</span>
-              <h2>Interactive DHCP Lease Simulator</h2>
+              <h2>Laboratory: Join a Network with DHCP</h2>
               <p>Step through the DORA network address negotiation process to obtain a private IP configuration</p>
             </div>
             
@@ -401,7 +401,7 @@
             <div class="section-title text-center">
               <span class="slide-num">08</span>
               <span class="badge-label quiz-bg">Interactive Widget</span>
-              <h2>Interactive IP-to-Binary & Class Finder</h2>
+              <h2>Address, Port & Route Explorer</h2>
               <p>Type any IPv4 address below to analyze its 32-bit structure, Class category, and routing routing scope</p>
             </div>
             
@@ -510,12 +510,12 @@
                 </div>
                 
                 <ul class="slide-body-bullets">
-                  <li>**Clients & Servers** compose the endpoints, utilizing routers to direct data pathways.</li>
-                  <li>**IP Addresses** act as unique numeric codes to identify hardware on global networks.</li>
-                  <li>**IPv4** is limited to 32 bits, which led to the creation of the 128-bit hexadecimal **IPv6** standard.</li>
-                  <li>**Private IPs** represent local internal namespaces, and **DHCP** leases configurations dynamically.</li>
-                  <li>The **Physical Layer** converts logical bits into pulses of copper voltage currents, fiber laser light, or RF radio waves.</li>
-                  <li>**Next Week:** We will explore **Internet Part 2** (Packets, TCP handshakes, DNS resolution, and HTTP request headers).</li>
+                  <li>The **Internet** is distributed infrastructure connecting networks; the **Web** is one service using it.</li>
+                  <li>NICs, switches, access points, routers, modems/ONTs, firewalls, ISPs, IXPs, and servers each have distinct roles.</li>
+                  <li>Data is divided into packets; the TCP/IP layers encapsulate and deliver it across possible routes.</li>
+                  <li>MAC, IPv4/IPv6, public/private addresses, prefixes, gateways, DHCP, and NAT solve different addressing tasks.</li>
+                  <li>Ports identify services; routing tables, next hops, TTL, autonomous systems, and BGP enable distributed routing.</li>
+                  <li>TCP and UDP serve different application needs; bandwidth, throughput, latency, jitter, loss, and congestion describe performance.</li>
                 </ul>
               </div>
               
@@ -533,7 +533,7 @@
               <h3>Detailed Lecture Notes</h3>
               <p>Internet Part 1 established the core foundations of network data transit. We explored the client-server relationship and the routing of packets. Clients request web files, while servers store and distribute them. Routers guide these packets along path channels using target IPs. Every device needs a unique address to participate in this network.</p>
               <p>IPv4 is the thirty-two bit standard separated into four numeric octets. IPv6 is the modern hexadecimal standard utilizing a 128-bit address. Public IP addresses route globally, while private addresses manage local spaces. DHCP automates configuration by dynamically leasing local IPs using DORA. The physical layer carries these binary pulses over copper, fiber, or air.</p>
-              <p>Networking standards ensure that devices communicate reliably across the globe. Next week, we will explore the protocols running on these connections. We will study TCP/IP packet assembly and the Domain Name System. We will also cover HTTP and HTTPS request structures for browsers. This knowledge is essential for understanding how the web works daily.</p>
+              <p>The practical TCP/IP model has four layers: application, transport, internet, and network access. TCP manages ordered reliable delivery; UDP provides connectionless datagrams with less overhead. Neither is universally “fast” or “slow”: applications choose according to reliability, timing, and latency needs.</p>
               <p>A final analogy is to compare network infrastructure to a global shipping port. The shipping containers represent binary packets traveling across physical layers. The unique port registration codes correspond to IPv4 and IPv6 addresses. The automated dock managers leasing storage bays function like DHCP servers. Together, these layers connect local interfaces to the wider global internet.</p>
             </article>
           </div>

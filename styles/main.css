@@ -351,6 +351,11 @@ a {
   opacity: 0.67;
 }
 
+.module-card.module-closed {
+  border-top-color: var(--text-secondary);
+  opacity: 0.78;
+}
+
 .module-card.pending {
   border-top-color: var(--warning);
   opacity: 0.8;
@@ -377,10 +382,31 @@ a {
 }
 
 .module-state {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  background: var(--bg-tertiary);
   color: var(--text-secondary);
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.module-state.is-open {
+  border-color: color-mix(in srgb, var(--success) 40%, var(--card-border));
+  background: color-mix(in srgb, var(--success) 10%, var(--bg-tertiary));
+  color: var(--success);
+}
+
+.module-state.is-closed {
+  border-color: color-mix(in srgb, var(--warning) 40%, var(--card-border));
+  color: var(--warning);
+}
+
+.card-footer-icon {
+  font-size: 17px;
 }
 
 .card-body {
@@ -1400,6 +1426,208 @@ a {
   font-weight: 800;
 }
 
+/* Admin course-module access */
+.module-access-summary {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--card-border);
+  border-radius: 7px;
+  background: var(--bg-secondary);
+}
+
+.module-access-summary span {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px;
+  border-radius: 5px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.module-access-summary span:first-child {
+  background: color-mix(in srgb, var(--success) 10%, var(--bg-tertiary));
+  color: var(--success);
+}
+
+.module-access-summary strong {
+  color: currentColor;
+  font-size: 14px;
+}
+
+.module-settings-status {
+  margin: -6px 0 14px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.module-control-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.module-control-list > .admin-loading-state {
+  grid-column: 1 / -1;
+}
+
+.module-control-item {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 50px minmax(0, 1fr) auto;
+  gap: 13px;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--module-color, var(--accent-color));
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  transition: border-color 160ms ease, background-color 160ms ease, opacity 160ms ease;
+}
+
+.module-control-item.is-closed {
+  border-left-color: var(--text-secondary);
+  background: color-mix(in srgb, var(--bg-tertiary) 72%, var(--bg-secondary));
+}
+
+.module-control-item[aria-busy="true"] {
+  opacity: 0.65;
+}
+
+.module-control-icon {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--module-color, var(--accent-color)) 16%, transparent);
+  font-size: 23px;
+}
+
+.module-control-copy {
+  min-width: 0;
+}
+
+.module-control-number {
+  color: var(--text-secondary);
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.module-control-copy h3 {
+  margin-top: 2px;
+  overflow: hidden;
+  color: var(--text-primary);
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.module-control-copy p {
+  margin-top: 3px;
+  overflow: hidden;
+  color: var(--text-secondary);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.module-control-action {
+  min-width: 114px;
+  display: grid;
+  justify-items: end;
+  gap: 7px;
+}
+
+.module-access-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.module-access-state.state-open {
+  color: var(--success);
+}
+
+.module-access-state.state-closed {
+  color: var(--warning);
+}
+
+.module-access-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.module-access-switch input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.module-switch-track {
+  width: 44px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 3px;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  background: var(--bg-tertiary);
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.module-switch-track span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  box-shadow: 0 1px 3px var(--shadow-color);
+  transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.module-access-switch input:checked + .module-switch-track {
+  border-color: var(--success);
+  background: color-mix(in srgb, var(--success) 28%, var(--bg-tertiary));
+}
+
+.module-access-switch input:checked + .module-switch-track span {
+  background: var(--success);
+  transform: translateX(20px);
+}
+
+.module-access-switch input:focus-visible + .module-switch-track {
+  outline: 3px solid color-mix(in srgb, var(--accent-color) 30%, transparent);
+  outline-offset: 2px;
+}
+
+.module-access-switch input:disabled + .module-switch-track {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.course-progress-item.module-closed {
+  border-style: dashed;
+}
+
 .admin-schedule-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2067,6 +2295,12 @@ a {
 
 }
 
+@media (max-width: 1100px) {
+  .module-control-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 720px) {
   :root {
     --nav-height: 60px;
@@ -2289,7 +2523,7 @@ a {
     width: 100%;
     max-height: none;
     flex-direction: column;
-    gap: 3px;
+    gap: 6px;
     overflow: visible;
     padding-top: 0;
     opacity: 1;
@@ -2300,15 +2534,33 @@ a {
 
   .sb-nav-item {
     width: 100%;
-    min-height: 46px;
-    padding: 9px 11px;
+    min-height: 50px;
+    padding: 7px 9px;
+    border-color: transparent;
     flex-direction: row;
-    gap: 9px;
-    font-size: 12px;
+    gap: 11px;
+    font-size: 13px;
   }
 
   .sb-nav-icon {
-    font-size: 16px;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    font-size: 17px;
+  }
+
+  .sb-nav-item:hover {
+    border-color: var(--card-border);
+  }
+
+  .sb-nav-item.active .sb-nav-icon {
+    background: color-mix(in srgb, var(--accent-color) 18%, var(--bg-tertiary));
+    color: var(--accent-color);
   }
 
   .sb-badge-count {
@@ -2318,11 +2570,26 @@ a {
 
   #adminSidebar .sidebar-bottom {
     margin-top: auto;
-    padding-top: 12px;
+    gap: 9px;
+    padding: 14px 2px 0;
   }
 
   #adminSidebar .theme-toggle {
     align-self: flex-start;
+  }
+
+  #adminSidebar .sb-user {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  #adminSidebar .sb-user-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   #adminMainPanel {
@@ -2381,6 +2648,45 @@ a {
   .cockpit-detail-list,
   .cockpit-action-list {
     grid-template-columns: 1fr;
+  }
+
+  .module-access-summary {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .module-access-summary span {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .module-control-item {
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 11px;
+    padding: 13px;
+  }
+
+  .module-control-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .module-control-copy h3,
+  .module-control-copy p {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .module-control-action {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 11px;
+    border-top: 1px solid var(--card-border);
   }
 
   .cohort-balance-row {

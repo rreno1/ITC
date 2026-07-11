@@ -11,6 +11,10 @@ async function saveQuizResult(moduleId, score, total) {
     showToast('Sign in with Google to save your quiz score.', 'error');
     return { saved: false, reason: 'signed-out' };
   }
+  if (typeof isModuleOpen === 'function' && !isModuleOpen(moduleId) && !isCurrentUserAdmin()) {
+    showToast('This module is currently closed by your instructor.', 'error');
+    return { saved: false, reason: 'module-closed' };
+  }
 
   try {
     const docRef = db.collection('users').doc(user.uid).collection('quizResults').doc(moduleId);
@@ -99,6 +103,7 @@ function recordLessonProgress(moduleId, lessonNumber, totalLessons) {
   const total = Number(totalLessons);
 
   if (!user || !window.isUserApproved || isCurrentUserAdmin()) return;
+  if (typeof isModuleOpen === 'function' && !isModuleOpen(moduleId)) return;
   if (!moduleId || !Number.isInteger(lesson) || !Number.isInteger(total)) return;
   if (lesson < 1 || lesson > total) return;
 
@@ -330,17 +335,20 @@ function renderCourseProgress(moduleProgress) {
       ? `Quiz ${item.quizResult.bestScore ?? item.quizResult.score}/${item.quizResult.total}`
       : 'Quiz not submitted';
     const hasActivity = item.completedLessons > 0 || item.quizCompleted;
-    const actionLabel = item.isCompleted ? 'Review Module' : (hasActivity ? 'Continue Module' : 'Start Module');
+    const moduleOpen = typeof isModuleOpen !== 'function' || isModuleOpen(item.module);
+    const actionLabel = !moduleOpen
+      ? 'Module Closed'
+      : (item.isCompleted ? 'Review Module' : (hasActivity ? 'Continue Module' : 'Start Module'));
     const lastLesson = Math.min(item.totalLessons, Math.max(1, Number(item.learningResult?.lastLesson || 1)));
     const destination = item.isCompleted
       ? item.module.path
       : `${item.module.path}?lesson=${lastLesson}`;
-    const action = window.isUserApproved
+    const action = window.isUserApproved && moduleOpen
       ? `<a class="course-progress-action" href="${escapePortalHTML(destination)}" aria-label="${actionLabel}: ${escapePortalHTML(item.module.title)}">${actionLabel}</a>`
-      : `<span class="course-progress-action disabled" aria-hidden="true">${actionLabel}</span>`;
+      : `<span class="course-progress-action disabled" aria-label="${escapePortalHTML(actionLabel)}">${actionLabel}</span>`;
 
     const row = document.createElement('article');
-    row.className = 'course-progress-item';
+    row.className = `course-progress-item${moduleOpen ? '' : ' module-closed'}`;
     row.innerHTML = `
       <div class="course-progress-heading">
         <span class="course-progress-icon" style="--module-color: ${escapePortalHTML(item.module.color)}" aria-hidden="true">${item.module.icon}</span>
@@ -471,6 +479,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+document.addEventListener('moduleavailabilitychange', () => {
+  if (!document.getElementById('progressContent') || !window.isUserSignedIn) return;
+  renderProgressPage(window.currentQuizResults || {}, window.currentLearningProgress || {});
+});
+
 window.finishModuleState = {
   moduleId: null,
   totalLessons: 0,
@@ -531,6 +544,9 @@ async function saveModuleCompletion(moduleId, totalLessons) {
   const user = auth.currentUser;
   if (!user || !window.isUserApproved || isCurrentUserAdmin()) {
     return { saved: false, reason: 'not-eligible' };
+  }
+  if (typeof isModuleOpen === 'function' && !isModuleOpen(moduleId)) {
+    return { saved: false, reason: 'module-closed' };
   }
 
   const userRef = db.collection('users').doc(user.uid);
@@ -626,6 +642,15 @@ async function refreshFinishModuleControl() {
     setFinishModuleUI({
       label: 'Student Progress Only',
       message: 'Admin practice does not create a student completion record.',
+      disabled: true
+    });
+    return;
+  }
+
+  if (typeof isModuleOpen === 'function' && !isModuleOpen(state.moduleId)) {
+    setFinishModuleUI({
+      label: 'Module Closed',
+      message: 'Your instructor has temporarily closed this module.',
       disabled: true
     });
     return;
@@ -791,6 +816,10 @@ async function startOneTimeQuizAttempt() {
 
   if (!window.isUserApproved) {
     showToast('Your account must be approved before starting the quiz.', 'error');
+    return;
+  }
+  if (typeof isModuleOpen === 'function' && !isModuleOpen(state.moduleId) && !isCurrentUserAdmin()) {
+    showToast('This module is currently closed by your instructor.', 'error');
     return;
   }
 

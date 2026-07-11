@@ -17,6 +17,13 @@
     const overlay = document.querySelector(`[data-mobile-overlay-for="${menuId}"]`);
     const closeButton = menu.querySelector('[data-mobile-menu-close]');
     const isMobile = () => window.innerWidth <= MOBILE_NAV_BREAKPOINT;
+    const backgroundTargets = () => [
+      document.getElementById('adminMainPanel'),
+      document.querySelector('main'),
+      document.querySelector('.hero-section'),
+      document.querySelector('.modules-section'),
+      document.querySelector('.portal-footer')
+    ].filter((element, index, elements) => element && elements.indexOf(element) === index);
 
     const focusableElements = () => Array.from(menu.querySelectorAll(FOCUSABLE_SELECTOR))
       .filter(element => !element.hidden && element.getAttribute('aria-hidden') !== 'true');
@@ -28,10 +35,21 @@
       menu.classList.toggle('menu-open', shouldOpen);
       menu.setAttribute('aria-hidden', String(isMobile() && !shouldOpen));
       menu.inert = isMobile() && !shouldOpen;
+      if (isMobile()) {
+        menu.setAttribute('role', 'dialog');
+        menu.setAttribute('aria-modal', String(shouldOpen));
+        menu.setAttribute('aria-label', menuId === 'adminNav' ? 'Admin navigation' : 'Site navigation');
+      } else {
+        menu.removeAttribute('role');
+        menu.removeAttribute('aria-modal');
+        menu.removeAttribute('aria-label');
+      }
       overlay?.setAttribute('aria-hidden', String(!shouldOpen));
+      backgroundTargets().forEach(element => { element.inert = shouldOpen; });
 
       if (shouldOpen) {
         document.body.classList.add('mobile-nav-open');
+        menu.scrollTop = 0;
         window.requestAnimationFrame(() => (closeButton || focusableElements()[0])?.focus());
       } else {
         if (!document.querySelector('.mobile-nav-panel.menu-open')) {
@@ -87,6 +105,7 @@
         setOpen(false);
         menu.removeAttribute('aria-hidden');
         menu.inert = false;
+        backgroundTargets().forEach(element => { element.inert = false; });
       } else if (!menu.classList.contains('menu-open')) {
         menu.setAttribute('aria-hidden', 'true');
         menu.inert = true;

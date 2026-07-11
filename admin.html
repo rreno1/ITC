@@ -39,7 +39,10 @@
 
       <div class="admin-nav-drawer mobile-nav-panel" id="adminNav">
         <div class="mobile-drawer-header">
-          <strong>Admin navigation</strong>
+          <div class="mobile-drawer-title">
+            <span class="mobile-drawer-kicker">CC 101 Admin</span>
+            <strong>Navigation</strong>
+          </div>
           <button class="mobile-drawer-close" type="button" data-mobile-menu-close aria-label="Close admin navigation">&times;</button>
         </div>
 
@@ -48,6 +51,10 @@
           <button type="button" class="sb-nav-item active" data-tab="overview">
             <span class="sb-nav-icon">&#128202;</span>
             <span>Overview &amp; Stats</span>
+          </button>
+          <button type="button" class="sb-nav-item" data-tab="modules">
+            <span class="sb-nav-icon">&#128218;</span>
+            <span>Course Modules</span>
           </button>
           <button type="button" class="sb-nav-item" data-tab="pending">
             <span class="sb-nav-icon">&#128276;</span>
@@ -211,7 +218,30 @@
         </div>
       </div>
 
-      <!-- PANEL 2: PENDING APPROVALS -->
+      <!-- PANEL 2: COURSE MODULE AVAILABILITY -->
+      <div class="adm-panel" id="panel-modules">
+        <div class="admin-panel-header">
+          <div>
+            <p class="page-eyebrow">Course access</p>
+            <h2>Course Modules</h2>
+            <p class="panel-subtitle">Open or close student access without removing lessons, quizzes, or saved progress.</p>
+          </div>
+          <div class="module-access-summary" aria-label="Module availability summary">
+            <span><strong id="openModuleCount">0</strong> open</span>
+            <span><strong id="closedModuleCount">0</strong> closed</span>
+          </div>
+        </div>
+
+        <p class="module-settings-status" id="moduleSettingsStatus" role="status" aria-live="polite">Module availability is ready.</p>
+        <div class="module-control-list" id="moduleControlList" role="list" aria-label="Course module availability controls">
+          <div class="admin-loading-state" role="status">
+            <span class="loading-spinner" aria-hidden="true"></span>
+            <span>Loading course modules...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 3: PENDING APPROVALS -->
       <div class="adm-panel" id="panel-pending">
         <div class="admin-panel-header">
           <h2>🔔 Pending Student Approvals</h2>
@@ -236,7 +266,7 @@
         </div>
       </div>
 
-      <!-- PANEL 3: STUDENT GRADEBOOK -->
+      <!-- PANEL 4: STUDENT GRADEBOOK -->
       <div class="adm-panel" id="panel-grades">
         <div class="admin-panel-header">
           <div>
@@ -267,7 +297,7 @@
         <nav class="table-pagination" id="gradesPagination" aria-label="Gradebook pages" hidden></nav>
       </div>
 
-      <!-- PANEL 4: ATTENDANCE -->
+      <!-- PANEL 5: ATTENDANCE -->
       <div class="adm-panel" id="panel-attendance">
         <div class="admin-panel-header">
           <h2>Attendance Checker</h2>
@@ -320,7 +350,7 @@
         <nav class="table-pagination" id="attendancePagination" aria-label="Attendance pages" hidden></nav>
       </div>
 
-      <!-- PANEL 5: ACCOUNTS -->
+      <!-- PANEL 6: ACCOUNTS -->
       <div class="adm-panel" id="panel-accounts">
         <div class="admin-panel-header">
           <div>

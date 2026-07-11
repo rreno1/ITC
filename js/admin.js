@@ -234,10 +234,79 @@ function updatePendingBadge(count) {
 
 function renderActiveAdminPanel() {
   const activeTab = document.querySelector('.sb-nav-item[data-tab].active')?.dataset.tab || 'overview';
+  if (activeTab === 'modules') renderCourseModuleControls();
   if (activeTab === 'pending') renderPendingApprovals(window.pendingStudentsCached || []);
   if (activeTab === 'grades') renderStudentTable(window.allStudentsCached || []);
   if (activeTab === 'attendance') renderAttendanceTable(window.allStudentsCached || []);
   if (activeTab === 'accounts') renderAccountsTable(window.allAccountsCached || []);
+}
+
+function renderCourseModuleControls() {
+  const list = document.getElementById('moduleControlList');
+  if (!list) return;
+
+  const openCount = MODULES.filter(module => typeof isModuleOpen !== 'function' || isModuleOpen(module)).length;
+  const openCountElement = document.getElementById('openModuleCount');
+  const closedCountElement = document.getElementById('closedModuleCount');
+  if (openCountElement) openCountElement.textContent = openCount;
+  if (closedCountElement) closedCountElement.textContent = MODULES.length - openCount;
+
+  list.innerHTML = MODULES.map((module, index) => {
+    const isOpen = typeof isModuleOpen !== 'function' || isModuleOpen(module);
+    const moduleNumber = String(index + 1).padStart(2, '0');
+    return `
+      <article class="module-control-item${isOpen ? ' is-open' : ' is-closed'}" role="listitem" data-module-control="${escapeHTML(module.id)}" style="--module-color: ${escapeHTML(module.color)}">
+        <span class="module-control-icon" aria-hidden="true">${escapeHTML(module.icon)}</span>
+        <div class="module-control-copy">
+          <span class="module-control-number">Module ${moduleNumber}</span>
+          <h3>${escapeHTML(module.title)}</h3>
+          <p>${escapeHTML(module.subtitle)}</p>
+        </div>
+        <div class="module-control-action">
+          <span class="module-access-state ${isOpen ? 'state-open' : 'state-closed'}">
+            <span aria-hidden="true">${isOpen ? '&#10003;' : '&#128274;'}</span>
+            ${isOpen ? 'Open' : 'Closed'}
+          </span>
+          <label class="module-access-switch" for="module-toggle-${escapeHTML(module.id)}">
+            <span>Student access</span>
+            <input id="module-toggle-${escapeHTML(module.id)}" type="checkbox" role="switch" data-module-toggle="${escapeHTML(module.id)}" ${isOpen ? 'checked' : ''}>
+            <span class="module-switch-track" aria-hidden="true"><span></span></span>
+          </label>
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  list.querySelectorAll('[data-module-toggle]').forEach(input => {
+    input.addEventListener('change', () => updateCourseModuleAccess(input));
+  });
+}
+
+async function updateCourseModuleAccess(input) {
+  const moduleId = input.getAttribute('data-module-toggle');
+  const module = MODULES.find(item => item.id === moduleId);
+  if (!module || typeof setModuleOpen !== 'function') return;
+
+  const requestedState = input.checked;
+  const item = input.closest('.module-control-item');
+  const status = document.getElementById('moduleSettingsStatus');
+  input.disabled = true;
+  item?.setAttribute('aria-busy', 'true');
+  if (status) status.textContent = `${requestedState ? 'Opening' : 'Closing'} ${module.title}...`;
+
+  try {
+    await setModuleOpen(moduleId, requestedState);
+    if (status) status.textContent = `${module.title} is now ${requestedState ? 'open' : 'closed'} for students.`;
+    showToast(`${module.title} ${requestedState ? 'opened' : 'closed'} successfully.`, 'success');
+    document.getElementById(`module-toggle-${moduleId}`)?.focus();
+  } catch (error) {
+    console.error('Unable to update module availability:', error);
+    input.checked = !requestedState;
+    input.disabled = false;
+    item?.removeAttribute('aria-busy');
+    if (status) status.textContent = `Could not update ${module.title}. Try again.`;
+    showToast('Module availability could not be saved.', 'error');
+  }
 }
 
 async function loadQuizResults(uid) {
@@ -717,7 +786,9 @@ function renderAccountsTable(accounts) {
 
 function calculateDashboardStats(approvedAccounts, pendingStudents) {
   const approvedStudents = approvedAccounts.filter(s => s.role === 'student' && !s.manual);
-  const availableModules = MODULES.filter(m => m.status === 'available');
+  const availableModules = MODULES.filter(module => module.status === 'available' && (
+    typeof isModuleOpen !== 'function' || isModuleOpen(module)
+  ));
   const todayKey = getDateKeyForAdmin();
   let aggregatePercentages = 0;
   let quizCompletesCount = 0;
@@ -938,6 +1009,7 @@ function setupTabNavigation() {
 document.addEventListener('DOMContentLoaded', () => {
   setupTabNavigation();
   renderGradebookHeader();
+  renderCourseModuleControls();
 
   const cockpitDate = document.getElementById('cockpitDate');
   if (cockpitDate) {
@@ -1003,4 +1075,11 @@ document.addEventListener('DOMContentLoaded', () => {
       approveStudent(pendingApprovalTarget.uid, button.getAttribute('data-approve-batch'));
     });
   });
+});
+
+document.addEventListener('moduleavailabilitychange', () => {
+  renderCourseModuleControls();
+  if (window.allStudentsCached) {
+    calculateDashboardStats(window.allStudentsCached, window.pendingStudentsCached || []);
+  }
 });

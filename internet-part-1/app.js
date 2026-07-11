@@ -8,13 +8,13 @@ const MODULE_ID = 'internet-part-1';
 // Slide Titles for Left Sidebar Checklist
 const SLIDE_TITLES = [
     "Welcome & Intro",
-    "Clients & Servers",
-    "IP Addressing",
-    "Transition to IPv6",
-    "Public vs Private",
-    "Physical Layer",
-    "DHCP Simulator",
-    "IP Converter",
+    "Networks & Devices",
+    "IPv4, IPv6 & MAC",
+    "Public & Private IP",
+    "Infrastructure & Media",
+    "DHCP, NAT & Gateway",
+    "Packet Delivery Lab",
+    "TCP/IP, Ports & Routing",
     "Quiz Assessment",
     "Summary & Review"
 ];

@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#101417">
-  <title>CC 101 - Internet Part 2: Protocols & Routing</title>
-  <meta name="description" content="Introduction to Computing: Packets, routing, TCP/IP, DNS, HTTP/HTTPS, and secure encryption.">
+  <title>CC 101 - Internet Part 2: DNS, Web & Internet Security</title>
+  <meta name="description" content="What happens when you open a website: URLs, DNS, HTTP, TLS, rendering, hosting, security, governance, and troubleshooting.">
   <link rel="stylesheet" href="../styles/theme.css?v=20260711">
   <link rel="stylesheet" href="../styles/course.css?v=20260711">
 </head>
@@ -23,7 +23,7 @@
         <a href="../index.html" class="portal-back-btn" title="Back to Portal" aria-label="Back to course portal">&larr;</a>
         <button class="mobile-menu-toggle course-sidebar-toggle" id="courseSidebarToggle" type="button" aria-label="Open lesson outline" aria-controls="courseSidebar" aria-expanded="false"><span></span><span></span></button>
         <span class="badge">CC 101</span>
-        <span class="nav-title">Internet Part 2: Protocols & Routing</span>
+        <span class="nav-title">Internet Part 2: DNS, Web & Internet Security</span>
       </div>
       
       <div class="nav-center">
@@ -67,9 +67,9 @@
           <div class="slide-content title-layout">
             <div class="hero-header">
               <span class="sub-category">CC 101 - INTRODUCTION TO COMPUTING</span>
-              <h1>Internet Part 2: Protocols & Routing</h1>
+              <h1>Internet Part 2: DNS, Web & Internet Security</h1>
               <div class="accent-line"></div>
-              <p class="hero-desc">An exploration of packets, routing, TCP delivery handshakes, Domain Name Systems (DNS), HTTP requests/responses, and secure HTTPS encryption.</p>
+              <p class="hero-desc">Follow the complete journey of a webpage—from interpreting a URL and resolving DNS to TLS, HTTP, browser rendering, security, and troubleshooting.</p>
             </div>
             
             <div class="welcome-grid">
@@ -111,7 +111,7 @@
                 <div class="section-title">
                   <span class="slide-num">02</span>
                   <span class="badge-label ohs-bg">Transit</span>
-                  <h2>Packets & Routing</h2>
+                  <h2>Anatomy of a URL & Client–Server Communication</h2>
                 </div>
                 <p class="lead-text">Files sent over the internet are not transmitted as single, massive chunks. They are sliced into smaller units called **packets** for efficient routing.</p>
                 
@@ -163,7 +163,7 @@
                 <div class="section-title">
                   <span class="slide-num">03</span>
                   <span class="badge-label tools-bg">TCP/IP</span>
-                  <h2>TCP/IP: Handshake & Delivery</h2>
+                  <h2>The Complete Journey of a Web Request</h2>
                 </div>
                 <p class="lead-text">While the **Internet Protocol (IP)** handles addressing, the **Transmission Control Protocol (TCP)** guarantees reliable delivery.</p>
                 
@@ -215,7 +215,7 @@
                 <div class="section-title">
                   <span class="slide-num">04</span>
                   <span class="badge-label path-bg">DNS</span>
-                  <h2>DNS: The Web Phonebook</h2>
+                  <h2>DNS Resolution & Record Types</h2>
                 </div>
                 <p class="lead-text">Computers communicate using numeric IP addresses, but humans prefer words. The **Domain Name System (DNS)** acts as the translator.</p>
                 
@@ -267,7 +267,7 @@
                 <div class="section-title">
                   <span class="slide-num">05</span>
                   <span class="badge-label ohs-bg">Web Requests</span>
-                  <h2>HTTP: Request & Response</h2>
+                  <h2>HTTP Methods, Status Codes, State & Caching</h2>
                 </div>
                 <p class="lead-text">Browsers load pages using the **Hypertext Transfer Protocol (HTTP)**, which structures communications between clients and servers.</p>
                 
@@ -319,7 +319,7 @@
                 <div class="section-title">
                   <span class="slide-num">06</span>
                   <span class="badge-label tools-bg">Security</span>
-                  <h2>HTTPS & Secure Encryption</h2>
+                  <h2>HTTPS, TLS & Digital Certificates</h2>
                 </div>
                 <p class="lead-text">Standard HTTP data is sent in plain text, making it vulnerable to interception. **HTTPS** secures the stream using cryptographic protocols.</p>
                 
@@ -369,7 +369,7 @@
             <div class="section-title text-center">
               <span class="slide-num">07</span>
               <span class="badge-label quiz-bg">Interactive Widget</span>
-              <h2>Interactive DNS Resolver & Traceroute</h2>
+              <h2>Activity: Trace a Website Request</h2>
               <p>Type a domain name below to trace its resolution hops and simulate path routers globally</p>
             </div>
             
@@ -413,7 +413,7 @@
             <div class="section-title text-center">
               <span class="slide-num">08</span>
               <span class="badge-label quiz-bg">Interactive Widget</span>
-              <h2>Interactive TCP Handshake & Packet Loss Simulator</h2>
+              <h2>Laboratory: Browser Rendering & Troubleshooting</h2>
               <p>Configure packet loss rates and start a file download, tracing the SYN/ACK handshake and retransmissions</p>
             </div>
             
@@ -526,12 +526,12 @@
                 </div>
                 
                 <ul class="slide-body-bullets">
-                  <li>**Packets** are the standardized blocks of data routed independently across local and global networks.</li>
-                  <li>**TCP** handles reliable packet transfers, executing the 3-way handshake and retransmitting lost packets.</li>
-                  <li>**DNS** acts as the address book of the internet, resolving domain names into numerical IP targets.</li>
-                  <li>**HTTP** defines the browser client-server request methods (GET/POST) and response codes (200/404).</li>
-                  <li>**HTTPS** secures these loops by wrapping web request packets inside cryptographic SSL/TLS key blocks.</li>
-                  <li>**Next Week:** We will explore **Multimedia Part 1** (Pixels, RGB color matrices, and lossless/lossy compression ratios).</li>
+                  <li>A URL identifies a resource through its scheme, host, optional port, path, query, and fragment.</li>
+                  <li>DNS uses caches, a recursive resolver, root, TLD, and authoritative servers; records include A, AAAA, CNAME, MX, NS, and TXT.</li>
+                  <li>HTTP supplies methods, headers, bodies, and status codes; cookies, sessions, tokens, and caches add state and efficiency.</li>
+                  <li>HTTPS uses TLS for confidentiality, integrity, and server authentication, but does not prove a website is honest.</li>
+                  <li>Browsers parse and render many resources; hosting, cloud platforms, CDNs, load balancing, and redundancy keep services available.</li>
+                  <li>Safe use and troubleshooting require threat awareness, MFA, updates, backups, and tests that isolate link, IP, gateway, DNS, and service faults.</li>
                 </ul>
               </div>
               
@@ -547,10 +547,10 @@
             
             <article class="slide-article-body">
               <h3>Detailed Lecture Notes</h3>
-              <p>The primary limitation of ASCII is its tiny seven-bit capacity of one hundred and twenty-eight characters. This small range can only fit the basic English alphabet and common symbols. As computing expanded globally, this English-centric design became a major obstacle. Languages that use accented letters, such as Spanish, French, and German, could not be mapped. This limitation meant ASCII was unable to support the writing systems of most global populations.</p>
-              <p>Non-Latin scripts like Chinese, Arabic, Cyrillic, and Hindi require thousands of unique characters. Trying to fit these complex writing systems into a 128-character table is mathematically impossible. To solve this, developers created localized eight-bit extensions that mapped characters to the extra values. However, these custom tables clashed with each other and caused documents to display incorrect symbols. A document written in one country would open as scrambled gibberish in another.</p>
-              <p>Modern text elements, like emojis, also require representation in digital files. Because ASCII was created long before emojis existed, it has no codes allocated for them. Without a larger encoding standard, modern digital expression would be severely limited. These combined shortfalls made it clear that a new universal standard was necessary. Moving beyond ASCII allowed computing to become a truly global, multilingual medium.</p>
-              <p>A final analogy is to view the entire web as a global postal service. Domain Name Systems act as address directories matching names to physical locations. TCP controls compile packets, ensuring they arrive in sequence without loss. HTTP requests operate as standard order slips between clients and web hosts. Together, these layers ensure the global internet routes data securely and fast.</p>
+              <p>When a URL is entered, the browser interprets it, checks caches, resolves the domain through DNS, reaches the destination through the gateway and routers, establishes transport and TLS when needed, sends an HTTP request, receives a response, downloads dependencies, and renders the page.</p>
+              <p>The Web uses a client–server model, but a modern site may combine web servers, application servers, databases, APIs, CDNs, and cloud services. Email, file transfer, remote access, streaming, messaging, gaming, cloud storage, and IoT demonstrate that the Internet is much larger than the Web.</p>
+              <p>Security decisions require accurate mental models: incognito mode is not anonymity, a VPN cannot make every action safe, HTTPS does not certify honesty, and antivirus cannot prevent every attack. Phishing, social engineering, malware, reused passwords, public Wi-Fi, permissions, and unsafe downloads all require practical judgment.</p>
+              <p>No single company owns the Internet. The IETF develops standards through RFCs, ICANN coordinates key DNS functions, regional registries distribute number resources, ISPs connect networks, and governments and service operators manage their own areas. Troubleshooting should proceed systematically and record evidence rather than restarting blindly.</p>
             </article>
           </div>
         </section>

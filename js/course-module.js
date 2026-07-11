@@ -377,9 +377,11 @@
     document.getElementById('progressBar').style.width = `${((currentSlide - 1) / (totalSlides - 1)) * 100}%`;
     document.getElementById('prevBtn').disabled = currentSlide === 1 || isQuizNavigationLocked?.();
     const next = document.getElementById('nextBtn');
-    next.hidden = currentSlide === totalSlides;
+    const isFinalSlide = currentSlide === totalSlides;
+    next.hidden = isFinalSlide;
     next.disabled = isQuizNavigationLocked?.();
     next.textContent = 'Next Slide ->';
+    document.body.classList.toggle('is-final-slide', isFinalSlide);
 
     const activeSlide = document.getElementById(`slide-${currentSlide}`);
     if (activeSlide) activeSlide.scrollTop = 0;

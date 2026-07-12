@@ -179,8 +179,113 @@ function renderStrictCurriculum() {
 
     Object.entries(lessons).forEach(([number, html]) => {
         const content = document.querySelector(`#slide-${number} .slide-content`);
-        if (content) content.innerHTML = html;
+        if (!content) return;
+        let styled = html.replace('<div class="split-layout">', '<div class="syllabus-content-grid">');
+        const visual = PART1_VISUALS[number] || '';
+        if (visual) {
+            const visualTarget = '<div class="split-right glass-card" style="padding:18px">';
+            styled = styled.replace(visualTarget, `${visualTarget}${visual}`);
+        }
+        content.classList.add('syllabus-slide-content');
+        content.innerHTML = styled + renderDetailedLectureNotes(PART1_DETAILED_NOTES[number]);
     });
+}
+
+const PART1_VISUALS = {
+    2: `<div class="concept-visual visual-flow" style="min-height:170px" role="img" aria-label="Device connected through local network equipment and an ISP to a data center"><span>Device + NIC</span><b>&rarr;</b><span>Switch / Wi-Fi</span><b>&rarr;</b><span>Router + ONT</span><b>&rarr;</b><span>ISP / IXP</span><b>&rarr;</b><span>Data center</span></div>`,
+    3: `<div class="concept-visual visual-flow" style="min-height:170px" role="img" aria-label="A message divided into packets, routed, and reassembled"><span>Message</span><b>&rarr;</b><span>Packet 1</span><span>Packet 2</span><span>Packet 3</span><b>&rarr;</b><span>Different routes</span><b>&rarr;</b><span>Reassembled data</span></div>`,
+    4: `<div class="concept-visual visual-flow" style="min-height:170px" role="img" aria-label="Local and Internet addressing path"><span>MAC: local link</span><b>&rarr;</b><span>Private IP</span><b>&rarr;</b><span>Gateway + NAT</span><b>&rarr;</b><span>Public Internet</span></div>`,
+    5: `<div class="concept-visual visual-flow" style="min-height:170px" role="img" aria-label="Router forwarding a service request through autonomous systems"><span>IP + port</span><b>&rarr;</b><span>Routing table</span><b>&rarr;</b><span>Next hop</span><b>&rarr;</b><span>AS / BGP</span><b>&rarr;</b><span>Service</span></div>`,
+    6: `<div class="concept-visual visual-security" style="min-height:170px" role="img" aria-label="Network performance measures"><span><strong>1</strong>Capacity: bandwidth</span><span><strong>2</strong>Actual rate: throughput</span><span><strong>3</strong>Delay: latency + jitter</span><span><strong>4</strong>Quality: loss + reliability</span></div>`,
+    8: `<div class="concept-visual visual-code" style="min-height:170px" role="img" aria-label="Network troubleshooting commands"><code>ipconfig /all</code><code>ping &lt;gateway&gt;</code><code>ping 8.8.8.8</code><code>ping example.com</code><code>tracert example.com</code></div>`
+};
+
+const PART1_DETAILED_NOTES = {
+    2: {
+        paragraphs: [
+            'A local connection is only the first segment of an Internet path. A device uses a NIC to reach a switch or access point, a router forwards traffic beyond the local network, and a modem or optical network terminal connects the premises to an ISP. From there, providers interconnect through backbone links and exchange points until traffic reaches a service in a data center.',
+            'Network labels describe scope and responsibility. LAN, WLAN, and WAN describe reach; client, server, and host describe endpoint roles; intranet, extranet, and public Internet describe who may access resources. Centralized and peer-to-peer designs describe where services and control are located.'
+        ],
+        definitions: [['Host','Any endpoint with a network interface and address.'],['ISP','An organization that provides connectivity to other networks.'],['IXP','A facility where independently operated networks exchange traffic.'],['Firewall','A control that permits or blocks network traffic according to rules.']],
+        examples: ['A phone uses Wi-Fi to reach an access point, then a home router and fiber ONT before entering the ISP.', 'A school intranet may be private while selected partner resources are offered through an extranet.'],
+        analogy: 'Think of local streets feeding a highway system: switches and access points serve the neighborhood, routers choose exits, and ISPs connect highway systems.',
+        misconception: 'The Internet and the Web are not synonyms. The Web is one service; email, calls, games, and many other services also use Internet infrastructure.',
+        review: ['Trace the equipment between a classroom laptop and its ISP.', 'Classify a school wireless network as LAN, WLAN, or WAN and explain why.']
+    },
+    3: {
+        paragraphs: [
+            'Packet switching shares network links efficiently by dividing a message into manageable units. Each packet carries a payload and control information in headers. Routers do not need all packets from one message to follow the same path, so a receiver must handle delay, reordering, duplication, corruption, and loss.',
+            'Encapsulation connects this process to the TCP/IP model. Application data is prepared by a transport protocol, addressed by the Internet layer, and placed into a local Ethernet or Wi-Fi frame. The receiver removes and interprets those layers in reverse.'
+        ],
+        definitions: [['Payload','The application data carried inside a packet.'],['Header','Delivery and control information added by a protocol layer.'],['Encapsulation','Adding layer-specific information as data moves down the protocol stack.'],['ICMP','An Internet-layer protocol used for control and diagnostic messages.']],
+        examples: ['Packets from one download may cross different routers and still be reassembled correctly.', 'A lost TCP segment can be retransmitted without resending the entire file.'],
+        analogy: 'A packet is a labeled parcel: the label guides delivery, while the payload is the item inside.',
+        misconception: 'A file does not normally travel as one unbroken object, and the OSI model is not the only useful way to describe networking.',
+        review: ['Name the responsibility of each TCP/IP layer.', 'Explain why packets from the same message can arrive out of order.']
+    },
+    4: {
+        paragraphs: [
+            'A MAC address is meaningful on a local link, while an IP address supports logical delivery across networks. An IPv4 or IPv6 prefix separates the network portion from the interface portion. Public addresses are routed globally; private IPv4 addresses are reused inside many separate local networks.',
+            'Joining Wi-Fi requires more than receiving an address. DHCP normally provides the address, prefix, default gateway, and DNS resolver. NAT may translate several private IPv4 connections through one public address, but it does not encrypt data and it is not a replacement for a firewall.'
+        ],
+        definitions: [['Network prefix','The part of an IP address that identifies the network.'],['Default gateway','The router used when a destination is outside the local network.'],['DHCP lease','A time-limited network configuration assigned automatically.'],['NAT','Translation between address and port information on different sides of a router.']],
+        examples: ['192.168.1.24 can be private locally while the router uses a different public address online.', 'An IPv6 address provides a much larger address space than IPv4 and is a current Internet standard.'],
+        analogy: 'A building room number is local like a private address; the street address is public; the reception desk routes visitors between them.',
+        misconception: 'NAT is not the reason HTTPS traffic is encrypted, and IPv6 is not merely an optional curiosity.',
+        review: ['List the configuration a device should receive from DHCP.', 'Distinguish a MAC address, private IP, public IP, and network prefix.']
+    },
+    5: {
+        paragraphs: [
+            'An IP address gets traffic to an endpoint; a port directs it to the intended application service. Common ports are useful landmarks, but the key idea is the endpoint pair rather than memorizing a long table of numbers.',
+            'Routers compare a destination with entries in a routing table and select a next hop. A default route handles destinations without a more specific match. Across organizations, autonomous systems exchange reachability through BGP, producing a distributed Internet without a single master router.'
+        ],
+        definitions: [['Port','A transport-layer number that identifies an application endpoint.'],['Next hop','The next router or interface selected for a packet.'],['Default route','A route used when no more specific destination matches.'],['Autonomous system','Networks managed under one routing policy.']],
+        examples: ['HTTPS commonly uses TCP port 443, while DNS commonly uses port 53.', 'TTL or hop limit is reduced at each router so a looping packet is eventually discarded.'],
+        analogy: 'The IP address is an office building; the port is the department or room; routing tables are the delivery map.',
+        misconception: 'BGP does not carry webpage content and beginners do not need to configure it to understand its purpose.',
+        review: ['Why are both an IP address and a port needed?', 'Explain next hop, default route, TTL, and BGP in one packet journey.']
+    },
+    6: {
+        paragraphs: [
+            'TCP manages a connection, orders data, detects missing segments, and retransmits as needed. UDP sends independent datagrams without promising delivery or order. Applications select a transport according to their timing, reliability, and overhead requirements.',
+            'Performance is multidimensional. Bandwidth is potential capacity; throughput is the achieved rate. Latency measures delay, jitter measures changing delay, and packet loss removes data. Congestion can reduce throughput and increase delay even when the access link advertises a high speed.'
+        ],
+        definitions: [['TCP','Connection-oriented transport with reliable ordered delivery.'],['UDP','Connectionless datagram transport without built-in delivery guarantees.'],['Latency','Time taken for data to travel between endpoints.'],['Jitter','Variation in delay between successive packets.']],
+        examples: ['A file transfer values reliable delivery, while live voice may prefer timely data over late retransmissions.', 'A game can lag on a high-bandwidth connection when latency or jitter is high.'],
+        analogy: 'TCP is a checked conversation with acknowledgements; UDP is sending timely announcements without waiting for every reply.',
+        misconception: '“TCP is slow” and “UDP is fast” are incomplete claims; application behavior and network conditions determine results.',
+        review: ['Choose TCP or UDP for a file download and a live call, then justify each choice.', 'Diagnose buffering, broken audio, and game lag using the correct performance terms.']
+    },
+    7: {
+        paragraphs: [
+            'The DORA exchange begins when a client broadcasts Discover because it does not yet know the DHCP server. A server Offers a configuration, the client Requests the chosen offer, and the server Acknowledges the lease. The result includes enough information to communicate locally and reach remote networks.',
+            'Leases expire or renew so addresses can be managed without permanent manual assignments. In real networks, the DHCP server may be the router or a separate server, and relay mechanisms can carry requests between subnets.'
+        ],
+        definitions: [['Discover','Client broadcast searching for DHCP service.'],['Offer','Proposed address and configuration from a DHCP server.'],['Request','Client message selecting an offered lease.'],['Acknowledge','Server confirmation that the configuration is valid.']],
+        examples: ['A phone reconnecting to school Wi-Fi may renew a previous lease.', 'A lease can include the gateway and DNS server as well as the client address.'],
+        analogy: 'DHCP works like a hotel desk offering, assigning, and later reclaiming room keys.',
+        misconception: 'DHCP does not create the Internet connection; it supplies configuration for using the available network.',
+        review: ['Put Discover, Offer, Request, and Acknowledge in order.', 'Which four configuration values should you verify after the simulation?']
+    },
+    8: {
+        paragraphs: [
+            'The role-play turns abstract delivery into an observable process. Numbered packets expose reordering, a removed packet demonstrates loss, and a retransmission demonstrates how reliability can be added above IP. Students should annotate where addressing, switching, routing, DNS, and transport responsibilities appear.',
+            'The command laboratory follows a deliberate order: inspect configuration, test the local gateway, test a public IP, add DNS by using a name, then inspect visible router hops. Each result narrows the possible fault but has limits; for example, a host may block ping while its web service remains available.'
+        ],
+        definitions: [['ipconfig /all','Displays detailed Windows network configuration.'],['ping','Tests reachability and round-trip timing using ICMP.'],['tracert','Shows visible hop-by-hop responses toward a destination.'],['Evidence log','A record of commands, results, observations, and conclusions.']],
+        examples: ['Gateway ping fails: investigate the local link or configuration before blaming the ISP.', 'Public-IP ping succeeds but a domain name fails: investigate DNS.'],
+        analogy: 'Troubleshooting is a series of checkpoints along a delivery route, starting nearest to the sender.',
+        misconception: 'A single successful or failed ping does not prove that every service is working or that a website is offline.',
+        review: ['Write the safest test order for a device that cannot open a website.', 'What evidence should be recorded from ping and tracert?']
+    }
+};
+
+function renderDetailedLectureNotes(notes) {
+    if (!notes) return '';
+    const definitions = notes.definitions.map(([term, definition]) => `<div class="definition-item"><dt>${term}</dt><dd>${definition}</dd></div>`).join('');
+    const examples = notes.examples.map(item => `<li>${item}</li>`).join('');
+    const review = notes.review.map(item => `<li>${item}</li>`).join('');
+    return `<div class="article-divider"></div><article class="slide-article-body syllabus-notes"><section><h3>Detailed lecture notes</h3><div class="lesson-explanation">${notes.paragraphs.map(item => `<p>${item}</p>`).join('')}</div></section><section><h3>Important terms</h3><dl class="definition-grid">${definitions}</dl></section><section><h3>Examples and real-world use</h3><ul class="lesson-example-list">${examples}</ul></section><aside class="analogy-callout"><strong>Simple analogy</strong><p>${notes.analogy}</p></aside><aside class="misconception-callout"><strong>Common misconception</strong><p>${notes.misconception}</p></aside><section class="lesson-review"><h3>Check your understanding</h3><ul class="review-question-list">${review}</ul></section></article>`;
 }
 
 // Quiz Database (15 Questions matching constraints)

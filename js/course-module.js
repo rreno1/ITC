@@ -56,6 +56,94 @@
         <div class="concept-visual visual-flow" role="img" aria-label="Browser request and server response">
           <span>Browser</span><b aria-hidden="true">&rarr;</b><span>HTTP request</span><b aria-hidden="true">&rarr;</b><span>Server</span><b aria-hidden="true">&larr;</b><span>Response</span>
         </div>`,
+      network: `
+        <div class="concept-visual visual-flow" role="img" aria-label="Device traffic crossing a local network to the Internet">
+          <span>Device</span><b aria-hidden="true">&rarr;</b><span>Switch</span><b aria-hidden="true">&rarr;</b><span>Router</span><b aria-hidden="true">&rarr;</b><span>Internet</span>
+        </div>`,
+      infrastructure: `
+        <div class="concept-visual visual-flow" role="img" aria-label="Internet infrastructure connecting a home network to a data center">
+          <span>Home network</span><b aria-hidden="true">&rarr;</b><span>ISP</span><b aria-hidden="true">&rarr;</b><span>Internet exchange</span><b aria-hidden="true">&rarr;</b><span>Data center</span>
+        </div>`,
+      packets: `
+        <div class="concept-visual visual-flow" role="img" aria-label="A message divided into packets, routed, and reassembled">
+          <span>Message</span><b aria-hidden="true">&rarr;</b><span>Packets</span><b aria-hidden="true">&rarr;</b><span>Network routes</span><b aria-hidden="true">&rarr;</b><span>Reassembled data</span>
+        </div>`,
+      stack: `
+        <div class="concept-visual visual-security" role="img" aria-label="Four layers of the TCP/IP model from application to network access">
+          <span><strong>4</strong>Application</span><span><strong>3</strong>Transport</span><span><strong>2</strong>Internet</span><span><strong>1</strong>Network access</span>
+        </div>`,
+      addressing: `
+        <div class="concept-visual visual-flow" role="img" aria-label="Private device address translated to a public Internet address">
+          <span>Device</span><b aria-hidden="true">&rarr;</b><span>Private IP</span><b aria-hidden="true">&rarr;</b><span>Router NAT</span><b aria-hidden="true">&rarr;</b><span>Public IP</span>
+        </div>`,
+      configuration: `
+        <div class="concept-visual visual-flow" role="img" aria-label="DHCP process for automatically assigning network settings">
+          <span>Discover</span><b aria-hidden="true">&rarr;</b><span>Offer</span><b aria-hidden="true">&rarr;</b><span>Request</span><b aria-hidden="true">&rarr;</b><span>Acknowledge</span>
+        </div>`,
+      ports: `
+        <div class="concept-visual visual-flow" role="img" aria-label="An IP address and port directing traffic to an HTTPS service">
+          <span>Packet</span><b aria-hidden="true">&rarr;</b><span>Server IP</span><b aria-hidden="true">&rarr;</b><span>Port 443</span><b aria-hidden="true">&rarr;</b><span>HTTPS service</span>
+        </div>`,
+      routing: `
+        <div class="concept-visual visual-flow" role="img" aria-label="Routers forwarding a packet hop by hop to its destination">
+          <span>Source</span><b aria-hidden="true">&rarr;</b><span>Router A</span><b aria-hidden="true">&rarr;</b><span>Router B</span><b aria-hidden="true">&rarr;</b><span>Destination</span>
+        </div>`,
+      transport: `
+        <div class="concept-visual visual-security" role="img" aria-label="Comparison of TCP reliability features and UDP lower overhead">
+          <span><strong>TCP</strong>Ordered</span><span><strong>TCP</strong>Reliable</span><span><strong>UDP</strong>Low overhead</span><span><strong>UDP</strong>No delivery guarantee</span>
+        </div>`,
+      performance: `
+        <div class="concept-visual visual-security" role="img" aria-label="Network performance measured by latency, bandwidth, jitter, and packet loss">
+          <span><strong>ms</strong>Latency</span><span><strong>Mbps</strong>Bandwidth</span><span><strong>&Delta;</strong>Jitter</span><span><strong>%</strong>Packet loss</span>
+        </div>`,
+      url: `
+        <div class="concept-visual visual-code" role="img" aria-label="Parts of a URL: scheme, subdomain, domain, top-level domain, port, path, query, and fragment">
+          <code>https://  scheme</code><code>www.  subdomain</code><code>example.com  domain + TLD</code><code>:443  port</code><code>/courses/internet  path</code><code>?id=10  query</code><code>#review  fragment</code>
+        </div>`,
+      dns: `
+        <div class="concept-visual visual-flow" role="img" aria-label="DNS resolver following referrals to an authoritative answer">
+          <span>Browser cache</span><b aria-hidden="true">&rarr;</b><span>Resolver</span><b aria-hidden="true">&rarr;</b><span>Root / TLD</span><b aria-hidden="true">&rarr;</b><span>Authoritative answer</span>
+        </div>`,
+      webjourney: `
+        <div class="concept-visual visual-flow" role="img" aria-label="Browser journey from a typed URL to a rendered web page">
+          <span>Enter URL</span><b aria-hidden="true">&rarr;</b><span>Resolve DNS</span><b aria-hidden="true">&rarr;</b><span>Exchange HTTPS</span><b aria-hidden="true">&rarr;</b><span>Render page</span>
+        </div>`,
+      http: `
+        <div class="concept-visual visual-flow" role="img" aria-label="HTTP request and response exchange between client and server">
+          <span>Client</span><b aria-hidden="true">&rarr;</b><span>Request</span><b aria-hidden="true">&rarr;</b><span>Server</span><b aria-hidden="true">&rarr;</b><span>Response</span>
+        </div>`,
+      state: `
+        <div class="concept-visual visual-flow" role="img" aria-label="A cookie helping a server connect requests to a session">
+          <span>Browser</span><b aria-hidden="true">&rarr;</b><span>Cookie</span><b aria-hidden="true">&rarr;</b><span>Next request</span><b aria-hidden="true">&rarr;</b><span>Server session</span>
+        </div>`,
+      tls: `
+        <div class="concept-visual visual-flow" role="img" aria-label="TLS handshake establishing an encrypted connection">
+          <span>Client hello</span><b aria-hidden="true">&rarr;</b><span>Certificate</span><b aria-hidden="true">&rarr;</b><span>Session keys</span><b aria-hidden="true">&rarr;</b><span>Encrypted channel</span>
+        </div>`,
+      rendering: `
+        <div class="concept-visual visual-flow" role="img" aria-label="Browser rendering HTML and CSS into painted pixels">
+          <span>HTML + CSS</span><b aria-hidden="true">&rarr;</b><span>DOM + CSSOM</span><b aria-hidden="true">&rarr;</b><span>Layout</span><b aria-hidden="true">&rarr;</b><span>Paint pixels</span>
+        </div>`,
+      hosting: `
+        <div class="concept-visual visual-flow" role="img" aria-label="Website files deployed to a host and served through a domain">
+          <span>Site files</span><b aria-hidden="true">&rarr;</b><span>Web host</span><b aria-hidden="true">&rarr;</b><span>Domain</span><b aria-hidden="true">&rarr;</b><span>Visitors</span>
+        </div>`,
+      services: `
+        <div class="concept-visual visual-flow" role="img" aria-label="Internet services beyond the World Wide Web">
+          <span>Email</span><b aria-hidden="true">&bull;</b><span>Streaming</span><b aria-hidden="true">&bull;</b><span>Messaging</span><b aria-hidden="true">&bull;</b><span>Gaming / IoT</span>
+        </div>`,
+      threats: `
+        <div class="concept-visual visual-security" role="img" aria-label="Common Internet risks: phishing, malware, password reuse, and public Wi-Fi">
+          <span><strong>1</strong>Phishing</span><span><strong>2</strong>Malware</span><span><strong>3</strong>Password reuse</span><span><strong>4</strong>Public Wi-Fi</span>
+        </div>`,
+      governance: `
+        <div class="concept-visual visual-security" role="img" aria-label="Organizations responsible for Internet protocols, names, addresses, connectivity, and rules">
+          <span><strong>IETF</strong>Protocols and RFCs</span><span><strong>ICANN</strong>Domain coordination</span><span><strong>RIRs</strong>Number resources</span><span><strong>ISPs</strong>Connectivity</span>
+        </div>`,
+      troubleshooting: `
+        <div class="concept-visual visual-flow" role="img" aria-label="Network troubleshooting from identifying a symptom to verifying the fix">
+          <span>Identify symptom</span><b aria-hidden="true">&rarr;</b><span>Define scope</span><b aria-hidden="true">&rarr;</b><span>Test a layer</span><b aria-hidden="true">&rarr;</b><span>Verify fix</span>
+        </div>`,
       html: `
         <div class="concept-visual visual-code" role="img" aria-label="HTML document structure">
           <code>&lt;h1&gt;Class News&lt;/h1&gt;</code><code>&lt;p&gt;Welcome to our page.&lt;/p&gt;</code><code>&lt;a href="notes.html"&gt;Notes&lt;/a&gt;</code>
@@ -117,6 +205,7 @@
           </div>
           <div class="article-divider"></div>
           <article class="slide-article-body syllabus-notes">
+            ${data.id.startsWith('internet-') ? `<section><h3>Detailed lecture notes</h3><p>The explanation above provides the complete lecture narrative. Use the structured terms, examples, analogy, misconception check, and review questions below to deepen and assess understanding.</p></section>` : ''}
             <section>
               <h3>Important terms</h3>
               <dl class="definition-grid">${definitions}</dl>

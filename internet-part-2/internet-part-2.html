@@ -6,247 +6,28 @@
   <meta name="theme-color" content="#101417">
   <title>CC 101 - Internet Part 2: DNS, Web & Internet Security</title>
   <meta name="description" content="What happens when you open a website: URLs, DNS, HTTP, TLS, rendering, hosting, security, governance, and troubleshooting.">
-  <link rel="stylesheet" href="../styles/theme.css?v=20260712">
-  <link rel="stylesheet" href="../styles/course.css?v=20260712">
+  <link rel="stylesheet" href="../styles/theme.css?v=20260713">
+  <link rel="stylesheet" href="../styles/course.css?v=20260713">
 </head>
-<body class="course-protected" data-module-id="internet-part-2">
+<body class="course-protected syllabus-module" data-module-id="internet-part-2">
   <div class="page-loader" id="pageLoader" role="status" aria-live="polite" aria-busy="true">
     <span class="page-loader-spinner" aria-hidden="true"></span>
-    <p>Loading course module...</p>
+    <p>Loading Internet Part 2...</p>
   </div>
-<!-- App Shell -->
-  <div class="app-container">
-    
-    <!-- Top Navigation Bar -->
-    <header class="top-navbar">
-      <div class="nav-left">
-        <a href="../index.html" class="portal-back-btn" title="Back to Portal" aria-label="Back to course portal">&larr;</a>
-        <button class="mobile-menu-toggle course-sidebar-toggle" id="courseSidebarToggle" type="button" aria-label="Open lesson outline" aria-controls="courseSidebar" aria-expanded="false"><span></span><span></span></button>
-        <span class="badge">CC 101</span>
-        <span class="nav-title">Internet Part 2: DNS, Web & Internet Security</span>
-      </div>
-      
-      <div class="nav-center">
-        <!-- Slide Progress Bar -->
-        <div class="progress-container">
-          <div class="progress-bar" id="progressBar"></div>
-        </div>
-        <span class="slide-counter"><span id="currentSlideNum">1</span> / <span id="totalSlidesNum">10</span></span>
-      </div>
-
-      <div class="nav-right">
-        <!-- Theme Toggle -->
-        <button id="themeToggle" class="theme-toggle" type="button" data-theme-toggle><span class="theme-toggle-icon" aria-hidden="true">&#9728;</span></button>
-        <!-- Keyboard Shortcuts Help -->
-        <button id="helpToggle" class="icon-btn" aria-label="Keyboard Shortcuts Help" title="Keyboard Shortcuts (H)">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-        </button>
-      </div>
-    </header>
-
-    <!-- Main Workspace Dashboard Layout -->
-    <div class="workspace-grid">
-      
-      <!-- Left Steps Progress Checklist Sidebar -->
-      <aside class="steps-sidebar" id="courseSidebar" aria-label="Course lessons">
-        <div class="course-sidebar-header">
-          <div class="sidebar-title">Lecture Outline</div>
-          <button class="course-sidebar-close" id="courseSidebarClose" type="button" aria-label="Close lesson outline">&times;</button>
-        </div>
-        <ul class="sidebar-checklist" id="sidebarChecklist">
-          <!-- Populated dynamically via JS -->
-        </ul>
-      </aside>
-      <button class="course-sidebar-overlay" id="courseSidebarOverlay" type="button" aria-label="Close lesson outline"></button>
-
-      <!-- Right Presentation Viewport -->
-      <main class="presentation-viewport">
-
-        <!-- SLIDE 1: WELCOME TITLE SLIDE -->
-        <section class="slide active-slide" id="slide-1">
-          <div class="slide-content title-layout">
-            <div class="hero-header">
-              <span class="sub-category">CC 101 - INTRODUCTION TO COMPUTING</span>
-              <h1>Internet Part 2: DNS, Web & Internet Security</h1>
-              <div class="accent-line"></div>
-              <p class="hero-desc"><strong>What Happens When You Open a Website.</strong> Follow the complete journey from interpreting a URL and resolving DNS to TLS, HTTP, browser rendering, security, and troubleshooting.</p>
-            </div>
-            
-            <div class="welcome-grid">
-              <div class="info-card">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                <div>
-                  <h4>Course Format</h4>
-                  <p>First Year Lecture Series</p>
-                </div>
-              </div>
-              <div class="info-card">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
-                <div>
-                  <h4>Course Instructor</h4>
-                  <p class="teacher-highlight">Mr. Romulo Ritz R. Renomeron Jr.</p>
-                </div>
-              </div>
-              <div class="info-card">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                <div>
-                  <h4>Course Code</h4>
-                  <p>CC 101 • Introduction to Computing</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="welcome-tip animate-pulse">
-              <span class="tip-icon">🌐</span>
-              <span>Demystifying global internet protocols. Scroll down to read detailed lecture notes.</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- SLIDE 2: CURRICULUM RENDER TARGET -->
-        <section class="slide" id="slide-2"><div class="slide-content" data-curriculum-render-target="2"></div></section>
-        <!-- SLIDE 3: CURRICULUM RENDER TARGET -->
-        <section class="slide" id="slide-3"><div class="slide-content" data-curriculum-render-target="3"></div></section>
-        <!-- SLIDE 4: CURRICULUM RENDER TARGET -->
-        <section class="slide" id="slide-4"><div class="slide-content" data-curriculum-render-target="4"></div></section>
-        <!-- SLIDE 5: CURRICULUM RENDER TARGET -->
-        <section class="slide" id="slide-5"><div class="slide-content" data-curriculum-render-target="5"></div></section>
-        <!-- SLIDE 6: CURRICULUM RENDER TARGET -->
-        <section class="slide" id="slide-6"><div class="slide-content" data-curriculum-render-target="6"></div></section>
-        <!-- SLIDE 7: CURRICULUM RENDER TARGET -->
-        <section class="slide" id="slide-7"><div class="slide-content" data-curriculum-render-target="7"></div></section>
-        <!-- SLIDE 8: CURRICULUM RENDER TARGET -->
-        <section class="slide" id="slide-8"><div class="slide-content" data-curriculum-render-target="8"></div></section>
-        <!-- SLIDE 9: 15-ITEM QUIZ -->
-        <section class="slide" id="slide-9" data-section="quiz">
-          <div class="slide-content quiz-layout">
-            <div class="section-title text-center">
-              <span class="slide-num">09</span>
-              <span class="badge-label quiz-bg">Classroom Activity</span>
-              <h2>Internet Part 2 Assessment</h2>
-              <p>Test your understanding of URLs, DNS, HTTP, TLS, browser rendering, hosting, security, and troubleshooting. Answer these 15 questions.</p>
-            </div>
-
-            <!-- Interactive Quiz Box -->
-            <div class="quiz-container glass-card" id="quizBox">
-              <div class="quiz-progress" id="quizProgress">
-                <!-- Injected dynamically by JS -->
-              </div>
-              
-              <fieldset class="question-container">
-                <legend id="questionText">Question Text?</legend>
-                <span id="questionCategory" class="question-cat">Internet Part 2</span>
-                <div class="options-grid" id="optionsGrid">
-                  <!-- Loaded via JS -->
-                </div>
-              </fieldset>
-
-              <div class="feedback-container hidden" id="feedbackPanel" role="status" aria-live="polite">
-                <div class="feedback-indicator">
-                  <span class="feedback-icon" id="feedbackIcon">✓</span>
-                  <span class="feedback-title" id="feedbackTitle">Correct!</span>
-                </div>
-                <p id="feedbackText">Explanation here.</p>
-                <button class="btn btn-primary" id="nextQuestionBtn" onclick="nextQuestion()">Next Question</button>
-              </div>
-
-              <div class="quiz-footer">
-                <span id="quizScoreText">Score: 0 / 0</span>
-                <button class="btn btn-secondary" onclick="resetQuiz()">Restart Quiz</button>
-              </div>
-              <div class="quiz-disclaimer">
-                ⚠️ <strong>Disclaimer:</strong> This is a one-time quiz for approved student accounts. Click Start Quiz when you are ready; lesson navigation stays locked until you finish and submit.
-              </div>
-            </div>
-
-            <!-- Quiz Results Container (Hidden initially) -->
-            <div class="quiz-results-container glass-card hidden" id="quizResults">
-              <div class="results-header">
-                <div class="results-badge">🏆</div>
-                <h2>Quiz Submitted</h2>
-                <p>Here is how you scored on the Internet Part 2 quiz:</p>
-              </div>
-              <div class="score-circle">
-                <span id="finalScoreText">15/15</span>
-              </div>
-              <p id="resultsMessage" class="text-center">Excellent work, future IT Professional!</p>
-              <div class="results-actions">
-                <button class="btn btn-primary" onclick="resetQuiz()">Take Quiz Again</button>
-                <button class="btn btn-secondary" id="reviewQuizBtn" onclick="startQuizReview()">🔍 Review Answers</button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SLIDE 10: CURRICULUM REVIEW -->
-        <section class="slide" id="slide-10"><div class="slide-content" data-curriculum-render-target="10"></div></section>
-      </main>
-    </div>
-
-    <!-- Bottom Control Panel -->
-    <footer class="bottom-controls">
-      <div class="control-left">
-        <button id="prevBtn" class="btn btn-secondary" title="Previous Slide (Left Arrow / Backspace)">
-          ← Previous
-        </button>
-      </div>
-
-      <div class="control-center">
-        <!-- Interactive Slide Indicator dots -->
-        <div class="slide-dots" id="slideDots">
-          <!-- Populated by JS -->
-        </div>
-      </div>
-
-      <div class="control-right">
-        <button id="nextBtn" class="btn btn-primary" title="Next Slide (Right Arrow / Spacebar)">
-          Next Slide →
-        </button>
-      </div>
-    </footer>
-
-    <!-- Floating Scroll Indicator -->
-    <div class="scroll-prompt hidden" id="scrollPrompt">
-      <div class="prompt-mouse">
-        <div class="prompt-wheel"></div>
-      </div>
-      <span>Scroll down to know more</span>
-    </div>
-
-  </div>
-
-  <!-- Keyboard Help Modal -->
-  <div class="help-modal modal-backdrop" id="helpModal">
-    <div class="help-modal-content modal-content glass-card">
-      <div class="modal-header">
-        <h3>Keyboard Navigation Shortcuts</h3>
-        <button id="closeHelpModal" class="icon-btn">×</button>
-      </div>
-      <div class="modal-body">
-        <ul class="shortcuts-list">
-          <li><kbd>→</kbd> or <kbd>Space</kbd> <span>Next Slide</span></li>
-          <li><kbd>←</kbd> <span>Previous Slide</span></li>
-          <li><kbd>T</kbd> <span>Toggle Dark / Light Theme</span></li>
-          <li><kbd>H</kbd> <span>Show / Hide this guide</span></li>
-          <li><kbd>F</kbd> <span>Toggle Fullscreen Presentation</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- Portal Integration -->
-  <script defer src="../js/theme.js?v=20260712"></script>
-  <script defer src="../js/loading.js?v=20260712"></script>
-  <script defer src="../js/navigation.js?v=20260712"></script>
+  <div id="moduleApp"></div>
+  <noscript><p class="noscript-message">JavaScript is required to open this course module.</p></noscript>
+  <script defer src="../js/theme.js?v=20260713"></script>
+  <script defer src="../js/loading.js?v=20260713"></script>
+  <script defer src="../js/navigation.js?v=20260713"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-  <script defer src="../js/firebase-config.js?v=20260712-save2"></script>
-  <script defer src="../js/course-shell.js?v=20260712"></script>
-  <script defer src="../js/progress.js?v=20260712"></script>
-  <script defer src="../js/auth.js?v=20260712"></script>
-  <script defer src="../js/course-protection.js?v=20260712"></script>
-  <script defer src="../js/quiz-utils.js?v=20260712"></script>
-  <script defer src="app.js?v=20260712"></script>
+  <script defer src="../js/firebase-config.js?v=20260713"></script>
+  <script defer src="../js/progress.js?v=20260713"></script>
+  <script defer src="../js/auth.js?v=20260713"></script>
+  <script defer src="../js/course-protection.js?v=20260713"></script>
+  <script defer src="../js/quiz-utils.js?v=20260713"></script>
+  <script defer src="module-data.js?v=20260713"></script>
+  <script defer src="../js/course-module.js?v=20260713"></script>
 </body>
 </html>

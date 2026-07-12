@@ -99,7 +99,7 @@ const MODULES = [
     icon: '🌐',
     color: '#06b6d4',
     path: 'internet-part-1/internet-part-1.html',
-    lessonTotal: 10,
+    lessonTotal: 14,
     quizTotal: 15,
     status: 'available'
   },
@@ -112,7 +112,7 @@ const MODULES = [
     icon: '📡',
     color: '#6366f1',
     path: 'internet-part-2/internet-part-2.html',
-    lessonTotal: 10,
+    lessonTotal: 17,
     quizTotal: 15,
     status: 'available'
   },

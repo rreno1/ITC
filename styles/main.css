@@ -773,8 +773,7 @@ a {
 }
 
 .progress-status.quiz-pending,
-.status-pill.status-pending,
-.status-pill.status-no-quiz {
+.status-pill.status-pending {
   border-color: color-mix(in srgb, var(--warning) 40%, transparent);
   background: color-mix(in srgb, var(--warning) 12%, transparent);
   color: var(--warning);

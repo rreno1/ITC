@@ -119,57 +119,7 @@ function getDateKeyForAdmin(date = new Date()) {
   return `${year}-${month}-${day}`;
 }
 
-function logToDebug(msg) {
-  const el = document.getElementById('debugOutput');
-  if (el) {
-    if (el.textContent === 'Loading debug logs...') {
-      el.textContent = '';
-    }
-    el.textContent += msg + '\n';
-  }
-}
 
-function clearDebugLogs() {
-  const el = document.getElementById('debugOutput');
-  if (el) el.textContent = '';
-}
-
-function didStudentTakeQuizOnDate(student, dateKey) {
-  if (!student.quizResults) {
-    logToDebug(`[${student.name}] quizResults is falsy`);
-    return false;
-  }
-  const results = Object.values(student.quizResults);
-  let res = false;
-  
-  results.forEach(quiz => {
-    if (!quiz || !quiz.completedAt) return;
-    let date;
-    if (quiz.completedAt.toDate) {
-      date = quiz.completedAt.toDate();
-    } else if (quiz.completedAt.seconds) {
-      date = new Date(quiz.completedAt.seconds * 1000);
-    } else {
-      date = new Date(quiz.completedAt);
-    }
-    if (Number.isNaN(date.getTime())) return;
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const quizDateKey = `${year}-${month}-${day}`;
-    if (quizDateKey === dateKey) {
-      res = true;
-    }
-    logToDebug(`[${student.name}] Checked module ${quiz.moduleId}. Completed: ${quizDateKey} vs selected: ${dateKey}. Matches? ${quizDateKey === dateKey}`);
-  });
-  
-  if (results.length === 0) {
-    logToDebug(`[${student.name}] No quiz results found at all`);
-  }
-  
-  logToDebug(`[${student.name}] Final tookQuiz: ${res}`);
-  return res;
-}
 
 function selectedAttendanceDate() {
   const input = document.getElementById('attendanceDateInput');
@@ -685,20 +635,9 @@ function renderStudentTable(accounts) {
     });
 
     const attendanceRecord = student.attendance && student.attendance[todayKey];
-    let attendanceStatus = statusPill('No check-in', 'muted');
-    if (attendanceRecord && attendanceRecord.present) {
-      const tookQuiz = didStudentTakeQuizOnDate(student, todayKey);
-      const quizDates = Object.values(student.quizResults || {})
-        .map(q => {
-          if (!q || !q.completedAt) return 'no-time';
-          const d = q.completedAt.toDate ? q.completedAt.toDate() : new Date(q.completedAt.seconds ? q.completedAt.seconds * 1000 : q.completedAt);
-          return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-        }).join(', ');
-      const titleAttr = quizDates ? `Quizzes completed on: ${quizDates}` : 'No quizzes completed';
-      attendanceStatus = tookQuiz
-        ? `<span class="status-pill status-present" title="${titleAttr}">Present today</span>`
-        : `<span class="status-pill status-no-quiz" title="${titleAttr}">no quiz</span>`;
-    }
+    const attendanceStatus = attendanceRecord && attendanceRecord.present
+      ? statusPill('Present today', 'present')
+      : statusPill('No check-in', 'muted');
 
     row.innerHTML = `
       <td>${page.startIndex + index + 1}</td>
@@ -757,8 +696,6 @@ function renderAttendanceTable(accounts) {
   const tbody = document.getElementById('attendanceTableBody');
   if (!tbody) return;
   tbody.innerHTML = '';
-  clearDebugLogs();
-
   const selectedDate = selectedAttendanceDate();
   const dateKey = getDateKeyForAdmin(selectedDate);
   const batchFilter = selectedAttendanceBatch();
@@ -784,19 +721,7 @@ function renderAttendanceTable(accounts) {
     let status = statusPill('Not scheduled', 'muted');
 
     if (!batchConfig) status = statusPill('No batch', 'pending');
-    else if (record && record.present) {
-      const tookQuiz = didStudentTakeQuizOnDate(student, dateKey);
-      const quizDates = Object.values(student.quizResults || {})
-        .map(q => {
-          if (!q || !q.completedAt) return 'no-time';
-          const d = q.completedAt.toDate ? q.completedAt.toDate() : new Date(q.completedAt.seconds ? q.completedAt.seconds * 1000 : q.completedAt);
-          return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-        }).join(', ');
-      const titleAttr = quizDates ? `Quizzes completed on: ${quizDates}` : 'No quizzes completed';
-      status = tookQuiz
-        ? `<span class="status-pill status-present" title="${titleAttr}">Present</span>`
-        : `<span class="status-pill status-no-quiz" title="${titleAttr}">no quiz</span>`;
-    }
+    else if (record && record.present) status = statusPill('Present', 'present');
     else if (isExpected) status = statusPill('Missing', 'missing');
 
     const row = document.createElement('tr');
@@ -899,8 +824,7 @@ function calculateDashboardStats(approvedAccounts, pendingStudents) {
     return batch && batch.attendanceDay === new Date().getDay();
   });
   const presentToday = approvedStudents.filter(student => {
-    const hasCheckedIn = student.attendance && student.attendance[todayKey] && student.attendance[todayKey].present;
-    return hasCheckedIn && didStudentTakeQuizOnDate(student, todayKey);
+    return student.attendance && student.attendance[todayKey] && student.attendance[todayKey].present;
   }).length;
   const attendancePercent = scheduledStudents.length > 0
     ? Math.round((presentToday / scheduledStudents.length) * 100)
@@ -1177,21 +1101,4 @@ document.addEventListener('moduleavailabilitychange', () => {
   }
 });
 
-window.downloadDebugJSON = function() {
-  const data = (window.allStudentsCached || []).map(student => ({
-    name: student.name,
-    email: student.email,
-    batch: student.batch,
-    attendance: student.attendance,
-    quizResults: student.quizResults
-  }));
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'itc_attendance_debug.json';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-};
+

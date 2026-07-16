@@ -471,6 +471,7 @@
 
   <div id="debugOverlay" style="position: fixed; bottom: 10px; right: 10px; width: 400px; max-height: 300px; overflow-y: auto; background: rgba(0,0,0,0.85); color: #fff; padding: 10px; font-family: monospace; font-size: 11px; border-radius: 5px; z-index: 10000; border: 1px solid #ff0055;">
     <h3 style="margin: 0 0 5px 0; font-size: 13px;">Debug Info</h3>
+    <button onclick="downloadDebugJSON()" style="background: #ff0055; color: #fff; border: none; padding: 5px; cursor: pointer; font-family: sans-serif; font-size: 11px; border-radius: 3px; margin-bottom: 5px; font-weight: bold;">Download Debug JSON</button>
     <pre id="debugOutput" style="margin: 0; white-space: pre-wrap; word-break: break-all;">Loading debug logs...</pre>
   </div>
 
@@ -483,6 +484,6 @@
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   <script defer src="js/firebase-config.js?v=20260712-save2"></script>
   <script defer src="js/auth.js?v=20260712"></script>
-  <script defer src="js/admin.js?v=20260716-attendance-v3"></script>
+  <script defer src="js/admin.js?v=20260716-attendance-v4"></script>
 </body>
 </html>

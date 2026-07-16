@@ -119,6 +119,27 @@ function getDateKeyForAdmin(date = new Date()) {
   return `${year}-${month}-${day}`;
 }
 
+function didStudentTakeQuizOnDate(student, dateKey) {
+  if (!student.quizResults) return false;
+  return Object.values(student.quizResults).some(quiz => {
+    if (!quiz || !quiz.completedAt) return false;
+    let date;
+    if (quiz.completedAt.toDate) {
+      date = quiz.completedAt.toDate();
+    } else if (quiz.completedAt.seconds) {
+      date = new Date(quiz.completedAt.seconds * 1000);
+    } else {
+      date = new Date(quiz.completedAt);
+    }
+    if (Number.isNaN(date.getTime())) return false;
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const quizDateKey = `${year}-${month}-${day}`;
+    return quizDateKey === dateKey;
+  });
+}
+
 function selectedAttendanceDate() {
   const input = document.getElementById('attendanceDateInput');
   const value = input && input.value ? input.value : getDateKeyForAdmin();
@@ -585,8 +606,10 @@ function renderStudentTable(accounts) {
   const availableModules = MODULES.filter(m => m.status === 'available');
   renderGradebookHeader(availableModules);
   const searchValue = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+  const batchFilter = document.getElementById('gradebookBatchFilter')?.value || 'all';
   const rows = accounts
     .filter(account => !account.manual)
+    .filter(account => batchFilter === 'all' || account.batch === batchFilter)
     .filter(account => {
       const searchable = `${account.name || ''} ${account.email || ''} ${account.batch || ''}`.toLowerCase();
       return searchable.includes(searchValue);
@@ -631,9 +654,11 @@ function renderStudentTable(accounts) {
     });
 
     const attendanceRecord = student.attendance && student.attendance[todayKey];
-    const attendanceStatus = attendanceRecord && attendanceRecord.present
-      ? statusPill('Present today', 'present')
-      : statusPill('No check-in', 'muted');
+    let attendanceStatus = statusPill('No check-in', 'muted');
+    if (attendanceRecord && attendanceRecord.present) {
+      const tookQuiz = didStudentTakeQuizOnDate(student, todayKey);
+      attendanceStatus = tookQuiz ? statusPill('Present today', 'present') : statusPill('no quiz', 'no-quiz');
+    }
 
     row.innerHTML = `
       <td>${page.startIndex + index + 1}</td>
@@ -718,7 +743,10 @@ function renderAttendanceTable(accounts) {
     let status = statusPill('Not scheduled', 'muted');
 
     if (!batchConfig) status = statusPill('No batch', 'pending');
-    else if (record && record.present) status = statusPill('Present', 'present');
+    else if (record && record.present) {
+      const tookQuiz = didStudentTakeQuizOnDate(student, dateKey);
+      status = tookQuiz ? statusPill('Present', 'present') : statusPill('no quiz', 'no-quiz');
+    }
     else if (isExpected) status = statusPill('Missing', 'missing');
 
     const row = document.createElement('tr');
@@ -742,10 +770,13 @@ function renderAccountsTable(accounts) {
   if (!tbody) return;
 
   const searchValue = (document.getElementById('accountSearchInput')?.value || '').toLowerCase().trim();
-  const filtered = accounts.filter(account => {
-    const searchable = `${account.name || ''} ${account.email || ''} ${account.role || ''} ${account.batch || ''}`.toLowerCase();
-    return searchable.includes(searchValue);
-  });
+  const batchFilter = document.getElementById('accountBatchFilter')?.value || 'all';
+  const filtered = accounts
+    .filter(account => batchFilter === 'all' || account.batch === batchFilter)
+    .filter(account => {
+      const searchable = `${account.name || ''} ${account.email || ''} ${account.role || ''} ${account.batch || ''}`.toLowerCase();
+      return searchable.includes(searchValue);
+    });
   const page = paginateItems(filtered, 'accounts');
   renderTablePagination('accountsPagination', 'accounts', page, () => {
     renderAccountsTable(window.allAccountsCached || []);
@@ -818,7 +849,8 @@ function calculateDashboardStats(approvedAccounts, pendingStudents) {
     return batch && batch.attendanceDay === new Date().getDay();
   });
   const presentToday = approvedStudents.filter(student => {
-    return student.attendance && student.attendance[todayKey] && student.attendance[todayKey].present;
+    const hasCheckedIn = student.attendance && student.attendance[todayKey] && student.attendance[todayKey].present;
+    return hasCheckedIn && didStudentTakeQuizOnDate(student, todayKey);
   }).length;
   const attendancePercent = scheduledStudents.length > 0
     ? Math.round((presentToday / scheduledStudents.length) * 100)
@@ -1050,7 +1082,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('searchInput')?.addEventListener('input', filterStudentsTable);
+  document.getElementById('gradebookBatchFilter')?.addEventListener('change', filterStudentsTable);
   document.getElementById('accountSearchInput')?.addEventListener('input', () => {
+    resetAdminPage('accounts');
+    renderAccountsTable(window.allAccountsCached || []);
+  });
+  document.getElementById('accountBatchFilter')?.addEventListener('change', () => {
     resetAdminPage('accounts');
     renderAccountsTable(window.allAccountsCached || []);
   });

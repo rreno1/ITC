@@ -277,9 +277,16 @@
         </div>
 
         <div class="admin-controls">
-          <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-input" placeholder="Search accounts by name or email...">
+          <div class="admin-actions-group" style="flex: 1; max-width: 600px;">
+            <div class="search-container" style="flex: 1;">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="searchInput" class="search-input" placeholder="Search accounts by name or email...">
+            </div>
+            <select id="gradebookBatchFilter" class="search-input select-filter" aria-label="Filter by Batch" style="max-width: 150px;">
+              <option value="all">All Batches</option>
+              <option value="A">Batch A</option>
+              <option value="B">Batch B</option>
+            </select>
           </div>
         </div>
 
@@ -361,9 +368,16 @@
         </div>
 
         <div class="admin-action-row">
-          <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="accountSearchInput" class="search-input" placeholder="Search all accounts...">
+          <div class="admin-actions-group" style="flex: 1; max-width: 600px;">
+            <div class="search-container" style="flex: 1;">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="accountSearchInput" class="search-input" placeholder="Search all accounts...">
+            </div>
+            <select id="accountBatchFilter" class="search-input select-filter" aria-label="Filter by Batch" style="max-width: 150px;">
+              <option value="all">All Batches</option>
+              <option value="A">Batch A</option>
+              <option value="B">Batch B</option>
+            </select>
           </div>
         </div>
 

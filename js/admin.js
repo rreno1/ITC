@@ -120,8 +120,13 @@ function getDateKeyForAdmin(date = new Date()) {
 }
 
 function didStudentTakeQuizOnDate(student, dateKey) {
-  if (!student.quizResults) return false;
-  return Object.values(student.quizResults).some(quiz => {
+  if (!student.quizResults) {
+    console.log("didStudentTakeQuizOnDate: student.quizResults is falsy for", student.name);
+    return false;
+  }
+  const results = Object.values(student.quizResults);
+  console.log("didStudentTakeQuizOnDate check for", student.name, "dateKey:", dateKey, "quizzes count:", results.length);
+  const res = results.some(quiz => {
     if (!quiz || !quiz.completedAt) return false;
     let date;
     if (quiz.completedAt.toDate) {
@@ -136,8 +141,12 @@ function didStudentTakeQuizOnDate(student, dateKey) {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     const quizDateKey = `${year}-${month}-${day}`;
-    return quizDateKey === dateKey;
+    const matches = quizDateKey === dateKey;
+    console.log(" - Quiz:", quiz.moduleId, "completedAt:", quiz.completedAt, "resolved Date:", date.toLocaleString(), "quizDateKey:", quizDateKey, "matches:", matches);
+    return matches;
   });
+  console.log("didStudentTakeQuizOnDate result for", student.name, ":", res);
+  return res;
 }
 
 function selectedAttendanceDate() {

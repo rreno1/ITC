@@ -119,15 +119,31 @@ function getDateKeyForAdmin(date = new Date()) {
   return `${year}-${month}-${day}`;
 }
 
+function logToDebug(msg) {
+  const el = document.getElementById('debugOutput');
+  if (el) {
+    if (el.textContent === 'Loading debug logs...') {
+      el.textContent = '';
+    }
+    el.textContent += msg + '\n';
+  }
+}
+
+function clearDebugLogs() {
+  const el = document.getElementById('debugOutput');
+  if (el) el.textContent = '';
+}
+
 function didStudentTakeQuizOnDate(student, dateKey) {
   if (!student.quizResults) {
-    console.log("didStudentTakeQuizOnDate: student.quizResults is falsy for", student.name);
+    logToDebug(`[${student.name}] quizResults is falsy`);
     return false;
   }
   const results = Object.values(student.quizResults);
-  console.log("didStudentTakeQuizOnDate check for", student.name, "dateKey:", dateKey, "quizzes count:", results.length);
-  const res = results.some(quiz => {
-    if (!quiz || !quiz.completedAt) return false;
+  let res = false;
+  
+  results.forEach(quiz => {
+    if (!quiz || !quiz.completedAt) return;
     let date;
     if (quiz.completedAt.toDate) {
       date = quiz.completedAt.toDate();
@@ -136,16 +152,22 @@ function didStudentTakeQuizOnDate(student, dateKey) {
     } else {
       date = new Date(quiz.completedAt);
     }
-    if (Number.isNaN(date.getTime())) return false;
+    if (Number.isNaN(date.getTime())) return;
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     const quizDateKey = `${year}-${month}-${day}`;
-    const matches = quizDateKey === dateKey;
-    console.log(" - Quiz:", quiz.moduleId, "completedAt:", quiz.completedAt, "resolved Date:", date.toLocaleString(), "quizDateKey:", quizDateKey, "matches:", matches);
-    return matches;
+    if (quizDateKey === dateKey) {
+      res = true;
+    }
+    logToDebug(`[${student.name}] Checked module ${quiz.moduleId}. Completed: ${quizDateKey} vs selected: ${dateKey}. Matches? ${quizDateKey === dateKey}`);
   });
-  console.log("didStudentTakeQuizOnDate result for", student.name, ":", res);
+  
+  if (results.length === 0) {
+    logToDebug(`[${student.name}] No quiz results found at all`);
+  }
+  
+  logToDebug(`[${student.name}] Final tookQuiz: ${res}`);
   return res;
 }
 
@@ -735,6 +757,7 @@ function renderAttendanceTable(accounts) {
   const tbody = document.getElementById('attendanceTableBody');
   if (!tbody) return;
   tbody.innerHTML = '';
+  clearDebugLogs();
 
   const selectedDate = selectedAttendanceDate();
   const dateKey = getDateKeyForAdmin(selectedDate);

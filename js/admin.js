@@ -666,7 +666,16 @@ function renderStudentTable(accounts) {
     let attendanceStatus = statusPill('No check-in', 'muted');
     if (attendanceRecord && attendanceRecord.present) {
       const tookQuiz = didStudentTakeQuizOnDate(student, todayKey);
-      attendanceStatus = tookQuiz ? statusPill('Present today', 'present') : statusPill('no quiz', 'no-quiz');
+      const quizDates = Object.values(student.quizResults || {})
+        .map(q => {
+          if (!q || !q.completedAt) return 'no-time';
+          const d = q.completedAt.toDate ? q.completedAt.toDate() : new Date(q.completedAt.seconds ? q.completedAt.seconds * 1000 : q.completedAt);
+          return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        }).join(', ');
+      const titleAttr = quizDates ? `Quizzes completed on: ${quizDates}` : 'No quizzes completed';
+      attendanceStatus = tookQuiz
+        ? `<span class="status-pill status-present" title="${titleAttr}">Present today</span>`
+        : `<span class="status-pill status-no-quiz" title="${titleAttr}">no quiz</span>`;
     }
 
     row.innerHTML = `
@@ -754,7 +763,16 @@ function renderAttendanceTable(accounts) {
     if (!batchConfig) status = statusPill('No batch', 'pending');
     else if (record && record.present) {
       const tookQuiz = didStudentTakeQuizOnDate(student, dateKey);
-      status = tookQuiz ? statusPill('Present', 'present') : statusPill('no quiz', 'no-quiz');
+      const quizDates = Object.values(student.quizResults || {})
+        .map(q => {
+          if (!q || !q.completedAt) return 'no-time';
+          const d = q.completedAt.toDate ? q.completedAt.toDate() : new Date(q.completedAt.seconds ? q.completedAt.seconds * 1000 : q.completedAt);
+          return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        }).join(', ');
+      const titleAttr = quizDates ? `Quizzes completed on: ${quizDates}` : 'No quizzes completed';
+      status = tookQuiz
+        ? `<span class="status-pill status-present" title="${titleAttr}">Present</span>`
+        : `<span class="status-pill status-no-quiz" title="${titleAttr}">no quiz</span>`;
     }
     else if (isExpected) status = statusPill('Missing', 'missing');
 

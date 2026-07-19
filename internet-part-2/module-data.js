@@ -23,6 +23,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'What Is the Internet?',
       category: 'Internet Infrastructure',
+      image: {
+        src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280&auto=format&fit=crop',
+        alt: 'Global network visualization over Earth',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'network',
       lead: 'The Internet is a global system of interconnected networks that communicate using shared technical standards.',
       paragraphs: [
@@ -48,6 +53,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Internet Versus World Wide Web',
       category: 'Internet Infrastructure',
+      image: {
+        src: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1280&auto=format&fit=crop',
+        alt: 'Matrix of digital data streams and web connections',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'web',
       lead: 'The Internet is the physical and logical network infrastructure; the Web is just one of many services running on top of it.',
       paragraphs: [
@@ -73,6 +83,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Physical Internet Infrastructure',
       category: 'Physical Infrastructure',
+      image: {
+        src: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1280&auto=format&fit=crop',
+        alt: 'Massive data center hall with server racks',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'infrastructure',
       lead: 'The Internet may feel invisible, but it depends on massive physical hardware spanning land and ocean floors.',
       paragraphs: [
@@ -98,6 +113,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Internet Service Providers (ISPs)',
       category: 'ISP & Access',
+      image: {
+        src: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1280&auto=format&fit=crop',
+        alt: 'Telecommunication fiber cables and patch panel',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'infrastructure',
       lead: 'An Internet Service Provider links homes, schools, and businesses to the wider global Internet infrastructure.',
       paragraphs: [
@@ -123,6 +143,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'How a Device Joins a Network',
       category: 'Network Joining',
+      image: {
+        src: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1280&auto=format&fit=crop',
+        alt: 'Smartphone connecting to wireless network',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'configuration',
       lead: 'A device cannot send Internet traffic until it activates its interface, authenticates, and receives valid network configuration.',
       paragraphs: [
@@ -148,6 +173,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'DHCP (Dynamic Host Configuration Protocol)',
       category: 'Network Configuration',
+      image: {
+        src: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1280&auto=format&fit=crop',
+        alt: 'Network configuration code on a developer monitor',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'configuration',
       lead: 'DHCP automates network configuration, granting temporary IP leases to devices as they join and leave.',
       paragraphs: [
@@ -173,6 +203,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Understanding Addresses and Identifiers',
       category: 'Addressing',
+      image: {
+        src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1280&auto=format&fit=crop',
+        alt: 'Digital IP address and domain lookup on screen',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'addressing',
       lead: 'Different network identifiers solve distinct communication tasks across local links, logical networks, and applications.',
       paragraphs: [
@@ -201,6 +236,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'IPv4 and IPv6',
       category: 'Addressing',
+      image: {
+        src: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1280&auto=format&fit=crop',
+        alt: 'Binary numbers and hexadecimal code representation',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'addressing',
       lead: 'The global expansion of Internet devices forced the transition from 32-bit IPv4 addresses to 128-bit IPv6 addresses.',
       paragraphs: [
@@ -226,6 +266,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Public and Private IP Addresses',
       category: 'IP Routing',
+      image: {
+        src: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1280&auto=format&fit=crop',
+        alt: 'Private home gateway and security shield',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'addressing',
       lead: 'Private IP addresses are reused inside local networks, while public IP addresses must be globally unique across the Internet.',
       paragraphs: [
@@ -251,6 +296,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Network Address Translation (NAT)',
       category: 'IP Routing',
+      image: {
+        src: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1280&auto=format&fit=crop',
+        alt: 'Router translating local network data to Internet',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'addressing',
       lead: 'NAT allows an entire local network of devices sharing private IPs to access the Internet using a single public IP address.',
       paragraphs: [
@@ -276,6 +326,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Default Gateway',
       category: 'IP Routing',
+      image: {
+        src: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=1280&auto=format&fit=crop',
+        alt: 'Default gateway router with active link LEDs',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'routing',
       lead: 'The Default Gateway is the local router interface that host devices send traffic to whenever a destination is outside their local network.',
       paragraphs: [
@@ -301,6 +356,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Packets',
       category: 'Packet Switching',
+      image: {
+        src: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1280&auto=format&fit=crop',
+        alt: 'High speed packet traffic in a network switch',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'packets',
       lead: 'Data travels across the Internet broken into small, structured units called packets, allowing networks to carry shared traffic efficiently.',
       paragraphs: [
@@ -327,6 +387,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Packet Switching',
       category: 'Packet Switching',
+      image: {
+        src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280&auto=format&fit=crop',
+        alt: 'Dynamic packet routing paths across global networks',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'packets',
       lead: 'The Internet uses packet switching, dynamically forwarding independent packets across available network paths without reserving dedicated circuits.',
       paragraphs: [
@@ -352,6 +417,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Routers and Routing Paths',
       category: 'Routing',
+      image: {
+        src: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1280&auto=format&fit=crop',
+        alt: 'Core enterprise router handling multi-hop paths',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'routing',
       lead: 'Routers examine destination IP addresses and forward packets hop-by-hop toward their target across interconnected autonomous networks.',
       paragraphs: [
@@ -378,6 +448,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Network Protocols',
       category: 'Protocols',
+      image: {
+        src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280&auto=format&fit=crop',
+        alt: 'Microprocessor logic implementing protocol rules',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'stack',
       lead: 'A protocol is an agreed set of technical rules governing how devices format, transmit, receive, and interpret data.',
       paragraphs: [
@@ -403,6 +478,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'The TCP/IP Model',
       category: 'Models',
+      image: {
+        src: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1280&auto=format&fit=crop',
+        alt: 'Layered network protocol software stack',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'stack',
       lead: 'The TCP/IP model organizes network protocols into four functional layers, using encapsulation to prepare data for transmission.',
       paragraphs: [
@@ -428,6 +508,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'TCP and UDP Transport Protocols',
       category: 'Transport Protocols',
+      image: {
+        src: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1280&auto=format&fit=crop',
+        alt: 'Live online stream and data transport monitoring',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'transport',
       lead: 'The transport layer offers a choice: reliable, ordered delivery with TCP, or lightweight, fast delivery with UDP.',
       paragraphs: [
@@ -453,6 +538,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Port Numbers',
       category: 'Ports',
+      image: {
+        src: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1280&auto=format&fit=crop',
+        alt: 'Server sockets listening on specific port endpoints',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'ports',
       lead: 'Port numbers direct network communication to the correct application service running on a target computer.',
       paragraphs: [
@@ -478,6 +568,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Domain Name System (DNS)',
       category: 'DNS',
+      image: {
+        src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280&auto=format&fit=crop',
+        alt: 'Global DNS name resolution network',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'webjourney',
       lead: 'DNS acts as the phonebook of the Internet, translating human-readable domain names into machine-routable IP addresses.',
       paragraphs: [
@@ -503,6 +598,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Domain Name Versus URL',
       category: 'Web Mechanics',
+      image: {
+        src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280&auto=format&fit=crop',
+        alt: 'Browser address bar displaying a web URL',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'webjourney',
       lead: 'A domain name identifies a service host, while a URL provides the complete location and access instructions for a specific resource.',
       paragraphs: [
@@ -528,6 +628,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'HTTP (Hypertext Transfer Protocol)',
       category: 'Web Mechanics',
+      image: {
+        src: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1280&auto=format&fit=crop',
+        alt: 'HTTP request and response header logs',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'web',
       lead: 'HTTP is an application-layer request-response protocol used for communication between web clients and web servers.',
       paragraphs: [
@@ -553,6 +658,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'HTTP Methods',
       category: 'Web Mechanics',
+      image: {
+        src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1280&auto=format&fit=crop',
+        alt: 'Web API methods GET, POST, PUT, DELETE',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'web',
       lead: 'HTTP methods state the client\'s intended action when requesting a server resource.',
       paragraphs: [
@@ -579,6 +689,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'HTTP Status Codes',
       category: 'Web Mechanics',
+      image: {
+        src: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1280&auto=format&fit=crop',
+        alt: 'Web server status log showing HTTP 200 and 404',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'web',
       lead: 'HTTP status codes are three-digit numbers returned by servers to summarize the outcome of a client request.',
       paragraphs: [
@@ -607,6 +722,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'HTTPS, Encryption, and Certificates',
       category: 'Security Basics',
+      image: {
+        src: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1280&auto=format&fit=crop',
+        alt: 'Padlock icon and SSL/TLS certificate security',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'privacy',
       lead: 'HTTPS encrypts web traffic using Transport Layer Security (TLS) and authenticates server identity with digital certificates.',
       paragraphs: [
@@ -632,6 +752,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Complete Journey of Opening a Website',
       category: 'Web Synthesis',
+      image: {
+        src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280&auto=format&fit=crop',
+        alt: 'User entering URL and browser rendering page',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'webjourney',
       lead: 'Opening a website is a 14-stage coordinated sequence spanning URL parsing, DNS, routing, TCP/TLS handshakes, HTTP exchanges, and browser rendering.',
       paragraphs: [
@@ -654,6 +779,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Client, Server, and Database',
       category: 'Web Architecture',
+      image: {
+        src: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1280&auto=format&fit=crop',
+        alt: '3-tier database and application server infrastructure',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'web',
       lead: 'Web applications use a 3-tier architecture separating client presentation, server application logic, and database storage.',
       paragraphs: [
@@ -678,6 +808,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Webpage Components',
       category: 'Web Foundations',
+      image: {
+        src: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1280&auto=format&fit=crop',
+        alt: 'HTML, CSS, and JavaScript website code editor',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'web',
       lead: 'Webpages are constructed from complementary technologies: HTML for structure, CSS for presentation, JavaScript for behavior, and media for visual content.',
       paragraphs: [
@@ -702,6 +837,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Cookies, Sessions, and Caching',
       category: 'State & Caching',
+      image: {
+        src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1280&auto=format&fit=crop',
+        alt: 'Browser cookie storage and local web cache',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'web',
       lead: 'Because HTTP is stateless, web applications use cookies, sessions, and caches to maintain user state and improve performance.',
       paragraphs: [
@@ -727,6 +867,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Hosting, Data Centers, Cloud, and CDNs',
       category: 'Web Hosting',
+      image: {
+        src: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1280&auto=format&fit=crop',
+        alt: 'Global cloud hosting data center racks',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'infrastructure',
       lead: 'Delivering websites globally requires web hosting, physical data centers, cloud infrastructure, and Content Delivery Networks.',
       paragraphs: [
@@ -752,6 +897,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Internet Performance Metrics',
       category: 'Performance',
+      image: {
+        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1280&auto=format&fit=crop',
+        alt: 'Network analytics dashboard measuring throughput and ping',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'performance',
       lead: 'Network performance is evaluated using bandwidth, throughput, latency, jitter, and packet loss, each impacting applications differently.',
       paragraphs: [
@@ -779,6 +929,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Congestion and Bottlenecks',
       category: 'Performance',
+      image: {
+        src: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1280&auto=format&fit=crop',
+        alt: 'Heavy network traffic congestion indicators',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'performance',
       lead: 'Internet performance is constrained by the slowest link along the end-to-end path, known as a bottleneck.',
       paragraphs: [
@@ -804,6 +959,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Basic Internet Security',
       category: 'Security Basics',
+      image: {
+        src: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1280&auto=format&fit=crop',
+        alt: 'Digital padlock shield protecting online user data',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'privacy',
       lead: 'Fundamental Internet security practices protect user accounts, data privacy, and devices against common online threats.',
       paragraphs: [
@@ -829,6 +989,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Basic Network Troubleshooting',
       category: 'Troubleshooting',
+      image: {
+        src: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1280&auto=format&fit=crop',
+        alt: 'IT technician diagnosing network router connections',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'performance',
       lead: 'Network troubleshooting relies on a systematic 8-step dependency ladder to isolate connectivity problems logically.',
       paragraphs: [
@@ -854,6 +1019,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Introductory Command-Line Tools',
       category: 'Troubleshooting',
+      image: {
+        src: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1280&auto=format&fit=crop',
+        alt: 'Terminal command prompt executing ipconfig and ping',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'performance',
       lead: 'Standard command-line tools provide direct technical visibility into network adapters, IP routing, DNS lookups, and connection paths.',
       paragraphs: [
@@ -881,6 +1051,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Internet Governance and Responsibility',
       category: 'Governance',
+      image: {
+        src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280&auto=format&fit=crop',
+        alt: 'Global multi-stakeholder network collaboration',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'network',
       lead: 'The Internet operates without a single central owner through international technical standardization, address coordination, and multi-stakeholder cooperation.',
       paragraphs: [

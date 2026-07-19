@@ -20,6 +20,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Begin With Communication',
       category: 'Communication Model',
+      image: {
+        src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1280&auto=format&fit=crop',
+        alt: 'Two people interacting with digital devices and screens',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'network',
       lead: 'Before understanding complex networks, we must look at how two individual devices exchange information using a basic communication model.',
       paragraphs: [
@@ -46,6 +51,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Data Becomes Signals',
       category: 'Physical Layer',
+      image: {
+        src: 'https://images.unsplash.com/photo-1551703599-6b3e8379aa8c?w=1280&auto=format&fit=crop',
+        alt: 'Glowing optical fiber cables transmitting light signals',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'infrastructure',
       lead: 'The 1s and 0s stored in computer memory travel through the real world as physical signals through copper cables, optical fibers, or radio waves.',
       paragraphs: [
@@ -73,6 +83,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'What Is a Computer Network?',
       category: 'Network Concepts',
+      image: {
+        src: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1280&auto=format&fit=crop',
+        alt: 'Ethernet cables connected to network equipment in a rack',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'network',
       lead: 'A computer network is simply two or more connected devices that can communicate and share data, services, and hardware resources.',
       paragraphs: [
@@ -100,6 +115,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Network Versus Internet',
       category: 'Network Concepts',
+      image: {
+        src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280&auto=format&fit=crop',
+        alt: 'Global network visualization showing interconnected nodes across Earth',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'network',
       lead: 'A local network is an independent, self-contained system of devices, whereas the Internet is a global network of interconnected networks.',
       paragraphs: [
@@ -125,6 +145,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Types of Networks by Coverage Area',
       category: 'Network Coverage',
+      image: {
+        src: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1280&auto=format&fit=crop',
+        alt: 'Digital map illustration showing local to global coverage paths',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'network',
       lead: 'Networks are categorized by their geographic span, ranging from personal bluetooth links to city-wide and global connections.',
       paragraphs: [
@@ -153,6 +178,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Networks Can Be Classified in Different Ways',
       category: 'Classifications',
+      image: {
+        src: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1280&auto=format&fit=crop',
+        alt: 'Structured server rack cabling in a data center',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'network',
       lead: 'Networks are described by different attributes: coverage, medium, architecture, access permissions, topology, and ownership.',
       paragraphs: [
@@ -178,6 +208,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Wired and Wireless Networks',
       category: 'Transmission Media',
+      image: {
+        src: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=1280&auto=format&fit=crop',
+        alt: 'Modern Wi-Fi router with wireless antennas',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'infrastructure',
       lead: 'Networks transmit data through physical cables or free-space radio waves, each offering distinct tradeoffs in speed, mobility, and reliability.',
       paragraphs: [
@@ -203,6 +238,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Network Architecture: Peer-to-Peer and Client-Server',
       category: 'Network Architecture',
+      image: {
+        src: 'https://images.unsplash.com/photo-1520869578617-557561d7b114?w=1280&auto=format&fit=crop',
+        alt: 'Centralized server room with blue LED status lights',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'network',
       lead: 'Network architecture defines how control, communication, and resource management are divided among connected devices.',
       paragraphs: [
@@ -228,6 +268,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Network Access Types: Intranet, Extranet, and Internet',
       category: 'Network Access',
+      image: {
+        src: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1280&auto=format&fit=crop',
+        alt: 'Secure computer screen showing authentication shield',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'privacy',
       lead: 'Networks enforce access boundaries to control whether services are restricted to internal personnel, trusted partners, or the general public.',
       paragraphs: [
@@ -254,6 +299,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Basic Network Topologies',
       category: 'Topologies',
+      image: {
+        src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1280&auto=format&fit=crop',
+        alt: 'Office computer workstation desk connected to network',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'network',
       lead: 'Network topology defines the physical or logical layout in which devices and cable links are arranged.',
       paragraphs: [
@@ -280,6 +330,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Network Media Comparison',
       category: 'Transmission Media',
+      image: {
+        src: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1280&auto=format&fit=crop',
+        alt: 'Close up of colorful Ethernet cables and fiber strands',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'infrastructure',
       lead: 'Choosing between copper Ethernet, optical fiber, and wireless media depends on required distance, bandwidth, immunity, and budget.',
       paragraphs: [
@@ -306,6 +361,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Essential Network Devices',
       category: 'Network Hardware',
+      image: {
+        src: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1280&auto=format&fit=crop',
+        alt: 'Hardware network switch with patch cables inserted',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'infrastructure',
       lead: 'Every device in a network performs a specific role, from physical interfaces to local switches, access points, and boundary routers.',
       paragraphs: [
@@ -333,6 +393,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Building a Home or School Network',
       category: 'Network Architecture',
+      image: {
+        src: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1280&auto=format&fit=crop',
+        alt: 'Technician configuring network cabling infrastructure',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'infrastructure',
       lead: 'Combining devices into a complete topology shows how data flows from user end-points out to the ISP and Internet.',
       paragraphs: [
@@ -358,6 +423,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Communication Inside a Local Network',
       category: 'Local Data Flow',
+      image: {
+        src: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1280&auto=format&fit=crop',
+        alt: 'Laptop on desk transferring data over local network',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'network',
       lead: 'When two devices on the same local network communicate, their data stays within the LAN using physical MAC address identification.',
       paragraphs: [
@@ -383,6 +453,11 @@ window.CC101_MODULE_DATA = {
     {
       title: 'Basic Network Models',
       category: 'Network Models',
+      image: {
+        src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280&auto=format&fit=crop',
+        alt: 'Integrated circuit board representing layered hardware logic',
+        credit: 'Photo via Unsplash'
+      },
       visual: 'stack',
       lead: 'Layered network models divide the complex job of communication into manageable levels, from physical hardware up to user applications.',
       paragraphs: [

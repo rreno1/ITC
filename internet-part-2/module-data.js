@@ -2,564 +2,1154 @@ window.CC101_MODULE_DATA = {
   id: 'internet-part-2',
   courseTitle: 'Introduction to Computing',
   title: 'Internet Part 2',
-  subtitle: 'What Happens When You Open a Website',
-  description: 'Follow the complete journey of a webpage - from entering a URL and resolving DNS to establishing secure connections, exchanging HTTP messages, rendering content, and troubleshooting common Internet problems.',
+  subtitle: 'How the Internet & Web Work',
+  description: 'Follow the complete journey of data across the global Internet: learn about IP addressing, DHCP, NAT, packets, routing, DNS, protocols, HTTP, HTTPS, website journeys, performance metrics, Internet security, and systematic troubleshooting.',
   objectives: [
-    'Identify the parts of a URL and distinguish a URL, domain name, website, webpage, web server, and IP address.',
-    'Trace DNS resolution through caches, a recursive resolver, root and top-level-domain servers, and an authoritative name server.',
-    'Explain the complete journey from entering a URL to receiving and rendering a webpage.',
-    'Describe client-server communication and distinguish frontend, backend, static, and dynamic responsibilities.',
-    'Interpret HTTP methods, message structure, common status codes, cookies, sessions, and caching behavior.',
-    'Explain how HTTPS, TLS, and digital certificates support confidentiality, integrity, and authentication.',
-    'Describe browser rendering, web hosting, cloud platforms, content delivery networks, and other Internet services.',
-    'Apply practical security habits and explain how Internet standards and governance are distributed among organizations.',
-    'Use a systematic sequence and basic diagnostic tools to locate connectivity, DNS, website, and security problems.'
+    'Define the Internet and distinguish it from the World Wide Web and other Internet services.',
+    'Describe the physical infrastructure of the global Internet, including undersea cables and data centers.',
+    'Explain how Internet Service Providers (ISPs) connect customer networks to the wider Internet.',
+    'Trace how a device joins a network and receives IP, subnet, gateway, and DNS configuration via DHCP.',
+    'Distinguish MAC addresses, IP addresses, domain names, URLs, and port numbers.',
+    'Differentiate between IPv4 and IPv6, public and private IP addresses, NAT, and default gateways.',
+    'Describe packet structures, packet switching, router hops, TTL, and autonomous system routing.',
+    'Explain network protocols, the TCP/IP model, encapsulation, and TCP vs UDP transport.',
+    'Dissect URLs, domain names, HTTP requests, HTTP methods, status codes, HTTPS, and certificates.',
+    'Trace the complete 14-stage journey of entering a URL through to final browser page rendering.',
+    'Explain client-server-database architecture, webpage components, cookies, sessions, caching, hosting, and CDNs.',
+    'Evaluate Internet performance metrics (bandwidth, throughput, latency, jitter, packet loss) and bottlenecks.',
+    'Apply basic Internet security practices and perform systematic troubleshooting using diagnostic commands.'
   ],
   lessons: [
     {
-      title: 'Anatomy of a URL',
-      category: 'Web Addressing',
-      visual: 'url',
-      lead: 'A URL is a structured address that tells a client what access method to use, which host to contact, and which resource or location to request.',
+      title: 'What Is the Internet?',
+      category: 'Internet Infrastructure',
+      visual: 'network',
+      lead: 'The Internet is a global system of interconnected networks that communicate using shared technical standards.',
       paragraphs: [
-        'Consider https://www.example.com:443/courses/internet?id=10#review. The scheme https identifies the access protocol; www is a subdomain; example.com is the registered domain name; com is the top-level domain; 443 is an explicitly stated port; /courses/internet is the path; id=10 is the query string; and review is the fragment. A browser uses these parts for different jobs, so they should not be treated as one unstructured label.',
-        'A domain name is the human-readable name associated with an Internet service, while an IP address identifies a network destination used to route packets. A web server is the system or software responding to web requests. A website is a related collection of resources and webpages, and a webpage is one document or application view within that site. A URL can identify a particular webpage, image, download, API endpoint, or other resource.',
-        'Some URL parts may be omitted because defaults apply. HTTPS normally uses port 443 and HTTP normally uses port 80, so browsers rarely display those ports. A query string is sent to the server as part of the request target, while a fragment normally tells the browser where to move within the returned document and is not sent in the HTTP request. Students should interpret these parts, not memorize every possible scheme or top-level domain.'
+        'The Internet is not a single giant computer, a single company, or a cloud in the sky. It is a vast global infrastructure connecting millions of independent networks operated by ISPs, universities, governments, and corporations.',
+        'These independent networks communicate seamlessly because they all adhere to the same open protocols (the TCP/IP suite). No central authority owns or controls the entire Internet.'
       ],
       definitions: [
-        { term: 'URL', definition: 'A Uniform Resource Locator that identifies how and where a client can access a resource.' },
-        { term: 'Domain name', definition: 'A human-readable name that DNS can map to information used to locate an Internet service.' },
-        { term: 'Path', definition: 'The portion of a URL that identifies a resource location within the selected host.' },
-        { term: 'Query string and fragment', definition: 'A query supplies request parameters after ?, while a fragment identifies a position or state after # within the client.' }
+        { term: 'The Internet', definition: 'The global system of interconnected computer networks communicating via TCP/IP.' },
+        { term: 'Interconnection', definition: 'The physical and logical linking of separate networks so data can cross between them.' },
+        { term: 'Open Standards', definition: 'Publicly available technical rules that allow equipment from different manufacturers to communicate.' }
       ],
       examples: [
-        'In https://school.example.org/library, https is the scheme, school is a subdomain, example.org is the domain, and /library is the path.',
-        'In https://example.com/search?q=network, q=network supplies a search parameter to the service.',
-        'In https://example.com/guide#dns, #dns can move the browser to the DNS section after the guide loads.'
+        'A student in the Philippines accessing a research file stored on a server in Germany.',
+        'Thousands of independent Internet providers peering at Internet Exchange Points (IXPs) to exchange traffic.'
       ],
-      analogy: 'A URL is like a complete delivery instruction: the scheme is the transport method, the domain is the building name, the port is a service entrance, the path is the room, and the query is a note about what is needed.',
-      misconception: 'A URL, domain name, website, webpage, server, and IP address are related but are not interchangeable names for the same thing.',
+      analogy: 'The Internet is like the global postal and highway system: independent city roads and national highways connected by bridges so trucks can deliver cargo worldwide.',
+      misconception: 'The Internet is not Google, Facebook, or Wi-Fi. Those are applications, companies, or access methods operating over the Internet.',
       review: [
-        'Label every part of https://www.example.com:443/courses/internet?id=10#review and state its purpose.',
-        'How do a domain name, IP address, web server, website, and webpage differ?'
+        'Summarize three core ideas that define what the Internet is.',
+        'Why does no single company or government control or own the entire Internet?'
       ]
     },
     {
-      title: 'Domain Name System',
-      category: 'Name Resolution',
-      visual: 'dns',
-      lead: 'DNS is a distributed naming system that translates human-readable domain names into records computers use to locate and operate Internet services.',
+      title: 'Internet Versus World Wide Web',
+      category: 'Internet Infrastructure',
+      visual: 'web',
+      lead: 'The Internet is the physical and logical network infrastructure; the Web is just one of many services running on top of it.',
       paragraphs: [
-        'When a browser needs an address for a domain, it first benefits from any valid answer stored in the browser or operating-system cache. If no suitable cached answer exists, the device normally asks a recursive DNS resolver, often supplied by an ISP, organization, or public DNS provider. The resolver performs the remaining lookup work and returns the answer to the device.',
-        'If the resolver also lacks a cached answer, it can ask a root name server where to find the appropriate top-level-domain server. The TLD server points toward the authoritative name server for the domain, and the authoritative server returns the requested record, such as an IPv4 or IPv6 address. The result is temporarily cached according to its allowed lifetime, reducing repeated queries and making later visits faster.',
-        'DNS stores more than website addresses. An A record maps a name to an IPv4 address, AAAA to IPv6, CNAME creates an alias, MX identifies mail handling, NS identifies authoritative name servers, and TXT stores text used for such purposes as verification and email policy. At this level, students should recognize record purposes and the lookup path rather than configure an entire DNS zone.'
+        'People often use the terms "Internet" and "Web" interchangeably, but they are distinct. The Internet is the underlying network infrastructure (cables, routers, packets, IP addressing).',
+        'The World Wide Web (Web) is an application-layer service composed of interlinked documents (webpages) accessed using web browsers via HTTP/HTTPS. Other Internet services include email (SMTP/IMAP), online gaming, video calling, file transfer (FTP), and streaming.'
       ],
       definitions: [
-        { term: 'Recursive resolver', definition: 'A DNS service that accepts a client query and obtains or returns the requested answer on the client\'s behalf.' },
-        { term: 'Authoritative name server', definition: 'A server that provides official DNS records for a domain or DNS zone.' },
-        { term: 'DNS cache', definition: 'Temporary storage of DNS answers that reduces lookup time and repeated network queries.' },
-        { term: 'DNS record', definition: 'A typed entry such as A, AAAA, CNAME, MX, NS, or TXT stored in the Domain Name System.' }
+        { term: 'World Wide Web (Web)', definition: 'An application service of linked web documents accessed via web browsers.' },
+        { term: 'Internet Service', definition: 'An application or system (like email or VoIP) running over Internet infrastructure.' },
+        { term: 'HTTP / HTTPS', definition: 'The primary web protocols used to transfer web pages and secure web communications.' }
       ],
       examples: [
-        'An A record may map portal.example.edu to 192.0.2.25, while an AAAA record maps it to an IPv6 address.',
-        'An MX record directs email delivery toward the mail servers responsible for a domain.',
-        'A second visit can resolve more quickly when a still-valid answer exists in a browser, operating-system, or resolver cache.'
+        'Using a web browser to view wikipedia.org uses the World Wide Web.',
+        'Playing an online game or making a Zoom video call uses the Internet, but does not use the Web.'
       ],
-      analogy: 'DNS resembles a distributed directory service: the resolver is a librarian who follows referrals from the main index to the correct section and finally to the official record keeper.',
-      misconception: 'DNS does not store only one permanent IP address for every website; it stores several record types, and answers can change or expire.',
+      analogy: 'The Internet is the physical railway network; the Web is one passenger train service using those tracks alongside freight trains (email) and express trains (streaming).',
+      misconception: 'The Web is not the entire Internet. If all web servers went down, email systems and online games would continue operating over the Internet.',
       review: [
-        'Trace an uncached DNS lookup from the device through the recursive resolver to the authoritative answer.',
-        'What different jobs do A or AAAA, CNAME, MX, NS, and TXT records perform?'
+        'Differentiate between the Internet and the World Wide Web.',
+        'List four Internet services that do not rely on web browsers or web pages.'
       ]
     },
     {
-      title: 'Complete Journey of a Web Request',
-      category: 'End-to-End Web Journey',
+      title: 'Physical Internet Infrastructure',
+      category: 'Physical Infrastructure',
+      visual: 'infrastructure',
+      lead: 'The Internet may feel invisible, but it depends on massive physical hardware spanning land and ocean floors.',
+      paragraphs: [
+        'The Internet is anchored in real physical hardware: fiber-optic cables, copper lines, cell towers, satellite links, high-speed routers, and massive data centers.',
+        'Over 95% of international Internet traffic travels through subsea fiber-optic cables laid across ocean floors. Data centers house thousands of servers running continuous web and cloud services.'
+      ],
+      definitions: [
+        { term: 'Subsea Cable', definition: 'Fiber-optic cables laid on the seabed carrying international Internet traffic between continents.' },
+        { term: 'Data Center', definition: 'A dedicated facility housing computer servers, storage systems, and networking gear.' },
+        { term: 'Internet Exchange Point (IXP)', definition: 'A physical facility where different ISPs connect to exchange Internet traffic directly.' }
+      ],
+      examples: [
+        'Subsea fiber cables connecting the Philippines to Japan and the United States across the Pacific Ocean.',
+        'Cloud data centers equipped with backup generators, precision cooling, and high-speed fiber backbones.'
+      ],
+      analogy: 'Subsea cables are the transoceanic shipping lanes of the digital world, carrying massive container ships of light pulses 24/7.',
+      misconception: 'Most international Internet traffic does not travel via satellites. Undersea fiber-optic cables carry more than 95% of global data because they are far faster and have higher capacity.',
+      review: [
+        'What physical medium carries almost all international Internet data across oceans?',
+        'What is the purpose of an Internet Exchange Point (IXP)?'
+      ]
+    },
+    {
+      title: 'Internet Service Providers (ISPs)',
+      category: 'ISP & Access',
+      visual: 'infrastructure',
+      lead: 'An Internet Service Provider links homes, schools, and businesses to the wider global Internet infrastructure.',
+      paragraphs: [
+        'An Internet Service Provider (ISP) operates telecommunication infrastructure to connect customers to global networks. Customer connection technologies include fiber-to-the-home (FTTH), cable broadband, DSL, fixed wireless, cellular (4G/5G), and satellite.',
+        'ISPs assign IP addresses, route customer packets, maintain backbone connections, and peer with other service providers so traffic can reach any destination globally.'
+      ],
+      definitions: [
+        { term: 'ISP', definition: 'Internet Service Provider: a commercial or public entity providing Internet access.' },
+        { term: 'FTTH', definition: 'Fiber To The Home: delivering optical fiber lines directly into customer residences.' },
+        { term: 'Peering', definition: 'An agreement between two ISPs to exchange network traffic freely.' }
+      ],
+      examples: [
+        'A home user connecting to the Internet via a fiber ONT installed by a local telecommunications provider.',
+        'Tier-1 ISPs carrying backbone traffic across continents without paying for transit.'
+      ],
+      analogy: 'An ISP is like a local ramp onto the international highway system; it provides your ramp pass and connects your local driveway to interstate highways.',
+      misconception: 'Paying for a faster ISP plan increases your connection speed to the Internet, but it cannot speed up a slow or overloaded remote web server.',
+      review: [
+        'List three major access technologies used by ISPs to connect customer homes.',
+        'Explain the core responsibilities of an ISP.'
+      ]
+    },
+    {
+      title: 'How a Device Joins a Network',
+      category: 'Network Joining',
+      visual: 'configuration',
+      lead: 'A device cannot send Internet traffic until it activates its interface, authenticates, and receives valid network configuration.',
+      paragraphs: [
+        'When a device connects to Ethernet or associates with Wi-Fi, it must complete a setup sequence before sending Internet packets.',
+        'The device receives four key network configuration settings: 1) Its own local IP address, 2) A Subnet mask (identifying local vs remote destinations), 3) A Default Gateway address (the local router), and 4) A DNS Resolver address (for name lookups).'
+      ],
+      definitions: [
+        { term: 'Network Association', definition: 'Establishing a link layer connection between a wireless device and an Access Point.' },
+        { term: 'Network Configuration', definition: 'The set of network parameters (IP, Subnet, Gateway, DNS) required for IP communication.' },
+        { term: 'Subnet Mask', definition: 'A network value used by a device to determine whether a target IP is on the local LAN or a remote network.' }
+      ],
+      examples: [
+        'A smartphone associating with school Wi-Fi and receiving an IP address (192.168.1.45) within seconds.',
+        'A desktop computer using its subnet mask to decide whether to send data directly to a local printer or to the default gateway.'
+      ],
+      analogy: 'Joining a network is like checking into a conference: you receive a temporary badge (IP address), a room map (subnet mask), an exit door location (gateway), and a help desk contact (DNS).',
+      misconception: 'Connecting to Wi-Fi does not automatically guarantee Internet access. If the router has no active ISP line, your device joins the local network but cannot reach the Internet.',
+      review: [
+        'State the four essential configuration settings a device must receive upon joining a network.',
+        'How does a device use its subnet mask to decide where to send a packet?'
+      ]
+    },
+    {
+      title: 'DHCP (Dynamic Host Configuration Protocol)',
+      category: 'Network Configuration',
+      visual: 'configuration',
+      lead: 'DHCP automates network configuration, granting temporary IP leases to devices as they join and leave.',
+      paragraphs: [
+        'Without DHCP, network administrators would have to manually type IP addresses, gateways, and DNS settings into every smartphone and laptop. DHCP automates this entire process.',
+        'The DHCP lease process follows the DORA sequence: Discover (client searches for a DHCP server), Offer (server offers settings), Request (client asks for the offered lease), and Acknowledge (server confirms the lease).'
+      ],
+      definitions: [
+        { term: 'DHCP', definition: 'Dynamic Host Configuration Protocol: a service that automatically assigns IP configuration to hosts.' },
+        { term: 'DORA Sequence', definition: 'The 4-step DHCP messaging sequence: Discover, Offer, Request, Acknowledge.' },
+        { term: 'Static vs Dynamic IP', definition: 'Static IPs are permanent manual assignments; Dynamic IPs are temporary DHCP leases.' }
+      ],
+      examples: [
+        'A laptop receiving a 24-hour IP lease upon connecting to home Wi-Fi.',
+        'A school web server assigned a static IP address so its address never changes.'
+      ],
+      analogy: 'DHCP is like a rental car agency counter: when you arrive, they assign you an available car key (IP address) for a specific lease period.',
+      misconception: 'DHCP does not create or provide the Internet connection itself; it only provides the configuration parameters your device needs to talk on the network.',
+      review: [
+        'Outline the four stages of the DHCP DORA sequence.',
+        'Why do servers use static IP addresses while smartphones use dynamic DHCP leases?'
+      ]
+    },
+    {
+      title: 'Understanding Addresses and Identifiers',
+      category: 'Addressing',
+      visual: 'addressing',
+      lead: 'Different network identifiers solve distinct communication tasks across local links, logical networks, and applications.',
+      paragraphs: [
+        'To prevent confusion, network identifiers must be categorized by their specific purpose: MAC Address (local NIC hardware identification), IP Address (logical routing across networks), Domain Name (human-readable service name), URL (complete resource locator), and Port Number (application endpoint).',
+        'Together, these identifiers work in harmony: a domain name is translated into an IP address, which routes data across routers to a device, where a port directs it to the right application, and local switches deliver it using MAC addresses.'
+      ],
+      definitions: [
+        { term: 'MAC Address', definition: 'Physical hardware identifier for local link delivery (e.g. 00:1A:2B:3C:4D:5E).' },
+        { term: 'IP Address', definition: 'Logical address used to route packets across global networks (e.g. 172.217.160.206).' },
+        { term: 'Domain Name', definition: 'Human-friendly text name for an IP address (e.g. google.com).' },
+        { term: 'Port Number', definition: 'Transport-layer identifier directing data to a specific software service (e.g. Port 443).' }
+      ],
+      examples: [
+        'MAC Address: Physical delivery inside classroom LAN.',
+        'IP Address: Routing across Internet routers.',
+        'Domain Name: Typing "wikipedia.org" into a browser.',
+        'Port 80/443: Directing web traffic to the web server software.'
+      ],
+      analogy: 'IP address is the street building address; Port is the apartment unit number; Domain name is the building name in a directory; MAC address is the local resident serial number.',
+      misconception: 'An IP address is not fixed to a physical computer. When you take your laptop from home to school, its MAC address stays the same, but its IP address changes.',
+      review: [
+        'Fill in the main purpose for each identifier: MAC address, IP address, Domain name, Port number.',
+        'Why can a laptop\'s IP address change while its MAC address remains unchanged?'
+      ]
+    },
+    {
+      title: 'IPv4 and IPv6',
+      category: 'Addressing',
+      visual: 'addressing',
+      lead: 'The global expansion of Internet devices forced the transition from 32-bit IPv4 addresses to 128-bit IPv6 addresses.',
+      paragraphs: [
+        'IPv4 uses 32-bit addresses written as four dotted decimal numbers (e.g., 192.168.1.1). IPv4 provides about 4.3 billion unique addresses. Because billions of smartphones, PCs, IoT devices, and servers connected to the Internet, available IPv4 addresses became exhausted.',
+        'IPv6 uses 128-bit addresses written in eight groups of hexadecimal digits (e.g., 2001:0db8:85a3::8a2e:0370:7334). IPv6 provides approximately 3.4 × 10^38 unique addresses—enough to assign trillions of addresses to every person on Earth.'
+      ],
+      definitions: [
+        { term: 'IPv4', definition: '32-bit legacy addressing scheme providing ~4.3 billion unique global addresses.' },
+        { term: 'IPv6', definition: '128-bit modern addressing scheme providing a virtually unlimited address space.' },
+        { term: 'Hexadecimal Notation', definition: 'Base-16 numbering system (0-9, A-F) used to write IPv6 addresses compactly.' }
+      ],
+      examples: [
+        'IPv4 format: 172.217.160.206 (four 8-bit octets).',
+        'IPv6 format: 2001:0db8:85a3:0000:0000:8a2e:0370:7334 (eight 16-bit hex blocks).'
+      ],
+      analogy: 'IPv4 is like a 7-digit phone number system running out of numbers; IPv6 is like upgrading to a 20-digit number system so every molecule can have a phone number.',
+      misconception: 'IPv6 is not just "faster IPv4." It is a new IP header format and addressing system designed to restore direct end-to-end global addressing.',
+      review: [
+        'Compare IPv4 and IPv6 in terms of bit length, notation format, and address capacity.',
+        'Why did the world need IPv6 when IPv4 was already working?'
+      ]
+    },
+    {
+      title: 'Public and Private IP Addresses',
+      category: 'IP Routing',
+      visual: 'addressing',
+      lead: 'Private IP addresses are reused inside local networks, while public IP addresses must be globally unique across the Internet.',
+      paragraphs: [
+        'Private IP addresses (ranges like 192.168.x.x, 10.x.x.x, 172.16.x.x-172.31.x.x) are reserved exclusively for internal local networks. Internet routers discard private IP packets, allowing millions of homes and schools to reuse the exact same private addresses internally without conflict.',
+        'Public IP addresses are globally unique addresses assigned by ISPs. Any server or router directly reachable from the public Internet must have a public IP address.'
+      ],
+      definitions: [
+        { term: 'Private IP Address', definition: 'An IP address reserved for internal local network use, not routable on the public Internet.' },
+        { term: 'Public IP Address', definition: 'A globally unique IP address assigned by ISPs and routable across the public Internet.' },
+        { term: 'RFC 1918', definition: 'The Internet standard defining private IP address ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16).' }
+      ],
+      examples: [
+        'Ten students on school Wi-Fi all having private IPs like 192.168.1.15, 192.168.1.16, etc.',
+        'A web server hosting google.com assigned a public IP like 172.217.160.206.'
+      ],
+      analogy: 'Private IPs are like internal room numbers inside an office building (Room 101 exists in thousands of buildings); Public IP is the building\'s unique street address.',
+      misconception: 'Private IP addresses cannot be accessed directly from the outside Internet without specific router forwarding or translation.',
+      review: [
+        'Why can millions of home networks all use the IP address 192.168.1.1 simultaneously without conflicts?',
+        'Differentiate between a public IP address and a private IP address.'
+      ]
+    },
+    {
+      title: 'Network Address Translation (NAT)',
+      category: 'IP Routing',
+      visual: 'addressing',
+      lead: 'NAT allows an entire local network of devices sharing private IPs to access the Internet using a single public IP address.',
+      paragraphs: [
+        'Network Address Translation (NAT) is a technique operated by routers. When a local device (e.g. 192.168.1.50) sends a packet to the Internet, the router replaces the private source IP with its own single public IP address before forwarding it to the ISP.',
+        'When the response returns, the router translates the public destination IP back into the original private IP and passes it to the local device. NAT conserved IPv4 addresses for decades, allowing dozens of home devices to share one ISP line.'
+      ],
+      definitions: [
+        { term: 'NAT', definition: 'Network Address Translation: translating private local IPs into a public IP at the router boundary.' },
+        { term: 'NAT Table', definition: 'An internal tracking table in a router mapping local private IPs and ports to outgoing public requests.' },
+        { term: 'Address Conservation', definition: 'Using NAT to allow thousands of internal hosts to share a single public IPv4 address.' }
+      ],
+      examples: [
+        'Five smartphones and three laptops on home Wi-Fi sharing one public IP assigned by the ISP.',
+        'A router NAT table keeping track of which phone requested a specific web page image so the reply goes to the right phone.'
+      ],
+      analogy: 'NAT is like a corporate receptionist: all employees send outbound mail through the receptionist, who signs the company main return address on the outside envelopes.',
+      misconception: 'NAT is an address translation mechanism, not a security firewall. While it hides private IPs, security requires proper firewall rules.',
+      review: [
+        'Explain how NAT allows 20 school laptops to share a single public ISP connection.',
+        'What information does a router store in its NAT table to ensure incoming responses reach the correct local device?'
+      ]
+    },
+    {
+      title: 'Default Gateway',
+      category: 'IP Routing',
+      visual: 'routing',
+      lead: 'The Default Gateway is the local router interface that host devices send traffic to whenever a destination is outside their local network.',
+      paragraphs: [
+        'When a device wants to send a packet, it compares the destination IP address with its own IP and subnet mask. If the destination is on the same local network, it delivers the packet directly using a switch and MAC address.',
+        'If the destination is on a remote network (like an Internet web server), the device forwards the packet to its configured Default Gateway—the local router interface. The default gateway acts as the exit door from the LAN to the outside world.'
+      ],
+      definitions: [
+        { term: 'Default Gateway', definition: 'The router interface IP address used by local hosts to reach non-local destinations.' },
+        { term: 'Local vs Remote Routing', definition: 'Direct MAC delivery for local subnets; Default Gateway forwarding for remote IP networks.' },
+        { term: 'Gateway Address', definition: 'Typically the first or last IP in a local subnet (e.g. 192.168.1.1).' }
+      ],
+      examples: [
+        'A laptop sending a document to a local printer (192.168.1.20) directly without using the gateway.',
+        'A laptop sending a request to google.com (172.217.160.206) by forwarding it to default gateway 192.168.1.1.'
+      ],
+      analogy: 'The default gateway is like the airport departure gate: for local errands in your city, you drive local streets; for international travel, you go to the departure gate.',
+      misconception: 'If your device\'s default gateway setting is incorrect, you can still communicate with local computers on your LAN, but you cannot reach any Internet website.',
+      review: [
+        'What decision does a computer make before deciding to send a packet to its default gateway?',
+        'What happens to Internet connectivity if a user manually enters an incorrect default gateway IP?'
+      ]
+    },
+    {
+      title: 'Packets',
+      category: 'Packet Switching',
+      visual: 'packets',
+      lead: 'Data travels across the Internet broken into small, structured units called packets, allowing networks to carry shared traffic efficiently.',
+      paragraphs: [
+        'Messages (webpages, photos, emails) are not transmitted as single unbroken blocks. They are broken down into small units called packets (typically ~1,500 bytes each).',
+        'Every packet consists of two main parts: 1) A Header (containing source IP, destination IP, protocol type, packet sequence number, and Time to Live), and 2) A Payload (the actual slice of user file data).'
+      ],
+      definitions: [
+        { term: 'Packet', definition: 'A formatted block of data carried by a packet-switched network.' },
+        { term: 'Header', definition: 'Control metadata attached to the front of a packet carrying delivery and protocol instructions.' },
+        { term: 'Payload', definition: 'The actual user data content carried inside a packet.' },
+        { term: 'MTU', definition: 'Maximum Transmission Unit: the largest packet payload size (usually 1500 bytes) allowed on a link.' }
+      ],
+      examples: [
+        'A 3 MB photo file divided into approximately 2,000 separate packets for transmission.',
+        'A packet header containing source IP 192.168.1.15 and destination IP 172.217.160.206.'
+      ],
+      analogy: 'Packets are like sending a 500-page book through the mail by ripping out each page, putting it in a numbered envelope with source and return addresses, and mailing them.',
+      misconception: 'Packets do not all have to travel along the exact same wire or arrive in perfect order. The receiving computer uses packet sequence numbers in headers to reassemble them.',
+      review: [
+        'Identify the two primary parts of a network packet and state what each part contains.',
+        'Why are large files split into small packets rather than sent as one continuous stream?'
+      ]
+    },
+    {
+      title: 'Packet Switching',
+      category: 'Packet Switching',
+      visual: 'packets',
+      lead: 'The Internet uses packet switching, dynamically forwarding independent packets across available network paths without reserving dedicated circuits.',
+      paragraphs: [
+        'In legacy telephone systems (circuit switching), a dedicated physical wire was reserved for the entire duration of a call. The Internet uses Packet Switching: data is split into packets, and each packet is routed independently by intermediate routers based on real-time traffic conditions.',
+        'Because packets take independent paths, they may arrive out of order, experience variable delays, or occasionally get dropped due to network congestion. Receiving systems use transport protocols to reorder and request missing packets.'
+      ],
+      definitions: [
+        { term: 'Packet Switching', definition: 'A communication method where packets are routed independently across shared network links.' },
+        { term: 'Circuit Switching', definition: 'Legacy method where a dedicated physical circuit was reserved between two endpoints.' },
+        { term: 'Dynamic Routing', definition: 'Routers dynamically choosing optimal paths for each packet based on current network health.' }
+      ],
+      examples: [
+        'Packets of a single video call taking three different fiber paths across the country and reassembling seamlessly.',
+        'Routers automatically redirecting remaining packets around a severed optical cable link.'
+      ],
+      analogy: 'Circuit switching is like renting a private train track for one train; packet switching is like cars sharing a public highway system taking different GPS routes.',
+      misconception: 'Packet switching does not guarantee that packets arrive in order. Ordering and missing packet recovery are handled by upper transport protocols like TCP.',
+      review: [
+        'Contrast packet switching with circuit switching.',
+        'State two major advantages of packet switching for global computer networks.'
+      ]
+    },
+    {
+      title: 'Routers and Routing Paths',
+      category: 'Routing',
+      visual: 'routing',
+      lead: 'Routers examine destination IP addresses and forward packets hop-by-hop toward their target across interconnected autonomous networks.',
+      paragraphs: [
+        'A router is an intelligent networking device that connects separate networks. When a router receives a packet, it inspects the destination IP address in the header, consults its internal Routing Table, and forwards the packet to the optimal Next Hop router.',
+        'Each router decrements the packet\'s Time to Live (TTL) counter by 1. If TTL hits zero, the packet is discarded, preventing routing loops from trapping dead packets forever. At the global scale, large autonomous systems exchange routing paths using the Border Gateway Protocol (BGP).'
+      ],
+      definitions: [
+        { term: 'Routing Table', definition: 'A database stored in a router listing network paths and next-hop forwarding interfaces.' },
+        { term: 'TTL (Time to Live)', definition: 'A packet header counter decremented by each router hop to prevent infinite routing loops.' },
+        { term: 'Autonomous System (AS)', definition: 'A large network or group of networks operated by a single organization under a unified routing policy.' },
+        { term: 'BGP', definition: 'Border Gateway Protocol: the core routing protocol used to exchange routing info between autonomous systems.' }
+      ],
+      examples: [
+        'A packet traversing 12 router hops between a home computer in Leyte and a server in California.',
+        'A router dropping a misconfigured packet when its TTL reaches 0 and returning an ICMP "Time Exceeded" message.'
+      ],
+      analogy: 'Routing is like highway signposts: a signpost in Manila doesn\'t show every street in Tokyo, but points you toward the next highway interchange heading east.',
+      misconception: 'No single super-router controls or knows the entire path across the Internet. Routers operate hop-by-hop, passing packets to neighboring routers.',
+      review: [
+        'Explain the role of a router\'s routing table during packet forwarding.',
+        'What is the purpose of the Time to Live (TTL) field in an IP packet header?'
+      ]
+    },
+    {
+      title: 'Network Protocols',
+      category: 'Protocols',
+      visual: 'stack',
+      lead: 'A protocol is an agreed set of technical rules governing how devices format, transmit, receive, and interpret data.',
+      paragraphs: [
+        'Without shared protocols, hardware from different manufacturers or software from different developers could not communicate. Protocols define message structures, addressing formats, error handling, timing, and security.',
+        'Key Internet protocols operate at different levels: IP (addressing/routing), TCP (reliable transport), UDP (fast datagrams), DNS (domain resolution), HTTP/HTTPS (web communication), and SMTP/IMAP (email).'
+      ],
+      definitions: [
+        { term: 'Network Protocol', definition: 'An agreed set of rules and formats governing data communication between systems.' },
+        { term: 'Interoperability', definition: 'The ability of diverse systems and hardware to work together using standardized protocols.' },
+        { term: 'IETF', definition: 'Internet Engineering Task Force: the organization that develops and publishes Internet protocol standards (RFCs).' }
+      ],
+      examples: [
+        'An Apple iPhone, a Windows PC, and a Linux web server communicating seamlessly using standard HTTP over TCP/IP.',
+        'SMTP governing how email servers transfer messages, while IMAP governs how clients sync inbox folders.'
+      ],
+      analogy: 'Network protocols are like international aviation rules: pilots and air traffic controllers worldwide follow standard English phrases, altitude rules, and signal lights regardless of their home country.',
+      misconception: 'Protocols are not computer programs or software code. Protocols are written standards specifications; programs are written to follow those specifications.',
+      review: [
+        'Define the term network protocol and explain why standardization is essential for the Internet.',
+        'Identify the primary roles of IP, TCP, DNS, and HTTP.'
+      ]
+    },
+    {
+      title: 'The TCP/IP Model',
+      category: 'Models',
+      visual: 'stack',
+      lead: 'The TCP/IP model organizes network protocols into four functional layers, using encapsulation to prepare data for transmission.',
+      paragraphs: [
+        'The TCP/IP framework organizes network communication into four layers: 1) Application Layer (HTTP, DNS, SMTP), 2) Transport Layer (TCP, UDP), 3) Internet Layer (IP, ICMP), and 4) Link/Physical Layer (Ethernet, Wi-Fi).',
+        'Encapsulation occurs as data moves down the stack: each layer wraps the payload from the layer above in its own header (e.g. Data -> HTTP -> TCP Segment -> IP Packet -> Ethernet Frame -> Physical Signals). The receiver decapsulates the headers in reverse order.'
+      ],
+      definitions: [
+        { term: 'TCP/IP Model', definition: 'The 4-layer architectural framework defining Internet communication standards.' },
+        { term: 'Encapsulation', definition: 'Adding protocol headers to data as it moves down through protocol layers.' },
+        { term: 'Decapsulation', definition: 'Removing protocol headers from received data as it moves up through protocol layers.' }
+      ],
+      examples: [
+        'A browser GET request encapsulated into a TCP segment, then an IP packet, then an Ethernet frame, then light pulses.',
+        'A router inspecting only the Layer 3 IP header to make forwarding decisions, ignoring the application payload inside.'
+      ],
+      analogy: 'Encapsulation is like nesting Russian dolls: user data goes inside a TCP box, inside an IP envelope, inside an Ethernet shipping crate.',
+      misconception: 'Each layer operates independently. The Application layer does not need to know whether the Link layer is using copper Ethernet, fiber, or Wi-Fi radio waves.',
+      review: [
+        'List the four layers of the TCP/IP model from top to bottom.',
+        'Describe what happens during encapsulation at the sending device and decapsulation at the receiving device.'
+      ]
+    },
+    {
+      title: 'TCP and UDP Transport Protocols',
+      category: 'Transport Protocols',
+      visual: 'transport',
+      lead: 'The transport layer offers a choice: reliable, ordered delivery with TCP, or lightweight, fast delivery with UDP.',
+      paragraphs: [
+        'Transmission Control Protocol (TCP) is connection-oriented and reliable. It performs a 3-way handshake to establish a connection, numbers segments to guarantee in-order delivery, detects lost packets, and retransmits missing data. TCP is used for web pages, file downloads, email, and databases.',
+        'User Datagram Protocol (UDP) is connectionless and lightweight. It sends datagrams without establishing a connection, tracking sequence numbers, or retransmitting lost data. UDP is used for real-time applications like voice calls, video streaming, online gaming, and DNS lookups where speed is prioritized over 100% completeness.'
+      ],
+      definitions: [
+        { term: 'TCP', definition: 'Transmission Control Protocol: connection-oriented, reliable, ordered transport protocol.' },
+        { term: 'UDP', definition: 'User Datagram Protocol: connectionless, lightweight, best-effort transport protocol.' },
+        { term: '3-Way Handshake', definition: 'The SYN, SYN-ACK, ACK sequence used by TCP to establish a connection before sending data.' }
+      ],
+      examples: [
+        'Downloading a software installer uses TCP; a single missing bit would corrupt the executable file.',
+        'A live Discord voice call or multiplayer game uses UDP; a delayed audio packet is useless and skipped.'
+      ],
+      analogy: 'TCP is like a certified mail delivery requiring a signature and return receipt; UDP is like a postcard thrown into a mailbox without tracking.',
+      misconception: 'Do not simply say "TCP is slow and UDP is fast." TCP is highly optimized; UDP\'s advantage is simply that it does not halt data streams to wait for retransmissions.',
+      review: [
+        'Contrast TCP and UDP across connection setup, reliability, packet ordering, and overhead.',
+        'Which transport protocol would you select for a banking transaction versus a live sports stream? Explain.'
+      ]
+    },
+    {
+      title: 'Port Numbers',
+      category: 'Ports',
+      visual: 'ports',
+      lead: 'Port numbers direct network communication to the correct application service running on a target computer.',
+      paragraphs: [
+        'An IP address delivers packets to the correct computer, but a computer runs many network applications simultaneously (browser, email client, game, background updates). Port numbers (0 to 65535) identify the specific application software endpoint.',
+        'Standard services use Well-Known Ports (0-1023): Port 80 (HTTP web), Port 443 (HTTPS secure web), Port 53 (DNS name lookups), Port 22 (SSH secure terminal), and Port 25 (SMTP email). Clients use temporary dynamic ephemeral ports for outbound requests.'
+      ],
+      definitions: [
+        { term: 'Port Number', definition: 'A 16-bit transport layer number identifying a specific process or service endpoint.' },
+        { term: 'Well-Known Ports', definition: 'Standardized port numbers (0-1023) reserved for recognized global services (80, 443, 53).' },
+        { term: 'Socket', definition: 'The combination of an IP address and a Port Number (e.g. 172.217.160.206:443) identifying a unique connection end-point.' }
+      ],
+      examples: [
+        'Web traffic directed to IP 172.217.160.206 at Port 443 for HTTPS.',
+        'A browser opening 5 tabs to different websites, each assigned a separate local ephemeral port (e.g. Port 51234, 51235).'
+      ],
+      analogy: 'IP address is the building street address; Port number is the specific apartment number or office department room.',
+      misconception: 'Port 80 and Port 443 are not separate physical plugs on the back of a computer; they are logical software numbers managed by the operating system.',
+      review: [
+        'What problem do port numbers solve when a computer runs multiple network applications at the same time?',
+        'Identify the standard port numbers for unencrypted HTTP, encrypted HTTPS, and DNS.'
+      ]
+    },
+    {
+      title: 'Domain Name System (DNS)',
+      category: 'DNS',
       visual: 'webjourney',
-      lead: 'Opening a webpage is an end-to-end sequence that combines URL interpretation, DNS, routing, transport, TLS, HTTP, server processing, resource downloads, and browser rendering.',
+      lead: 'DNS acts as the phonebook of the Internet, translating human-readable domain names into machine-routable IP addresses.',
       paragraphs: [
-        'The browser first interprets the URL and checks relevant local caches. If it needs a network address, DNS resolves the domain name. The device prepares packets and sends traffic through its default gateway. Routers in the ISP and other independently operated networks forward those packets toward the destination using IP addressing and routing decisions; there is no single central router for the Internet.',
-        'A transport conversation is then established with the destination service. Web traffic commonly uses TCP, although modern HTTP can also use a transport built on UDP. For HTTPS, the client and server create a TLS session, validate certificate information, agree on secure communication, and then exchange HTTP messages. The browser sends a request, and the web or application server processes it, possibly consulting services or databases before returning an HTTP response.',
-        'The first response is often HTML rather than a finished page image. The browser parses it and requests referenced CSS, JavaScript, images, fonts, and other data, sometimes from several servers or a content delivery network. It builds page structures, calculates layout, executes appropriate scripts, and renders pixels. Additional API requests may continue after the first visible content appears, so page loading is a coordinated sequence rather than one file moving directly from a website into a screen.'
+        'Humans remember readable text names (like wikipedia.org), but routers require numerical IP addresses (like 108.157.4.39). The Domain Name System (DNS) is a distributed database that performs this translation.',
+        'When you type a domain name, your device checks: 1) Local browser/OS cache, 2) Recursive DNS Resolver (usually provided by your ISP or 8.8.8.8), which queries 3) Root Name Servers, 4) Top-Level Domain (TLD) Servers (.org, .com), and 5) Authoritative Name Servers to return the IP.'
       ],
       definitions: [
-        { term: 'Web request journey', definition: 'The ordered interaction of naming, routing, transport, security, HTTP, server processing, and rendering needed to display a web resource.' },
-        { term: 'Default gateway', definition: 'The router a device uses to send packets toward destinations outside its local network.' },
-        { term: 'Transport connection', definition: 'Endpoint communication established or managed by a transport protocol before or while application data is exchanged.' },
-        { term: 'Resource', definition: 'An item such as HTML, CSS, JavaScript, an image, a font, or API data requested by a client.' }
+        { term: 'DNS', definition: 'Domain Name System: a distributed system converting domain names into IP addresses.' },
+        { term: 'Recursive Resolver', definition: 'A DNS server that performs full lookups on behalf of client devices.' },
+        { term: 'Authoritative Name Server', definition: 'The official DNS server holding the master record for a specific domain name.' }
       ],
       examples: [
-        'Entering a new HTTPS URL may cause DNS queries, a transport handshake, a TLS exchange, an HTTP request, and many later resource requests.',
-        'A page can show text first while large images and a remote font are still downloading.',
-        'One webpage may receive HTML from the main server, images from a CDN, and live data from an API service.'
+        'Typing "google.com" causing a DNS lookup (Port 53 UDP) that returns IP 172.217.160.206.',
+        'Caching a DNS result locally for 1 hour so subsequent page visits load instantly without repeated DNS lookups.'
       ],
-      analogy: 'Loading a webpage is like producing a stage performance: finding the venue, traveling there, checking identity and secure access, requesting the script, collecting props from several suppliers, and assembling everything on stage.',
-      misconception: 'Typing a URL does not make the browser download one complete picture of a webpage; it coordinates several protocols and often requests many separate resources.',
+      analogy: 'DNS is like looking up a business name in a contacts directory to find their dialable phone number.',
+      misconception: 'DNS does not host or deliver website pages. DNS only provides the target IP address; your browser then connects to that IP to request the webpage.',
       review: [
-        'Trace the complete sequence from typing an uncached HTTPS URL to seeing the rendered page.',
-        'Where are DNS, IP, routing, a transport protocol, TLS, HTTP, servers, and browser rendering involved?'
+        'Explain the core purpose of the Domain Name System (DNS).',
+        'Trace the lookup path a DNS resolver follows when finding the IP address of a new domain.'
       ]
     },
     {
-      title: 'Client-Server Communication',
+      title: 'Domain Name Versus URL',
+      category: 'Web Mechanics',
+      visual: 'webjourney',
+      lead: 'A domain name identifies a service host, while a URL provides the complete location and access instructions for a specific resource.',
+      paragraphs: [
+        'A Domain Name (e.g., example.com) is a human-readable identifier for a specific server or organization on the network.',
+        'A URL (Uniform Resource Locator) is a complete address specifying: Scheme (https://), Host/Domain (example.com), Port (:443), Path (/courses/computing), Query string (?student=123), and Fragment (#section2).'
+      ],
+      definitions: [
+        { term: 'URL', definition: 'Uniform Resource Locator: a complete structured web address specifying how and where to fetch a resource.' },
+        { term: 'Scheme', definition: 'The access protocol specified at the start of a URL (http, https, ftp).' },
+        { term: 'Path & Query', definition: 'Path specifies the resource file location on the server; Query string passes key-value parameters.' }
+      ],
+      examples: [
+        'In https://school.edu:443/grades/report.pdf?term=2#page1:',
+        'Scheme: https, Host: school.edu, Port: 443, Path: /grades/report.pdf, Query: ?term=2, Fragment: #page1.'
+      ],
+      analogy: 'Domain name is the name of a library (e.g. Central Library); URL is the exact catalog call number specifying the floor, aisle, shelf, and book page.',
+      misconception: 'The fragment part of a URL (#section2) is used locally by the browser to scroll to a heading; it is normally not sent in the HTTP request to the server.',
+      review: [
+        'Dissect the URL "https://store.com/items/search?q=laptop#results" into its five main components.',
+        'What is the structural difference between a domain name and a full URL?'
+      ]
+    },
+    {
+      title: 'HTTP (Hypertext Transfer Protocol)',
+      category: 'Web Mechanics',
+      visual: 'web',
+      lead: 'HTTP is an application-layer request-response protocol used for communication between web clients and web servers.',
+      paragraphs: [
+        'HTTP governs how web browsers (clients) request documents and how web servers return responses containing web content.',
+        'An HTTP exchange consists of a client Request (stating method, URI, headers, and optional body) and a server Response (returning status code, response headers, and content payload).'
+      ],
+      definitions: [
+        { term: 'HTTP', definition: 'Hypertext Transfer Protocol: the foundation protocol for client-server web communications.' },
+        { term: 'Request-Response Cycle', definition: 'The cycle where a client initiates a request and a server returns a formatted response.' },
+        { term: 'HTTP Headers', definition: 'Metadata fields carrying client preferences, content type, encoding, and server details.' }
+      ],
+      examples: [
+        'A browser requesting `GET /index.html HTTP/1.1` from a web server.',
+        'A web server responding with headers specifying `Content-Type: text/html` followed by HTML code.'
+      ],
+      analogy: 'An HTTP exchange is like ordering at a restaurant: you state your choice from the menu (Request), and the kitchen sends back your dish with an invoice (Response).',
+      misconception: 'HTTP is stateless by default. Each request is processed independently without automatically remembering previous requests.',
+      review: [
+        'Describe the two main parts of an HTTP request-response cycle.',
+        'What role do HTTP headers perform in a web exchange?'
+      ]
+    },
+    {
+      title: 'HTTP Methods',
+      category: 'Web Mechanics',
+      visual: 'web',
+      lead: 'HTTP methods state the client\'s intended action when requesting a server resource.',
+      paragraphs: [
+        'HTTP defines standard request methods: GET (retrieve a resource representation without changing server state), POST (submit data for processing or resource creation), PUT/PATCH (update existing resources), and DELETE (request resource removal).',
+        'GET requests should be safe and idempotent, meaning making the same GET request multiple times does not alter server data.'
+      ],
+      definitions: [
+        { term: 'HTTP Method', definition: 'The action verb in an HTTP request indicating the intended operation.' },
+        { term: 'GET vs POST', definition: 'GET retrieves data without modifying state; POST submits data to be processed or created.' },
+        { term: 'Idempotency', definition: 'A property where repeating a request multiple times produces the same server state as a single request.' }
+      ],
+      examples: [
+        'Opening a blog post uses `GET /posts/1`.',
+        'Submitting a registration form uses `POST /register` with user details in the request body.',
+        'Deleting an item uses `DELETE /cart/items/5`.'
+      ],
+      analogy: 'HTTP methods are like library actions: GET is reading a book, POST is donating a new book, PATCH is correcting a typo, DELETE is recycling an old edition.',
+      misconception: 'GET form parameters appear in the URL query string, making GET unsuitable for passwords. POST submits data inside the request body.',
+      review: [
+        'Compare GET, POST, PATCH, and DELETE in terms of intent and server impact.',
+        'Why should sensitive password submissions use POST rather than GET?'
+      ]
+    },
+    {
+      title: 'HTTP Status Codes',
+      category: 'Web Mechanics',
+      visual: 'web',
+      lead: 'HTTP status codes are three-digit numbers returned by servers to summarize the outcome of a client request.',
+      paragraphs: [
+        'Status codes are grouped into five ranges: 1xx (Informational), 2xx (Success, e.g. 200 OK), 3xx (Redirection, e.g. 301 Moved Permanently), 4xx (Client Error, e.g. 404 Not Found, 401 Unauthorized), and 5xx (Server Error, e.g. 500 Internal Server Error, 503 Service Unavailable).',
+        'Recognizing these categories helps users and developers quickly diagnose whether a problem lies in the request, authentication, server code, or network.'
+      ],
+      definitions: [
+        { term: 'Status Code', definition: 'A 3-digit numerical response code summarizing request processing results.' },
+        { term: '200 OK', definition: 'Standard response code indicating the request succeeded and content is returned.' },
+        { term: '404 Not Found', definition: 'Client error code indicating the requested URI path was not found on the server.' },
+        { term: '500 Internal Server Error', definition: 'Server error code indicating an unexpected crash or fault in backend server code.' }
+      ],
+      examples: [
+        '200 OK when a web page loads successfully.',
+        '301 Moved Permanently when a website redirects `http://` to `https://`.',
+        '404 Not Found when typing a misspelled URL path.',
+        '500 Server Error when a database crash prevents the server from generating a page.'
+      ],
+      analogy: 'Status codes are like store clerk responses: 200 is handing you the item; 301 is directing you to their new branch; 404 is stating they don\'t stock that item; 500 is the register breaking down.',
+      misconception: 'A 404 Not Found response proves the network connection worked! You reached the server successfully; the server simply could not find that specific path.',
+      review: [
+        'Identify the five broad ranges of HTTP status codes and state what each range represents.',
+        'Explain why receiving a 404 error proves your Internet connection is working.'
+      ]
+    },
+    {
+      title: 'HTTPS, Encryption, and Certificates',
+      category: 'Security Basics',
+      visual: 'privacy',
+      lead: 'HTTPS encrypts web traffic using Transport Layer Security (TLS) and authenticates server identity with digital certificates.',
+      paragraphs: [
+        'Plain HTTP transmits data in unencrypted cleartext, allowing attackers on public Wi-Fi to read passwords or cookies. HTTPS encrypts all communication between browser and server using TLS encryption.',
+        'During the TLS handshake, the browser performs certificate validation: checking that the digital certificate matches the domain name, is within its validity period, and was issued by a trusted Certificate Authority (CA).'
+      ],
+      definitions: [
+        { term: 'HTTPS', definition: 'Hypertext Transfer Protocol Secure: HTTP encrypted using TLS protocol.' },
+        { term: 'TLS Handshake', definition: 'The cryptographic negotiation where client and server validate identity and exchange encryption keys.' },
+        { term: 'Certificate Authority (CA)', definition: 'A trusted third-party organization that signs digital certificates verifying domain ownership.' }
+      ],
+      examples: [
+        'A browser padlock icon confirming an encrypted connection to `https://bank.com`.',
+        'A browser displaying a red warning screen when a site\'s digital certificate has expired or mismatched.'
+      ],
+      analogy: 'HTTPS is like sending mail in a lockbox with a verified corporate seal, rather than writing your message on an unsealed postcard.',
+      misconception: 'HTTPS protects against eavesdropping during transmission, but it does NOT mean a website is honest. An encrypted phishing site can also use HTTPS.',
+      review: [
+        'List three protections provided by HTTPS and TLS encryption.',
+        'Why does a green padlock icon not guarantee that a website\'s business claims are legitimate?'
+      ]
+    },
+    {
+      title: 'Complete Journey of Opening a Website',
+      category: 'Web Synthesis',
+      visual: 'webjourney',
+      lead: 'Opening a website is a 14-stage coordinated sequence spanning URL parsing, DNS, routing, TCP/TLS handshakes, HTTP exchanges, and browser rendering.',
+      paragraphs: [
+        'The complete web request journey follows 14 distinct stages: 1) User enters URL, 2) Browser parses scheme and domain, 3) Browser checks local cache, 4) DNS resolves domain to an IP address, 5) Device determines route to Default Gateway, 6) Router forwards packets to ISP, 7) Routers forward packets hop-by-hop across the Internet, 8) Browser establishes TCP 3-way handshake, 9) TLS handshake establishes encryption (HTTPS), 10) Browser sends HTTP GET request, 11) Web server processes code and queries database, 12) Server returns HTTP 200 OK response with HTML, 13) Browser parses HTML/CSS, requests assets (CSS, JS, images), and 14) Browser computes layout and paints the rendered page.'
+      ],
+      definitions: [
+        { term: 'Request Journey', definition: 'The end-to-end multi-step technical sequence required to request and display a webpage.' },
+        { term: 'Asset Sub-Requests', definition: 'Secondary HTTP requests automatically triggered by the browser for CSS, JS, fonts, and images referenced in HTML.' }
+      ],
+      examples: [
+        'A browser downloading a 5 KB HTML file, which then triggers 25 separate sub-requests for styling, script, and image files.'
+      ],
+      analogy: 'Opening a website is like ordering a custom house blueprint: you look up the architect (DNS), establish a phone line (TCP/TLS), request the plan (HTTP), receive the master blueprint (HTML), and order the bricks, glass, and paint (sub-requests) to build the house on screen (rendering).',
+      misconception: 'Entering a URL does not fetch one static image. It fetches an HTML text document that orchestrates dozens of individual network sub-requests.',
+      review: [
+        'Summarize the 14 stages of opening a website from typing a URL to final browser rendering.',
+        'Why does receiving the primary HTML file trigger multiple additional HTTP requests?'
+      ]
+    },
+    {
+      title: 'Client, Server, and Database',
       category: 'Web Architecture',
       visual: 'web',
-      lead: 'In the client-server model, a client initiates a request and a server listens for, processes, and responds to requests from many clients.',
+      lead: 'Web applications use a 3-tier architecture separating client presentation, server application logic, and database storage.',
       paragraphs: [
-        'A web browser is a common client: it chooses a destination and requests a resource or action. A server is not necessarily one physical machine; it is a role performed by software and infrastructure that listens for requests. One server service can respond to many clients, and a large website can distribute work among many servers in different locations.',
-        'The frontend is the part presented to and interacted with by the user, including page structure, styling, and browser behavior. The backend performs server-side work such as applying rules, checking authorization, retrieving or changing data, and building responses. A web server may handle HTTP and static files, an application server may execute service logic, and a database may store organized data.',
-        'A static website can return prepared files that are largely the same for every visitor. A dynamic website generates or changes output according to user input, stored data, time, or other conditions. Even a visually simple page can depend on authentication, analytics, payment, media, or API services, so the communication model often contains several cooperating clients and servers without requiring students to turn this lesson into a programming exercise.'
+        'Modern web applications divide responsibilities across three tiers: 1) Client (the user\'s browser or mobile app handling user interaction), 2) Web/Application Server (executing business logic, authentication, and HTML generation), and 3) Database (persistently storing structured records like user profiles, posts, and grades).',
+        'When a student submits a quiz, the client sends a request to the application server, which calculates the score, stores the result in the database, and returns a confirmation page.'
       ],
       definitions: [
-        { term: 'Client', definition: 'A device or application that initiates a request for a resource or service.' },
-        { term: 'Server', definition: 'A system or program that listens for requests and provides resources, processing, or services.' },
-        { term: 'Frontend', definition: 'The user-facing part of a web experience processed and presented by the client.' },
-        { term: 'Backend', definition: 'The server-side systems that apply logic, manage access, communicate with data stores, and create responses.' }
+        { term: '3-Tier Architecture', definition: 'System design separating Client presentation, Server application logic, and Database storage.' },
+        { term: 'Database', definition: 'A structured software system (like MySQL or PostgreSQL) for storing, querying, and updating data records.' },
+        { term: 'Application Logic', definition: 'Backend code running on the server that enforces rules, calculations, and security.' }
       ],
       examples: [
-        'A browser requests a school handbook PDF, and a web server returns the prepared static file.',
-        'A grade portal sends login information to a backend, which checks authorization before requesting student records from a database.',
-        'A news site can serve common layout files while generating a personalized article list for each signed-in reader.'
+        'A school LMS: Browser (Client) -> Node/Python backend (Server) -> PostgreSQL (Database).'
       ],
-      analogy: 'A client-server exchange is like a diner and a restaurant: the diner places a request, the front counter receives it, the kitchen performs hidden work, and the completed response is returned.',
-      misconception: 'A server is not defined by being a huge computer in one room; server describes a role, and one website may use many physical or virtual systems.',
+      analogy: 'Client is the restaurant diner ordering from the menu; Application server is the waiter taking orders and relaying rules; Database is the kitchen pantry holding raw ingredients.',
+      misconception: 'Web browsers do not connect directly to a company\'s private database. All database access passes through the backend application server for validation and security.',
       review: [
-        'Explain how a client, web server, application server, and database could cooperate during a portal login.',
-        'How do static and dynamic websites differ, and which frontend or backend responsibilities might each use?'
+        'Describe the separate roles of the Client, Application Server, and Database in a school portal.',
+        'Why should a client browser never connect directly to a remote database?'
       ]
     },
     {
-      title: 'HTTP Fundamentals',
-      category: 'Request and Response',
-      visual: 'http',
-      lead: 'HTTP is an application-layer request-response protocol used by clients and servers to exchange web resources and actions.',
+      title: 'Webpage Components',
+      category: 'Web Foundations',
+      visual: 'web',
+      lead: 'Webpages are constructed from complementary technologies: HTML for structure, CSS for presentation, JavaScript for behavior, and media for visual content.',
       paragraphs: [
-        'An HTTP request contains a method, request target, protocol version, headers, and sometimes a body. For example, GET /modules/internet HTTP/1.1 requests a resource, while a Host header identifies the intended host. The response begins with a version and status such as HTTP/1.1 200 OK, includes headers such as Content-Type: text/html, and may include the returned representation in its body.',
-        'GET retrieves a representation, POST commonly submits data or starts processing, PUT replaces a resource representation, PATCH applies a partial change, and DELETE requests removal. Actual service behavior is defined by the application, so the method communicates intent rather than performing work by itself. Students should recognize these common methods without memorizing every method defined by HTTP.',
-        'Status codes summarize the result: 100-199 are informational, 200-299 successful, 300-399 redirection, 400-499 client-side errors, and 500-599 server-side errors. Useful examples are 200 OK, 301 Moved Permanently, 403 Forbidden, 404 Not Found, 500 Internal Server Error, and 503 Service Unavailable. A status code is evidence for diagnosis, but the message body and surrounding request still provide important context.'
+        'A webpage is an assembly of complementary files: 1) HTML (HyperText Markup Language) defines structure and semantic content (headings, paragraphs, forms), 2) CSS (Cascading Style Sheets) defines visual presentation (colors, fonts, layout grids), 3) JavaScript provides dynamic interactive behavior, and 4) Images/Media provide visual assets.',
+        'Separating content (HTML) from presentation (CSS) and behavior (JavaScript) improves accessibility, maintainability, and caching performance.'
       ],
       definitions: [
-        { term: 'HTTP method', definition: 'A request verb such as GET, POST, PUT, PATCH, or DELETE that communicates the intended operation.' },
-        { term: 'HTTP header', definition: 'A named field carrying metadata about a request, response, client, server, or representation.' },
-        { term: 'Status code', definition: 'A three-digit response code indicating the general and specific result of an HTTP request.' },
-        { term: 'Message body', definition: 'The optional content carried after HTTP headers, such as submitted form data, HTML, or JSON.' }
+        { term: 'HTML', definition: 'Markup language defining the structural meaning of webpage elements.' },
+        { term: 'CSS', definition: 'Stylesheet language controlling visual appearance, colors, fonts, and responsive layout.' },
+        { term: 'JavaScript', definition: 'Programming language running in the browser providing interactive logic and dynamic DOM updates.' }
       ],
       examples: [
-        'GET /images/map.png asks the server for an image resource.',
-        'A response with 301 and a Location header directs the client toward the resource\'s permanent new URL.',
-        'A 404 means the requested resource was not found at that location, while a 503 means the service is currently unavailable.'
+        'HTML creating a button `<button>`, CSS styling it blue with rounded corners, and JavaScript making it pop up a modal upon clicking.'
       ],
-      analogy: 'An HTTP request is an order form containing an action, address, notes, and sometimes supplied material; the response is the fulfillment package with a result label, description, and content.',
-      misconception: 'A 404 does not mean the entire Internet connection is broken, and a 500 does not automatically mean the user entered something incorrectly.',
+      analogy: 'HTML is the skeletal frame of a house; CSS is the interior paint and decor; JavaScript is the electrical switches and plumbing logic.',
+      misconception: 'JavaScript is not Java. JavaScript is a lightweight scripting language designed primarily for web browser interactivity and web servers.',
       review: [
-        'Identify the method, target, headers, status, and body in a simple HTTP request-response exchange.',
-        'How do 200, 301, 403, 404, 500, and 503 guide a troubleshooting decision?'
+        'Identify the core roles of HTML, CSS, and JavaScript in a modern webpage.',
+        'Why is it beneficial to keep CSS styles in separate files rather than inline inside HTML tags?'
       ]
     },
     {
-      title: 'HTTP State, Cookies, and Caching',
-      category: 'Continuity and Performance',
-      visual: 'state',
-      lead: 'HTTP requests are generally independent, so websites use cookies, sessions, tokens, and caches to maintain continuity and avoid unnecessary work.',
+      title: 'Cookies, Sessions, and Caching',
+      category: 'State & Caching',
+      visual: 'web',
+      lead: 'Because HTTP is stateless, web applications use cookies, sessions, and caches to maintain user state and improve performance.',
       paragraphs: [
-        'Because one HTTP request does not automatically remember earlier requests, a server needs an additional way to connect activity across a visit. A cookie is a small piece of data a site asks a browser to store and return under defined conditions. A session commonly keeps important state on the server and associates it with a session identifier, while an authentication token can carry or refer to evidence that a user has authenticated.',
-        'State supports legitimate features such as login persistence, remembering language preferences, and keeping items in a shopping cart. It can also be used for measurement or tracking across activity, so privacy depends on what is stored, who receives it, how long it lasts, and whether the user has meaningful control. Sensitive state should use appropriate security protections and should not be treated as trustworthy merely because it arrived from a browser.',
-        'Caching stores reusable responses or resources closer to where they will be needed. A browser cache can reuse a local image or stylesheet, while a server cache or intermediary cache can reduce origin-server work. Cache expiration and validation rules determine when stored content can be reused or must be checked. Caching can speed pages and reduce transferred data, but an outdated cache can also explain why a user temporarily sees an older version.'
+        'Because HTTP is stateless, servers would forget your login identity on every new click. Web applications solve this using: 1) Cookies (small text key-value pairs stored in the browser by websites), 2) Sessions (server-side records mapping a browser\'s session ID cookie to signed-in user data), and 3) Caching (storing local copies of static files to avoid repeated downloads).',
+        'Cookies allow websites to remember user preferences and maintain sign-in sessions, while caches dramatically reduce network bandwidth and page load times.'
       ],
       definitions: [
-        { term: 'Cookie', definition: 'A small piece of site-associated data stored by a browser and returned with eligible later requests.' },
-        { term: 'Session', definition: 'A mechanism that associates a sequence of requests with server-managed state, commonly through an identifier.' },
-        { term: 'Authentication token', definition: 'Data that represents or refers to authenticated access and is presented with eligible requests.' },
-        { term: 'Cache', definition: 'Temporary storage that allows a reusable response or resource to be served without repeating all original work.' }
+        { term: 'Cookie', definition: 'Small text data stored in the browser by websites for tracking, preferences, or session IDs.' },
+        { term: 'Session', definition: 'Server-side data record keeping track of an active user\'s state during their visit.' },
+        { term: 'Cache', definition: 'Local storage of previously fetched web assets (images, CSS) to speed up future visits.' }
       ],
       examples: [
-        'A session identifier lets a shopping service retrieve the cart associated with later requests.',
-        'A language-preference cookie can ask a site to present Filipino or English on the next visit.',
-        'A browser may reuse a cached logo while validating whether the main HTML page has changed.'
+        'A session cookie keeping a student logged into the grading portal as they click between pages.',
+        'A browser caching a school logo image so it doesn\'t re-download on every page visit.'
       ],
-      analogy: 'State is like a claim ticket that connects separate visits to the same service; caching is like keeping a frequently used copy nearby instead of fetching a new one every time.',
-      misconception: 'Cookies are not automatically viruses: they are data rather than executable malware, although they can still be used for unwanted tracking or handled insecurely.',
+      analogy: 'A cookie is like a coat check ticket handed to you at a club; a session is your actual coat stored in the coatroom; a cache is keeping your coat on your arm so you don\'t check it twice.',
+      misconception: 'Cookies are not computer viruses. Cookies are simple text data files managed safely by your web browser.',
       review: [
-        'How can cookies, sessions, and authentication tokens help independent HTTP requests act like one continuing visit?',
-        'What performance benefit and what possible problem can caching create?'
+        'Explain how cookies and sessions work together to keep a user logged into a website.',
+        'What is the benefit of browser caching for web performance?'
       ]
     },
     {
-      title: 'HTTPS, TLS, and Certificates',
-      category: 'Secure Web Communication',
-      visual: 'tls',
-      lead: 'HTTPS uses TLS to protect HTTP communication through confidentiality, integrity, and server authentication.',
+      title: 'Hosting, Data Centers, Cloud, and CDNs',
+      category: 'Web Hosting',
+      visual: 'infrastructure',
+      lead: 'Delivering websites globally requires web hosting, physical data centers, cloud infrastructure, and Content Delivery Networks.',
       paragraphs: [
-        'Confidentiality makes intercepted traffic difficult to read without the necessary keys. Integrity helps endpoints detect whether protected information was modified in transit. Authentication helps the browser verify that it is communicating with a server authorized for the requested domain. These protections work together; encryption alone would not answer every identity or tampering problem.',
-        'During TLS setup, the server presents a digital certificate containing identity and public-key information. The browser checks such details as the domain name, validity period, and whether the certificate chains to a certificate authority it trusts. The endpoints then establish keys for protected communication. Students need the purpose and decision process, not cryptographic mathematics.',
-        'A browser padlock or HTTPS indicator means the connection to that identified domain is protected; it does not prove the organization is honest, the content is accurate, or a purchase is wise. A fake or harmful site can obtain a valid certificate for its own domain. Certificate expiration, a domain mismatch, or an untrusted issuer should trigger a warning because the browser cannot complete its normal identity checks.'
+        'Web Hosting means making web files accessible on servers connected 24/7 to the Internet. Data Centers are heavy facilities providing physical security, redundant power, and fiber links for host servers.',
+        'Cloud Computing provides on-demand computing and storage resources over networks. A Content Delivery Network (CDN) is a distributed network of edge servers that cache static web content close to users, dramatically reducing latency.'
       ],
       definitions: [
-        { term: 'TLS', definition: 'Transport Layer Security, the protocol that protects HTTPS communication between endpoints.' },
-        { term: 'Digital certificate', definition: 'A signed electronic document that binds identity information, such as a domain, to public-key information.' },
-        { term: 'Certificate authority', definition: 'An organization trusted by browsers or operating systems to validate and sign digital certificates.' },
-        { term: 'Confidentiality, integrity, and authentication', definition: 'Protection against easy reading, detection of modification, and verification of the communicating identity.' }
+        { term: 'Web Hosting', definition: 'Providing server storage and network connectivity so website files are accessible 24/7.' },
+        { term: 'Cloud Computing', definition: 'On-demand delivery of computing power, databases, and storage via the Internet.' },
+        { term: 'CDN', definition: 'Content Delivery Network: edge servers distributed globally to cache content close to end users.' }
       ],
       examples: [
-        'HTTPS can protect a password from simple reading while it travels between a browser and the correctly identified server.',
-        'A certificate for another domain should trigger a warning because its identity does not match the requested site.',
-        'A phishing site can display HTTPS for its own deceptive domain, so the user must still inspect the address and purpose.'
+        'Hosting a school website on a cloud server instance in Singapore.',
+        'A CDN serving image files to Manila users from a cache in Manila rather than fetching them from a main server in London.'
       ],
-      analogy: 'TLS is like using a tamper-evident locked courier case after checking the recipient\'s official identification: the contents are concealed, changes can be detected, and the endpoint is checked.',
-      misconception: 'HTTPS protects the connection; it does not certify that every claim, product, file, or person on the site is trustworthy.',
+      analogy: 'A CDN is like a book publisher placing copies of popular textbooks in local city bookstores, so students don\'t have to order every book directly from an overseas factory.',
+      misconception: 'The "Cloud" is not an abstract sky entity; it consists of real physical data centers equipped with thousands of hardware servers.',
       review: [
-        'Explain how confidentiality, integrity, and authentication address three different communication risks.',
-        'What certificate checks can a browser perform, and why can a securely connected site still be malicious?'
+        'What is the main purpose of a Content Delivery Network (CDN)?',
+        'Differentiate between traditional web hosting, data centers, and cloud computing.'
       ]
     },
     {
-      title: 'Browsers and Webpage Rendering',
-      category: 'From Resources to Pixels',
-      visual: 'rendering',
-      lead: 'Receiving an HTML response begins the construction of a webpage; the browser must interpret, retrieve, calculate, execute, and render many related resources.',
+      title: 'Internet Performance Metrics',
+      category: 'Performance',
+      visual: 'performance',
+      lead: 'Network performance is evaluated using bandwidth, throughput, latency, jitter, and packet loss, each impacting applications differently.',
       paragraphs: [
-        'The browser parses HTML to understand the document structure and discovers links to stylesheets, scripts, images, fonts, and other resources. It downloads required files through additional requests, potentially using cached copies when valid. CSS supplies presentation rules, JavaScript can change content or behavior, images and fonts provide visual assets, and API responses can supply later data.',
-        'The browser builds internal structures representing the document and its styles, determines which elements are visible, calculates their sizes and positions, and paints the result into pixels. Scripts can modify these structures and trigger more layout or painting. Resource size, network delay, script work, image decoding, and device processing can each affect when the page becomes visible and responsive.',
-        'A single webpage often depends on multiple origins. The main HTML may come from the site\'s web server, a font from a font service, an image from a CDN, and interactive data from an API. Browser developer tools reveal these requests, their status codes, timing, transfer sizes, and cache behavior, turning an apparently simple page into observable evidence of the underlying process.'
+        'Bandwidth is the maximum theoretical capacity of a link (e.g. 100 Mbps). Throughput is the actual data rate achieved in practice. Download/Upload speeds measure transfer rates in each direction.',
+        'Latency is the round-trip delay time (ping in ms). Jitter is the variation in latency over time. Packet Loss is the percentage of packets that fail to arrive. While high bandwidth is key for file downloads, low latency and jitter are essential for online gaming and live voice/video calls.'
       ],
       definitions: [
-        { term: 'HTML parsing', definition: 'Interpreting HTML markup to build an internal representation of document structure.' },
-        { term: 'Layout', definition: 'Calculating the size and position of visual page elements before they are drawn.' },
-        { term: 'Rendering', definition: 'The browser process that turns resources, structures, styles, and calculations into visible pixels.' },
-        { term: 'Developer tools', definition: 'Browser inspection features that expose documents, requests, status, timing, storage, scripts, and rendering evidence.' }
+        { term: 'Bandwidth vs Throughput', definition: 'Bandwidth is maximum channel capacity; Throughput is actual sustained data delivery rate.' },
+        { term: 'Latency (Ping)', definition: 'The time delay in milliseconds for a packet to travel to a destination and return.' },
+        { term: 'Jitter & Packet Loss', definition: 'Jitter is latency fluctuation; Packet Loss is the percentage of dropped packets during congestion.' }
       ],
       examples: [
-        'The first HTML response can reference five stylesheets, eight scripts, twenty images, and two font files.',
-        'A page may display basic text before a large image finishes because resources complete at different times.',
-        'The Network tab can show whether an image returned 200, was reused from cache, or failed with 404.'
+        'File Download: Affected primarily by throughput.',
+        'Online Gaming Lag: Caused by high latency (>150ms).',
+        'Robotic Voice Call Audio: Caused by high jitter or packet loss.',
+        'Video Buffering: Caused by insufficient sustained throughput.'
       ],
-      analogy: 'HTML is an assembly plan rather than a finished building; the browser gathers materials, interprets instructions, calculates placement, and constructs the visible result.',
-      misconception: 'Downloading HTML is not the same as completing a webpage, because the browser may still need many resources, calculations, scripts, and API responses.',
+      analogy: 'Bandwidth is the number of lanes on a highway; Throughput is the actual traffic flow rate; Latency is the travel time per car; Jitter is inconsistent speed changes.',
+      misconception: 'A speed test showing 200 Mbps bandwidth does not prevent online game lag if your latency is 250 ms or your packet loss is 5%.',
       review: [
-        'Describe the browser\'s work from receiving HTML through parsing, resource downloads, layout, scripting, and rendering.',
-        'What evidence can the Network tab provide about a slow, incomplete, or cached webpage?'
+        'Match the user symptom (buffering video, delayed gaming response, choppy voice call) to the correct performance metric.',
+        'Explain the difference between network bandwidth and actual throughput.'
       ]
     },
     {
-      title: 'Hosting, Cloud Services, and CDNs',
-      category: 'Reliable Web Delivery',
-      visual: 'hosting',
-      lead: 'Websites combine registration, DNS, hosting, cloud infrastructure, distribution, and redundancy so resources remain reachable under changing demand and failures.',
+      title: 'Congestion and Bottlenecks',
+      category: 'Performance',
+      visual: 'performance',
+      lead: 'Internet performance is constrained by the slowest link along the end-to-end path, known as a bottleneck.',
       paragraphs: [
-        'A domain registrar manages registration of a domain name, while DNS hosting publishes the domain\'s records. Web hosting stores and serves the site or application. Shared hosting places several customers on common infrastructure; a virtual private server provides a more isolated virtual system; and cloud platforms provide configurable computing, storage, networking, databases, or managed services across data centers.',
-        'A content delivery network places cached copies or delivery servers near users in multiple geographic locations. This can reduce latency, move repeated traffic away from the origin, and absorb high demand. A CDN does not replace every origin responsibility: dynamic or personalized work may still reach application systems, and cached content needs appropriate freshness and invalidation rules.',
-        'Load balancing distributes requests among healthy service instances. Replication keeps multiple copies of data or services, while redundancy ensures alternatives exist when one component fails. These techniques can improve availability and scale, but they require monitoring and planning. A website may continue operating after one server fails because another instance, location, or cached copy can respond.'
+        'Data paths cross multiple links: PC -> Wi-Fi -> Home Router -> ISP Fiber -> International Link -> Server. The overall transfer speed is determined by the slowest segment along this chain—the Bottleneck.',
+        'Common performance bottlenecks include weak Wi-Fi signals, local network congestion (too many devices downloading simultaneously), outdated home routers, ISP bandwidth limits, or overloaded destination web servers.'
       ],
       definitions: [
-        { term: 'Web hosting', definition: 'Infrastructure and services that store, execute, and deliver website or web-application resources.' },
-        { term: 'Cloud platform', definition: 'On-demand computing, storage, networking, database, and managed services delivered from provider infrastructure.' },
-        { term: 'Content delivery network', definition: 'A distributed system that serves cached or proxied content from locations closer to users.' },
-        { term: 'Load balancing and redundancy', definition: 'Distributing work across healthy resources and maintaining alternatives so one failure does not stop the whole service.' }
+        { term: 'Bottleneck', definition: 'The lowest-capacity segment along an end-to-end network path that limits overall performance.' },
+        { term: 'Network Congestion', definition: 'Performance degradation occurring when network traffic exceeds available link capacity.' },
+        { term: 'Upload Saturation', definition: 'Completely filling upload capacity, which halts incoming download acknowledgments and slows the connection.' }
       ],
       examples: [
-        'A registrar records ownership information while separate DNS hosting points www.example.com toward the hosting service.',
-        'A student in Manila may receive a popular image from a nearby CDN location instead of a distant origin data center.',
-        'A load balancer can stop sending new requests to a failed application instance while other instances continue serving users.'
+        'Having a 500 Mbps fiber line but getting only 10 Mbps speed because of a weak Wi-Fi signal through three concrete walls.',
+        'A popular exam result website slowing down because millions of students query the server simultaneously (Server Bottleneck).'
       ],
-      analogy: 'A resilient website is like a store chain with a directory listing, warehouses, nearby branches, a dispatcher, and spare stock; no single counter must serve every customer.',
-      misconception: 'A domain registration does not by itself include a working website, and cloud or CDN use does not automatically eliminate outages.',
+      analogy: 'A bottleneck is like a 6-lane highway narrowing down to a 1-lane bridge; traffic slows to the capacity of the single bridge lane regardless of highway size.',
+      misconception: 'Upgrading your ISP subscription will not fix slow speeds if the bottleneck is a weak Wi-Fi signal or an overloaded web server.',
       review: [
-        'Distinguish the roles of a registrar, DNS host, web host, cloud platform, and CDN.',
-        'How do load balancing, replication, and redundancy help a busy service survive demand or failure?'
-      ]
-    },
-    {
-      title: 'Other Internet Services',
-      category: 'Beyond the Web',
-      visual: 'services',
-      lead: 'The Web is one Internet service among many; email, file transfer, remote access, calls, streaming, messaging, cloud storage, gaming, and connected devices use the same network infrastructure in different ways.',
-      paragraphs: [
-        'Email commonly uses SMTP to submit and transfer outgoing mail, while IMAP or POP lets users access received mail in different ways. FTP is a traditional file-transfer protocol, SFTP provides file transfer through secure SSH, and SSH also supports protected remote command-line access. These services have their own application protocols even though their packets travel through IP networks.',
-        'Voice over IP (VoIP) and video calls use real-time media techniques that are sensitive to delay, jitter, and packet loss. Streaming services maintain a playback buffer and can adapt quality to available throughput. Messaging may use persistent connections and push notifications so updates arrive quickly, while online gaming combines matchmaking services with latency-sensitive game traffic.',
-        'Cloud storage synchronizes local and remote copies and must handle conflicts, authorization, and intermittent connections. Internet of Things systems connect sensors, appliances, vehicles, and controllers, expanding both useful automation and security responsibilities. Understanding the service requirement explains why different applications select different protocols and prioritize reliability, latency, throughput, or power use differently.'
-      ],
-      definitions: [
-        { term: 'Email protocols', definition: 'Application protocols such as SMTP for sending and IMAP or POP for accessing received messages.' },
-        { term: 'Remote access', definition: 'Using a network service such as SSH to operate or administer another computer from a distance.' },
-        { term: 'Streaming', definition: 'Delivering media for playback while later portions continue arriving, commonly with buffering and adaptive quality.' },
-        { term: 'Internet of Things', definition: 'A network of connected sensors, devices, appliances, and controllers that exchange data or actions.' }
-      ],
-      examples: [
-        'An email application submits a message through SMTP and synchronizes a mailbox through IMAP.',
-        'A video service lowers stream quality when available throughput falls so the playback buffer is less likely to empty.',
-        'An online game may prioritize low latency for player actions while cloud storage prioritizes correct synchronized files.'
-      ],
-      analogy: 'The Internet is a shared transport system carrying many kinds of service: the Web is one route, while email, calls, storage, games, and devices are other routes with different schedules and cargo needs.',
-      misconception: 'The Internet and the World Wide Web are not the same; the Web operates on Internet infrastructure alongside many other services.',
-      review: [
-        'Match email, secure file transfer, remote access, calls, streaming, messaging, cloud storage, gaming, and IoT to their key protocols or performance needs.',
-        'Why might a video call and a cloud backup make different transport or performance tradeoffs?'
+        'Define a network bottleneck and give three real-world examples of where bottlenecks occur.',
+        'Why does saturating your upload bandwidth slow down your download speed?'
       ]
     },
     {
       title: 'Basic Internet Security',
-      category: 'Practical Digital Safety',
-      visual: 'threats',
-      lead: 'Internet safety depends on recognizing manipulation and malicious software, reducing account and device exposure, and maintaining recoverable, updated systems.',
+      category: 'Security Basics',
+      visual: 'privacy',
+      lead: 'Fundamental Internet security practices protect user accounts, data privacy, and devices against common online threats.',
       paragraphs: [
-        'Phishing uses deceptive messages or sites to steal information or persuade a victim to act, while social engineering more broadly manipulates people rather than relying only on technical flaws. Malware is harmful software that can steal, damage, spy, encrypt, or abuse resources. Fake websites may copy trusted branding, use look-alike domains, or create false urgency, so users should verify the sender, URL, request, and destination through an independent channel.',
-        'Use a unique strong password for each service and a trusted password manager when available; password reuse turns one breach into many account risks. Multi-factor authentication adds another required factor and is especially valuable for important accounts. Install software updates for operating systems, browsers, and applications; download software from verified sources; review browser permissions; and use firewalls to limit traffic according to rules.',
-        'Public Wi-Fi can expose users to untrusted networks, so avoid bypassing certificate warnings and use protected services. Encryption and a reputable VPN can protect traffic in specific ways but do not make every site, download, or decision safe. Backups provide recovery after device loss, failure, accidental deletion, or ransomware. Incognito mode mainly limits selected local browsing records; antivirus cannot prevent every attack; and HTTPS does not prove a business is legitimate.'
+        'Basic Internet security relies on defensive habits: 1) Strong unique passwords managed with password managers, 2) Multi-Factor Authentication (MFA) requiring a secondary verification code, 3) Prompt software updates patching security flaws, 4) Phishing awareness (verifying sender emails and URL links), 5) Avoiding unencrypted public Wi-Fi for sensitive tasks, and 6) Regular data backups.',
+        'Security is a continuous practice combining technical controls (encryption, firewalls, MFA) with cautious user behavior.'
       ],
       definitions: [
-        { term: 'Phishing and social engineering', definition: 'Deceptive techniques that manipulate people into revealing information, granting access, sending money, or running harmful actions.' },
-        { term: 'Malware', definition: 'Software intentionally designed to harm, spy on, disrupt, extort, or gain unauthorized access.' },
-        { term: 'Multi-factor authentication', definition: 'Account protection requiring factors from at least two different categories of evidence.' },
-        { term: 'Backup', definition: 'A separate recoverable copy of important data protected against loss, damage, or compromise of the original.' }
+        { term: 'MFA', definition: 'Multi-Factor Authentication: requiring two or more verification factors to gain account access.' },
+        { term: 'Phishing', definition: 'Deceptive attacks tricking users into revealing passwords or credentials via fake emails/sites.' },
+        { term: 'Malware', definition: 'Malicious software (viruses, trojans, ransomware) designed to harm or exploit devices.' }
       ],
       examples: [
-        'A message claiming immediate account closure links to examp1e.com instead of example.com; the user independently opens the official app rather than clicking.',
-        'A password manager creates different strong passwords, so a breach of one service does not reveal the same password elsewhere.',
-        'A browser camera permission is allowed only for a trusted meeting site and removed when it is no longer needed.'
+        'Enabling MFA so an attacker who steals your password still cannot log into your account without your phone code.',
+        'Inspecting a link URL before clicking to verify it points to `school.edu` rather than `school.edu.attacker-site.com`.'
       ],
-      analogy: 'Internet security is layered home safety: identity checks, different locks, maintained doors, controlled permissions, cautious visitors, and a separate copy of valuables each address a different failure.',
-      misconception: 'Incognito mode, a VPN, HTTPS, or antivirus is not an invisibility or safety guarantee; each tool has a limited purpose and must be combined with sound judgment.',
+      analogy: 'MFA is like a bank vault requiring both a key card and a pin code; Phishing is like a scammer pretending to be a bank teller on the phone.',
+      misconception: 'Anti-virus software alone cannot protect you if you voluntarily type your password into a fake phishing website.',
       review: [
-        'Evaluate a suspicious login message using sender, URL, urgency, requested action, and independent verification.',
-        'Create a layered account and device protection plan using unique passwords, MFA, updates, permissions, secure downloads, a firewall, and backups.'
+        'Explain why Multi-Factor Authentication (MFA) provides stronger protection than a password alone.',
+        'List four essential daily security practices for protecting personal online accounts.'
       ]
     },
     {
-      title: 'Internet Governance and Standards',
-      category: 'A Distributed Internet',
-      visual: 'governance',
-      lead: 'No single company owns the entire Internet; technical coordination, number and name administration, connectivity, laws, and individual services are distributed among many organizations.',
+      title: 'Basic Network Troubleshooting',
+      category: 'Troubleshooting',
+      visual: 'performance',
+      lead: 'Network troubleshooting relies on a systematic 8-step dependency ladder to isolate connectivity problems logically.',
       paragraphs: [
-        'The Internet Engineering Task Force develops many open technical standards through collaborative work. Its RFC documents contain protocol specifications, operational guidance, and other technical records. Standards allow equipment and software built by different organizations to communicate, but the IETF does not operate every network or control every website.',
-        'ICANN coordinates important parts of the global domain-name system, while regional Internet registries distribute Internet number resources such as IP address blocks within their regions. Internet service providers connect customers and networks. Website, cloud, and data-center operators manage their own services and infrastructure, and organizations exchange traffic through commercial arrangements and Internet exchange points.',
-        'Governments create laws and telecommunications regulations within their jurisdictions, but legal authority is not the same as owning the global network. The Internet works through interoperable standards, distributed routing, independently operated networks, administrative coordination, and agreements. Students need this distributed mental model rather than detailed governance procedures or historical protocol memorization.'
+        'When network failures occur, follow an 8-step systematic dependency ladder: 1) Identify Scope (one device or all? local or Internet?), 2) Check Physical/Wireless (cables, Wi-Fi toggle, power), 3) Check Configuration (IP, subnet assigned via DHCP?), 4) Test Local LAN (ping Default Gateway router), 5) Test Internet Reachability (ping 8.8.8.8), 6) Test DNS (nslookup domain), 7) Test Service (open URL path in browser), and 8) Document Results.',
+        'Troubleshooting logically from physical hardware up to application services prevents wasted effort and pinpoints root causes.'
       ],
       definitions: [
-        { term: 'IETF and RFC', definition: 'The IETF develops many Internet standards, and RFC documents publish technical specifications and guidance.' },
-        { term: 'ICANN', definition: 'The organization that coordinates important identifiers and functions of the global domain-name system.' },
-        { term: 'Regional Internet registry', definition: 'An organization that distributes and records Internet number resources within a geographic region.' },
-        { term: 'Internet service provider', definition: 'An organization that supplies customers or other networks with Internet connectivity.' }
+        { term: 'Dependency Ladder', definition: 'Troubleshooting in logical order from physical hardware up to application services.' },
+        { term: 'Scope Isolation', definition: 'Determining whether a fault impacts a single device, an entire LAN, or a remote server.' },
+        { term: 'Fault Location', definition: 'Pinpointing the exact segment (NIC, Wi-Fi, cable, gateway, ISP, DNS, or server) where a failure occurs.' }
       ],
       examples: [
-        'An HTTP implementation can follow published standards so browsers and servers from different developers interoperate.',
-        'A regional registry allocates Internet number resources, while an ISP uses assigned resources to provide connectivity.',
-        'A government can regulate telecommunications in its jurisdiction without becoming the owner of all international networks.'
+        'If only one PC fails while all other classroom PCs work, the fault is isolated to that PC\'s NIC, cable, or Wi-Fi settings.',
+        'If all devices fail to open websites by domain name but can ping 8.8.8.8, the fault is isolated to DNS.'
       ],
-      analogy: 'The Internet resembles international transportation: standards define compatible signs and procedures, authorities coordinate identifiers, operators run their own routes, and governments enforce laws in their territories.',
-      misconception: 'ICANN, an ISP, a cloud company, or a government may control an important part, but no one of them owns or centrally routes the entire Internet.',
+      analogy: 'Troubleshooting is like checking electrical appliances: check if the cord is plugged in (physical) and if the circuit breaker tripped (gateway) before buying a new appliance.',
+      misconception: 'Do not restart your router randomly as step #1. Always check physical links and isolate the scope of the problem first.',
       review: [
-        'Compare the roles of the IETF, ICANN, regional Internet registries, ISPs, governments, and service operators.',
-        'Why do shared standards and distributed administration allow the Internet to work without one central owner?'
+        'List the 8 steps of the systematic network troubleshooting dependency ladder.',
+        'Explain how scope isolation helps determine whether a problem is local or remote.'
       ]
     },
     {
-      title: 'Troubleshooting Internet Problems',
-      category: 'Evidence-Based Diagnosis',
-      visual: 'troubleshooting',
-      lead: 'Systematic troubleshooting starts with the nearest simple dependency, changes one thing at a time, and uses observations to separate local, addressing, routing, DNS, and service failures.',
+      title: 'Introductory Command-Line Tools',
+      category: 'Troubleshooting',
+      visual: 'performance',
+      lead: 'Standard command-line tools provide direct technical visibility into network adapters, IP routing, DNS lookups, and connection paths.',
       paragraphs: [
-        'Begin by checking power, cables, indicators, Wi-Fi or Ethernet connection, and airplane-mode or adapter state. Confirm that the device received an IP address, network prefix, default gateway, and DNS server. Then test the local gateway. This sequence establishes whether the problem is physical, local, or related to automatic network configuration before investigating distant services.',
-        'Next test communication using a known IP address, then test DNS resolution, and finally test the intended website or service. If an IP destination works but a domain name does not, DNS is a likely area to investigate. If one website fails while others work, inspect its URL, HTTP error, certificate warning, and service status. Compare another device or network to determine whether the symptom follows the device, local network, account, or remote service.',
-        'On Windows, ipconfig /all displays assigned configuration, ping can test whether a target responds and measure round-trip time, nslookup asks for DNS information, and tracert shows visible router hops toward a destination. Some systems legitimately block ping or hide hops, so absence of a reply is evidence rather than final proof. Restart only when there is a reason, record exact errors and observations, avoid unsafe certificate bypasses, and document the change that solved the problem.'
+        'Command-line utilities provide quick diagnostic testing: 1) `ipconfig /all` displays active network adapters, MAC addresses, assigned IP addresses, default gateway, and DNS servers; 2) `ping` tests ICMP reachability and round-trip latency to an IP destination; 3) `nslookup` queries DNS servers directly to test domain resolution; and 4) `tracert` traces the sequential hop-by-hop router path to a target.',
+        'These utilities verify each rung of the troubleshooting dependency ladder.'
       ],
       definitions: [
-        { term: 'Systematic troubleshooting', definition: 'A repeatable process that tests dependencies in order, uses evidence, and changes one relevant factor at a time.' },
-        { term: 'ipconfig /all', definition: 'A Windows command that displays detailed network adapter configuration, including addresses, gateway, and DNS servers.' },
-        { term: 'ping and tracert', definition: 'Tools that test target responses and reveal visible route hops, while recognizing that filtering can limit their results.' },
-        { term: 'nslookup', definition: 'A diagnostic tool that queries DNS and displays returned name or address information.' }
+        { term: 'ipconfig /all', definition: 'Command listing detailed network configuration for all active system adapters.' },
+        { term: 'ping', definition: 'Utility sending ICMP Echo Request packets to test target reachability and latency.' },
+        { term: 'nslookup', definition: 'Command-line tool querying DNS servers to resolve hostnames or inspect DNS records.' },
+        { term: 'tracert', definition: 'Traceroute tool displaying each router hop and latency along the path to a destination.' }
       ],
       examples: [
-        'The gateway responds and ping 8.8.8.8 works, but nslookup example.com fails, making DNS configuration or resolution the next focus.',
-        'Only one site returns 503 on two devices and two networks, suggesting a remote service problem rather than local Wi-Fi.',
-        'A laptop has no valid assigned address while another device works on the same Wi-Fi, so its adapter or DHCP process should be checked.'
+        'Running `ipconfig /all` to verify that DHCP assigned IP 192.168.1.50 and Gateway 192.168.1.1.',
+        'Running `nslookup wikipedia.org 8.8.8.8` to test if Google\'s public DNS resolves the domain correctly.',
+        'Running `tracert 8.8.8.8` to see where packets are getting delayed or dropped across ISP routers.'
       ],
-      analogy: 'Troubleshooting is like tracing water from a faucet back through valves and pipes: test the nearest connection first, then move outward until the first failed stage identifies the likely region.',
-      misconception: 'Restarting everything or repeatedly copying commands is not a diagnosis; each action should test a reasoned possibility, and each result must be interpreted.',
+      analogy: 'Command-line tools are like a mechanic\'s diagnostic OBD-II scanner: they read sensor codes (IPs, gateway, DNS response) directly from the engine.',
+      misconception: 'A failed ping does not always mean a server is offline. Many firewalls intentionally block ICMP ping traffic for security reasons while web servers remain online.',
       review: [
-        'Design a step-by-step diagnosis for a device that opens websites by IP address but not by domain name.',
-        'What can ipconfig /all, ping, nslookup, and tracert reveal, and what limitations prevent any single result from proving the whole cause?'
+        'State the introductory purpose of ipconfig, ping, nslookup, and tracert.',
+        'Why might a web server ignore a ping command even though its website opens normally in a browser?'
+      ]
+    },
+    {
+      title: 'Internet Governance and Responsibility',
+      category: 'Governance',
+      visual: 'network',
+      lead: 'The Internet operates without a single central owner through international technical standardization, address coordination, and multi-stakeholder cooperation.',
+      paragraphs: [
+        'No single government, corporation, or individual owns or controls the Internet. Internet operation relies on multi-stakeholder governance organizations: 1) IETF (Internet Engineering Task Force) develops open protocol standards (RFCs), 2) ICANN (Internet Corporation for Assigned Names and Numbers) coordinates global IP address allocation and domain name systems, and 3) Regional Internet Registries (RIRs) assign IP blocks to ISPs.',
+        'Maintaining an open, resilient, and safe Internet requires technical standardization, responsible digital citizenship, privacy respect, and international cooperation.'
+      ],
+      definitions: [
+        { term: 'Multi-Stakeholder Model', definition: 'Governance involving technical experts, academics, civil society, governments, and private industry.' },
+        { term: 'ICANN', definition: 'Organization coordinating global domain names, IP address allocation, and root server parameters.' },
+        { term: 'IETF', definition: 'Open technical community that develops and defines Internet protocol specifications (RFCs).' }
+      ],
+      examples: [
+        'Engineers worldwide collaborating in the IETF to publish and improve modern protocol standards like HTTP/3 and TLS 1.3.',
+        'ICANN managing the top-level domain registry system (.com, .org, .ph).'
+      ],
+      analogy: 'Internet governance is like international maritime rules: no nation owns the oceans, but international organizations establish navigation rules, ship standards, and port protocols for safe global trade.',
+      misconception: 'Governments can regulate Internet access within their national borders, but no single entity can shut down or change the global open Internet architecture.',
+      review: [
+        'Explain what is meant by the multi-stakeholder model of Internet governance.',
+        'Summarize the core roles of the IETF and ICANN in maintaining global Internet standards.'
       ]
     }
   ],
   activity: {
-    title: 'Trace, Inspect, Secure, and Troubleshoot a Website Request',
-    intro: 'Use a flowchart and browser evidence to explain the complete web journey, then apply security judgment and a systematic diagnostic sequence to realistic Internet problems.',
+    title: 'Web Journey & Command-Line Diagnostic Labs',
+    intro: 'Connect Internet protocols, packet routing, DNS, and HTTP request flows to observable evidence using physical flowcharts, browser DevTools, and command-line labs.',
     tasks: [
       {
-        title: 'Trace a Website Request flowchart',
-        scenario: 'A user enters https://www.example.com/courses/internet in a browser for the first time on a school network.',
-        prompt: 'Create and annotate a flowchart containing User -> Browser -> DNS -> Router -> ISP -> Internet routers -> Web server -> HTTP response -> Browser rendering. Mark where the URL, cache, domain name, DNS records, IP, default gateway, TCP or UDP, port 443, TLS and its certificate, HTTP, additional resources, and rendering are involved.',
-        response: 'Submit a clear directional flowchart plus a short narration that explains every transition from the user action through the visible page. Distinguish DNS from routing, transport from HTTP, and the first HTML response from later resource requests.',
-        rationale: 'The flowchart unifies the module around one correct mental model instead of treating protocols as unrelated vocabulary.'
+        title: 'Task 1: Trace a Website Request Flowchart',
+        scenario: 'A student enters https://www.example.com/courses in a web browser for the first time.',
+        prompt: 'Draw a complete 14-step flowchart mapping: User -> Browser URL Parsing -> DNS Resolver Lookup -> Router Gateway -> ISP Backbones -> Server TCP Handshake -> TLS Encryption -> HTTP GET Request -> HTTP 200 OK Response -> HTML Parsing & Sub-requests -> Browser Rendering. Label IP addresses, ports (443, 53), and protocol headers at each stage.',
+        response: 'Submit a detailed visual flowchart with labeled protocol layers, IP addressing steps, and resource assembly order.',
+        rationale: 'Mapping the request sequence unifies DNS, IP routing, TCP transport, TLS security, and HTTP rendering into a single coherent system.'
       },
       {
-        title: 'Browser DevTools Network laboratory',
-        scenario: 'A webpage looks like one object, but the browser may assemble it from many resources and more than one server.',
-        prompt: 'Open browser developer tools and the Network tab before loading an instructor-approved website. Identify the main HTML request; find CSS, JavaScript, image, and font requests; record representative URLs, methods, status codes, domains, transferred size, resource size, and timing; count the requests; then reload and observe which items use caching.',
-        response: 'Submit a labeled evidence table and screenshots that compare the first load with the reload. Explain at least one status code, one size difference, one cross-domain resource, and one cache result without exposing private tokens, cookie values, or account information.',
-        rationale: 'Developer tools turn the invisible request-response and rendering sequence into observable evidence while reinforcing safe handling of sensitive browser data.'
+        title: 'Task 2: Browser DevTools Network Lab',
+        scenario: 'A modern webpage appears as one item, but is assembled from dozens of separate network requests.',
+        prompt: 'Open browser Developer Tools (F12) to the Network tab and load an approved school page. Record: 1) Primary HTML HTTP method and status code (e.g. 200 OK); 2) Count of sub-requests for CSS, JS, fonts, and images; 3) Domains providing those assets; 4) Transfer sizes vs uncompressed sizes; 5) Reload the page and note which assets return 304 Not Modified or load from browser cache.',
+        response: 'Submit a detailed report summarizing asset types, status codes, third-party domains, and the performance benefit of HTTP browser caching.',
+        rationale: 'Inspecting browser network requests provides real-time proof of client-server HTTP transactions, asset sub-requests, and caching behavior.'
       },
       {
-        title: 'Systematic connectivity and DNS troubleshooting practice',
-        scenario: 'A student reports, "The Internet is broken," but the actual failure could be local connection, address configuration, gateway access, DNS, or one remote service.',
-        prompt: 'Follow the sequence: check power and physical or wireless connection; inspect ipconfig /all; identify the private address, gateway, and DNS server; ping the gateway; run ping 8.8.8.8; run ping example.com; use nslookup example.com; run tracert example.com; compare another website, device, or network; and record each observation before any justified restart.',
-        response: 'Complete a troubleshooting log with hypothesis, command or check, result, interpretation, and next step. Conclude which layer or service is most likely responsible and state what additional evidence would confirm it.',
-        rationale: 'An evidence-based sequence isolates the first failing dependency and prevents random changes from hiding the cause.'
+        title: 'Task 3: Command-Line Diagnostic Lab',
+        scenario: 'A school computer cannot access the online grading system.',
+        prompt: 'Open the Windows Command Prompt. Execute and record outputs for: 1) ipconfig /all (verify IP, subnet, default gateway, DNS); 2) ping [Default Gateway IP] (verify local router reachability); 3) ping 8.8.8.8 (verify public IP routing); 4) nslookup school.edu (verify DNS name resolution); 5) tracert 8.8.8.8 (inspect router hop count and latency).',
+        response: 'Create a diagnostic log documenting command outputs, identifying which step succeeded or failed, and stating the precise network fault location.',
+        rationale: 'Executing real diagnostic tools connects abstract IP routing, gateway forwarding, DNS resolution, and router paths to active troubleshooting skills.'
       },
       {
-        title: 'Security and trust decision practice',
-        scenario: 'A message claims that a school account will be deleted unless the student signs in through an urgent link on public Wi-Fi.',
-        prompt: 'Inspect the sender and URL structure, compare the domain with the official service, explain what HTTPS and its certificate do and do not prove, identify phishing or social-engineering signals, and choose safe verification steps. Then propose unique-password, MFA, update, permission, firewall, secure-download, and backup protections.',
-        response: 'Submit a risk assessment that separates connection security from website legitimacy, rejects unsafe warning bypasses, identifies an independent verification channel, and recommends layered controls appropriate to the situation.',
-        rationale: 'Practical security requires both a correct protocol model and human judgment about identity, requests, software, accounts, and recovery.'
+        title: 'Task 4: Isolate Local vs Remote Outages',
+        scenario: 'Multiple classroom computers suddenly lose access to an online educational portal.',
+        prompt: 'Compare diagnostic results across three test scenarios: A) Only 1 classroom PC fails while others work; B) All classroom PCs fail, but mobile phones on cellular data can open the portal; C) All devices across classroom Wi-Fi, home networks, and cellular data fail to open the portal. Determine the root cause location for A, B, and C.',
+        response: 'State the fault isolation: A = Local PC NIC/cable fault; B = School router or ISP connection outage; C = Remote web server or portal database outage.',
+        rationale: 'Comparative fault isolation teaches students to think logically using systematic network boundaries.'
       }
     ],
     reflection: [
-      'Which DevTools observation most clearly demonstrated that a webpage is assembled from multiple requests?',
-      'At what point in your troubleshooting sequence could you first distinguish a DNS problem from a general connectivity problem?',
-      'Which security indicator is useful but easiest to overinterpret, and what extra verification is needed?'
+      'Which diagnostic command provides the fastest proof that your local router and Wi-Fi connection are working?',
+      'How does inspecting the browser DevTools Network tab prove that a webpage is composed of multiple separate HTTP requests?',
+      'Why is checking your default gateway connection step #4 on the dependency ladder before checking DNS or web servers?'
     ]
   },
   quiz: [
     {
-      category: 'URL Anatomy',
-      question: 'In https://www.example.com:443/courses?id=10#review, which statement is correct?',
-      options: ['www is the scheme and https is the domain', '443 is the port and /courses is the path', 'id=10 is the top-level domain', '#review is always sent to the server as a DNS record'],
-      answer: 1,
-      explanation: 'The explicit port is 443 and /courses is the path; https is the scheme, example.com is the domain, id=10 is the query, and review is the fragment.'
+      category: 'Internet vs Web',
+      question: 'Which statement correctly describes the relationship between the Internet and the World Wide Web?',
+      options: [
+        'The Internet is the underlying network infrastructure; the Web is one service running on it.',
+        'They are identical terms that mean exactly the same thing.',
+        'The Web is the physical cable system; the Internet is only web pages.',
+        'The Internet is used exclusively for web browsers, while the Web is for email.'
+      ],
+      answer: 0,
+      explanation: 'The Internet is the global network infrastructure of cables, routers, and IP protocols. The Web is an application-layer service of linked documents operating over it.'
+    },
+    {
+      category: 'Physical Infrastructure',
+      question: 'What physical medium carries more than 95% of all international Internet traffic across oceans?',
+      options: [
+        'Subsea fiber-optic cables',
+        'Geostationary communications satellites',
+        'Cellular 5G towers',
+        'Copper coaxial cables'
+      ],
+      answer: 0,
+      explanation: 'Undersea fiber-optic cables laid on ocean floors carry over 95% of international Internet data due to their immense speed and capacity.'
+    },
+    {
+      category: 'Network Joining',
+      question: 'What four key configuration settings must a device receive upon joining a network to communicate on the Internet?',
+      options: [
+        'IP address, Subnet mask, Default Gateway, and DNS Resolver address',
+        'MAC address, CPU serial number, Wi-Fi password, and username',
+        'Public IP, VPN key, Proxy port, and Bluetooth ID',
+        'HTML path, CSS stylesheet, URL scheme, and BGP table'
+      ],
+      answer: 0,
+      explanation: 'To communicate locally and remotely, a host needs its IP address, subnet mask, default gateway router address, and DNS resolver address.'
+    },
+    {
+      category: 'DHCP',
+      question: 'What does the Dynamic Host Configuration Protocol (DHCP) do?',
+      options: [
+        'It automatically assigns IP configuration settings to devices joining a network.',
+        'It converts human-readable domain names into IP addresses.',
+        'It encrypts web connections between web browsers and servers.',
+        'It physically connects copper cables to wireless access points.'
+      ],
+      answer: 0,
+      explanation: 'DHCP automates network configuration, assigning temporary IP leases, gateways, and DNS settings to hosts.'
+    },
+    {
+      category: 'Addressing',
+      question: 'In network addressing, what is the primary purpose of a Port Number?',
+      options: [
+        'To direct incoming traffic to a specific software application or service endpoint on a device',
+        'To identify the physical manufacturer of a network interface card',
+        'To provide a human-readable name for a company website',
+        'To measure the physical length of an Ethernet cable'
+      ],
+      answer: 0,
+      explanation: 'While an IP address identifies the destination device, a port number directs data to the specific application service (e.g., Port 443 for web).'
+    },
+    {
+      category: 'IPv4 vs IPv6',
+      question: 'Why was IPv6 developed to replace IPv4?',
+      options: [
+        'Because 32-bit IPv4 addresses were running out due to the massive growth of connected devices.',
+        'Because IPv4 could not carry video or audio data.',
+        'Because IPv4 cables were physically degrading worldwide.',
+        'Because IPv6 eliminates the need for routers and switches.'
+      ],
+      answer: 0,
+      explanation: 'IPv4 provides only ~4.3 billion addresses; 128-bit IPv6 was created to provide a virtually unlimited address space for global expansion.'
+    },
+    {
+      category: 'Public vs Private IP',
+      question: 'Why do private IP address ranges (like 192.168.x.x) exist?',
+      options: [
+        'To allow separate local networks to reuse the same internal addresses without global conflicts',
+        'To prevent local computers from connecting to local printers',
+        'To automatically encrypt all data sent over public Wi-Fi',
+        'To speed up the optical signals inside fiber cables'
+      ],
+      answer: 0,
+      explanation: 'Private addresses are restricted to local networks and not routed on the public Internet, allowing millions of organizations to reuse them internally.'
+    },
+    {
+      category: 'NAT',
+      question: 'What does Network Address Translation (NAT) perform on a router?',
+      options: [
+        'It translates multiple private internal IP addresses into a single public IP address for Internet access.',
+        'It translates human-friendly domain names into IP addresses.',
+        'It blocks all incoming viral attachments from email servers.',
+        'It converts copper electrical signals into fiber optic light pulses.'
+      ],
+      answer: 0,
+      explanation: 'NAT maps private internal IP addresses to a router\'s public IP address, allowing multiple local devices to share one ISP line.'
+    },
+    {
+      category: 'Default Gateway',
+      question: 'What is the role of the Default Gateway for a computer on a local network?',
+      options: [
+        'It is the local router IP address where hosts send traffic destined for outside networks.',
+        'It is the web server that stores the school\'s public homepage.',
+        'It is the physical MAC address of the local Wi-Fi printer.',
+        'It is the secret encryption password used to connect to Wi-Fi.'
+      ],
+      answer: 0,
+      explanation: 'When a host determines that a destination IP is not on its local subnet, it sends the packet to its Default Gateway (the local router).'
+    },
+    {
+      category: 'Packets',
+      question: 'What is the function of the header in a network packet?',
+      options: [
+        'It carries delivery and control metadata, such as source IP, destination IP, and protocol type.',
+        'It contains the actual user file data being transferred.',
+        'It increases the maximum physical bandwidth of the Wi-Fi radio.',
+        'It deletes the local MAC address from the switch memory.'
+      ],
+      answer: 0,
+      explanation: 'The header contains essential routing, delivery, sequencing, and control metadata, while the payload holds the actual file data.'
+    },
+    {
+      category: 'Packet Switching',
+      question: 'Which statement best describes packet switching on the Internet?',
+      options: [
+        'Packets are routed independently across available paths and may arrive out of order.',
+        'Packets reserve a single dedicated physical wire from sender to receiver for the entire transmission.',
+        'All packets must pass through one central super-router located in Geneva.',
+        'Packets can only be sent during designated night hours.'
+      ],
+      answer: 0,
+      explanation: 'Packet switching forwards packets individually based on real-time traffic conditions, without reserving a fixed physical circuit.'
+    },
+    {
+      category: 'Transport Protocols',
+      question: 'Which transport protocol should be chosen when 100% reliable, ordered, and error-checked delivery is required?',
+      options: [
+        'Transmission Control Protocol (TCP)',
+        'User Datagram Protocol (UDP)',
+        'Internet Protocol (IP)',
+        'Domain Name System (DNS)'
+      ],
+      answer: 0,
+      explanation: 'TCP manages connections, verifies segment receipt, performs retransmissions, and guarantees in-order delivery.'
+    },
+    {
+      category: 'Transport Protocols',
+      question: 'Why do live voice calls and online games frequently use UDP instead of TCP?',
+      options: [
+        'They prioritize speed and timeliness over waiting for retransmissions of lost packets.',
+        'UDP automatically encrypts all voice data using military keys.',
+        'UDP guarantees zero packet loss over wireless networks.',
+        'TCP cannot run over optical fiber cables.'
+      ],
+      answer: 0,
+      explanation: 'UDP has no retransmission delays; in real-time communication, a late packet is useless, so speed is prioritized over completeness.'
     },
     {
       category: 'DNS',
-      question: 'A recursive resolver has no cached answer for a domain. Which sequence best describes the referral path?',
-      options: ['Authoritative server -> browser -> switch -> root', 'Web server -> certificate authority -> TLD server', 'Root server -> TLD server -> authoritative name server', 'Default gateway -> HTTP status code -> browser fragment'],
-      answer: 2,
-      explanation: 'The resolver follows referrals from a root server to the relevant TLD server and then to an authoritative server for the domain.'
-    },
-    {
-      category: 'DNS Records',
-      question: 'Which DNS record type most directly identifies mail servers responsible for receiving a domain\'s email?',
-      options: ['MX', 'AAAA', 'CNAME', 'TXT'],
+      question: 'What is the primary function of the Domain Name System (DNS)?',
+      options: [
+        'To translate human-readable domain names into machine-routable IP addresses',
+        'To translate private IP addresses into public NAT addresses',
+        'To encrypt HTTP requests into secure HTTPS connections',
+        'To assign MAC addresses to new network interface cards'
+      ],
       answer: 0,
-      explanation: 'An MX record identifies mail exchange servers; A and AAAA identify IP addresses, CNAME is an alias, and TXT stores text.'
-    },
-    {
-      category: 'Web Journey',
-      question: 'After DNS returns the server address for a new HTTPS visit, what must occur before protected HTTP application data can be exchanged?',
-      options: ['The browser converts the webpage into one image', 'A transport conversation and TLS session are established', 'The fragment is registered as a new domain', 'The ISP becomes the authoritative name server'],
-      answer: 1,
-      explanation: 'The endpoints need suitable transport communication and, for HTTPS, TLS protection before protected HTTP messages are exchanged.'
-    },
-    {
-      category: 'Client and Server',
-      question: 'Which component most likely checks authorization and retrieves a signed-in student\'s records from a database?',
-      options: ['The URL fragment', 'A static image file', 'The browser cache alone', 'The backend application service'],
-      answer: 3,
-      explanation: 'Backend services apply server-side rules, check access, communicate with databases, and build responses.'
-    },
-    {
-      category: 'HTTP',
-      question: 'A response begins HTTP/1.1 404 Not Found. What does this most directly report?',
-      options: ['The requested resource was not found at that location', 'The complete Internet connection is offline', 'The certificate is definitely fraudulent', 'The browser must use the DELETE method'],
-      answer: 0,
-      explanation: '404 is a client-error status indicating that the server did not find the requested resource at the request target.'
-    },
-    {
-      category: 'HTTP Methods',
-      question: 'Which HTTP method normally communicates a request to retrieve a representation without submitting a new resource body?',
-      options: ['PATCH', 'GET', 'DELETE', 'POST'],
-      answer: 1,
-      explanation: 'GET is the common retrieval method, although the service ultimately defines how each request is handled.'
-    },
-    {
-      category: 'State and Caching',
-      question: 'Why might a second page load transfer fewer bytes than the first?',
-      options: ['DNS permanently converted every resource into HTML', 'HTTPS removed all images from the site', 'The browser reused still-valid cached resources', 'The server changed every response to 404'],
-      answer: 2,
-      explanation: 'A browser cache can reuse valid stored files and avoid retransferring unchanged resources.'
-    },
-    {
-      category: 'HTTPS and TLS',
-      question: 'What does a valid HTTPS connection establish most accurately?',
-      options: ['The connected business is guaranteed honest', 'Every download is free of malware', 'The user is anonymous to all parties', 'Communication with the identified domain is encrypted and integrity-protected with server authentication'],
-      answer: 3,
-      explanation: 'TLS provides confidentiality, integrity, and authentication for the connection, not a guarantee about the site\'s honesty or content.'
-    },
-    {
-      category: 'Rendering',
-      question: 'Why can the main HTML request finish before the page is visually complete?',
-      options: ['The browser may still request CSS, scripts, images, fonts, and API data and calculate layout', 'HTML is an IP address that must become a domain', 'A 200 response prevents rendering', 'The fragment must travel through every router first'],
-      answer: 0,
-      explanation: 'HTML commonly references additional resources, and the browser must process them, execute needed work, calculate layout, and render pixels.'
-    },
-    {
-      category: 'Hosting and CDN',
-      question: 'How can a CDN commonly improve delivery of a popular image?',
-      options: ['By replacing DNS with a password manager', 'By serving a cached copy from a location closer to the user', 'By converting the image into an email protocol', 'By requiring every request to reach one origin server'],
-      answer: 1,
-      explanation: 'A CDN distributes content among locations so eligible cached resources can be delivered with less distance and origin load.'
-    },
-    {
-      category: 'Internet Services',
-      question: 'Which pairing is correct?',
-      options: ['SMTP - outgoing email transfer', 'SSH - browser image layout', 'IMAP - assigning IP addresses', 'SFTP - issuing web certificates'],
-      answer: 0,
-      explanation: 'SMTP is used to submit and transfer outgoing email; the other pairings describe unrelated functions.'
-    },
-    {
-      category: 'Internet Security',
-      question: 'An urgent message links to a look-alike login domain. What is the safest first response?',
-      options: ['Sign in quickly because HTTPS proves the sender is honest', 'Disable updates so the browser does not interfere', 'Open the official app or known address independently and verify the request through a trusted channel', 'Reuse the same password so it is easier to recover'],
-      answer: 2,
-      explanation: 'Independent navigation and verification avoid the supplied link and help expose phishing, look-alike domains, and false urgency.'
-    },
-    {
-      category: 'Governance',
-      question: 'Which statement best describes Internet governance?',
-      options: ['One cloud company owns every network and standard', 'The IETF assigns every domain and operates every router', 'A single government directly controls all international Internet traffic', 'Standards, identifiers, connectivity, laws, and services are coordinated by different organizations'],
-      answer: 3,
-      explanation: 'The Internet is distributed: the IETF, ICANN, registries, ISPs, governments, and operators have different responsibilities.'
+      explanation: 'DNS acts as a translation directory, converting readable domain names like google.com into numerical IP addresses.'
     },
     {
       category: 'Troubleshooting',
-      question: 'A device can ping 8.8.8.8, but nslookup example.com fails. Which area should be investigated next?',
-      options: ['Screen resolution', 'DNS configuration or resolution', 'The webpage fragment', 'The keyboard driver'],
-      answer: 1,
-      explanation: 'Successful communication with an IP address alongside failed name resolution points toward DNS rather than total connectivity failure.'
+      question: 'You can ping a public IP address (like 8.8.8.8) successfully, but your browser cannot open websites using domain names. What is the most likely problem?',
+      options: [
+        'A DNS name resolution failure or incorrect DNS server configuration',
+        'A physical cable failure between your PC and the local switch',
+        'An incorrect default gateway address on your local PC',
+        'A complete failure of your computer\'s network interface card'
+      ],
+      answer: 0,
+      explanation: 'Pinging 8.8.8.8 proves physical, gateway, and IP routing connections work; failing to load domain names points directly to a DNS issue.'
     }
   ],
   summary: {
-    intro: 'A webpage appears only after naming, routing, transport, connection security, HTTP, server processing, resource delivery, browser construction, and rendering work together across a distributed Internet.',
+    intro: 'Internet Part 2 explains how local networks scale globally across the Internet and Web through addressing, DHCP, NAT, packet switching, routing, transport protocols, DNS, HTTP, web journeys, performance metrics, Internet security, and systematic troubleshooting.',
     points: [
-      'A URL can contain a scheme, subdomain, domain, top-level domain, port, path, query string, and fragment; these parts have different purposes.',
-      'A URL, domain name, website, webpage, web server, and IP address are related but distinct concepts.',
-      'DNS can use caches, a recursive resolver, root and TLD referrals, and an authoritative server to return records such as A, AAAA, CNAME, MX, NS, and TXT.',
-      'The complete web journey connects URL interpretation, DNS, a default gateway, Internet routing, transport, TLS, HTTP, server processing, resource requests, and rendering.',
-      'Clients initiate requests; frontend code supports the user-facing experience, while backend services, application servers, and databases perform server-side work.',
-      'HTTP exchanges methods, targets, headers, optional bodies, and status codes; 200, 301, 403, 404, 500, and 503 communicate different results.',
-      'Cookies, sessions, and tokens maintain useful state across independent requests, while caching reduces repeated work and data transfer.',
-      'HTTPS uses TLS to support confidentiality, integrity, and server authentication through certificates and trusted certificate authorities.',
-      'HTTPS protects a connection but does not prove that a site, business, claim, or download is honest or safe.',
-      'Browsers parse HTML, request CSS, scripts, images, fonts, and API data, build structures, calculate layout, execute scripts, and render pixels.',
-      'Registrars, DNS hosts, web hosts, cloud platforms, CDNs, load balancers, replication, and redundancy perform different delivery and availability roles.',
-      'Email, file transfer, remote access, calls, streaming, messaging, cloud storage, gaming, and IoT show that the Internet is larger than the Web.',
-      'Security requires phishing awareness, unique passwords, MFA, updates, verified downloads, controlled permissions, firewalls, encryption where appropriate, and recoverable backups.',
-      'Incognito mode, VPNs, HTTPS, and antivirus each provide limited protections rather than complete anonymity or safety.',
-      'The IETF and RFC process, ICANN, regional registries, ISPs, governments, and service operators share different responsibilities; no single company owns the entire Internet.',
-      'Troubleshooting should move systematically from physical and local checks to IP configuration, gateway, public IP communication, DNS, the target service, and comparison tests.',
-      'ipconfig /all, ping, nslookup, tracert, browser status codes, certificate warnings, and DevTools provide evidence that must be interpreted rather than copied mechanically.'
+      'The Internet is global network infrastructure; the Web is an application-layer service running over it.',
+      'International Internet data travels through subsea fiber-optic cables connecting continents.',
+      'DHCP automates network configuration (IP, Subnet, Default Gateway, DNS) via the DORA sequence.',
+      'MAC addresses identify local links; IP addresses route across networks; Ports direct data to software applications.',
+      'IPv6 provides a 128-bit address space to replace exhausted 32-bit IPv4 addresses.',
+      'NAT translates internal private IP addresses to a public router IP, allowing multiple devices to share one ISP line.',
+      'Data is split into packets with headers and payloads, routed independently via packet switching.',
+      'Routers forward packets hop-by-hop, decrementing TTL to prevent infinite loops.',
+      'TCP provides reliable, ordered transport; UDP provides fast, lightweight transport for real-time traffic.',
+      'DNS translates readable domain names to IP addresses, initiating the 14-stage website request journey.',
+      'HTTP and HTTPS govern client-server web communications, status codes, and TLS encryption.',
+      '3-Tier web architecture separates Client presentation, Server application logic, and Database storage.',
+      'Cookies and sessions maintain state, while browser caching and CDNs optimize global web performance.',
+      'Internet performance depends on bandwidth, throughput, latency, jitter, packet loss, and path bottlenecks.',
+      'Basic security requires strong passwords, MFA, phishing awareness, and regular updates.',
+      'Troubleshooting follows an 8-step dependency ladder using ipconfig, ping, nslookup, and tracert.'
     ],
     review: [
-      'Parse a complete URL and explain how its domain eventually becomes an address used for packet routing.',
-      'Draw the complete journey from user and browser through DNS, gateway, ISP, routers, transport, TLS, HTTP, server response, resources, and rendering.',
-      'Compare static and dynamic delivery and identify frontend, web-server, application-server, and database responsibilities.',
-      'Interpret representative HTTP requests, methods, headers, status codes, cookies, sessions, tokens, and cache results.',
-      'Explain exactly what HTTPS certificates establish and which trust or safety judgments remain the user\'s responsibility.',
-      'Use DevTools evidence to explain why one webpage produces many requests and why a reload may transfer less data.',
-      'Compare the roles of hosting, cloud services, CDNs, load balancing, replication, and redundancy.',
-      'Build a layered response to phishing, malware, password reuse, public Wi-Fi, insecure downloads, excessive permissions, and data loss.',
-      'Explain why standards and governance are distributed, then assign the IETF, ICANN, registries, ISPs, governments, and operators their correct roles.',
-      'Diagnose a connectivity or DNS failure in a reasoned sequence and record what each tool result proves, suggests, or cannot prove.'
+      'Trace the 14 stages of a web request from pressing Enter on a URL to final browser rendering.',
+      'Compare TCP and UDP in terms of connection setup, reliability, and real-time streaming suitability.',
+      'Demonstrate how to isolate a connectivity failure using ipconfig, ping, and nslookup.'
     ],
-    next: 'Continue to Security Part 1 to deepen privacy, authentication, phishing defense, and protection of digital information.'
+    next: 'Congratulations! You have completed the foundational networking modules. Proceed to Web Development to learn how web applications are built and styled.'
   }
 };

@@ -35,9 +35,9 @@ window.CC101_MODULE_DATA = {
         'These independent networks communicate seamlessly because they all adhere to the same open protocols (the TCP/IP suite). No central authority owns or controls the entire Internet.'
       ],
       definitions: [
-        { term: 'The Internet', definition: 'The global system of interconnected computer networks communicating via TCP/IP.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&term=52' },
-        { term: 'Interconnection', definition: 'The physical and logical linking of separate networks so data can cross between them.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=53' },
-        { term: 'Open Standards', definition: 'Publicly available technical rules that allow equipment from different manufacturers to communicate.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=54' }
+        { term: 'The Internet', definition: 'The global system of interconnected computer networks communicating via TCP/IP.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&allterm=1' },
+        { term: 'Interconnection', definition: 'The physical and logical linking of separate networks so data can cross between them.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=2' },
+        { term: 'Open Standards', definition: 'Publicly available technical rules that allow equipment from different manufacturers to communicate.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=3' }
       ],
       examples: [
         'A student in the Philippines accessing a research file stored on a server in Germany.',
@@ -65,9 +65,9 @@ window.CC101_MODULE_DATA = {
         'The World Wide Web (Web) is an application-layer service composed of interlinked documents (webpages) accessed using web browsers via HTTP/HTTPS. Other Internet services include email (SMTP/IMAP), online gaming, video calling, file transfer (FTP), and streaming.'
       ],
       definitions: [
-        { term: 'World Wide Web (Web)', definition: 'An application service of linked web documents accessed via web browsers.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&term=55' },
-        { term: 'Internet Service', definition: 'An application or system (like email or VoIP) running over Internet infrastructure.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&term=56' },
-        { term: 'HTTP / HTTPS', definition: 'The primary web protocols used to transfer web pages and secure web communications.', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&term=57' }
+        { term: 'World Wide Web (Web)', definition: 'An application service of linked web documents accessed via web browsers.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=4' },
+        { term: 'Internet Service', definition: 'An application or system (like email or VoIP) running over Internet infrastructure.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&allterm=5' },
+        { term: 'HTTP / HTTPS', definition: 'The primary web protocols used to transfer web pages and secure web communications.', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&allterm=6' }
       ],
       examples: [
         'Using a web browser to view wikipedia.org uses the World Wide Web.',
@@ -95,9 +95,9 @@ window.CC101_MODULE_DATA = {
         'Over 95% of international Internet traffic travels through subsea fiber-optic cables laid across ocean floors. Data centers house thousands of servers running continuous web and cloud services.'
       ],
       definitions: [
-        { term: 'Subsea Cable', definition: 'Fiber-optic cables laid on the seabed carrying international Internet traffic between continents.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=58' },
-        { term: 'Data Center', definition: 'A dedicated facility housing computer servers, storage systems, and networking gear.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&term=59' },
-        { term: 'Internet Exchange Point (IXP)', definition: 'A physical facility where different ISPs connect to exchange Internet traffic directly.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&term=60' }
+        { term: 'Subsea Cable', definition: 'Fiber-optic cables laid on the seabed carrying international Internet traffic between continents.', image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&auto=format&fit=crop&allterm=7' },
+        { term: 'Data Center', definition: 'A dedicated facility housing computer servers, storage systems, and networking gear.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=8' },
+        { term: 'Internet Exchange Point (IXP)', definition: 'A physical facility where different ISPs connect to exchange Internet traffic directly.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&allterm=9' }
       ],
       examples: [
         'Subsea fiber cables connecting the Philippines to Japan and the United States across the Pacific Ocean.',
@@ -125,9 +125,9 @@ window.CC101_MODULE_DATA = {
         'ISPs assign IP addresses, route customer packets, maintain backbone connections, and peer with other service providers so traffic can reach any destination globally.'
       ],
       definitions: [
-        { term: 'ISP', definition: 'Internet Service Provider: a commercial or public entity providing Internet access.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=61' },
-        { term: 'FTTH', definition: 'Fiber To The Home: delivering optical fiber lines directly into customer residences.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=62' },
-        { term: 'Peering', definition: 'An agreement between two ISPs to exchange network traffic freely.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=63' }
+        { term: 'ISP', definition: 'Internet Service Provider: a commercial or public entity providing Internet access.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=10' },
+        { term: 'FTTH', definition: 'Fiber To The Home: delivering optical fiber lines directly into customer residences.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=11' },
+        { term: 'Peering', definition: 'An agreement between two ISPs to exchange network traffic freely.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=12' }
       ],
       examples: [
         'A home user connecting to the Internet via a fiber ONT installed by a local telecommunications provider.',
@@ -155,9 +155,9 @@ window.CC101_MODULE_DATA = {
         'The device receives four key network configuration settings: 1) Its own local IP address, 2) A Subnet mask (identifying local vs remote destinations), 3) A Default Gateway address (the local router), and 4) A DNS Resolver address (for name lookups).'
       ],
       definitions: [
-        { term: 'Network Association', definition: 'Establishing a link layer connection between a wireless device and an Access Point.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=64' },
-        { term: 'Network Configuration', definition: 'The set of network parameters (IP, Subnet, Gateway, DNS) required for IP communication.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=65' },
-        { term: 'Subnet Mask', definition: 'A network value used by a device to determine whether a target IP is on the local LAN or a remote network.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=66' }
+        { term: 'Network Association', definition: 'Establishing a link layer connection between a wireless device and an Access Point.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=13' },
+        { term: 'Network Configuration', definition: 'The set of network parameters (IP, Subnet, Gateway, DNS) required for IP communication.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=14' },
+        { term: 'Subnet Mask', definition: 'A network value used by a device to determine whether a target IP is on the local LAN or a remote network.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=15' }
       ],
       examples: [
         'A smartphone associating with school Wi-Fi and receiving an IP address (192.168.1.45) within seconds.',
@@ -185,9 +185,9 @@ window.CC101_MODULE_DATA = {
         'The DHCP lease process follows the DORA sequence: Discover (client searches for a DHCP server), Offer (server offers settings), Request (client asks for the offered lease), and Acknowledge (server confirms the lease).'
       ],
       definitions: [
-        { term: 'DHCP', definition: 'Dynamic Host Configuration Protocol: a service that automatically assigns IP configuration to hosts.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=67' },
-        { term: 'DORA Sequence', definition: 'The 4-step DHCP messaging sequence: Discover, Offer, Request, Acknowledge.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=68' },
-        { term: 'Static vs Dynamic IP', definition: 'Static IPs are permanent manual assignments; Dynamic IPs are temporary DHCP leases.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=69' }
+        { term: 'DHCP', definition: 'Dynamic Host Configuration Protocol: a service that automatically assigns IP configuration to hosts.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=16' },
+        { term: 'DORA Sequence', definition: 'The 4-step DHCP messaging sequence: Discover, Offer, Request, Acknowledge.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=17' },
+        { term: 'Static vs Dynamic IP', definition: 'Static IPs are permanent manual assignments; Dynamic IPs are temporary DHCP leases.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&allterm=18' }
       ],
       examples: [
         'A laptop receiving a 24-hour IP lease upon connecting to home Wi-Fi.',
@@ -215,10 +215,10 @@ window.CC101_MODULE_DATA = {
         'Together, these identifiers work in harmony: a domain name is translated into an IP address, which routes data across routers to a device, where a port directs it to the right application, and local switches deliver it using MAC addresses.'
       ],
       definitions: [
-        { term: 'MAC Address', definition: 'Physical hardware identifier for local link delivery (e.g. 00:1A:2B:3C:4D:5E).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=70' },
-        { term: 'IP Address', definition: 'Logical address used to route packets across global networks (e.g. 172.217.160.206).', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&term=71' },
-        { term: 'Domain Name', definition: 'Human-friendly text name for an IP address (e.g. google.com).', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&term=72' },
-        { term: 'Port Number', definition: 'Transport-layer identifier directing data to a specific software service (e.g. Port 443).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=73' }
+        { term: 'MAC Address', definition: 'Physical hardware identifier for local link delivery (e.g. 00:1A:2B:3C:4D:5E).', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&allterm=19' },
+        { term: 'IP Address', definition: 'Logical address used to route packets across global networks (e.g. 172.217.160.206).', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&allterm=20' },
+        { term: 'Domain Name', definition: 'Human-friendly text name for an IP address (e.g. google.com).', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&allterm=21' },
+        { term: 'Port Number', definition: 'Transport-layer identifier directing data to a specific software service (e.g. Port 443).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=22' }
       ],
       examples: [
         'MAC Address: Physical delivery inside classroom LAN.',
@@ -248,9 +248,9 @@ window.CC101_MODULE_DATA = {
         'IPv6 uses 128-bit addresses written in eight groups of hexadecimal digits (e.g., 2001:0db8:85a3::8a2e:0370:7334). IPv6 provides approximately 3.4 × 10^38 unique addresses—enough to assign trillions of addresses to every person on Earth.'
       ],
       definitions: [
-        { term: 'IPv4', definition: '32-bit legacy addressing scheme providing ~4.3 billion unique global addresses.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&term=74' },
-        { term: 'IPv6', definition: '128-bit modern addressing scheme providing a virtually unlimited address space.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&term=75' },
-        { term: 'Hexadecimal Notation', definition: 'Base-16 numbering system (0-9, A-F) used to write IPv6 addresses compactly.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=76' }
+        { term: 'IPv4', definition: '32-bit legacy addressing scheme providing ~4.3 billion unique global addresses.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&allterm=23' },
+        { term: 'IPv6', definition: '128-bit modern addressing scheme providing a virtually unlimited address space.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&allterm=24' },
+        { term: 'Hexadecimal Notation', definition: 'Base-16 numbering system (0-9, A-F) used to write IPv6 addresses compactly.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=25' }
       ],
       examples: [
         'IPv4 format: 172.217.160.206 (four 8-bit octets).',
@@ -278,9 +278,9 @@ window.CC101_MODULE_DATA = {
         'Public IP addresses are globally unique addresses assigned by ISPs. Any server or router directly reachable from the public Internet must have a public IP address.'
       ],
       definitions: [
-        { term: 'Private IP Address', definition: 'An IP address reserved for internal local network use, not routable on the public Internet.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&term=77' },
-        { term: 'Public IP Address', definition: 'A globally unique IP address assigned by ISPs and routable across the public Internet.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&term=78' },
-        { term: 'RFC 1918', definition: 'The Internet standard defining private IP address ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=79' }
+        { term: 'Private IP Address', definition: 'An IP address reserved for internal local network use, not routable on the public Internet.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&allterm=26' },
+        { term: 'Public IP Address', definition: 'A globally unique IP address assigned by ISPs and routable across the public Internet.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&allterm=27' },
+        { term: 'RFC 1918', definition: 'The Internet standard defining private IP address ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=28' }
       ],
       examples: [
         'Ten students on school Wi-Fi all having private IPs like 192.168.1.15, 192.168.1.16, etc.',
@@ -308,9 +308,9 @@ window.CC101_MODULE_DATA = {
         'When the response returns, the router translates the public destination IP back into the original private IP and passes it to the local device. NAT conserved IPv4 addresses for decades, allowing dozens of home devices to share one ISP line.'
       ],
       definitions: [
-        { term: 'NAT', definition: 'Network Address Translation: translating private local IPs into a public IP at the router boundary.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=80' },
-        { term: 'NAT Table', definition: 'An internal tracking table in a router mapping local private IPs and ports to outgoing public requests.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=81' },
-        { term: 'Address Conservation', definition: 'Using NAT to allow thousands of internal hosts to share a single public IPv4 address.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=82' }
+        { term: 'NAT', definition: 'Network Address Translation: translating private local IPs into a public IP at the router boundary.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=29' },
+        { term: 'NAT Table', definition: 'An internal tracking table in a router mapping local private IPs and ports to outgoing public requests.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=30' },
+        { term: 'Address Conservation', definition: 'Using NAT to allow thousands of internal hosts to share a single public IPv4 address.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&allterm=31' }
       ],
       examples: [
         'Five smartphones and three laptops on home Wi-Fi sharing one public IP assigned by the ISP.',
@@ -338,9 +338,9 @@ window.CC101_MODULE_DATA = {
         'If the destination is on a remote network (like an Internet web server), the device forwards the packet to its configured Default Gateway—the local router interface. The default gateway acts as the exit door from the LAN to the outside world.'
       ],
       definitions: [
-        { term: 'Default Gateway', definition: 'The router interface IP address used by local hosts to reach non-local destinations.', image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=800&auto=format&fit=crop&term=83' },
-        { term: 'Local vs Remote Routing', definition: 'Direct MAC delivery for local subnets; Default Gateway forwarding for remote IP networks.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=84' },
-        { term: 'Gateway Address', definition: 'Typically the first or last IP in a local subnet (e.g. 192.168.1.1).', image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=800&auto=format&fit=crop&term=85' }
+        { term: 'Default Gateway', definition: 'The router interface IP address used by local hosts to reach non-local destinations.', image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=800&auto=format&fit=crop&allterm=32' },
+        { term: 'Local vs Remote Routing', definition: 'Direct MAC delivery for local subnets; Default Gateway forwarding for remote IP networks.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=33' },
+        { term: 'Gateway Address', definition: 'Typically the first or last IP in a local subnet (e.g. 192.168.1.1).', image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?w=800&auto=format&fit=crop&allterm=34' }
       ],
       examples: [
         'A laptop sending a document to a local printer (192.168.1.20) directly without using the gateway.',
@@ -368,10 +368,10 @@ window.CC101_MODULE_DATA = {
         'Every packet consists of two main parts: 1) A Header (containing source IP, destination IP, protocol type, packet sequence number, and Time to Live), and 2) A Payload (the actual slice of user file data).'
       ],
       definitions: [
-        { term: 'Packet', definition: 'A formatted block of data carried by a packet-switched network.', image: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800&auto=format&fit=crop&term=86' },
-        { term: 'Header', definition: 'Control metadata attached to the front of a packet carrying delivery and protocol instructions.', image: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800&auto=format&fit=crop&term=87' },
-        { term: 'Payload', definition: 'The actual user data content carried inside a packet.', image: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800&auto=format&fit=crop&term=88' },
-        { term: 'MTU', definition: 'Maximum Transmission Unit: the largest packet payload size (usually 1500 bytes) allowed on a link.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=89' }
+        { term: 'Packet', definition: 'A formatted block of data carried by a packet-switched network.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=35' },
+        { term: 'Header', definition: 'Control metadata attached to the front of a packet carrying delivery and protocol instructions.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=36' },
+        { term: 'Payload', definition: 'The actual user data content carried inside a packet.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=37' },
+        { term: 'MTU', definition: 'Maximum Transmission Unit: the largest packet payload size (usually 1500 bytes) allowed on a link.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=38' }
       ],
       examples: [
         'A 3 MB photo file divided into approximately 2,000 separate packets for transmission.',
@@ -399,9 +399,9 @@ window.CC101_MODULE_DATA = {
         'Because packets take independent paths, they may arrive out of order, experience variable delays, or occasionally get dropped due to network congestion. Receiving systems use transport protocols to reorder and request missing packets.'
       ],
       definitions: [
-        { term: 'Packet Switching', definition: 'A communication method where packets are routed independently across shared network links.', image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&term=90' },
-        { term: 'Circuit Switching', definition: 'Legacy method where a dedicated physical circuit was reserved between two endpoints.', image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&term=91' },
-        { term: 'Dynamic Routing', definition: 'Routers dynamically choosing optimal paths for each packet based on current network health.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=92' }
+        { term: 'Packet Switching', definition: 'A communication method where packets are routed independently across shared network links.', image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&allterm=39' },
+        { term: 'Circuit Switching', definition: 'Legacy method where a dedicated physical circuit was reserved between two endpoints.', image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&allterm=40' },
+        { term: 'Dynamic Routing', definition: 'Routers dynamically choosing optimal paths for each packet based on current network health.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=41' }
       ],
       examples: [
         'Packets of a single video call taking three different fiber paths across the country and reassembling seamlessly.',
@@ -429,10 +429,10 @@ window.CC101_MODULE_DATA = {
         'Each router decrements the packet\'s Time to Live (TTL) counter by 1. If TTL hits zero, the packet is discarded, preventing routing loops from trapping dead packets forever. At the global scale, large autonomous systems exchange routing paths using the Border Gateway Protocol (BGP).'
       ],
       definitions: [
-        { term: 'Routing Table', definition: 'A database stored in a router listing network paths and next-hop forwarding interfaces.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=93' },
-        { term: 'TTL (Time to Live)', definition: 'A packet header counter decremented by each router hop to prevent infinite routing loops.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=94' },
-        { term: 'Autonomous System (AS)', definition: 'A large network or group of networks operated by a single organization under a unified routing policy.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=95' },
-        { term: 'BGP', definition: 'Border Gateway Protocol: the core routing protocol used to exchange routing info between autonomous systems.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=96' }
+        { term: 'Routing Table', definition: 'A database stored in a router listing network paths and next-hop forwarding interfaces.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=42' },
+        { term: 'TTL (Time to Live)', definition: 'A packet header counter decremented by each router hop to prevent infinite routing loops.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=43' },
+        { term: 'Autonomous System (AS)', definition: 'A large network or group of networks operated by a single organization under a unified routing policy.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=44' },
+        { term: 'BGP', definition: 'Border Gateway Protocol: the core routing protocol used to exchange routing info between autonomous systems.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=45' }
       ],
       examples: [
         'A packet traversing 12 router hops between a home computer in Leyte and a server in California.',
@@ -460,9 +460,9 @@ window.CC101_MODULE_DATA = {
         'Key Internet protocols operate at different levels: IP (addressing/routing), TCP (reliable transport), UDP (fast datagrams), DNS (domain resolution), HTTP/HTTPS (web communication), and SMTP/IMAP (email).'
       ],
       definitions: [
-        { term: 'Network Protocol', definition: 'An agreed set of rules and formats governing data communication between systems.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=97' },
-        { term: 'Interoperability', definition: 'The ability of diverse systems and hardware to work together using standardized protocols.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=98' },
-        { term: 'IETF', definition: 'Internet Engineering Task Force: the organization that develops and publishes Internet protocol standards (RFCs).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=99' }
+        { term: 'Network Protocol', definition: 'An agreed set of rules and formats governing data communication between systems.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=46' },
+        { term: 'Interoperability', definition: 'The ability of diverse systems and hardware to work together using standardized protocols.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=47' },
+        { term: 'IETF', definition: 'Internet Engineering Task Force: the organization that develops and publishes Internet protocol standards (RFCs).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=48' }
       ],
       examples: [
         'An Apple iPhone, a Windows PC, and a Linux web server communicating seamlessly using standard HTTP over TCP/IP.',
@@ -490,9 +490,9 @@ window.CC101_MODULE_DATA = {
         'Encapsulation occurs as data moves down the stack: each layer wraps the payload from the layer above in its own header (e.g. Data -> HTTP -> TCP Segment -> IP Packet -> Ethernet Frame -> Physical Signals). The receiver decapsulates the headers in reverse order.'
       ],
       definitions: [
-        { term: 'TCP/IP Model', definition: 'The 4-layer architectural framework defining Internet communication standards.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=100' },
-        { term: 'Encapsulation', definition: 'Adding protocol headers to data as it moves down through protocol layers.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=101' },
-        { term: 'Decapsulation', definition: 'Removing protocol headers from received data as it moves up through protocol layers.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=102' }
+        { term: 'TCP/IP Model', definition: 'The 4-layer architectural framework defining Internet communication standards.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&allterm=49' },
+        { term: 'Encapsulation', definition: 'Adding protocol headers to data as it moves down through protocol layers.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=50' },
+        { term: 'Decapsulation', definition: 'Removing protocol headers from received data as it moves up through protocol layers.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=51' }
       ],
       examples: [
         'A browser GET request encapsulated into a TCP segment, then an IP packet, then an Ethernet frame, then light pulses.',
@@ -520,9 +520,9 @@ window.CC101_MODULE_DATA = {
         'User Datagram Protocol (UDP) is connectionless and lightweight. It sends datagrams without establishing a connection, tracking sequence numbers, or retransmitting lost data. UDP is used for real-time applications like voice calls, video streaming, online gaming, and DNS lookups where speed is prioritized over 100% completeness.'
       ],
       definitions: [
-        { term: 'TCP', definition: 'Transmission Control Protocol: connection-oriented, reliable, ordered transport protocol.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=103' },
-        { term: 'UDP', definition: 'User Datagram Protocol: connectionless, lightweight, best-effort transport protocol.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=104' },
-        { term: '3-Way Handshake', definition: 'The SYN, SYN-ACK, ACK sequence used by TCP to establish a connection before sending data.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=105' }
+        { term: 'TCP', definition: 'Transmission Control Protocol: connection-oriented, reliable, ordered transport protocol.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=52' },
+        { term: 'UDP', definition: 'User Datagram Protocol: connectionless, lightweight, best-effort transport protocol.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=53' },
+        { term: '3-Way Handshake', definition: 'The SYN, SYN-ACK, ACK sequence used by TCP to establish a connection before sending data.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=54' }
       ],
       examples: [
         'Downloading a software installer uses TCP; a single missing bit would corrupt the executable file.',
@@ -550,9 +550,9 @@ window.CC101_MODULE_DATA = {
         'Standard services use Well-Known Ports (0-1023): Port 80 (HTTP web), Port 443 (HTTPS secure web), Port 53 (DNS name lookups), Port 22 (SSH secure terminal), and Port 25 (SMTP email). Clients use temporary dynamic ephemeral ports for outbound requests.'
       ],
       definitions: [
-        { term: 'Port Number', definition: 'A 16-bit transport layer number identifying a specific process or service endpoint.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=106' },
-        { term: 'Well-Known Ports', definition: 'Standardized port numbers (0-1023) reserved for recognized global services (80, 443, 53).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=107' },
-        { term: 'Socket', definition: 'The combination of an IP address and a Port Number (e.g. 172.217.160.206:443) identifying a unique connection end-point.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=108' }
+        { term: 'Port Number', definition: 'A 16-bit transport layer number identifying a specific process or service endpoint.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=55' },
+        { term: 'Well-Known Ports', definition: 'Standardized port numbers (0-1023) reserved for recognized global services (80, 443, 53).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=56' },
+        { term: 'Socket', definition: 'The combination of an IP address and a Port Number (e.g. 172.217.160.206:443) identifying a unique connection end-point.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=57' }
       ],
       examples: [
         'Web traffic directed to IP 172.217.160.206 at Port 443 for HTTPS.',
@@ -580,9 +580,9 @@ window.CC101_MODULE_DATA = {
         'When you type a domain name, your device checks: 1) Local browser/OS cache, 2) Recursive DNS Resolver (usually provided by your ISP or 8.8.8.8), which queries 3) Root Name Servers, 4) Top-Level Domain (TLD) Servers (.org, .com), and 5) Authoritative Name Servers to return the IP.'
       ],
       definitions: [
-        { term: 'DNS', definition: 'Domain Name System: a distributed system converting domain names into IP addresses.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&term=109' },
-        { term: 'Recursive Resolver', definition: 'A DNS server that performs full lookups on behalf of client devices.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=110' },
-        { term: 'Authoritative Name Server', definition: 'The official DNS server holding the master record for a specific domain name.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&term=111' }
+        { term: 'DNS', definition: 'Domain Name System: a distributed system converting domain names into IP addresses.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&allterm=58' },
+        { term: 'Recursive Resolver', definition: 'A DNS server that performs full lookups on behalf of client devices.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=59' },
+        { term: 'Authoritative Name Server', definition: 'The official DNS server holding the master record for a specific domain name.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&allterm=60' }
       ],
       examples: [
         'Typing "google.com" causing a DNS lookup (Port 53 UDP) that returns IP 172.217.160.206.',
@@ -610,9 +610,9 @@ window.CC101_MODULE_DATA = {
         'A URL (Uniform Resource Locator) is a complete address specifying: Scheme (https://), Host/Domain (example.com), Port (:443), Path (/courses/computing), Query string (?student=123), and Fragment (#section2).'
       ],
       definitions: [
-        { term: 'URL', definition: 'Uniform Resource Locator: a complete structured web address specifying how and where to fetch a resource.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&term=112' },
-        { term: 'Scheme', definition: 'The access protocol specified at the start of a URL (http, https, ftp).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=113' },
-        { term: 'Path & Query', definition: 'Path specifies the resource file location on the server; Query string passes key-value parameters.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=114' }
+        { term: 'URL', definition: 'Uniform Resource Locator: a complete structured web address specifying how and where to fetch a resource.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&allterm=61' },
+        { term: 'Scheme', definition: 'The access protocol specified at the start of a URL (http, https, ftp).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=62' },
+        { term: 'Path & Query', definition: 'Path specifies the resource file location on the server; Query string passes key-value parameters.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=63' }
       ],
       examples: [
         'In https://school.edu:443/grades/report.pdf?term=2#page1:',
@@ -640,9 +640,9 @@ window.CC101_MODULE_DATA = {
         'An HTTP exchange consists of a client Request (stating method, URI, headers, and optional body) and a server Response (returning status code, response headers, and content payload).'
       ],
       definitions: [
-        { term: 'HTTP', definition: 'Hypertext Transfer Protocol: the foundation protocol for client-server web communications.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&term=115' },
-        { term: 'Request-Response Cycle', definition: 'The cycle where a client initiates a request and a server returns a formatted response.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=116' },
-        { term: 'HTTP Headers', definition: 'Metadata fields carrying client preferences, content type, encoding, and server details.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&term=117' }
+        { term: 'HTTP', definition: 'Hypertext Transfer Protocol: the foundation protocol for client-server web communications.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&allterm=64' },
+        { term: 'Request-Response Cycle', definition: 'The cycle where a client initiates a request and a server returns a formatted response.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=65' },
+        { term: 'HTTP Headers', definition: 'Metadata fields carrying client preferences, content type, encoding, and server details.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&allterm=66' }
       ],
       examples: [
         'A browser requesting `GET /index.html HTTP/1.1` from a web server.',
@@ -670,9 +670,9 @@ window.CC101_MODULE_DATA = {
         'GET requests should be safe and idempotent, meaning making the same GET request multiple times does not alter server data.'
       ],
       definitions: [
-        { term: 'HTTP Method', definition: 'The action verb in an HTTP request indicating the intended operation.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&term=118' },
-        { term: 'GET vs POST', definition: 'GET retrieves data without modifying state; POST submits data to be processed or created.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=119' },
-        { term: 'Idempotency', definition: 'A property where repeating a request multiple times produces the same server state as a single request.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=120' }
+        { term: 'HTTP Method', definition: 'The action verb in an HTTP request indicating the intended operation.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&allterm=67' },
+        { term: 'GET vs POST', definition: 'GET retrieves data without modifying state; POST submits data to be processed or created.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=68' },
+        { term: 'Idempotency', definition: 'A property where repeating a request multiple times produces the same server state as a single request.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=69' }
       ],
       examples: [
         'Opening a blog post uses `GET /posts/1`.',
@@ -701,10 +701,10 @@ window.CC101_MODULE_DATA = {
         'Recognizing these categories helps users and developers quickly diagnose whether a problem lies in the request, authentication, server code, or network.'
       ],
       definitions: [
-        { term: 'Status Code', definition: 'A 3-digit numerical response code summarizing request processing results.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=121' },
-        { term: '200 OK', definition: 'Standard response code indicating the request succeeded and content is returned.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=122' },
-        { term: '404 Not Found', definition: 'Client error code indicating the requested URI path was not found on the server.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=123' },
-        { term: '500 Internal Server Error', definition: 'Server error code indicating an unexpected crash or fault in backend server code.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&term=124' }
+        { term: 'Status Code', definition: 'A 3-digit numerical response code summarizing request processing results.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&allterm=70' },
+        { term: '200 OK', definition: 'Standard response code indicating the request succeeded and content is returned.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=71' },
+        { term: '404 Not Found', definition: 'Client error code indicating the requested URI path was not found on the server.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=72' },
+        { term: '500 Internal Server Error', definition: 'Server error code indicating an unexpected crash or fault in backend server code.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&allterm=73' }
       ],
       examples: [
         '200 OK when a web page loads successfully.',
@@ -734,9 +734,9 @@ window.CC101_MODULE_DATA = {
         'During the TLS handshake, the browser performs certificate validation: checking that the digital certificate matches the domain name, is within its validity period, and was issued by a trusted Certificate Authority (CA).'
       ],
       definitions: [
-        { term: 'HTTPS', definition: 'Hypertext Transfer Protocol Secure: HTTP encrypted using TLS protocol.', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&term=125' },
-        { term: 'TLS Handshake', definition: 'The cryptographic negotiation where client and server validate identity and exchange encryption keys.', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&term=126' },
-        { term: 'Certificate Authority (CA)', definition: 'A trusted third-party organization that signs digital certificates verifying domain ownership.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=127' }
+        { term: 'HTTPS', definition: 'Hypertext Transfer Protocol Secure: HTTP encrypted using TLS protocol.', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&allterm=74' },
+        { term: 'TLS Handshake', definition: 'The cryptographic negotiation where client and server validate identity and exchange encryption keys.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=75' },
+        { term: 'Certificate Authority (CA)', definition: 'A trusted third-party organization that signs digital certificates verifying domain ownership.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=76' }
       ],
       examples: [
         'A browser padlock icon confirming an encrypted connection to `https://bank.com`.',
@@ -763,8 +763,8 @@ window.CC101_MODULE_DATA = {
         'The complete web request journey follows 14 distinct stages: 1) User enters URL, 2) Browser parses scheme and domain, 3) Browser checks local cache, 4) DNS resolves domain to an IP address, 5) Device determines route to Default Gateway, 6) Router forwards packets to ISP, 7) Routers forward packets hop-by-hop across the Internet, 8) Browser establishes TCP 3-way handshake, 9) TLS handshake establishes encryption (HTTPS), 10) Browser sends HTTP GET request, 11) Web server processes code and queries database, 12) Server returns HTTP 200 OK response with HTML, 13) Browser parses HTML/CSS, requests assets (CSS, JS, images), and 14) Browser computes layout and paints the rendered page.'
       ],
       definitions: [
-        { term: 'Request Journey', definition: 'The end-to-end multi-step technical sequence required to request and display a webpage.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=128' },
-        { term: 'Asset Sub-Requests', definition: 'Secondary HTTP requests automatically triggered by the browser for CSS, JS, fonts, and images referenced in HTML.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=129' }
+        { term: 'Request Journey', definition: 'The end-to-end multi-step technical sequence required to request and display a webpage.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=77' },
+        { term: 'Asset Sub-Requests', definition: 'Secondary HTTP requests automatically triggered by the browser for CSS, JS, fonts, and images referenced in HTML.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=78' }
       ],
       examples: [
         'A browser downloading a 5 KB HTML file, which then triggers 25 separate sub-requests for styling, script, and image files.'
@@ -791,9 +791,9 @@ window.CC101_MODULE_DATA = {
         'When a student submits a quiz, the client sends a request to the application server, which calculates the score, stores the result in the database, and returns a confirmation page.'
       ],
       definitions: [
-        { term: '3-Tier Architecture', definition: 'System design separating Client presentation, Server application logic, and Database storage.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=130' },
-        { term: 'Database', definition: 'A structured software system (like MySQL or PostgreSQL) for storing, querying, and updating data records.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=131' },
-        { term: 'Application Logic', definition: 'Backend code running on the server that enforces rules, calculations, and security.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=132' }
+        { term: '3-Tier Architecture', definition: 'System design separating Client presentation, Server application logic, and Database storage.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=79' },
+        { term: 'Database', definition: 'A structured software system (like MySQL or PostgreSQL) for storing, querying, and updating data records.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=80' },
+        { term: 'Application Logic', definition: 'Backend code running on the server that enforces rules, calculations, and security.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=81' }
       ],
       examples: [
         'A school LMS: Browser (Client) -> Node/Python backend (Server) -> PostgreSQL (Database).'
@@ -820,9 +820,9 @@ window.CC101_MODULE_DATA = {
         'Separating content (HTML) from presentation (CSS) and behavior (JavaScript) improves accessibility, maintainability, and caching performance.'
       ],
       definitions: [
-        { term: 'HTML', definition: 'Markup language defining the structural meaning of webpage elements.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&term=133' },
-        { term: 'CSS', definition: 'Stylesheet language controlling visual appearance, colors, fonts, and responsive layout.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&term=134' },
-        { term: 'JavaScript', definition: 'Programming language running in the browser providing interactive logic and dynamic DOM updates.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&term=135' }
+        { term: 'HTML', definition: 'Markup language defining the structural meaning of webpage elements.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&allterm=82' },
+        { term: 'CSS', definition: 'Stylesheet language controlling visual appearance, colors, fonts, and responsive layout.', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&allterm=83' },
+        { term: 'JavaScript', definition: 'Programming language running in the browser providing interactive logic and dynamic DOM updates.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&allterm=84' }
       ],
       examples: [
         'HTML creating a button `<button>`, CSS styling it blue with rounded corners, and JavaScript making it pop up a modal upon clicking.'
@@ -849,9 +849,9 @@ window.CC101_MODULE_DATA = {
         'Cookies allow websites to remember user preferences and maintain sign-in sessions, while caches dramatically reduce network bandwidth and page load times.'
       ],
       definitions: [
-        { term: 'Cookie', definition: 'Small text data stored in the browser by websites for tracking, preferences, or session IDs.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&term=136' },
-        { term: 'Session', definition: 'Server-side data record keeping track of an active user\'s state during their visit.' },
-        { term: 'Cache', definition: 'Local storage of previously fetched web assets (images, CSS) to speed up future visits.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&term=137' }
+        { term: 'Cookie', definition: 'Small text data stored in the browser by websites for tracking, preferences, or session IDs.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=85' },
+        { term: 'Session', definition: 'Server-side data record keeping track of an active user state during web browsing.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&term=session' },
+        { term: 'Cache', definition: 'Local storage of previously fetched web assets (images, CSS) to speed up future visits.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=86' }
       ],
       examples: [
         'A session cookie keeping a student logged into the grading portal as they click between pages.',
@@ -879,9 +879,9 @@ window.CC101_MODULE_DATA = {
         'Cloud Computing provides on-demand computing and storage resources over networks. A Content Delivery Network (CDN) is a distributed network of edge servers that cache static web content close to users, dramatically reducing latency.'
       ],
       definitions: [
-        { term: 'Web Hosting', definition: 'Providing server storage and network connectivity so website files are accessible 24/7.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&term=138' },
-        { term: 'Cloud Computing', definition: 'On-demand delivery of computing power, databases, and storage via the Internet.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=139' },
-        { term: 'CDN', definition: 'Content Delivery Network: edge servers distributed globally to cache content close to end users.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&term=140' }
+        { term: 'Web Hosting', definition: 'Providing server storage and network connectivity so website files are accessible 24/7.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&allterm=87' },
+        { term: 'Cloud Computing', definition: 'On-demand delivery of computing power, databases, and storage via the Internet.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=88' },
+        { term: 'CDN', definition: 'Content Delivery Network: edge servers distributed globally to cache content close to end users.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&allterm=89' }
       ],
       examples: [
         'Hosting a school website on a cloud server instance in Singapore.',
@@ -909,9 +909,9 @@ window.CC101_MODULE_DATA = {
         'Latency is the round-trip delay time (ping in ms). Jitter is the variation in latency over time. Packet Loss is the percentage of packets that fail to arrive. While high bandwidth is key for file downloads, low latency and jitter are essential for online gaming and live voice/video calls.'
       ],
       definitions: [
-        { term: 'Bandwidth vs Throughput', definition: 'Bandwidth is maximum channel capacity; Throughput is actual sustained data delivery rate.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&term=141' },
-        { term: 'Latency (Ping)', definition: 'The time delay in milliseconds for a packet to travel to a destination and return.', image: 'https://images.unsplash.com/photo-1526374870839-e155464bb9b2?w=800&auto=format&fit=crop&term=142' },
-        { term: 'Jitter & Packet Loss', definition: 'Jitter is latency fluctuation; Packet Loss is the percentage of dropped packets during congestion.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&term=143' }
+        { term: 'Bandwidth vs Throughput', definition: 'Bandwidth is maximum channel capacity; Throughput is actual sustained data delivery rate.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&allterm=90' },
+        { term: 'Latency (Ping)', definition: 'The time delay in milliseconds for a packet to travel to a destination and return.', image: 'https://images.unsplash.com/photo-1526374870839-e155464bb9b2?w=800&auto=format&fit=crop&allterm=91' },
+        { term: 'Jitter & Packet Loss', definition: 'Jitter is latency fluctuation; Packet Loss is the percentage of dropped packets during congestion.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&allterm=92' }
       ],
       examples: [
         'File Download: Affected primarily by throughput.',
@@ -941,9 +941,9 @@ window.CC101_MODULE_DATA = {
         'Common performance bottlenecks include weak Wi-Fi signals, local network congestion (too many devices downloading simultaneously), outdated home routers, ISP bandwidth limits, or overloaded destination web servers.'
       ],
       definitions: [
-        { term: 'Bottleneck', definition: 'The lowest-capacity segment along an end-to-end network path that limits overall performance.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=144' },
-        { term: 'Network Congestion', definition: 'Performance degradation occurring when network traffic exceeds available link capacity.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=145' },
-        { term: 'Upload Saturation', definition: 'Completely filling upload capacity, which halts incoming download acknowledgments and slows the connection.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=146' }
+        { term: 'Bottleneck', definition: 'The lowest-capacity segment along an end-to-end network path that limits overall performance.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=93' },
+        { term: 'Network Congestion', definition: 'Performance degradation occurring when network traffic exceeds available link capacity.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=94' },
+        { term: 'Upload Saturation', definition: 'Completely filling upload capacity, which halts incoming download acknowledgments and slows the connection.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=95' }
       ],
       examples: [
         'Having a 500 Mbps fiber line but getting only 10 Mbps speed because of a weak Wi-Fi signal through three concrete walls.',
@@ -971,9 +971,9 @@ window.CC101_MODULE_DATA = {
         'Security is a continuous practice combining technical controls (encryption, firewalls, MFA) with cautious user behavior.'
       ],
       definitions: [
-        { term: 'MFA', definition: 'Multi-Factor Authentication: requiring two or more verification factors to gain account access.', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&term=147' },
-        { term: 'Phishing', definition: 'Deceptive attacks tricking users into revealing passwords or credentials via fake emails/sites.', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&term=148' },
-        { term: 'Malware', definition: 'Malicious software (viruses, trojans, ransomware) designed to harm or exploit devices.', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&term=149' }
+        { term: 'MFA', definition: 'Multi-Factor Authentication: requiring two or more verification factors to gain account access.', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&allterm=96' },
+        { term: 'Phishing', definition: 'Deceptive attacks tricking users into revealing passwords or credentials via fake emails/sites.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=97' },
+        { term: 'Malware', definition: 'Malicious software (viruses, trojans, ransomware) designed to harm or exploit devices.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=98' }
       ],
       examples: [
         'Enabling MFA so an attacker who steals your password still cannot log into your account without your phone code.',
@@ -1001,9 +1001,9 @@ window.CC101_MODULE_DATA = {
         'Troubleshooting logically from physical hardware up to application services prevents wasted effort and pinpoints root causes.'
       ],
       definitions: [
-        { term: 'Dependency Ladder', definition: 'Troubleshooting in logical order from physical hardware up to application services.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=150' },
-        { term: 'Scope Isolation', definition: 'Determining whether a fault impacts a single device, an entire LAN, or a remote server.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=151' },
-        { term: 'Fault Location', definition: 'Pinpointing the exact segment (NIC, Wi-Fi, cable, gateway, ISP, DNS, or server) where a failure occurs.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=152' }
+        { term: 'Dependency Ladder', definition: 'Troubleshooting in logical order from physical hardware up to application services.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=99' },
+        { term: 'Scope Isolation', definition: 'Determining whether a fault impacts a single device, an entire LAN, or a remote server.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=100' },
+        { term: 'Fault Location', definition: 'Pinpointing the exact segment (NIC, Wi-Fi, cable, gateway, ISP, DNS, or server) where a failure occurs.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=101' }
       ],
       examples: [
         'If only one PC fails while all other classroom PCs work, the fault is isolated to that PC\'s NIC, cable, or Wi-Fi settings.',
@@ -1031,10 +1031,10 @@ window.CC101_MODULE_DATA = {
         'These utilities verify each rung of the troubleshooting dependency ladder.'
       ],
       definitions: [
-        { term: 'ipconfig /all', definition: 'Command listing detailed network configuration for all active system adapters.', image: 'https://images.unsplash.com/photo-1526374870839-e155464bb9b2?w=800&auto=format&fit=crop&term=153' },
-        { term: 'ping', definition: 'Utility sending ICMP Echo Request packets to test target reachability and latency.', image: 'https://images.unsplash.com/photo-1526374870839-e155464bb9b2?w=800&auto=format&fit=crop&term=154' },
-        { term: 'nslookup', definition: 'Command-line tool querying DNS servers to resolve hostnames or inspect DNS records.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=155' },
-        { term: 'tracert', definition: 'Traceroute tool displaying each router hop and latency along the path to a destination.', image: 'https://images.unsplash.com/photo-1526374870839-e155464bb9b2?w=800&auto=format&fit=crop&term=156' }
+        { term: 'ipconfig /all', definition: 'Command listing detailed network configuration for all active system adapters.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&allterm=102' },
+        { term: 'ping', definition: 'Utility sending ICMP Echo Request packets to test target reachability and latency.', image: 'https://images.unsplash.com/photo-1526374870839-e155464bb9b2?w=800&auto=format&fit=crop&allterm=103' },
+        { term: 'nslookup', definition: 'Command-line tool querying DNS servers to resolve hostnames or inspect DNS records.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=104' },
+        { term: 'tracert', definition: 'Traceroute tool displaying each router hop and latency along the path to a destination.', image: 'https://images.unsplash.com/photo-1526374870839-e155464bb9b2?w=800&auto=format&fit=crop&allterm=105' }
       ],
       examples: [
         'Running `ipconfig /all` to verify that DHCP assigned IP 192.168.1.50 and Gateway 192.168.1.1.',
@@ -1063,9 +1063,9 @@ window.CC101_MODULE_DATA = {
         'Maintaining an open, resilient, and safe Internet requires technical standardization, responsible digital citizenship, privacy respect, and international cooperation.'
       ],
       definitions: [
-        { term: 'Multi-Stakeholder Model', definition: 'Governance involving technical experts, academics, civil society, governments, and private industry.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=157' },
-        { term: 'ICANN', definition: 'Organization coordinating global domain names, IP address allocation, and root server parameters.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=158' },
-        { term: 'IETF', definition: 'Open technical community that develops and defines Internet protocol specifications (RFCs).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&term=159' }
+        { term: 'Multi-Stakeholder Model', definition: 'Governance involving technical experts, academics, civil society, governments, and private industry.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=106' },
+        { term: 'ICANN', definition: 'Organization coordinating global domain names, IP address allocation, and root server parameters.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=107' },
+        { term: 'IETF', definition: 'Open technical community that develops and defines Internet protocol specifications (RFCs).', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&allterm=108' }
       ],
       examples: [
         'Engineers worldwide collaborating in the IETF to publish and improve modern protocol standards like HTTP/3 and TLS 1.3.',

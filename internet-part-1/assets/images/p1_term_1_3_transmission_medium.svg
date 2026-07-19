@@ -2,19 +2,29 @@
 <svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bgGrad_4" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0b0f19" />
-      <stop offset="100%" stop-color="#161e2e" />
+      <stop offset="0%" stop-color="#0b1120" />
+      <stop offset="100%" stop-color="#151f32" />
     </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="hsl(30, 90%, 55%)" />
+    </marker>
   </defs>
+  <!-- Background -->
   <rect width="600" height="200" fill="url(#bgGrad_4)" rx="10" />
-  <rect width="596" height="196" x="2" y="2" fill="none" stroke="hsl(188, 85%, 60%)" stroke-width="1.5" stroke-opacity="0.4" rx="9" />
-  <text x="15" y="22" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="bold">TECHNICAL DIAGRAM #4</text>
+  <rect width="594" height="194" x="3" y="3" fill="none" stroke="hsl(30, 90%, 55%)" stroke-width="1.5" stroke-opacity="0.35" rx="9" />
+  <text x="15" y="22" fill="#64748b" font-family="sans-serif" font-size="10" font-weight="bold">NETWORKING TECHNICAL SCHEMATIC #4</text>
   
-      <rect x="100" y="40" width="400" height="100" rx="12" fill="#0f172a" stroke="hsl(188, 85%, 60%)" stroke-width="3" />
-      <circle cx="200" cy="90" r="25" fill="hsl(188, 85%, 60%)" opacity="0.3" />
-      <circle cx="300" cy="90" r="25" fill="hsl(233, 75%, 55%)" opacity="0.3" />
-      <circle cx="400" cy="90" r="25" fill="hsl(188, 85%, 60%)" opacity="0.3" />
-      <line x1="200" y1="90" x2="400" y2="90" stroke="hsl(188, 85%, 60%)" stroke-width="4" />
-      <text x="300" y="165" text-anchor="middle" fill="#e2e8f0" font-family="sans-serif" font-size="13" font-weight="bold">Transmission Medium</text>
+      <g transform="translate(100, 50)">
+        <!-- Outer Jacket -->
+        <rect x="0" y="30" width="400" height="50" rx="8" fill="#1e293b" stroke="hsl(30, 90%, 55%)" stroke-width="2" />
+        <!-- Cladding -->
+        <rect x="20" y="40" width="360" height="30" rx="4" fill="#0f172a" stroke="hsl(75, 85%, 50%)" stroke-width="1.5" />
+        <!-- Glass Core with Light Ray -->
+        <rect x="40" y="48" width="320" height="14" rx="2" fill="#0284c7" opacity="0.4" />
+        <!-- Light pulse zig-zag ray -->
+        <path d="M 40 55 L 90 50 L 140 60 L 190 50 L 240 60 L 290 50 L 340 55" fill="none" stroke="#f0f9ff" stroke-width="4" stroke-linecap="round" filter="drop-shadow(0 0 6px hsl(30, 90%, 55%))" />
+        <circle cx="190" cy="50" r="7" fill="#ffffff" />
+        <text x="200" y="-10" text-anchor="middle" fill="#e2e8f0" font-family="sans-serif" font-size="14" font-weight="bold">Glass Core Fiber Transmission (Speed of Light)</text>
+      </g>
     
 </svg>

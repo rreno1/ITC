@@ -56,6 +56,14 @@
         <div class="concept-visual visual-flow" role="img" aria-label="Browser request and server response">
           <span>Browser</span><b aria-hidden="true">&rarr;</b><span>HTTP request</span><b aria-hidden="true">&rarr;</b><span>Server</span><b aria-hidden="true">&larr;</b><span>Response</span>
         </div>`,
+      topologies: `
+        <div class="concept-visual visual-security" role="img" aria-label="Comparison of Star, Bus, Ring, and Mesh network topologies">
+          <span><strong>Star</strong>Central Switch</span><span><strong>Bus</strong>Shared Line</span><span><strong>Ring</strong>Circular Token</span><span><strong>Mesh</strong>Redundant Links</span>
+        </div>`,
+      coverage: `
+        <div class="concept-visual visual-security" role="img" aria-label="Comparison of PAN, LAN, WLAN, CAN, MAN, WAN coverage areas">
+          <span><strong>PAN</strong>Personal (~10m)</span><span><strong>LAN / WLAN</strong>Building</span><span><strong>CAN / MAN</strong>Campus / City</span><span><strong>WAN / Internet</strong>Global</span>
+        </div>`,
       network: `
         <div class="concept-visual visual-flow" role="img" aria-label="Device traffic crossing a local network to the Internet">
           <span>Device</span><b aria-hidden="true">&rarr;</b><span>Switch</span><b aria-hidden="true">&rarr;</b><span>Router</span><b aria-hidden="true">&rarr;</b><span>Internet</span>
@@ -169,20 +177,33 @@
   }
 
   function renderLessonMedia(lesson) {
-    if (!lesson.image) return renderVisual(lesson.visual);
-    return `
+    const photo = lesson.image ? `
       <figure class="concept-photo">
         <img src="${escapeHTML(lesson.image.src)}" alt="${escapeHTML(lesson.image.alt)}" loading="lazy" decoding="async">
         ${lesson.image.credit ? `<figcaption>${escapeHTML(lesson.image.credit)}</figcaption>` : ''}
       </figure>
+    ` : '';
+    const visual = lesson.visual ? renderVisual(lesson.visual) : '';
+    return `
+      <div class="lesson-media-block" style="display:flex; flex-direction:column; gap:16px;">
+        ${photo}
+        ${visual}
+      </div>
     `;
   }
 
   function renderLesson(lesson, slideNumber) {
     const definitions = lesson.definitions.map(item => `
-      <div class="definition-item">
-        <dt>${escapeHTML(item.term)}</dt>
-        <dd>${escapeHTML(item.definition)}</dd>
+      <div class="definition-item ${item.image ? 'definition-card-has-img' : ''}">
+        ${item.image ? `
+          <div class="definition-card-media">
+            <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.term)}" loading="lazy" decoding="async">
+          </div>
+        ` : ''}
+        <div class="definition-card-body">
+          <dt>${escapeHTML(item.term)}</dt>
+          <dd>${escapeHTML(item.definition)}</dd>
+        </div>
       </div>
     `).join('');
 

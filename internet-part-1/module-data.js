@@ -21,9 +21,9 @@ window.CC101_MODULE_DATA = {
       "title": "Begin With Communication",
       "category": "Communication Model",
       "image": {
-        "src": "assets/images/p1_slide_1_begin_with_communication.svg",
-        "alt": "Technical Diagram for Begin With Communication",
-        "credit": "Network Technical Schematic #1"
+        "src": "assets/images/pass1_ai_slide_1_begin_with_communication.jpg",
+        "alt": "High Resolution Technology Visual for Begin With Communication",
+        "credit": "AI Tech Asset #1516321318423-f06f85e504b3"
       },
       "visual": "network",
       "lead": "Before understanding complex networks, we must look at how two individual devices exchange information using a basic communication model.",
@@ -35,22 +35,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Sender",
           "definition": "The device or application that originates the information being sent.",
-          "image": "assets/images/p1_term_1_1_sender.svg"
+          "image": "assets/images/pass1_ai_term_1_1_sender.jpg"
         },
         {
           "term": "Receiver",
           "definition": "The target device or application intended to receive the information.",
-          "image": "assets/images/p1_term_1_2_receiver.svg"
+          "image": "assets/images/pass1_ai_term_1_2_receiver.jpg"
         },
         {
           "term": "Transmission Medium",
           "definition": "The physical or wireless path (copper, fiber, radio waves) over which data travels.",
-          "image": "assets/images/p1_term_1_3_transmission_medium.svg"
+          "image": "assets/images/pass1_ai_term_1_3_transmission_medium.jpg"
         },
         {
           "term": "Protocol Rules",
           "definition": "Agreed standards governing how data is formatted, sent, and acknowledged.",
-          "image": "assets/images/p1_term_1_4_protocol_rules.svg"
+          "image": "assets/images/pass1_ai_term_1_4_protocol_rules.jpg"
         }
       ],
       "examples": [
@@ -68,9 +68,9 @@ window.CC101_MODULE_DATA = {
       "title": "Data Becomes Signals",
       "category": "Physical Layer",
       "image": {
-        "src": "assets/images/p1_slide_2_data_becomes_signals.svg",
-        "alt": "Technical Diagram for Data Becomes Signals",
-        "credit": "Network Technical Schematic #6"
+        "src": "assets/images/pass1_ai_slide_2_data_becomes_signals.jpg",
+        "alt": "High Resolution Technology Visual for Data Becomes Signals",
+        "credit": "AI Tech Asset #1544716278-ca5e3f4abd8c"
       },
       "visual": "infrastructure",
       "lead": "The 1s and 0s stored in computer memory travel through the real world as physical signals through copper cables, optical fibers, or radio waves.",
@@ -82,22 +82,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Physical Signal",
           "definition": "A detectable physical quantity (electrical voltage, light pulse, or radio wave) representing binary data.",
-          "image": "assets/images/p1_term_2_1_physical_signal.svg"
+          "image": "assets/images/pass1_ai_term_2_1_physical_signal.jpg"
         },
         {
           "term": "Copper Transmission",
           "definition": "Carrying binary data using varying electrical voltages over copper wires.",
-          "image": "assets/images/p1_term_2_2_copper_transmission.svg"
+          "image": "assets/images/pass1_ai_term_2_2_copper_transmission.jpg"
         },
         {
           "term": "Fiber-Optic Transmission",
           "definition": "Carrying binary data as rapid pulses of light down ultra-pure glass strands.",
-          "image": "assets/images/p1_term_2_3_fiber_optic_transmission.svg"
+          "image": "assets/images/pass1_ai_term_2_3_fiber_optic_transmission.jpg"
         },
         {
           "term": "Wireless Modulation",
           "definition": "Varying the frequency, amplitude, or phase of radio waves to encode binary 1s and 0s.",
-          "image": "assets/images/p1_term_2_4_wireless_modulation.svg"
+          "image": "assets/images/pass1_ai_term_2_4_wireless_modulation.jpg"
         }
       ],
       "examples": [
@@ -116,9 +116,9 @@ window.CC101_MODULE_DATA = {
       "title": "What Is a Computer Network?",
       "category": "Network Concepts",
       "image": {
-        "src": "assets/images/p1_slide_3_what_is_a_computer_network.svg",
-        "alt": "Technical Diagram for What Is a Computer Network?",
-        "credit": "Network Technical Schematic #11"
+        "src": "assets/images/pass1_ai_slide_3_what_is_a_computer_network.jpg",
+        "alt": "High Resolution Technology Visual for What Is a Computer Network?",
+        "credit": "AI Tech Asset #1526374965328-7f61d4dc18c5"
       },
       "visual": "network",
       "lead": "A computer network is simply two or more connected devices that can communicate and share data, services, and hardware resources.",
@@ -130,22 +130,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Computer Network",
           "definition": "A group of connected devices capable of communicating and sharing resources.",
-          "image": "assets/images/p1_term_3_1_computer_network.svg"
+          "image": "assets/images/pass1_ai_term_3_1_computer_network.jpg"
         },
         {
           "term": "Node",
           "definition": "Any active electronic device connected to a network that can send, receive, or forward data.",
-          "image": "assets/images/p1_term_3_2_node.svg"
+          "image": "assets/images/pass1_ai_term_3_2_node.jpg"
         },
         {
           "term": "Host",
           "definition": "An end-user device (like a laptop or server) assigned a network address that originates or consumes data.",
-          "image": "assets/images/p1_term_3_3_host.svg"
+          "image": "assets/images/pass1_ai_term_3_3_host.jpg"
         },
         {
           "term": "Resource",
           "definition": "Hardware, files, applications, or data shared across a network.",
-          "image": "assets/images/p1_term_3_4_resource.svg"
+          "image": "assets/images/pass1_ai_term_3_4_resource.jpg"
         }
       ],
       "examples": [
@@ -164,9 +164,9 @@ window.CC101_MODULE_DATA = {
       "title": "Network Versus Internet",
       "category": "Network Concepts",
       "image": {
-        "src": "assets/images/p1_slide_4_network_versus_internet.svg",
-        "alt": "Technical Diagram for Network Versus Internet",
-        "credit": "Network Technical Schematic #16"
+        "src": "assets/images/pass1_ai_slide_4_network_versus_internet.jpg",
+        "alt": "High Resolution Technology Visual for Network Versus Internet",
+        "credit": "AI Tech Asset #1515879218367-8466d910aaa4"
       },
       "visual": "network",
       "lead": "A local network is an independent, self-contained system of devices, whereas the Internet is a global network of interconnected networks.",
@@ -178,17 +178,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Local Network (LAN)",
           "definition": "A private network operating within a limited area under single organizational control.",
-          "image": "assets/images/p1_term_4_1_local_network_lan.svg"
+          "image": "assets/images/pass1_ai_term_4_1_local_network_lan.jpg"
         },
         {
           "term": "The Internet",
           "definition": "The global system of interconnected independent networks communicating via TCP/IP.",
-          "image": "assets/images/p1_term_4_2_the_internet.svg"
+          "image": "assets/images/pass1_ai_term_4_2_the_internet.jpg"
         },
         {
           "term": "Network Independence",
           "definition": "The ability of a local network to share local files and devices without outside connectivity.",
-          "image": "assets/images/p1_term_4_3_network_independence.svg"
+          "image": "assets/images/pass1_ai_term_4_3_network_independence.jpg"
         }
       ],
       "examples": [
@@ -206,9 +206,9 @@ window.CC101_MODULE_DATA = {
       "title": "Types of Networks by Coverage Area",
       "category": "Network Coverage",
       "image": {
-        "src": "assets/images/p1_slide_5_types_of_networks_by_coverage_area.svg",
-        "alt": "Technical Diagram for Types of Networks by Coverage Area",
-        "credit": "Network Technical Schematic #20"
+        "src": "assets/images/pass1_ai_slide_5_types_of_networks_by_coverage_area.jpg",
+        "alt": "High Resolution Technology Visual for Types of Networks by Coverage Area",
+        "credit": "AI Tech Asset #1488590528505-98d2b5aba04b"
       },
       "visual": "network",
       "lead": "Networks are categorized by their geographic span, ranging from personal bluetooth links to city-wide and global connections.",
@@ -220,22 +220,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "PAN",
           "definition": "Personal Area Network (around 1 person, e.g. Bluetooth mouse or earbuds).",
-          "image": "assets/images/p1_term_5_1_pan.svg"
+          "image": "assets/images/pass1_ai_term_5_1_pan.jpg"
         },
         {
           "term": "LAN & WLAN",
           "definition": "Local Area Network and Wireless LAN (a room, home, lab, or single building).",
-          "image": "assets/images/p1_term_5_2_lan_wlan.svg"
+          "image": "assets/images/pass1_ai_term_5_2_lan_wlan.jpg"
         },
         {
           "term": "CAN",
           "definition": "Campus Area Network (connecting multiple nearby organizational buildings).",
-          "image": "assets/images/p1_term_5_3_can.svg"
+          "image": "assets/images/pass1_ai_term_5_3_can.jpg"
         },
         {
           "term": "MAN & WAN",
           "definition": "Metropolitan Area Network (city-wide) and Wide Area Network (provinces, countries, global).",
-          "image": "assets/images/p1_term_5_4_man_wan.svg"
+          "image": "assets/images/pass1_ai_term_5_4_man_wan.jpg"
         }
       ],
       "examples": [

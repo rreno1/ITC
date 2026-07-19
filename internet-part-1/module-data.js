@@ -21,9 +21,9 @@ window.CC101_MODULE_DATA = {
       "title": "Begin With Communication",
       "category": "Communication Model",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Begin%20With%20Communication%2C%20Before%20understanding%20complex%20networks%20we%20must%20look%20at%20how%20two%20individual%20devices%20exchange%20informatio%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=101",
-        "alt": "AI Generated 3D Technical Diagram for Begin With Communication",
-        "credit": "AI Generated Visual #101"
+        "src": "assets/images/p1_slide_1_begin_with_communication.svg",
+        "alt": "Technical Diagram for Begin With Communication",
+        "credit": "AI Technical Schematic #1-1"
       },
       "visual": "network",
       "lead": "Before understanding complex networks, we must look at how two individual devices exchange information using a basic communication model.",
@@ -35,22 +35,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Sender",
           "definition": "The device or application that originates the information being sent.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Sender%2C%20The%20device%20or%20application%20that%20originates%20the%20information%20being%20sent%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=102"
+          "image": "assets/images/p1_term_1_1_sender.svg"
         },
         {
           "term": "Receiver",
           "definition": "The target device or application intended to receive the information.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Receiver%2C%20The%20target%20device%20or%20application%20intended%20to%20receive%20the%20information%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=103"
+          "image": "assets/images/p1_term_1_2_receiver.svg"
         },
         {
           "term": "Transmission Medium",
           "definition": "The physical or wireless path (copper, fiber, radio waves) over which data travels.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Transmission%20Medium%2C%20The%20physical%20or%20wireless%20path%20copper%20fiber%20radio%20waves%20over%20which%20data%20travels%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=104"
+          "image": "assets/images/p1_term_1_3_transmission_medium.svg"
         },
         {
           "term": "Protocol Rules",
           "definition": "Agreed standards governing how data is formatted, sent, and acknowledged.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Protocol%20Rules%2C%20Agreed%20standards%20governing%20how%20data%20is%20formatted%20sent%20and%20acknowledged%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=105"
+          "image": "assets/images/p1_term_1_4_protocol_rules.svg"
         }
       ],
       "examples": [
@@ -68,9 +68,9 @@ window.CC101_MODULE_DATA = {
       "title": "Data Becomes Signals",
       "category": "Physical Layer",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Data%20Becomes%20Signals%2C%20The%201s%20and%200s%20stored%20in%20computer%20memory%20travel%20through%20the%20real%20world%20as%20physical%20signals%20through%20co%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=106",
-        "alt": "AI Generated 3D Technical Diagram for Data Becomes Signals",
-        "credit": "AI Generated Visual #106"
+        "src": "assets/images/p1_slide_2_data_becomes_signals.svg",
+        "alt": "Technical Diagram for Data Becomes Signals",
+        "credit": "AI Technical Schematic #1-2"
       },
       "visual": "infrastructure",
       "lead": "The 1s and 0s stored in computer memory travel through the real world as physical signals through copper cables, optical fibers, or radio waves.",
@@ -82,22 +82,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Physical Signal",
           "definition": "A detectable physical quantity (electrical voltage, light pulse, or radio wave) representing binary data.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Physical%20Signal%2C%20A%20detectable%20physical%20quantity%20electrical%20voltage%20light%20pulse%20or%20radio%20wave%20representing%20binary%20data%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=107"
+          "image": "assets/images/p1_term_2_1_physical_signal.svg"
         },
         {
           "term": "Copper Transmission",
           "definition": "Carrying binary data using varying electrical voltages over copper wires.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Copper%20Transmission%2C%20Carrying%20binary%20data%20using%20varying%20electrical%20voltages%20over%20copper%20wires%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=108"
+          "image": "assets/images/p1_term_2_2_copper_transmission.svg"
         },
         {
           "term": "Fiber-Optic Transmission",
           "definition": "Carrying binary data as rapid pulses of light down ultra-pure glass strands.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20FiberOptic%20Transmission%2C%20Carrying%20binary%20data%20as%20rapid%20pulses%20of%20light%20down%20ultrapure%20glass%20strands%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=109"
+          "image": "assets/images/p1_term_2_3_fiber_optic_transmission.svg"
         },
         {
           "term": "Wireless Modulation",
           "definition": "Varying the frequency, amplitude, or phase of radio waves to encode binary 1s and 0s.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Wireless%20Modulation%2C%20Varying%20the%20frequency%20amplitude%20or%20phase%20of%20radio%20waves%20to%20encode%20binary%201s%20and%200s%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=110"
+          "image": "assets/images/p1_term_2_4_wireless_modulation.svg"
         }
       ],
       "examples": [
@@ -116,9 +116,9 @@ window.CC101_MODULE_DATA = {
       "title": "What Is a Computer Network?",
       "category": "Network Concepts",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20What%20Is%20a%20Computer%20Network%2C%20A%20computer%20network%20is%20simply%20two%20or%20more%20connected%20devices%20that%20can%20communicate%20and%20share%20data%20servi%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=111",
-        "alt": "AI Generated 3D Technical Diagram for What Is a Computer Network?",
-        "credit": "AI Generated Visual #111"
+        "src": "assets/images/p1_slide_3_what_is_a_computer_network.svg",
+        "alt": "Technical Diagram for What Is a Computer Network?",
+        "credit": "AI Technical Schematic #1-3"
       },
       "visual": "network",
       "lead": "A computer network is simply two or more connected devices that can communicate and share data, services, and hardware resources.",
@@ -130,22 +130,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Computer Network",
           "definition": "A group of connected devices capable of communicating and sharing resources.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Computer%20Network%2C%20A%20group%20of%20connected%20devices%20capable%20of%20communicating%20and%20sharing%20resources%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=112"
+          "image": "assets/images/p1_term_3_1_computer_network.svg"
         },
         {
           "term": "Node",
           "definition": "Any active electronic device connected to a network that can send, receive, or forward data.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Node%2C%20Any%20active%20electronic%20device%20connected%20to%20a%20network%20that%20can%20send%20receive%20or%20forward%20data%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=113"
+          "image": "assets/images/p1_term_3_2_node.svg"
         },
         {
           "term": "Host",
           "definition": "An end-user device (like a laptop or server) assigned a network address that originates or consumes data.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Host%2C%20An%20enduser%20device%20like%20a%20laptop%20or%20server%20assigned%20a%20network%20address%20that%20originates%20or%20consumes%20dat%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=114"
+          "image": "assets/images/p1_term_3_3_host.svg"
         },
         {
           "term": "Resource",
           "definition": "Hardware, files, applications, or data shared across a network.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Resource%2C%20Hardware%20files%20applications%20or%20data%20shared%20across%20a%20network%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=115"
+          "image": "assets/images/p1_term_3_4_resource.svg"
         }
       ],
       "examples": [
@@ -164,9 +164,9 @@ window.CC101_MODULE_DATA = {
       "title": "Network Versus Internet",
       "category": "Network Concepts",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Network%20Versus%20Internet%2C%20A%20local%20network%20is%20an%20independent%20selfcontained%20system%20of%20devices%20whereas%20the%20Internet%20is%20a%20global%20n%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=116",
-        "alt": "AI Generated 3D Technical Diagram for Network Versus Internet",
-        "credit": "AI Generated Visual #116"
+        "src": "assets/images/p1_slide_4_network_versus_internet.svg",
+        "alt": "Technical Diagram for Network Versus Internet",
+        "credit": "AI Technical Schematic #1-4"
       },
       "visual": "network",
       "lead": "A local network is an independent, self-contained system of devices, whereas the Internet is a global network of interconnected networks.",
@@ -178,17 +178,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Local Network (LAN)",
           "definition": "A private network operating within a limited area under single organizational control.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Local%20Network%20LAN%2C%20A%20private%20network%20operating%20within%20a%20limited%20area%20under%20single%20organizational%20control%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=117"
+          "image": "assets/images/p1_term_4_1_local_network_lan.svg"
         },
         {
           "term": "The Internet",
           "definition": "The global system of interconnected independent networks communicating via TCP/IP.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20The%20Internet%2C%20The%20global%20system%20of%20interconnected%20independent%20networks%20communicating%20via%20TCPIP%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=118"
+          "image": "assets/images/p1_term_4_2_the_internet.svg"
         },
         {
           "term": "Network Independence",
           "definition": "The ability of a local network to share local files and devices without outside connectivity.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Network%20Independence%2C%20The%20ability%20of%20a%20local%20network%20to%20share%20local%20files%20and%20devices%20without%20outside%20connectivity%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=119"
+          "image": "assets/images/p1_term_4_3_network_independence.svg"
         }
       ],
       "examples": [
@@ -206,9 +206,9 @@ window.CC101_MODULE_DATA = {
       "title": "Types of Networks by Coverage Area",
       "category": "Network Coverage",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Types%20of%20Networks%20by%20Coverage%20Area%2C%20Networks%20are%20categorized%20by%20their%20geographic%20span%20ranging%20from%20personal%20bluetooth%20links%20to%20citywide%20%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=120",
-        "alt": "AI Generated 3D Technical Diagram for Types of Networks by Coverage Area",
-        "credit": "AI Generated Visual #120"
+        "src": "assets/images/p1_slide_5_types_of_networks_by_coverage_area.svg",
+        "alt": "Technical Diagram for Types of Networks by Coverage Area",
+        "credit": "AI Technical Schematic #1-5"
       },
       "visual": "network",
       "lead": "Networks are categorized by their geographic span, ranging from personal bluetooth links to city-wide and global connections.",
@@ -220,22 +220,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "PAN",
           "definition": "Personal Area Network (around 1 person, e.g. Bluetooth mouse or earbuds).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20PAN%2C%20Personal%20Area%20Network%20around%201%20person%20eg%20Bluetooth%20mouse%20or%20earbuds%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=121"
+          "image": "assets/images/p1_term_5_1_pan.svg"
         },
         {
           "term": "LAN & WLAN",
           "definition": "Local Area Network and Wireless LAN (a room, home, lab, or single building).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20LAN%20%20WLAN%2C%20Local%20Area%20Network%20and%20Wireless%20LAN%20a%20room%20home%20lab%20or%20single%20building%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=122"
+          "image": "assets/images/p1_term_5_2_lan_wlan.svg"
         },
         {
           "term": "CAN",
           "definition": "Campus Area Network (connecting multiple nearby organizational buildings).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20CAN%2C%20Campus%20Area%20Network%20connecting%20multiple%20nearby%20organizational%20buildings%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=123"
+          "image": "assets/images/p1_term_5_3_can.svg"
         },
         {
           "term": "MAN & WAN",
           "definition": "Metropolitan Area Network (city-wide) and Wide Area Network (provinces, countries, global).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20MAN%20%20WAN%2C%20Metropolitan%20Area%20Network%20citywide%20and%20Wide%20Area%20Network%20provinces%20countries%20global%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=124"
+          "image": "assets/images/p1_term_5_4_man_wan.svg"
         }
       ],
       "examples": [
@@ -255,9 +255,9 @@ window.CC101_MODULE_DATA = {
       "title": "Networks Can Be Classified in Different Ways",
       "category": "Classifications",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Networks%20Can%20Be%20Classified%20in%20Different%20Ways%2C%20Networks%20are%20described%20by%20different%20attributes%20coverage%20medium%20architecture%20access%20permissions%20topol%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=125",
-        "alt": "AI Generated 3D Technical Diagram for Networks Can Be Classified in Different Ways",
-        "credit": "AI Generated Visual #125"
+        "src": "assets/images/p1_slide_6_networks_can_be_classified_in_different_ways.svg",
+        "alt": "Technical Diagram for Networks Can Be Classified in Different Ways",
+        "credit": "AI Technical Schematic #1-6"
       },
       "visual": "network",
       "lead": "Networks are described by different attributes: coverage, medium, architecture, access permissions, topology, and ownership.",
@@ -269,22 +269,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Coverage",
           "definition": "How far the physical or wireless network spans geographically (PAN, LAN, WAN).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Coverage%2C%20How%20far%20the%20physical%20or%20wireless%20network%20spans%20geographically%20PAN%20LAN%20WAN%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=126"
+          "image": "assets/images/p1_term_6_1_coverage.svg"
         },
         {
           "term": "Medium",
           "definition": "Whether signals travel through physical cables (wired), radio waves (wireless), or both (hybrid).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Medium%2C%20Whether%20signals%20travel%20through%20physical%20cables%20wired%20radio%20waves%20wireless%20or%20both%20hybrid%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=127"
+          "image": "assets/images/p1_term_6_2_medium.svg"
         },
         {
           "term": "Architecture",
           "definition": "How control and resource sharing are structured (Peer-to-Peer vs Client-Server).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Architecture%2C%20How%20control%20and%20resource%20sharing%20are%20structured%20PeertoPeer%20vs%20ClientServer%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=128"
+          "image": "assets/images/p1_term_6_3_architecture.svg"
         },
         {
           "term": "Access & Topology",
           "definition": "Who is allowed to enter (Intranet/Extranet/Public) and how nodes are wired (Star/Mesh).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Access%20%20Topology%2C%20Who%20is%20allowed%20to%20enter%20IntranetExtranetPublic%20and%20how%20nodes%20are%20wired%20StarMesh%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=129"
+          "image": "assets/images/p1_term_6_4_access_topology.svg"
         }
       ],
       "examples": [
@@ -301,9 +301,9 @@ window.CC101_MODULE_DATA = {
       "title": "Wired and Wireless Networks",
       "category": "Transmission Media",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Wired%20and%20Wireless%20Networks%2C%20Networks%20transmit%20data%20through%20physical%20cables%20or%20freespace%20radio%20waves%20each%20offering%20distinct%20trade%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=130",
-        "alt": "AI Generated 3D Technical Diagram for Wired and Wireless Networks",
-        "credit": "AI Generated Visual #130"
+        "src": "assets/images/p1_slide_7_wired_and_wireless_networks.svg",
+        "alt": "Technical Diagram for Wired and Wireless Networks",
+        "credit": "AI Technical Schematic #1-7"
       },
       "visual": "infrastructure",
       "lead": "Networks transmit data through physical cables or free-space radio waves, each offering distinct tradeoffs in speed, mobility, and reliability.",
@@ -315,17 +315,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Ethernet Cable",
           "definition": "Shielded or unshielded twisted-pair copper cabling using modular RJ45 connectors.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Ethernet%20Cable%2C%20Shielded%20or%20unshielded%20twistedpair%20copper%20cabling%20using%20modular%20RJ45%20connectors%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=131"
+          "image": "assets/images/p1_term_7_1_ethernet_cable.svg"
         },
         {
           "term": "Wi-Fi (IEEE 802.11)",
           "definition": "Wireless local networking technology operating over 2.4 GHz, 5 GHz, or 6 GHz radio bands.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20WiFi%20IEEE%2080211%2C%20Wireless%20local%20networking%20technology%20operating%20over%2024%20GHz%205%20GHz%20or%206%20GHz%20radio%20bands%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=132"
+          "image": "assets/images/p1_term_7_2_wi_fi_ieee_802_11.svg"
         },
         {
           "term": "Interference",
           "definition": "Distortion of wireless radio signals caused by obstacles, distance, or competing electronic devices.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Interference%2C%20Distortion%20of%20wireless%20radio%20signals%20caused%20by%20obstacles%20distance%20or%20competing%20electronic%20devices%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=133"
+          "image": "assets/images/p1_term_7_3_interference.svg"
         }
       ],
       "examples": [
@@ -343,9 +343,9 @@ window.CC101_MODULE_DATA = {
       "title": "Network Architecture: Peer-to-Peer and Client-Server",
       "category": "Network Architecture",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Network%20Architecture%20PeertoPeer%20and%20ClientServer%2C%20Network%20architecture%20defines%20how%20control%20communication%20and%20resource%20management%20are%20divided%20among%20con%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=134",
-        "alt": "AI Generated 3D Technical Diagram for Network Architecture: Peer-to-Peer and Client-Server",
-        "credit": "AI Generated Visual #134"
+        "src": "assets/images/p1_slide_8_network_architecture_peer_to_peer_and_client_server.svg",
+        "alt": "Technical Diagram for Network Architecture: Peer-to-Peer and Client-Server",
+        "credit": "AI Technical Schematic #1-8"
       },
       "visual": "network",
       "lead": "Network architecture defines how control, communication, and resource management are divided among connected devices.",
@@ -357,17 +357,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Peer-to-Peer (P2P)",
           "definition": "A decentralized network architecture where every node can act as both client and server.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20PeertoPeer%20P2P%2C%20A%20decentralized%20network%20architecture%20where%20every%20node%20can%20act%20as%20both%20client%20and%20server%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=135"
+          "image": "assets/images/p1_term_8_1_peer_to_peer_p2p.svg"
         },
         {
           "term": "Client",
           "definition": "A user device or application (e.g. web browser) that requests services or files.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Client%2C%20A%20user%20device%20or%20application%20eg%20web%20browser%20that%20requests%20services%20or%20files%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=136"
+          "image": "assets/images/p1_term_8_2_client.svg"
         },
         {
           "term": "Server",
           "definition": "A high-capacity computer or service that listens for, processes, and fulfills client requests.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Server%2C%20A%20highcapacity%20computer%20or%20service%20that%20listens%20for%20processes%20and%20fulfills%20client%20requests%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=137"
+          "image": "assets/images/p1_term_8_3_server.svg"
         }
       ],
       "examples": [
@@ -385,9 +385,9 @@ window.CC101_MODULE_DATA = {
       "title": "Network Access Types: Intranet, Extranet, and Internet",
       "category": "Network Access",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Network%20Access%20Types%20Intranet%20Extranet%20and%20Internet%2C%20Networks%20enforce%20access%20boundaries%20to%20control%20whether%20services%20are%20restricted%20to%20internal%20personnel%20%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=138",
-        "alt": "AI Generated 3D Technical Diagram for Network Access Types: Intranet, Extranet, and Internet",
-        "credit": "AI Generated Visual #138"
+        "src": "assets/images/p1_slide_9_network_access_types_intranet_extranet_and_internet.svg",
+        "alt": "Technical Diagram for Network Access Types: Intranet, Extranet, and Internet",
+        "credit": "AI Technical Schematic #1-9"
       },
       "visual": "privacy",
       "lead": "Networks enforce access boundaries to control whether services are restricted to internal personnel, trusted partners, or the general public.",
@@ -399,17 +399,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Intranet",
           "definition": "A private network accessible only to an internal staff or members.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Intranet%2C%20A%20private%20network%20accessible%20only%20to%20an%20internal%20staff%20or%20members%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=139"
+          "image": "assets/images/p1_term_9_1_intranet.svg"
         },
         {
           "term": "Extranet",
           "definition": "A secure extension of an intranet providing restricted access to trusted external entities.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Extranet%2C%20A%20secure%20extension%20of%20an%20intranet%20providing%20restricted%20access%20to%20trusted%20external%20entities%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=140"
+          "image": "assets/images/p1_term_9_2_extranet.svg"
         },
         {
           "term": "Public Internet",
           "definition": "The globally accessible network open to the public.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Public%20Internet%2C%20The%20globally%20accessible%20network%20open%20to%20the%20public%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=141"
+          "image": "assets/images/p1_term_9_3_public_internet.svg"
         }
       ],
       "examples": [
@@ -428,9 +428,9 @@ window.CC101_MODULE_DATA = {
       "title": "Basic Network Topologies",
       "category": "Topologies",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Basic%20Network%20Topologies%2C%20Network%20topology%20defines%20the%20physical%20or%20logical%20layout%20in%20which%20devices%20and%20cable%20links%20are%20arrange%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=142",
-        "alt": "AI Generated 3D Technical Diagram for Basic Network Topologies",
-        "credit": "AI Generated Visual #142"
+        "src": "assets/images/p1_slide_10_basic_network_topologies.svg",
+        "alt": "Technical Diagram for Basic Network Topologies",
+        "credit": "AI Technical Schematic #1-10"
       },
       "visual": "network",
       "lead": "Network topology defines the physical or logical layout in which devices and cable links are arranged.",
@@ -442,22 +442,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Star Topology",
           "definition": "All network nodes connect independently to a single central device (switch or AP).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Star%20Topology%2C%20All%20network%20nodes%20connect%20independently%20to%20a%20single%20central%20device%20switch%20or%20AP%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=143"
+          "image": "assets/images/p1_term_10_1_star_topology.svg"
         },
         {
           "term": "Bus Topology",
           "definition": "Legacy arrangement where nodes share a single central trunk cable with terminators.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Bus%20Topology%2C%20Legacy%20arrangement%20where%20nodes%20share%20a%20single%20central%20trunk%20cable%20with%20terminators%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=144"
+          "image": "assets/images/p1_term_10_2_bus_topology.svg"
         },
         {
           "term": "Ring Topology",
           "definition": "Nodes connect sequentially in a continuous loop, passing tokens in one direction.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Ring%20Topology%2C%20Nodes%20connect%20sequentially%20in%20a%20continuous%20loop%20passing%20tokens%20in%20one%20direction%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=145"
+          "image": "assets/images/p1_term_10_3_ring_topology.svg"
         },
         {
           "term": "Mesh Topology",
           "definition": "Redundant interconnections between nodes providing multiple path options.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Mesh%20Topology%2C%20Redundant%20interconnections%20between%20nodes%20providing%20multiple%20path%20options%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=146"
+          "image": "assets/images/p1_term_10_4_mesh_topology.svg"
         }
       ],
       "examples": [
@@ -475,9 +475,9 @@ window.CC101_MODULE_DATA = {
       "title": "Network Media Comparison",
       "category": "Transmission Media",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Network%20Media%20Comparison%2C%20Choosing%20between%20copper%20Ethernet%20optical%20fiber%20and%20wireless%20media%20depends%20on%20required%20distance%20bandw%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=147",
-        "alt": "AI Generated 3D Technical Diagram for Network Media Comparison",
-        "credit": "AI Generated Visual #147"
+        "src": "assets/images/p1_slide_11_network_media_comparison.svg",
+        "alt": "Technical Diagram for Network Media Comparison",
+        "credit": "AI Technical Schematic #1-11"
       },
       "visual": "infrastructure",
       "lead": "Choosing between copper Ethernet, optical fiber, and wireless media depends on required distance, bandwidth, immunity, and budget.",
@@ -489,17 +489,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Copper Cat6",
           "definition": "Standard Ethernet cabling carrying up to 10 Gbps signals up to 55-100 meters.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Copper%20Cat6%2C%20Standard%20Ethernet%20cabling%20carrying%20up%20to%2010%20Gbps%20signals%20up%20to%2055100%20meters%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=148"
+          "image": "assets/images/p1_term_11_1_copper_cat6.svg"
         },
         {
           "term": "Single-Mode Fiber",
           "definition": "Fiber-optic cable using narrow laser light beams for multi-kilometer transmission.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20SingleMode%20Fiber%2C%20Fiberoptic%20cable%20using%20narrow%20laser%20light%20beams%20for%20multikilometer%20transmission%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=149"
+          "image": "assets/images/p1_term_11_2_single_mode_fiber.svg"
         },
         {
           "term": "Electromagnetic Interference (EMI)",
           "definition": "Distortion of electrical signals caused by heavy machinery, power lines, or lightning.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Electromagnetic%20Interference%20EMI%2C%20Distortion%20of%20electrical%20signals%20caused%20by%20heavy%20machinery%20power%20lines%20or%20lightning%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=150"
+          "image": "assets/images/p1_term_11_3_electromagnetic_interference_emi.svg"
         }
       ],
       "examples": [
@@ -518,9 +518,9 @@ window.CC101_MODULE_DATA = {
       "title": "Essential Network Devices",
       "category": "Network Hardware",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Essential%20Network%20Devices%2C%20Every%20device%20in%20a%20network%20performs%20a%20specific%20role%20from%20physical%20interfaces%20to%20local%20switches%20access%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=151",
-        "alt": "AI Generated 3D Technical Diagram for Essential Network Devices",
-        "credit": "AI Generated Visual #151"
+        "src": "assets/images/p1_slide_12_essential_network_devices.svg",
+        "alt": "Technical Diagram for Essential Network Devices",
+        "credit": "AI Technical Schematic #1-12"
       },
       "visual": "infrastructure",
       "lead": "Every device in a network performs a specific role, from physical interfaces to local switches, access points, and boundary routers.",
@@ -532,22 +532,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "NIC",
           "definition": "Network Interface Card: the hardware component giving a device a physical connection and MAC address.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20NIC%2C%20Network%20Interface%20Card%20the%20hardware%20component%20giving%20a%20device%20a%20physical%20connection%20and%20MAC%20address%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=152"
+          "image": "assets/images/p1_term_12_1_nic.svg"
         },
         {
           "term": "Switch",
           "definition": "A local device that forwards frames between devices on the same local network.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Switch%2C%20A%20local%20device%20that%20forwards%20frames%20between%20devices%20on%20the%20same%20local%20network%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=153"
+          "image": "assets/images/p1_term_12_2_switch.svg"
         },
         {
           "term": "Router",
           "definition": "A gateway device that forwards packets between different networks based on IP addresses.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Router%2C%20A%20gateway%20device%20that%20forwards%20packets%20between%20different%20networks%20based%20on%20IP%20addresses%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=154"
+          "image": "assets/images/p1_term_12_3_router.svg"
         },
         {
           "term": "Modem / ONT",
           "definition": "A device that translates ISP access signals (fiber/copper/cable) into local network traffic.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Modem%20%20ONT%2C%20A%20device%20that%20translates%20ISP%20access%20signals%20fibercoppercable%20into%20local%20network%20traffic%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=155"
+          "image": "assets/images/p1_term_12_4_modem_ont.svg"
         }
       ],
       "examples": [
@@ -566,9 +566,9 @@ window.CC101_MODULE_DATA = {
       "title": "Building a Home or School Network",
       "category": "Network Architecture",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Building%20a%20Home%20or%20School%20Network%2C%20Combining%20devices%20into%20a%20complete%20topology%20shows%20how%20data%20flows%20from%20user%20endpoints%20out%20to%20the%20ISP%20a%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=156",
-        "alt": "AI Generated 3D Technical Diagram for Building a Home or School Network",
-        "credit": "AI Generated Visual #156"
+        "src": "assets/images/p1_slide_13_building_a_home_or_school_network.svg",
+        "alt": "Technical Diagram for Building a Home or School Network",
+        "credit": "AI Technical Schematic #1-13"
       },
       "visual": "infrastructure",
       "lead": "Combining devices into a complete topology shows how data flows from user end-points out to the ISP and Internet.",
@@ -580,17 +580,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Aggregation",
           "definition": "Combining traffic from multiple local end-user devices into central network paths.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Aggregation%2C%20Combining%20traffic%20from%20multiple%20local%20enduser%20devices%20into%20central%20network%20paths%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=157"
+          "image": "assets/images/p1_term_13_1_aggregation.svg"
         },
         {
           "term": "Integrated Gateway",
           "definition": "A single consumer box combining router, switch, access point, and modem functions.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Integrated%20Gateway%2C%20A%20single%20consumer%20box%20combining%20router%20switch%20access%20point%20and%20modem%20functions%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=158"
+          "image": "assets/images/p1_term_13_2_integrated_gateway.svg"
         },
         {
           "term": "Enterprise Layout",
           "definition": "A network separating switches, firewalls, routers, and access points into dedicated hardware.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Enterprise%20Layout%2C%20A%20network%20separating%20switches%20firewalls%20routers%20and%20access%20points%20into%20dedicated%20hardware%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=159"
+          "image": "assets/images/p1_term_13_3_enterprise_layout.svg"
         }
       ],
       "examples": [
@@ -608,9 +608,9 @@ window.CC101_MODULE_DATA = {
       "title": "Communication Inside a Local Network",
       "category": "Local Data Flow",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Communication%20Inside%20a%20Local%20Network%2C%20When%20two%20devices%20on%20the%20same%20local%20network%20communicate%20their%20data%20stays%20within%20the%20LAN%20using%20physica%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=160",
-        "alt": "AI Generated 3D Technical Diagram for Communication Inside a Local Network",
-        "credit": "AI Generated Visual #160"
+        "src": "assets/images/p1_slide_14_communication_inside_a_local_network.svg",
+        "alt": "Technical Diagram for Communication Inside a Local Network",
+        "credit": "AI Technical Schematic #1-14"
       },
       "visual": "network",
       "lead": "When two devices on the same local network communicate, their data stays within the LAN using physical MAC address identification.",
@@ -622,17 +622,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "MAC Address",
           "definition": "A unique 48-bit physical identifier (e.g. 00:1A:2B:3C:4D:5E) assigned to a network interface card.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20MAC%20Address%2C%20A%20unique%2048bit%20physical%20identifier%20eg%20001A2B3C4D5E%20assigned%20to%20a%20network%20interface%20card%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=161"
+          "image": "assets/images/p1_term_14_1_mac_address.svg"
         },
         {
           "term": "Local Switching",
           "definition": "Direct forwarding of frames between local ports without sending data outside the local network.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Local%20Switching%2C%20Direct%20forwarding%20of%20frames%20between%20local%20ports%20without%20sending%20data%20outside%20the%20local%20network%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=162"
+          "image": "assets/images/p1_term_14_2_local_switching.svg"
         },
         {
           "term": "Frame",
           "definition": "A unit of data formatted for local delivery across a physical link using MAC addresses.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Frame%2C%20A%20unit%20of%20data%20formatted%20for%20local%20delivery%20across%20a%20physical%20link%20using%20MAC%20addresses%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=163"
+          "image": "assets/images/p1_term_14_3_frame.svg"
         }
       ],
       "examples": [
@@ -650,9 +650,9 @@ window.CC101_MODULE_DATA = {
       "title": "Basic Network Models",
       "category": "Network Models",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Basic%20Network%20Models%2C%20Layered%20network%20models%20divide%20the%20complex%20job%20of%20communication%20into%20manageable%20levels%20from%20physical%20%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=164",
-        "alt": "AI Generated 3D Technical Diagram for Basic Network Models",
-        "credit": "AI Generated Visual #164"
+        "src": "assets/images/p1_slide_15_basic_network_models.svg",
+        "alt": "Technical Diagram for Basic Network Models",
+        "credit": "AI Technical Schematic #1-15"
       },
       "visual": "stack",
       "lead": "Layered network models divide the complex job of communication into manageable levels, from physical hardware up to user applications.",
@@ -664,17 +664,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Layered Architecture",
           "definition": "Dividing networking functions into distinct levels so software and hardware can be designed independently.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Layered%20Architecture%2C%20Dividing%20networking%20functions%20into%20distinct%20levels%20so%20software%20and%20hardware%20can%20be%20designed%20independ%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=165"
+          "image": "assets/images/p1_term_15_1_layered_architecture.svg"
         },
         {
           "term": "Application Layer",
           "definition": "The top layer containing user-facing network applications and protocols.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Application%20Layer%2C%20The%20top%20layer%20containing%20userfacing%20network%20applications%20and%20protocols%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=166"
+          "image": "assets/images/p1_term_15_2_application_layer.svg"
         },
         {
           "term": "Link & Physical Layers",
           "definition": "The bottom layers responsible for local MAC delivery and physical signal transmission.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Link%20%20Physical%20Layers%2C%20The%20bottom%20layers%20responsible%20for%20local%20MAC%20delivery%20and%20physical%20signal%20transmission%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=167"
+          "image": "assets/images/p1_term_15_3_link_physical_layers.svg"
         }
       ],
       "examples": [

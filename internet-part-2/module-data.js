@@ -24,9 +24,9 @@ window.CC101_MODULE_DATA = {
       "title": "What Is the Internet?",
       "category": "Internet Infrastructure",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20What%20Is%20the%20Internet%2C%20The%20Internet%20is%20a%20global%20system%20of%20interconnected%20networks%20that%20communicate%20using%20shared%20technical%20s%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=168",
-        "alt": "AI Generated 3D Technical Diagram for What Is the Internet?",
-        "credit": "AI Generated Visual #168"
+        "src": "assets/images/p2_slide_1_what_is_the_internet.svg",
+        "alt": "Technical Diagram for What Is the Internet?",
+        "credit": "AI Technical Schematic #2-1"
       },
       "visual": "network",
       "lead": "The Internet is a global system of interconnected networks that communicate using shared technical standards.",
@@ -38,17 +38,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "The Internet",
           "definition": "The global system of interconnected computer networks communicating via TCP/IP.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20The%20Internet%2C%20The%20global%20system%20of%20interconnected%20computer%20networks%20communicating%20via%20TCPIP%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=169"
+          "image": "assets/images/p2_term_1_1_the_internet.svg"
         },
         {
           "term": "Interconnection",
           "definition": "The physical and logical linking of separate networks so data can cross between them.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Interconnection%2C%20The%20physical%20and%20logical%20linking%20of%20separate%20networks%20so%20data%20can%20cross%20between%20them%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=170"
+          "image": "assets/images/p2_term_1_2_interconnection.svg"
         },
         {
           "term": "Open Standards",
           "definition": "Publicly available technical rules that allow equipment from different manufacturers to communicate.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Open%20Standards%2C%20Publicly%20available%20technical%20rules%20that%20allow%20equipment%20from%20different%20manufacturers%20to%20communicate%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=171"
+          "image": "assets/images/p2_term_1_3_open_standards.svg"
         }
       ],
       "examples": [
@@ -66,9 +66,9 @@ window.CC101_MODULE_DATA = {
       "title": "Internet Versus World Wide Web",
       "category": "Internet Infrastructure",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Internet%20Versus%20World%20Wide%20Web%2C%20The%20Internet%20is%20the%20physical%20and%20logical%20network%20infrastructure%20the%20Web%20is%20just%20one%20of%20many%20services%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=172",
-        "alt": "AI Generated 3D Technical Diagram for Internet Versus World Wide Web",
-        "credit": "AI Generated Visual #172"
+        "src": "assets/images/p2_slide_2_internet_versus_world_wide_web.svg",
+        "alt": "Technical Diagram for Internet Versus World Wide Web",
+        "credit": "AI Technical Schematic #2-2"
       },
       "visual": "web",
       "lead": "The Internet is the physical and logical network infrastructure; the Web is just one of many services running on top of it.",
@@ -80,17 +80,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "World Wide Web (Web)",
           "definition": "An application service of linked web documents accessed via web browsers.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20World%20Wide%20Web%20Web%2C%20An%20application%20service%20of%20linked%20web%20documents%20accessed%20via%20web%20browsers%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=173"
+          "image": "assets/images/p2_term_2_1_world_wide_web_web.svg"
         },
         {
           "term": "Internet Service",
           "definition": "An application or system (like email or VoIP) running over Internet infrastructure.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Internet%20Service%2C%20An%20application%20or%20system%20like%20email%20or%20VoIP%20running%20over%20Internet%20infrastructure%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=174"
+          "image": "assets/images/p2_term_2_2_internet_service.svg"
         },
         {
           "term": "HTTP / HTTPS",
           "definition": "The primary web protocols used to transfer web pages and secure web communications.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20HTTP%20%20HTTPS%2C%20The%20primary%20web%20protocols%20used%20to%20transfer%20web%20pages%20and%20secure%20web%20communications%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=175"
+          "image": "assets/images/p2_term_2_3_http_https.svg"
         }
       ],
       "examples": [
@@ -108,9 +108,9 @@ window.CC101_MODULE_DATA = {
       "title": "Physical Internet Infrastructure",
       "category": "Physical Infrastructure",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Physical%20Internet%20Infrastructure%2C%20The%20Internet%20may%20feel%20invisible%20but%20it%20depends%20on%20massive%20physical%20hardware%20spanning%20land%20and%20ocean%20%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=176",
-        "alt": "AI Generated 3D Technical Diagram for Physical Internet Infrastructure",
-        "credit": "AI Generated Visual #176"
+        "src": "assets/images/p2_slide_3_physical_internet_infrastructure.svg",
+        "alt": "Technical Diagram for Physical Internet Infrastructure",
+        "credit": "AI Technical Schematic #2-3"
       },
       "visual": "infrastructure",
       "lead": "The Internet may feel invisible, but it depends on massive physical hardware spanning land and ocean floors.",
@@ -122,17 +122,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Subsea Cable",
           "definition": "Fiber-optic cables laid on the seabed carrying international Internet traffic between continents.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Subsea%20Cable%2C%20Fiberoptic%20cables%20laid%20on%20the%20seabed%20carrying%20international%20Internet%20traffic%20between%20continents%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=177"
+          "image": "assets/images/p2_term_3_1_subsea_cable.svg"
         },
         {
           "term": "Data Center",
           "definition": "A dedicated facility housing computer servers, storage systems, and networking gear.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Data%20Center%2C%20A%20dedicated%20facility%20housing%20computer%20servers%20storage%20systems%20and%20networking%20gear%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=178"
+          "image": "assets/images/p2_term_3_2_data_center.svg"
         },
         {
           "term": "Internet Exchange Point (IXP)",
           "definition": "A physical facility where different ISPs connect to exchange Internet traffic directly.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Internet%20Exchange%20Point%20IXP%2C%20A%20physical%20facility%20where%20different%20ISPs%20connect%20to%20exchange%20Internet%20traffic%20directly%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=179"
+          "image": "assets/images/p2_term_3_3_internet_exchange_point_ixp.svg"
         }
       ],
       "examples": [
@@ -150,9 +150,9 @@ window.CC101_MODULE_DATA = {
       "title": "Internet Service Providers (ISPs)",
       "category": "ISP & Access",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Internet%20Service%20Providers%20ISPs%2C%20An%20Internet%20Service%20Provider%20links%20homes%20schools%20and%20businesses%20to%20the%20wider%20global%20Internet%20infrast%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=180",
-        "alt": "AI Generated 3D Technical Diagram for Internet Service Providers (ISPs)",
-        "credit": "AI Generated Visual #180"
+        "src": "assets/images/p2_slide_4_internet_service_providers_isps.svg",
+        "alt": "Technical Diagram for Internet Service Providers (ISPs)",
+        "credit": "AI Technical Schematic #2-4"
       },
       "visual": "infrastructure",
       "lead": "An Internet Service Provider links homes, schools, and businesses to the wider global Internet infrastructure.",
@@ -164,17 +164,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "ISP",
           "definition": "Internet Service Provider: a commercial or public entity providing Internet access.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20ISP%2C%20Internet%20Service%20Provider%20a%20commercial%20or%20public%20entity%20providing%20Internet%20access%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=181"
+          "image": "assets/images/p2_term_4_1_isp.svg"
         },
         {
           "term": "FTTH",
           "definition": "Fiber To The Home: delivering optical fiber lines directly into customer residences.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20FTTH%2C%20Fiber%20To%20The%20Home%20delivering%20optical%20fiber%20lines%20directly%20into%20customer%20residences%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=182"
+          "image": "assets/images/p2_term_4_2_ftth.svg"
         },
         {
           "term": "Peering",
           "definition": "An agreement between two ISPs to exchange network traffic freely.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Peering%2C%20An%20agreement%20between%20two%20ISPs%20to%20exchange%20network%20traffic%20freely%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=183"
+          "image": "assets/images/p2_term_4_3_peering.svg"
         }
       ],
       "examples": [
@@ -192,9 +192,9 @@ window.CC101_MODULE_DATA = {
       "title": "How a Device Joins a Network",
       "category": "Network Joining",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20How%20a%20Device%20Joins%20a%20Network%2C%20A%20device%20cannot%20send%20Internet%20traffic%20until%20it%20activates%20its%20interface%20authenticates%20and%20receives%20va%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=184",
-        "alt": "AI Generated 3D Technical Diagram for How a Device Joins a Network",
-        "credit": "AI Generated Visual #184"
+        "src": "assets/images/p2_slide_5_how_a_device_joins_a_network.svg",
+        "alt": "Technical Diagram for How a Device Joins a Network",
+        "credit": "AI Technical Schematic #2-5"
       },
       "visual": "configuration",
       "lead": "A device cannot send Internet traffic until it activates its interface, authenticates, and receives valid network configuration.",
@@ -206,17 +206,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Network Association",
           "definition": "Establishing a link layer connection between a wireless device and an Access Point.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Network%20Association%2C%20Establishing%20a%20link%20layer%20connection%20between%20a%20wireless%20device%20and%20an%20Access%20Point%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=185"
+          "image": "assets/images/p2_term_5_1_network_association.svg"
         },
         {
           "term": "Network Configuration",
           "definition": "The set of network parameters (IP, Subnet, Gateway, DNS) required for IP communication.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Network%20Configuration%2C%20The%20set%20of%20network%20parameters%20IP%20Subnet%20Gateway%20DNS%20required%20for%20IP%20communication%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=186"
+          "image": "assets/images/p2_term_5_2_network_configuration.svg"
         },
         {
           "term": "Subnet Mask",
           "definition": "A network value used by a device to determine whether a target IP is on the local LAN or a remote network.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Subnet%20Mask%2C%20A%20network%20value%20used%20by%20a%20device%20to%20determine%20whether%20a%20target%20IP%20is%20on%20the%20local%20LAN%20or%20a%20remote%20ne%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=187"
+          "image": "assets/images/p2_term_5_3_subnet_mask.svg"
         }
       ],
       "examples": [
@@ -234,9 +234,9 @@ window.CC101_MODULE_DATA = {
       "title": "DHCP (Dynamic Host Configuration Protocol)",
       "category": "Network Configuration",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20DHCP%20Dynamic%20Host%20Configuration%20Protocol%2C%20DHCP%20automates%20network%20configuration%20granting%20temporary%20IP%20leases%20to%20devices%20as%20they%20join%20and%20leave%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=188",
-        "alt": "AI Generated 3D Technical Diagram for DHCP (Dynamic Host Configuration Protocol)",
-        "credit": "AI Generated Visual #188"
+        "src": "assets/images/p2_slide_6_dhcp_dynamic_host_configuration_protocol.svg",
+        "alt": "Technical Diagram for DHCP (Dynamic Host Configuration Protocol)",
+        "credit": "AI Technical Schematic #2-6"
       },
       "visual": "configuration",
       "lead": "DHCP automates network configuration, granting temporary IP leases to devices as they join and leave.",
@@ -248,17 +248,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "DHCP",
           "definition": "Dynamic Host Configuration Protocol: a service that automatically assigns IP configuration to hosts.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20DHCP%2C%20Dynamic%20Host%20Configuration%20Protocol%20a%20service%20that%20automatically%20assigns%20IP%20configuration%20to%20hosts%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=189"
+          "image": "assets/images/p2_term_6_1_dhcp.svg"
         },
         {
           "term": "DORA Sequence",
           "definition": "The 4-step DHCP messaging sequence: Discover, Offer, Request, Acknowledge.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20DORA%20Sequence%2C%20The%204step%20DHCP%20messaging%20sequence%20Discover%20Offer%20Request%20Acknowledge%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=190"
+          "image": "assets/images/p2_term_6_2_dora_sequence.svg"
         },
         {
           "term": "Static vs Dynamic IP",
           "definition": "Static IPs are permanent manual assignments; Dynamic IPs are temporary DHCP leases.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Static%20vs%20Dynamic%20IP%2C%20Static%20IPs%20are%20permanent%20manual%20assignments%20Dynamic%20IPs%20are%20temporary%20DHCP%20leases%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=191"
+          "image": "assets/images/p2_term_6_3_static_vs_dynamic_ip.svg"
         }
       ],
       "examples": [
@@ -276,9 +276,9 @@ window.CC101_MODULE_DATA = {
       "title": "Understanding Addresses and Identifiers",
       "category": "Addressing",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Understanding%20Addresses%20and%20Identifiers%2C%20Different%20network%20identifiers%20solve%20distinct%20communication%20tasks%20across%20local%20links%20logical%20networks%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=192",
-        "alt": "AI Generated 3D Technical Diagram for Understanding Addresses and Identifiers",
-        "credit": "AI Generated Visual #192"
+        "src": "assets/images/p2_slide_7_understanding_addresses_and_identifiers.svg",
+        "alt": "Technical Diagram for Understanding Addresses and Identifiers",
+        "credit": "AI Technical Schematic #2-7"
       },
       "visual": "addressing",
       "lead": "Different network identifiers solve distinct communication tasks across local links, logical networks, and applications.",
@@ -290,22 +290,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "MAC Address",
           "definition": "Physical hardware identifier for local link delivery (e.g. 00:1A:2B:3C:4D:5E).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20MAC%20Address%2C%20Physical%20hardware%20identifier%20for%20local%20link%20delivery%20eg%20001A2B3C4D5E%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=193"
+          "image": "assets/images/p2_term_7_1_mac_address.svg"
         },
         {
           "term": "IP Address",
           "definition": "Logical address used to route packets across global networks (e.g. 172.217.160.206).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20IP%20Address%2C%20Logical%20address%20used%20to%20route%20packets%20across%20global%20networks%20eg%20172217160206%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=194"
+          "image": "assets/images/p2_term_7_2_ip_address.svg"
         },
         {
           "term": "Domain Name",
           "definition": "Human-friendly text name for an IP address (e.g. google.com).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Domain%20Name%2C%20Humanfriendly%20text%20name%20for%20an%20IP%20address%20eg%20googlecom%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=195"
+          "image": "assets/images/p2_term_7_3_domain_name.svg"
         },
         {
           "term": "Port Number",
           "definition": "Transport-layer identifier directing data to a specific software service (e.g. Port 443).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Port%20Number%2C%20Transportlayer%20identifier%20directing%20data%20to%20a%20specific%20software%20service%20eg%20Port%20443%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=196"
+          "image": "assets/images/p2_term_7_4_port_number.svg"
         }
       ],
       "examples": [
@@ -325,9 +325,9 @@ window.CC101_MODULE_DATA = {
       "title": "IPv4 and IPv6",
       "category": "Addressing",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20IPv4%20and%20IPv6%2C%20The%20global%20expansion%20of%20Internet%20devices%20forced%20the%20transition%20from%2032bit%20IPv4%20addresses%20to%20128bit%20I%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=197",
-        "alt": "AI Generated 3D Technical Diagram for IPv4 and IPv6",
-        "credit": "AI Generated Visual #197"
+        "src": "assets/images/p2_slide_8_ipv4_and_ipv6.svg",
+        "alt": "Technical Diagram for IPv4 and IPv6",
+        "credit": "AI Technical Schematic #2-8"
       },
       "visual": "addressing",
       "lead": "The global expansion of Internet devices forced the transition from 32-bit IPv4 addresses to 128-bit IPv6 addresses.",
@@ -339,17 +339,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "IPv4",
           "definition": "32-bit legacy addressing scheme providing ~4.3 billion unique global addresses.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20IPv4%2C%2032bit%20legacy%20addressing%20scheme%20providing%2043%20billion%20unique%20global%20addresses%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=198"
+          "image": "assets/images/p2_term_8_1_ipv4.svg"
         },
         {
           "term": "IPv6",
           "definition": "128-bit modern addressing scheme providing a virtually unlimited address space.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20IPv6%2C%20128bit%20modern%20addressing%20scheme%20providing%20a%20virtually%20unlimited%20address%20space%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=199"
+          "image": "assets/images/p2_term_8_2_ipv6.svg"
         },
         {
           "term": "Hexadecimal Notation",
           "definition": "Base-16 numbering system (0-9, A-F) used to write IPv6 addresses compactly.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Hexadecimal%20Notation%2C%20Base16%20numbering%20system%2009%20AF%20used%20to%20write%20IPv6%20addresses%20compactly%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=200"
+          "image": "assets/images/p2_term_8_3_hexadecimal_notation.svg"
         }
       ],
       "examples": [
@@ -367,9 +367,9 @@ window.CC101_MODULE_DATA = {
       "title": "Public and Private IP Addresses",
       "category": "IP Routing",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Public%20and%20Private%20IP%20Addresses%2C%20Private%20IP%20addresses%20are%20reused%20inside%20local%20networks%20while%20public%20IP%20addresses%20must%20be%20globally%20uni%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=201",
-        "alt": "AI Generated 3D Technical Diagram for Public and Private IP Addresses",
-        "credit": "AI Generated Visual #201"
+        "src": "assets/images/p2_slide_9_public_and_private_ip_addresses.svg",
+        "alt": "Technical Diagram for Public and Private IP Addresses",
+        "credit": "AI Technical Schematic #2-9"
       },
       "visual": "addressing",
       "lead": "Private IP addresses are reused inside local networks, while public IP addresses must be globally unique across the Internet.",
@@ -381,17 +381,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Private IP Address",
           "definition": "An IP address reserved for internal local network use, not routable on the public Internet.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Private%20IP%20Address%2C%20An%20IP%20address%20reserved%20for%20internal%20local%20network%20use%20not%20routable%20on%20the%20public%20Internet%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=202"
+          "image": "assets/images/p2_term_9_1_private_ip_address.svg"
         },
         {
           "term": "Public IP Address",
           "definition": "A globally unique IP address assigned by ISPs and routable across the public Internet.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Public%20IP%20Address%2C%20A%20globally%20unique%20IP%20address%20assigned%20by%20ISPs%20and%20routable%20across%20the%20public%20Internet%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=203"
+          "image": "assets/images/p2_term_9_2_public_ip_address.svg"
         },
         {
           "term": "RFC 1918",
           "definition": "The Internet standard defining private IP address ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20RFC%201918%2C%20The%20Internet%20standard%20defining%20private%20IP%20address%20ranges%20100008%20172160012%201921680016%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=204"
+          "image": "assets/images/p2_term_9_3_rfc_1918.svg"
         }
       ],
       "examples": [
@@ -409,9 +409,9 @@ window.CC101_MODULE_DATA = {
       "title": "Network Address Translation (NAT)",
       "category": "IP Routing",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Network%20Address%20Translation%20NAT%2C%20NAT%20allows%20an%20entire%20local%20network%20of%20devices%20sharing%20private%20IPs%20to%20access%20the%20Internet%20using%20a%20sin%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=205",
-        "alt": "AI Generated 3D Technical Diagram for Network Address Translation (NAT)",
-        "credit": "AI Generated Visual #205"
+        "src": "assets/images/p2_slide_10_network_address_translation_nat.svg",
+        "alt": "Technical Diagram for Network Address Translation (NAT)",
+        "credit": "AI Technical Schematic #2-10"
       },
       "visual": "addressing",
       "lead": "NAT allows an entire local network of devices sharing private IPs to access the Internet using a single public IP address.",
@@ -423,17 +423,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "NAT",
           "definition": "Network Address Translation: translating private local IPs into a public IP at the router boundary.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20NAT%2C%20Network%20Address%20Translation%20translating%20private%20local%20IPs%20into%20a%20public%20IP%20at%20the%20router%20boundary%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=206"
+          "image": "assets/images/p2_term_10_1_nat.svg"
         },
         {
           "term": "NAT Table",
           "definition": "An internal tracking table in a router mapping local private IPs and ports to outgoing public requests.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20NAT%20Table%2C%20An%20internal%20tracking%20table%20in%20a%20router%20mapping%20local%20private%20IPs%20and%20ports%20to%20outgoing%20public%20reques%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=207"
+          "image": "assets/images/p2_term_10_2_nat_table.svg"
         },
         {
           "term": "Address Conservation",
           "definition": "Using NAT to allow thousands of internal hosts to share a single public IPv4 address.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Address%20Conservation%2C%20Using%20NAT%20to%20allow%20thousands%20of%20internal%20hosts%20to%20share%20a%20single%20public%20IPv4%20address%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=208"
+          "image": "assets/images/p2_term_10_3_address_conservation.svg"
         }
       ],
       "examples": [
@@ -451,9 +451,9 @@ window.CC101_MODULE_DATA = {
       "title": "Default Gateway",
       "category": "IP Routing",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Default%20Gateway%2C%20The%20Default%20Gateway%20is%20the%20local%20router%20interface%20that%20host%20devices%20send%20traffic%20to%20whenever%20a%20desti%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=209",
-        "alt": "AI Generated 3D Technical Diagram for Default Gateway",
-        "credit": "AI Generated Visual #209"
+        "src": "assets/images/p2_slide_11_default_gateway.svg",
+        "alt": "Technical Diagram for Default Gateway",
+        "credit": "AI Technical Schematic #2-11"
       },
       "visual": "routing",
       "lead": "The Default Gateway is the local router interface that host devices send traffic to whenever a destination is outside their local network.",
@@ -465,17 +465,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Default Gateway",
           "definition": "The router interface IP address used by local hosts to reach non-local destinations.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Default%20Gateway%2C%20The%20router%20interface%20IP%20address%20used%20by%20local%20hosts%20to%20reach%20nonlocal%20destinations%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=210"
+          "image": "assets/images/p2_term_11_1_default_gateway.svg"
         },
         {
           "term": "Local vs Remote Routing",
           "definition": "Direct MAC delivery for local subnets; Default Gateway forwarding for remote IP networks.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Local%20vs%20Remote%20Routing%2C%20Direct%20MAC%20delivery%20for%20local%20subnets%20Default%20Gateway%20forwarding%20for%20remote%20IP%20networks%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=211"
+          "image": "assets/images/p2_term_11_2_local_vs_remote_routing.svg"
         },
         {
           "term": "Gateway Address",
           "definition": "Typically the first or last IP in a local subnet (e.g. 192.168.1.1).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Gateway%20Address%2C%20Typically%20the%20first%20or%20last%20IP%20in%20a%20local%20subnet%20eg%2019216811%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=212"
+          "image": "assets/images/p2_term_11_3_gateway_address.svg"
         }
       ],
       "examples": [
@@ -493,9 +493,9 @@ window.CC101_MODULE_DATA = {
       "title": "Packets",
       "category": "Packet Switching",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Packets%2C%20Data%20travels%20across%20the%20Internet%20broken%20into%20small%20structured%20units%20called%20packets%20allowing%20networks%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=213",
-        "alt": "AI Generated 3D Technical Diagram for Packets",
-        "credit": "AI Generated Visual #213"
+        "src": "assets/images/p2_slide_12_packets.svg",
+        "alt": "Technical Diagram for Packets",
+        "credit": "AI Technical Schematic #2-12"
       },
       "visual": "packets",
       "lead": "Data travels across the Internet broken into small, structured units called packets, allowing networks to carry shared traffic efficiently.",
@@ -507,22 +507,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Packet",
           "definition": "A formatted block of data carried by a packet-switched network.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Packet%2C%20A%20formatted%20block%20of%20data%20carried%20by%20a%20packetswitched%20network%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=214"
+          "image": "assets/images/p2_term_12_1_packet.svg"
         },
         {
           "term": "Header",
           "definition": "Control metadata attached to the front of a packet carrying delivery and protocol instructions.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Header%2C%20Control%20metadata%20attached%20to%20the%20front%20of%20a%20packet%20carrying%20delivery%20and%20protocol%20instructions%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=215"
+          "image": "assets/images/p2_term_12_2_header.svg"
         },
         {
           "term": "Payload",
           "definition": "The actual user data content carried inside a packet.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Payload%2C%20The%20actual%20user%20data%20content%20carried%20inside%20a%20packet%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=216"
+          "image": "assets/images/p2_term_12_3_payload.svg"
         },
         {
           "term": "MTU",
           "definition": "Maximum Transmission Unit: the largest packet payload size (usually 1500 bytes) allowed on a link.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20MTU%2C%20Maximum%20Transmission%20Unit%20the%20largest%20packet%20payload%20size%20usually%201500%20bytes%20allowed%20on%20a%20link%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=217"
+          "image": "assets/images/p2_term_12_4_mtu.svg"
         }
       ],
       "examples": [
@@ -540,9 +540,9 @@ window.CC101_MODULE_DATA = {
       "title": "Packet Switching",
       "category": "Packet Switching",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Packet%20Switching%2C%20The%20Internet%20uses%20packet%20switching%20dynamically%20forwarding%20independent%20packets%20across%20available%20netwo%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=218",
-        "alt": "AI Generated 3D Technical Diagram for Packet Switching",
-        "credit": "AI Generated Visual #218"
+        "src": "assets/images/p2_slide_13_packet_switching.svg",
+        "alt": "Technical Diagram for Packet Switching",
+        "credit": "AI Technical Schematic #2-13"
       },
       "visual": "packets",
       "lead": "The Internet uses packet switching, dynamically forwarding independent packets across available network paths without reserving dedicated circuits.",
@@ -554,17 +554,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Packet Switching",
           "definition": "A communication method where packets are routed independently across shared network links.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Packet%20Switching%2C%20A%20communication%20method%20where%20packets%20are%20routed%20independently%20across%20shared%20network%20links%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=219"
+          "image": "assets/images/p2_term_13_1_packet_switching.svg"
         },
         {
           "term": "Circuit Switching",
           "definition": "Legacy method where a dedicated physical circuit was reserved between two endpoints.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Circuit%20Switching%2C%20Legacy%20method%20where%20a%20dedicated%20physical%20circuit%20was%20reserved%20between%20two%20endpoints%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=220"
+          "image": "assets/images/p2_term_13_2_circuit_switching.svg"
         },
         {
           "term": "Dynamic Routing",
           "definition": "Routers dynamically choosing optimal paths for each packet based on current network health.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Dynamic%20Routing%2C%20Routers%20dynamically%20choosing%20optimal%20paths%20for%20each%20packet%20based%20on%20current%20network%20health%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=221"
+          "image": "assets/images/p2_term_13_3_dynamic_routing.svg"
         }
       ],
       "examples": [
@@ -582,9 +582,9 @@ window.CC101_MODULE_DATA = {
       "title": "Routers and Routing Paths",
       "category": "Routing",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Routers%20and%20Routing%20Paths%2C%20Routers%20examine%20destination%20IP%20addresses%20and%20forward%20packets%20hopbyhop%20toward%20their%20target%20across%20int%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=222",
-        "alt": "AI Generated 3D Technical Diagram for Routers and Routing Paths",
-        "credit": "AI Generated Visual #222"
+        "src": "assets/images/p2_slide_14_routers_and_routing_paths.svg",
+        "alt": "Technical Diagram for Routers and Routing Paths",
+        "credit": "AI Technical Schematic #2-14"
       },
       "visual": "routing",
       "lead": "Routers examine destination IP addresses and forward packets hop-by-hop toward their target across interconnected autonomous networks.",
@@ -596,22 +596,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Routing Table",
           "definition": "A database stored in a router listing network paths and next-hop forwarding interfaces.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Routing%20Table%2C%20A%20database%20stored%20in%20a%20router%20listing%20network%20paths%20and%20nexthop%20forwarding%20interfaces%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=223"
+          "image": "assets/images/p2_term_14_1_routing_table.svg"
         },
         {
           "term": "TTL (Time to Live)",
           "definition": "A packet header counter decremented by each router hop to prevent infinite routing loops.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20TTL%20Time%20to%20Live%2C%20A%20packet%20header%20counter%20decremented%20by%20each%20router%20hop%20to%20prevent%20infinite%20routing%20loops%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=224"
+          "image": "assets/images/p2_term_14_2_ttl_time_to_live.svg"
         },
         {
           "term": "Autonomous System (AS)",
           "definition": "A large network or group of networks operated by a single organization under a unified routing policy.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Autonomous%20System%20AS%2C%20A%20large%20network%20or%20group%20of%20networks%20operated%20by%20a%20single%20organization%20under%20a%20unified%20routing%20polic%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=225"
+          "image": "assets/images/p2_term_14_3_autonomous_system_as.svg"
         },
         {
           "term": "BGP",
           "definition": "Border Gateway Protocol: the core routing protocol used to exchange routing info between autonomous systems.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20BGP%2C%20Border%20Gateway%20Protocol%20the%20core%20routing%20protocol%20used%20to%20exchange%20routing%20info%20between%20autonomous%20s%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=226"
+          "image": "assets/images/p2_term_14_4_bgp.svg"
         }
       ],
       "examples": [
@@ -629,9 +629,9 @@ window.CC101_MODULE_DATA = {
       "title": "Network Protocols",
       "category": "Protocols",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Network%20Protocols%2C%20A%20protocol%20is%20an%20agreed%20set%20of%20technical%20rules%20governing%20how%20devices%20format%20transmit%20receive%20and%20int%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=227",
-        "alt": "AI Generated 3D Technical Diagram for Network Protocols",
-        "credit": "AI Generated Visual #227"
+        "src": "assets/images/p2_slide_15_network_protocols.svg",
+        "alt": "Technical Diagram for Network Protocols",
+        "credit": "AI Technical Schematic #2-15"
       },
       "visual": "stack",
       "lead": "A protocol is an agreed set of technical rules governing how devices format, transmit, receive, and interpret data.",
@@ -643,17 +643,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Network Protocol",
           "definition": "An agreed set of rules and formats governing data communication between systems.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Network%20Protocol%2C%20An%20agreed%20set%20of%20rules%20and%20formats%20governing%20data%20communication%20between%20systems%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=228"
+          "image": "assets/images/p2_term_15_1_network_protocol.svg"
         },
         {
           "term": "Interoperability",
           "definition": "The ability of diverse systems and hardware to work together using standardized protocols.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Interoperability%2C%20The%20ability%20of%20diverse%20systems%20and%20hardware%20to%20work%20together%20using%20standardized%20protocols%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=229"
+          "image": "assets/images/p2_term_15_2_interoperability.svg"
         },
         {
           "term": "IETF",
           "definition": "Internet Engineering Task Force: the organization that develops and publishes Internet protocol standards (RFCs).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20IETF%2C%20Internet%20Engineering%20Task%20Force%20the%20organization%20that%20develops%20and%20publishes%20Internet%20protocol%20stand%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=230"
+          "image": "assets/images/p2_term_15_3_ietf.svg"
         }
       ],
       "examples": [
@@ -671,9 +671,9 @@ window.CC101_MODULE_DATA = {
       "title": "The TCP/IP Model",
       "category": "Models",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20The%20TCPIP%20Model%2C%20The%20TCPIP%20model%20organizes%20network%20protocols%20into%20four%20functional%20layers%20using%20encapsulation%20to%20prepa%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=231",
-        "alt": "AI Generated 3D Technical Diagram for The TCP/IP Model",
-        "credit": "AI Generated Visual #231"
+        "src": "assets/images/p2_slide_16_the_tcp_ip_model.svg",
+        "alt": "Technical Diagram for The TCP/IP Model",
+        "credit": "AI Technical Schematic #2-16"
       },
       "visual": "stack",
       "lead": "The TCP/IP model organizes network protocols into four functional layers, using encapsulation to prepare data for transmission.",
@@ -685,17 +685,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "TCP/IP Model",
           "definition": "The 4-layer architectural framework defining Internet communication standards.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20TCPIP%20Model%2C%20The%204layer%20architectural%20framework%20defining%20Internet%20communication%20standards%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=232"
+          "image": "assets/images/p2_term_16_1_tcp_ip_model.svg"
         },
         {
           "term": "Encapsulation",
           "definition": "Adding protocol headers to data as it moves down through protocol layers.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Encapsulation%2C%20Adding%20protocol%20headers%20to%20data%20as%20it%20moves%20down%20through%20protocol%20layers%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=233"
+          "image": "assets/images/p2_term_16_2_encapsulation.svg"
         },
         {
           "term": "Decapsulation",
           "definition": "Removing protocol headers from received data as it moves up through protocol layers.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Decapsulation%2C%20Removing%20protocol%20headers%20from%20received%20data%20as%20it%20moves%20up%20through%20protocol%20layers%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=234"
+          "image": "assets/images/p2_term_16_3_decapsulation.svg"
         }
       ],
       "examples": [
@@ -713,9 +713,9 @@ window.CC101_MODULE_DATA = {
       "title": "TCP and UDP Transport Protocols",
       "category": "Transport Protocols",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20TCP%20and%20UDP%20Transport%20Protocols%2C%20The%20transport%20layer%20offers%20a%20choice%20reliable%20ordered%20delivery%20with%20TCP%20or%20lightweight%20fast%20delivery%20%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=235",
-        "alt": "AI Generated 3D Technical Diagram for TCP and UDP Transport Protocols",
-        "credit": "AI Generated Visual #235"
+        "src": "assets/images/p2_slide_17_tcp_and_udp_transport_protocols.svg",
+        "alt": "Technical Diagram for TCP and UDP Transport Protocols",
+        "credit": "AI Technical Schematic #2-17"
       },
       "visual": "transport",
       "lead": "The transport layer offers a choice: reliable, ordered delivery with TCP, or lightweight, fast delivery with UDP.",
@@ -727,17 +727,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "TCP",
           "definition": "Transmission Control Protocol: connection-oriented, reliable, ordered transport protocol.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20TCP%2C%20Transmission%20Control%20Protocol%20connectionoriented%20reliable%20ordered%20transport%20protocol%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=236"
+          "image": "assets/images/p2_term_17_1_tcp.svg"
         },
         {
           "term": "UDP",
           "definition": "User Datagram Protocol: connectionless, lightweight, best-effort transport protocol.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20UDP%2C%20User%20Datagram%20Protocol%20connectionless%20lightweight%20besteffort%20transport%20protocol%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=237"
+          "image": "assets/images/p2_term_17_2_udp.svg"
         },
         {
           "term": "3-Way Handshake",
           "definition": "The SYN, SYN-ACK, ACK sequence used by TCP to establish a connection before sending data.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%203Way%20Handshake%2C%20The%20SYN%20SYNACK%20ACK%20sequence%20used%20by%20TCP%20to%20establish%20a%20connection%20before%20sending%20data%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=238"
+          "image": "assets/images/p2_term_17_3_3_way_handshake.svg"
         }
       ],
       "examples": [
@@ -755,9 +755,9 @@ window.CC101_MODULE_DATA = {
       "title": "Port Numbers",
       "category": "Ports",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Port%20Numbers%2C%20Port%20numbers%20direct%20network%20communication%20to%20the%20correct%20application%20service%20running%20on%20a%20target%20com%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=239",
-        "alt": "AI Generated 3D Technical Diagram for Port Numbers",
-        "credit": "AI Generated Visual #239"
+        "src": "assets/images/p2_slide_18_port_numbers.svg",
+        "alt": "Technical Diagram for Port Numbers",
+        "credit": "AI Technical Schematic #2-18"
       },
       "visual": "ports",
       "lead": "Port numbers direct network communication to the correct application service running on a target computer.",
@@ -769,17 +769,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Port Number",
           "definition": "A 16-bit transport layer number identifying a specific process or service endpoint.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Port%20Number%2C%20A%2016bit%20transport%20layer%20number%20identifying%20a%20specific%20process%20or%20service%20endpoint%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=240"
+          "image": "assets/images/p2_term_18_1_port_number.svg"
         },
         {
           "term": "Well-Known Ports",
           "definition": "Standardized port numbers (0-1023) reserved for recognized global services (80, 443, 53).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20WellKnown%20Ports%2C%20Standardized%20port%20numbers%2001023%20reserved%20for%20recognized%20global%20services%2080%20443%2053%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=241"
+          "image": "assets/images/p2_term_18_2_well_known_ports.svg"
         },
         {
           "term": "Socket",
           "definition": "The combination of an IP address and a Port Number (e.g. 172.217.160.206:443) identifying a unique connection end-point.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Socket%2C%20The%20combination%20of%20an%20IP%20address%20and%20a%20Port%20Number%20eg%20172217160206443%20identifying%20a%20unique%20connectio%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=242"
+          "image": "assets/images/p2_term_18_3_socket.svg"
         }
       ],
       "examples": [
@@ -797,9 +797,9 @@ window.CC101_MODULE_DATA = {
       "title": "Domain Name System (DNS)",
       "category": "DNS",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Domain%20Name%20System%20DNS%2C%20DNS%20acts%20as%20the%20phonebook%20of%20the%20Internet%20translating%20humanreadable%20domain%20names%20into%20machineroutabl%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=243",
-        "alt": "AI Generated 3D Technical Diagram for Domain Name System (DNS)",
-        "credit": "AI Generated Visual #243"
+        "src": "assets/images/p2_slide_19_domain_name_system_dns.svg",
+        "alt": "Technical Diagram for Domain Name System (DNS)",
+        "credit": "AI Technical Schematic #2-19"
       },
       "visual": "webjourney",
       "lead": "DNS acts as the phonebook of the Internet, translating human-readable domain names into machine-routable IP addresses.",
@@ -811,17 +811,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "DNS",
           "definition": "Domain Name System: a distributed system converting domain names into IP addresses.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20DNS%2C%20Domain%20Name%20System%20a%20distributed%20system%20converting%20domain%20names%20into%20IP%20addresses%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=244"
+          "image": "assets/images/p2_term_19_1_dns.svg"
         },
         {
           "term": "Recursive Resolver",
           "definition": "A DNS server that performs full lookups on behalf of client devices.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Recursive%20Resolver%2C%20A%20DNS%20server%20that%20performs%20full%20lookups%20on%20behalf%20of%20client%20devices%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=245"
+          "image": "assets/images/p2_term_19_2_recursive_resolver.svg"
         },
         {
           "term": "Authoritative Name Server",
           "definition": "The official DNS server holding the master record for a specific domain name.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Authoritative%20Name%20Server%2C%20The%20official%20DNS%20server%20holding%20the%20master%20record%20for%20a%20specific%20domain%20name%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=246"
+          "image": "assets/images/p2_term_19_3_authoritative_name_server.svg"
         }
       ],
       "examples": [
@@ -839,9 +839,9 @@ window.CC101_MODULE_DATA = {
       "title": "Domain Name Versus URL",
       "category": "Web Mechanics",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Domain%20Name%20Versus%20URL%2C%20A%20domain%20name%20identifies%20a%20service%20host%20while%20a%20URL%20provides%20the%20complete%20location%20and%20access%20instru%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=247",
-        "alt": "AI Generated 3D Technical Diagram for Domain Name Versus URL",
-        "credit": "AI Generated Visual #247"
+        "src": "assets/images/p2_slide_20_domain_name_versus_url.svg",
+        "alt": "Technical Diagram for Domain Name Versus URL",
+        "credit": "AI Technical Schematic #2-20"
       },
       "visual": "webjourney",
       "lead": "A domain name identifies a service host, while a URL provides the complete location and access instructions for a specific resource.",
@@ -853,17 +853,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "URL",
           "definition": "Uniform Resource Locator: a complete structured web address specifying how and where to fetch a resource.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20URL%2C%20Uniform%20Resource%20Locator%20a%20complete%20structured%20web%20address%20specifying%20how%20and%20where%20to%20fetch%20a%20resou%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=248"
+          "image": "assets/images/p2_term_20_1_url.svg"
         },
         {
           "term": "Scheme",
           "definition": "The access protocol specified at the start of a URL (http, https, ftp).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Scheme%2C%20The%20access%20protocol%20specified%20at%20the%20start%20of%20a%20URL%20http%20https%20ftp%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=249"
+          "image": "assets/images/p2_term_20_2_scheme.svg"
         },
         {
           "term": "Path & Query",
           "definition": "Path specifies the resource file location on the server; Query string passes key-value parameters.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Path%20%20Query%2C%20Path%20specifies%20the%20resource%20file%20location%20on%20the%20server%20Query%20string%20passes%20keyvalue%20parameters%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=250"
+          "image": "assets/images/p2_term_20_3_path_query.svg"
         }
       ],
       "examples": [
@@ -881,9 +881,9 @@ window.CC101_MODULE_DATA = {
       "title": "HTTP (Hypertext Transfer Protocol)",
       "category": "Web Mechanics",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20HTTP%20Hypertext%20Transfer%20Protocol%2C%20HTTP%20is%20an%20applicationlayer%20requestresponse%20protocol%20used%20for%20communication%20between%20web%20clients%20and%20%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=251",
-        "alt": "AI Generated 3D Technical Diagram for HTTP (Hypertext Transfer Protocol)",
-        "credit": "AI Generated Visual #251"
+        "src": "assets/images/p2_slide_21_http_hypertext_transfer_protocol.svg",
+        "alt": "Technical Diagram for HTTP (Hypertext Transfer Protocol)",
+        "credit": "AI Technical Schematic #2-21"
       },
       "visual": "web",
       "lead": "HTTP is an application-layer request-response protocol used for communication between web clients and web servers.",
@@ -895,17 +895,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "HTTP",
           "definition": "Hypertext Transfer Protocol: the foundation protocol for client-server web communications.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20HTTP%2C%20Hypertext%20Transfer%20Protocol%20the%20foundation%20protocol%20for%20clientserver%20web%20communications%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=252"
+          "image": "assets/images/p2_term_21_1_http.svg"
         },
         {
           "term": "Request-Response Cycle",
           "definition": "The cycle where a client initiates a request and a server returns a formatted response.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20RequestResponse%20Cycle%2C%20The%20cycle%20where%20a%20client%20initiates%20a%20request%20and%20a%20server%20returns%20a%20formatted%20response%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=253"
+          "image": "assets/images/p2_term_21_2_request_response_cycle.svg"
         },
         {
           "term": "HTTP Headers",
           "definition": "Metadata fields carrying client preferences, content type, encoding, and server details.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20HTTP%20Headers%2C%20Metadata%20fields%20carrying%20client%20preferences%20content%20type%20encoding%20and%20server%20details%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=254"
+          "image": "assets/images/p2_term_21_3_http_headers.svg"
         }
       ],
       "examples": [
@@ -923,9 +923,9 @@ window.CC101_MODULE_DATA = {
       "title": "HTTP Methods",
       "category": "Web Mechanics",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20HTTP%20Methods%2C%20HTTP%20methods%20state%20the%20clients%20intended%20action%20when%20requesting%20a%20server%20resource%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=255",
-        "alt": "AI Generated 3D Technical Diagram for HTTP Methods",
-        "credit": "AI Generated Visual #255"
+        "src": "assets/images/p2_slide_22_http_methods.svg",
+        "alt": "Technical Diagram for HTTP Methods",
+        "credit": "AI Technical Schematic #2-22"
       },
       "visual": "web",
       "lead": "HTTP methods state the client's intended action when requesting a server resource.",
@@ -937,17 +937,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "HTTP Method",
           "definition": "The action verb in an HTTP request indicating the intended operation.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20HTTP%20Method%2C%20The%20action%20verb%20in%20an%20HTTP%20request%20indicating%20the%20intended%20operation%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=256"
+          "image": "assets/images/p2_term_22_1_http_method.svg"
         },
         {
           "term": "GET vs POST",
           "definition": "GET retrieves data without modifying state; POST submits data to be processed or created.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20GET%20vs%20POST%2C%20GET%20retrieves%20data%20without%20modifying%20state%20POST%20submits%20data%20to%20be%20processed%20or%20created%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=257"
+          "image": "assets/images/p2_term_22_2_get_vs_post.svg"
         },
         {
           "term": "Idempotency",
           "definition": "A property where repeating a request multiple times produces the same server state as a single request.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Idempotency%2C%20A%20property%20where%20repeating%20a%20request%20multiple%20times%20produces%20the%20same%20server%20state%20as%20a%20single%20reque%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=258"
+          "image": "assets/images/p2_term_22_3_idempotency.svg"
         }
       ],
       "examples": [
@@ -966,9 +966,9 @@ window.CC101_MODULE_DATA = {
       "title": "HTTP Status Codes",
       "category": "Web Mechanics",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20HTTP%20Status%20Codes%2C%20HTTP%20status%20codes%20are%20threedigit%20numbers%20returned%20by%20servers%20to%20summarize%20the%20outcome%20of%20a%20client%20re%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=259",
-        "alt": "AI Generated 3D Technical Diagram for HTTP Status Codes",
-        "credit": "AI Generated Visual #259"
+        "src": "assets/images/p2_slide_23_http_status_codes.svg",
+        "alt": "Technical Diagram for HTTP Status Codes",
+        "credit": "AI Technical Schematic #2-23"
       },
       "visual": "web",
       "lead": "HTTP status codes are three-digit numbers returned by servers to summarize the outcome of a client request.",
@@ -980,22 +980,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Status Code",
           "definition": "A 3-digit numerical response code summarizing request processing results.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Status%20Code%2C%20A%203digit%20numerical%20response%20code%20summarizing%20request%20processing%20results%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=260"
+          "image": "assets/images/p2_term_23_1_status_code.svg"
         },
         {
           "term": "200 OK",
           "definition": "Standard response code indicating the request succeeded and content is returned.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20200%20OK%2C%20Standard%20response%20code%20indicating%20the%20request%20succeeded%20and%20content%20is%20returned%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=261"
+          "image": "assets/images/p2_term_23_2_200_ok.svg"
         },
         {
           "term": "404 Not Found",
           "definition": "Client error code indicating the requested URI path was not found on the server.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20404%20Not%20Found%2C%20Client%20error%20code%20indicating%20the%20requested%20URI%20path%20was%20not%20found%20on%20the%20server%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=262"
+          "image": "assets/images/p2_term_23_3_404_not_found.svg"
         },
         {
           "term": "500 Internal Server Error",
           "definition": "Server error code indicating an unexpected crash or fault in backend server code.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20500%20Internal%20Server%20Error%2C%20Server%20error%20code%20indicating%20an%20unexpected%20crash%20or%20fault%20in%20backend%20server%20code%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=263"
+          "image": "assets/images/p2_term_23_4_500_internal_server_error.svg"
         }
       ],
       "examples": [
@@ -1015,9 +1015,9 @@ window.CC101_MODULE_DATA = {
       "title": "HTTPS, Encryption, and Certificates",
       "category": "Security Basics",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20HTTPS%20Encryption%20and%20Certificates%2C%20HTTPS%20encrypts%20web%20traffic%20using%20Transport%20Layer%20Security%20TLS%20and%20authenticates%20server%20identity%20with%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=264",
-        "alt": "AI Generated 3D Technical Diagram for HTTPS, Encryption, and Certificates",
-        "credit": "AI Generated Visual #264"
+        "src": "assets/images/p2_slide_24_https_encryption_and_certificates.svg",
+        "alt": "Technical Diagram for HTTPS, Encryption, and Certificates",
+        "credit": "AI Technical Schematic #2-24"
       },
       "visual": "privacy",
       "lead": "HTTPS encrypts web traffic using Transport Layer Security (TLS) and authenticates server identity with digital certificates.",
@@ -1029,17 +1029,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "HTTPS",
           "definition": "Hypertext Transfer Protocol Secure: HTTP encrypted using TLS protocol.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20HTTPS%2C%20Hypertext%20Transfer%20Protocol%20Secure%20HTTP%20encrypted%20using%20TLS%20protocol%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=265"
+          "image": "assets/images/p2_term_24_1_https.svg"
         },
         {
           "term": "TLS Handshake",
           "definition": "The cryptographic negotiation where client and server validate identity and exchange encryption keys.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20TLS%20Handshake%2C%20The%20cryptographic%20negotiation%20where%20client%20and%20server%20validate%20identity%20and%20exchange%20encryption%20keys%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=266"
+          "image": "assets/images/p2_term_24_2_tls_handshake.svg"
         },
         {
           "term": "Certificate Authority (CA)",
           "definition": "A trusted third-party organization that signs digital certificates verifying domain ownership.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Certificate%20Authority%20CA%2C%20A%20trusted%20thirdparty%20organization%20that%20signs%20digital%20certificates%20verifying%20domain%20ownership%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=267"
+          "image": "assets/images/p2_term_24_3_certificate_authority_ca.svg"
         }
       ],
       "examples": [
@@ -1057,9 +1057,9 @@ window.CC101_MODULE_DATA = {
       "title": "Complete Journey of Opening a Website",
       "category": "Web Synthesis",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Complete%20Journey%20of%20Opening%20a%20Website%2C%20Opening%20a%20website%20is%20a%2014stage%20coordinated%20sequence%20spanning%20URL%20parsing%20DNS%20routing%20TCPTLS%20handshak%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=268",
-        "alt": "AI Generated 3D Technical Diagram for Complete Journey of Opening a Website",
-        "credit": "AI Generated Visual #268"
+        "src": "assets/images/p2_slide_25_complete_journey_of_opening_a_website.svg",
+        "alt": "Technical Diagram for Complete Journey of Opening a Website",
+        "credit": "AI Technical Schematic #2-25"
       },
       "visual": "webjourney",
       "lead": "Opening a website is a 14-stage coordinated sequence spanning URL parsing, DNS, routing, TCP/TLS handshakes, HTTP exchanges, and browser rendering.",
@@ -1070,12 +1070,12 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Request Journey",
           "definition": "The end-to-end multi-step technical sequence required to request and display a webpage.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Request%20Journey%2C%20The%20endtoend%20multistep%20technical%20sequence%20required%20to%20request%20and%20display%20a%20webpage%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=269"
+          "image": "assets/images/p2_term_25_1_request_journey.svg"
         },
         {
           "term": "Asset Sub-Requests",
           "definition": "Secondary HTTP requests automatically triggered by the browser for CSS, JS, fonts, and images referenced in HTML.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Asset%20SubRequests%2C%20Secondary%20HTTP%20requests%20automatically%20triggered%20by%20the%20browser%20for%20CSS%20JS%20fonts%20and%20images%20reference%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=270"
+          "image": "assets/images/p2_term_25_2_asset_sub_requests.svg"
         }
       ],
       "examples": [
@@ -1092,9 +1092,9 @@ window.CC101_MODULE_DATA = {
       "title": "Client, Server, and Database",
       "category": "Web Architecture",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Client%20Server%20and%20Database%2C%20Web%20applications%20use%20a%203tier%20architecture%20separating%20client%20presentation%20server%20application%20logic%20an%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=271",
-        "alt": "AI Generated 3D Technical Diagram for Client, Server, and Database",
-        "credit": "AI Generated Visual #271"
+        "src": "assets/images/p2_slide_26_client_server_and_database.svg",
+        "alt": "Technical Diagram for Client, Server, and Database",
+        "credit": "AI Technical Schematic #2-26"
       },
       "visual": "web",
       "lead": "Web applications use a 3-tier architecture separating client presentation, server application logic, and database storage.",
@@ -1106,17 +1106,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "3-Tier Architecture",
           "definition": "System design separating Client presentation, Server application logic, and Database storage.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%203Tier%20Architecture%2C%20System%20design%20separating%20Client%20presentation%20Server%20application%20logic%20and%20Database%20storage%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=272"
+          "image": "assets/images/p2_term_26_1_3_tier_architecture.svg"
         },
         {
           "term": "Database",
           "definition": "A structured software system (like MySQL or PostgreSQL) for storing, querying, and updating data records.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Database%2C%20A%20structured%20software%20system%20like%20MySQL%20or%20PostgreSQL%20for%20storing%20querying%20and%20updating%20data%20records%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=273"
+          "image": "assets/images/p2_term_26_2_database.svg"
         },
         {
           "term": "Application Logic",
           "definition": "Backend code running on the server that enforces rules, calculations, and security.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Application%20Logic%2C%20Backend%20code%20running%20on%20the%20server%20that%20enforces%20rules%20calculations%20and%20security%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=274"
+          "image": "assets/images/p2_term_26_3_application_logic.svg"
         }
       ],
       "examples": [
@@ -1133,9 +1133,9 @@ window.CC101_MODULE_DATA = {
       "title": "Webpage Components",
       "category": "Web Foundations",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Webpage%20Components%2C%20Webpages%20are%20constructed%20from%20complementary%20technologies%20HTML%20for%20structure%20CSS%20for%20presentation%20Jav%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=275",
-        "alt": "AI Generated 3D Technical Diagram for Webpage Components",
-        "credit": "AI Generated Visual #275"
+        "src": "assets/images/p2_slide_27_webpage_components.svg",
+        "alt": "Technical Diagram for Webpage Components",
+        "credit": "AI Technical Schematic #2-27"
       },
       "visual": "web",
       "lead": "Webpages are constructed from complementary technologies: HTML for structure, CSS for presentation, JavaScript for behavior, and media for visual content.",
@@ -1147,17 +1147,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "HTML",
           "definition": "Markup language defining the structural meaning of webpage elements.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20HTML%2C%20Markup%20language%20defining%20the%20structural%20meaning%20of%20webpage%20elements%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=276"
+          "image": "assets/images/p2_term_27_1_html.svg"
         },
         {
           "term": "CSS",
           "definition": "Stylesheet language controlling visual appearance, colors, fonts, and responsive layout.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20CSS%2C%20Stylesheet%20language%20controlling%20visual%20appearance%20colors%20fonts%20and%20responsive%20layout%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=277"
+          "image": "assets/images/p2_term_27_2_css.svg"
         },
         {
           "term": "JavaScript",
           "definition": "Programming language running in the browser providing interactive logic and dynamic DOM updates.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20JavaScript%2C%20Programming%20language%20running%20in%20the%20browser%20providing%20interactive%20logic%20and%20dynamic%20DOM%20updates%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=278"
+          "image": "assets/images/p2_term_27_3_javascript.svg"
         }
       ],
       "examples": [
@@ -1174,9 +1174,9 @@ window.CC101_MODULE_DATA = {
       "title": "Cookies, Sessions, and Caching",
       "category": "State & Caching",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Cookies%20Sessions%20and%20Caching%2C%20Because%20HTTP%20is%20stateless%20web%20applications%20use%20cookies%20sessions%20and%20caches%20to%20maintain%20user%20state%20an%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=279",
-        "alt": "AI Generated 3D Technical Diagram for Cookies, Sessions, and Caching",
-        "credit": "AI Generated Visual #279"
+        "src": "assets/images/p2_slide_28_cookies_sessions_and_caching.svg",
+        "alt": "Technical Diagram for Cookies, Sessions, and Caching",
+        "credit": "AI Technical Schematic #2-28"
       },
       "visual": "web",
       "lead": "Because HTTP is stateless, web applications use cookies, sessions, and caches to maintain user state and improve performance.",
@@ -1188,17 +1188,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Cookie",
           "definition": "Small text data stored in the browser by websites for tracking, preferences, or session IDs.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Cookie%2C%20Small%20text%20data%20stored%20in%20the%20browser%20by%20websites%20for%20tracking%20preferences%20or%20session%20IDs%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=280"
+          "image": "assets/images/p2_term_28_1_cookie.svg"
         },
         {
           "term": "Session",
           "definition": "Server-side data record keeping track of an active user state during web browsing.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Session%2C%20Serverside%20data%20record%20keeping%20track%20of%20an%20active%20user%20state%20during%20web%20browsing%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=281"
+          "image": "assets/images/p2_term_28_2_session.svg"
         },
         {
           "term": "Cache",
           "definition": "Local storage of previously fetched web assets (images, CSS) to speed up future visits.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Cache%2C%20Local%20storage%20of%20previously%20fetched%20web%20assets%20images%20CSS%20to%20speed%20up%20future%20visits%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=282"
+          "image": "assets/images/p2_term_28_3_cache.svg"
         }
       ],
       "examples": [
@@ -1216,9 +1216,9 @@ window.CC101_MODULE_DATA = {
       "title": "Hosting, Data Centers, Cloud, and CDNs",
       "category": "Web Hosting",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Hosting%20Data%20Centers%20Cloud%20and%20CDNs%2C%20Delivering%20websites%20globally%20requires%20web%20hosting%20physical%20data%20centers%20cloud%20infrastructure%20and%20Con%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=283",
-        "alt": "AI Generated 3D Technical Diagram for Hosting, Data Centers, Cloud, and CDNs",
-        "credit": "AI Generated Visual #283"
+        "src": "assets/images/p2_slide_29_hosting_data_centers_cloud_and_cdns.svg",
+        "alt": "Technical Diagram for Hosting, Data Centers, Cloud, and CDNs",
+        "credit": "AI Technical Schematic #2-29"
       },
       "visual": "infrastructure",
       "lead": "Delivering websites globally requires web hosting, physical data centers, cloud infrastructure, and Content Delivery Networks.",
@@ -1230,17 +1230,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Web Hosting",
           "definition": "Providing server storage and network connectivity so website files are accessible 24/7.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Web%20Hosting%2C%20Providing%20server%20storage%20and%20network%20connectivity%20so%20website%20files%20are%20accessible%20247%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=284"
+          "image": "assets/images/p2_term_29_1_web_hosting.svg"
         },
         {
           "term": "Cloud Computing",
           "definition": "On-demand delivery of computing power, databases, and storage via the Internet.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Cloud%20Computing%2C%20Ondemand%20delivery%20of%20computing%20power%20databases%20and%20storage%20via%20the%20Internet%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=285"
+          "image": "assets/images/p2_term_29_2_cloud_computing.svg"
         },
         {
           "term": "CDN",
           "definition": "Content Delivery Network: edge servers distributed globally to cache content close to end users.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20CDN%2C%20Content%20Delivery%20Network%20edge%20servers%20distributed%20globally%20to%20cache%20content%20close%20to%20end%20users%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=286"
+          "image": "assets/images/p2_term_29_3_cdn.svg"
         }
       ],
       "examples": [
@@ -1258,9 +1258,9 @@ window.CC101_MODULE_DATA = {
       "title": "Internet Performance Metrics",
       "category": "Performance",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Internet%20Performance%20Metrics%2C%20Network%20performance%20is%20evaluated%20using%20bandwidth%20throughput%20latency%20jitter%20and%20packet%20loss%20each%20impa%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=287",
-        "alt": "AI Generated 3D Technical Diagram for Internet Performance Metrics",
-        "credit": "AI Generated Visual #287"
+        "src": "assets/images/p2_slide_30_internet_performance_metrics.svg",
+        "alt": "Technical Diagram for Internet Performance Metrics",
+        "credit": "AI Technical Schematic #2-30"
       },
       "visual": "performance",
       "lead": "Network performance is evaluated using bandwidth, throughput, latency, jitter, and packet loss, each impacting applications differently.",
@@ -1272,17 +1272,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Bandwidth vs Throughput",
           "definition": "Bandwidth is maximum channel capacity; Throughput is actual sustained data delivery rate.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Bandwidth%20vs%20Throughput%2C%20Bandwidth%20is%20maximum%20channel%20capacity%20Throughput%20is%20actual%20sustained%20data%20delivery%20rate%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=288"
+          "image": "assets/images/p2_term_30_1_bandwidth_vs_throughput.svg"
         },
         {
           "term": "Latency (Ping)",
           "definition": "The time delay in milliseconds for a packet to travel to a destination and return.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Latency%20Ping%2C%20The%20time%20delay%20in%20milliseconds%20for%20a%20packet%20to%20travel%20to%20a%20destination%20and%20return%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=289"
+          "image": "assets/images/p2_term_30_2_latency_ping.svg"
         },
         {
           "term": "Jitter & Packet Loss",
           "definition": "Jitter is latency fluctuation; Packet Loss is the percentage of dropped packets during congestion.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Jitter%20%20Packet%20Loss%2C%20Jitter%20is%20latency%20fluctuation%20Packet%20Loss%20is%20the%20percentage%20of%20dropped%20packets%20during%20congestion%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=290"
+          "image": "assets/images/p2_term_30_3_jitter_packet_loss.svg"
         }
       ],
       "examples": [
@@ -1302,9 +1302,9 @@ window.CC101_MODULE_DATA = {
       "title": "Congestion and Bottlenecks",
       "category": "Performance",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Congestion%20and%20Bottlenecks%2C%20Internet%20performance%20is%20constrained%20by%20the%20slowest%20link%20along%20the%20endtoend%20path%20known%20as%20a%20bottlenec%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=291",
-        "alt": "AI Generated 3D Technical Diagram for Congestion and Bottlenecks",
-        "credit": "AI Generated Visual #291"
+        "src": "assets/images/p2_slide_31_congestion_and_bottlenecks.svg",
+        "alt": "Technical Diagram for Congestion and Bottlenecks",
+        "credit": "AI Technical Schematic #2-31"
       },
       "visual": "performance",
       "lead": "Internet performance is constrained by the slowest link along the end-to-end path, known as a bottleneck.",
@@ -1316,17 +1316,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Bottleneck",
           "definition": "The lowest-capacity segment along an end-to-end network path that limits overall performance.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Bottleneck%2C%20The%20lowestcapacity%20segment%20along%20an%20endtoend%20network%20path%20that%20limits%20overall%20performance%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=292"
+          "image": "assets/images/p2_term_31_1_bottleneck.svg"
         },
         {
           "term": "Network Congestion",
           "definition": "Performance degradation occurring when network traffic exceeds available link capacity.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Network%20Congestion%2C%20Performance%20degradation%20occurring%20when%20network%20traffic%20exceeds%20available%20link%20capacity%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=293"
+          "image": "assets/images/p2_term_31_2_network_congestion.svg"
         },
         {
           "term": "Upload Saturation",
           "definition": "Completely filling upload capacity, which halts incoming download acknowledgments and slows the connection.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Upload%20Saturation%2C%20Completely%20filling%20upload%20capacity%20which%20halts%20incoming%20download%20acknowledgments%20and%20slows%20the%20conne%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=294"
+          "image": "assets/images/p2_term_31_3_upload_saturation.svg"
         }
       ],
       "examples": [
@@ -1344,9 +1344,9 @@ window.CC101_MODULE_DATA = {
       "title": "Basic Internet Security",
       "category": "Security Basics",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Basic%20Internet%20Security%2C%20Fundamental%20Internet%20security%20practices%20protect%20user%20accounts%20data%20privacy%20and%20devices%20against%20commo%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=295",
-        "alt": "AI Generated 3D Technical Diagram for Basic Internet Security",
-        "credit": "AI Generated Visual #295"
+        "src": "assets/images/p2_slide_32_basic_internet_security.svg",
+        "alt": "Technical Diagram for Basic Internet Security",
+        "credit": "AI Technical Schematic #2-32"
       },
       "visual": "privacy",
       "lead": "Fundamental Internet security practices protect user accounts, data privacy, and devices against common online threats.",
@@ -1358,17 +1358,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "MFA",
           "definition": "Multi-Factor Authentication: requiring two or more verification factors to gain account access.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20MFA%2C%20MultiFactor%20Authentication%20requiring%20two%20or%20more%20verification%20factors%20to%20gain%20account%20access%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=296"
+          "image": "assets/images/p2_term_32_1_mfa.svg"
         },
         {
           "term": "Phishing",
           "definition": "Deceptive attacks tricking users into revealing passwords or credentials via fake emails/sites.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Phishing%2C%20Deceptive%20attacks%20tricking%20users%20into%20revealing%20passwords%20or%20credentials%20via%20fake%20emailssites%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=297"
+          "image": "assets/images/p2_term_32_2_phishing.svg"
         },
         {
           "term": "Malware",
           "definition": "Malicious software (viruses, trojans, ransomware) designed to harm or exploit devices.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Malware%2C%20Malicious%20software%20viruses%20trojans%20ransomware%20designed%20to%20harm%20or%20exploit%20devices%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=298"
+          "image": "assets/images/p2_term_32_3_malware.svg"
         }
       ],
       "examples": [
@@ -1386,9 +1386,9 @@ window.CC101_MODULE_DATA = {
       "title": "Basic Network Troubleshooting",
       "category": "Troubleshooting",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Basic%20Network%20Troubleshooting%2C%20Network%20troubleshooting%20relies%20on%20a%20systematic%208step%20dependency%20ladder%20to%20isolate%20connectivity%20probl%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=299",
-        "alt": "AI Generated 3D Technical Diagram for Basic Network Troubleshooting",
-        "credit": "AI Generated Visual #299"
+        "src": "assets/images/p2_slide_33_basic_network_troubleshooting.svg",
+        "alt": "Technical Diagram for Basic Network Troubleshooting",
+        "credit": "AI Technical Schematic #2-33"
       },
       "visual": "performance",
       "lead": "Network troubleshooting relies on a systematic 8-step dependency ladder to isolate connectivity problems logically.",
@@ -1400,17 +1400,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Dependency Ladder",
           "definition": "Troubleshooting in logical order from physical hardware up to application services.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Dependency%20Ladder%2C%20Troubleshooting%20in%20logical%20order%20from%20physical%20hardware%20up%20to%20application%20services%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=300"
+          "image": "assets/images/p2_term_33_1_dependency_ladder.svg"
         },
         {
           "term": "Scope Isolation",
           "definition": "Determining whether a fault impacts a single device, an entire LAN, or a remote server.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Scope%20Isolation%2C%20Determining%20whether%20a%20fault%20impacts%20a%20single%20device%20an%20entire%20LAN%20or%20a%20remote%20server%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=301"
+          "image": "assets/images/p2_term_33_2_scope_isolation.svg"
         },
         {
           "term": "Fault Location",
           "definition": "Pinpointing the exact segment (NIC, Wi-Fi, cable, gateway, ISP, DNS, or server) where a failure occurs.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Fault%20Location%2C%20Pinpointing%20the%20exact%20segment%20NIC%20WiFi%20cable%20gateway%20ISP%20DNS%20or%20server%20where%20a%20failure%20occurs%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=302"
+          "image": "assets/images/p2_term_33_3_fault_location.svg"
         }
       ],
       "examples": [
@@ -1428,9 +1428,9 @@ window.CC101_MODULE_DATA = {
       "title": "Introductory Command-Line Tools",
       "category": "Troubleshooting",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Introductory%20CommandLine%20Tools%2C%20Standard%20commandline%20tools%20provide%20direct%20technical%20visibility%20into%20network%20adapters%20IP%20routing%20DNS%20%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=303",
-        "alt": "AI Generated 3D Technical Diagram for Introductory Command-Line Tools",
-        "credit": "AI Generated Visual #303"
+        "src": "assets/images/p2_slide_34_introductory_command_line_tools.svg",
+        "alt": "Technical Diagram for Introductory Command-Line Tools",
+        "credit": "AI Technical Schematic #2-34"
       },
       "visual": "performance",
       "lead": "Standard command-line tools provide direct technical visibility into network adapters, IP routing, DNS lookups, and connection paths.",
@@ -1442,22 +1442,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "ipconfig /all",
           "definition": "Command listing detailed network configuration for all active system adapters.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20ipconfig%20all%2C%20Command%20listing%20detailed%20network%20configuration%20for%20all%20active%20system%20adapters%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=304"
+          "image": "assets/images/p2_term_34_1_ipconfig_all.svg"
         },
         {
           "term": "ping",
           "definition": "Utility sending ICMP Echo Request packets to test target reachability and latency.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20ping%2C%20Utility%20sending%20ICMP%20Echo%20Request%20packets%20to%20test%20target%20reachability%20and%20latency%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=305"
+          "image": "assets/images/p2_term_34_2_ping.svg"
         },
         {
           "term": "nslookup",
           "definition": "Command-line tool querying DNS servers to resolve hostnames or inspect DNS records.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20nslookup%2C%20Commandline%20tool%20querying%20DNS%20servers%20to%20resolve%20hostnames%20or%20inspect%20DNS%20records%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=306"
+          "image": "assets/images/p2_term_34_3_nslookup.svg"
         },
         {
           "term": "tracert",
           "definition": "Traceroute tool displaying each router hop and latency along the path to a destination.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20tracert%2C%20Traceroute%20tool%20displaying%20each%20router%20hop%20and%20latency%20along%20the%20path%20to%20a%20destination%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=307"
+          "image": "assets/images/p2_term_34_4_tracert.svg"
         }
       ],
       "examples": [
@@ -1476,9 +1476,9 @@ window.CC101_MODULE_DATA = {
       "title": "Internet Governance and Responsibility",
       "category": "Governance",
       "image": {
-        "src": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20Internet%20Governance%20and%20Responsibility%2C%20The%20Internet%20operates%20without%20a%20single%20central%20owner%20through%20international%20technical%20standardization%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=308",
-        "alt": "AI Generated 3D Technical Diagram for Internet Governance and Responsibility",
-        "credit": "AI Generated Visual #308"
+        "src": "assets/images/p2_slide_35_internet_governance_and_responsibility.svg",
+        "alt": "Technical Diagram for Internet Governance and Responsibility",
+        "credit": "AI Technical Schematic #2-35"
       },
       "visual": "network",
       "lead": "The Internet operates without a single central owner through international technical standardization, address coordination, and multi-stakeholder cooperation.",
@@ -1490,17 +1490,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Multi-Stakeholder Model",
           "definition": "Governance involving technical experts, academics, civil society, governments, and private industry.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20MultiStakeholder%20Model%2C%20Governance%20involving%20technical%20experts%20academics%20civil%20society%20governments%20and%20private%20industry%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=309"
+          "image": "assets/images/p2_term_35_1_multi_stakeholder_model.svg"
         },
         {
           "term": "ICANN",
           "definition": "Organization coordinating global domain names, IP address allocation, and root server parameters.",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20ICANN%2C%20Organization%20coordinating%20global%20domain%20names%20IP%20address%20allocation%20and%20root%20server%20parameters%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=310"
+          "image": "assets/images/p2_term_35_2_icann.svg"
         },
         {
           "term": "IETF",
           "definition": "Open technical community that develops and defines Internet protocol specifications (RFCs).",
-          "image": "https://image.pollinations.ai/prompt/3D%20high%20tech%20educational%20diagram%20of%20IETF%2C%20Open%20technical%20community%20that%20develops%20and%20defines%20Internet%20protocol%20specifications%20RFCs%2C%20dark%20technical%20background%2C%20sleek%20digital%20aesthetic%2C%20crisp%204k%20resolution?width=1280&height=720&nologo=true&seed=311"
+          "image": "assets/images/p2_term_35_3_ietf.svg"
         }
       ],
       "examples": [

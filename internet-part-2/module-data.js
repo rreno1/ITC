@@ -554,12 +554,12 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Circuit Switching",
           "definition": "Legacy method where a dedicated physical circuit was reserved between two endpoints.",
-          "image": "assets/images/slide_2_term_1.jpg"
+          "image": "assets/images/slide_22_term_1.jpg"
         },
         {
           "term": "Dynamic Routing",
           "definition": "Routers dynamically choosing optimal paths for each packet based on current network health.",
-          "image": "assets/images/slide_2_term_2.jpg"
+          "image": "assets/images/slide_23_main.jpg"
         }
       ],
       "examples": [
@@ -601,12 +601,12 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Autonomous System (AS)",
           "definition": "A large network or group of networks operated by a single organization under a unified routing policy.",
-          "image": "assets/images/slide_3_term_1.png"
+          "image": "assets/images/slide_23_term_4.jpg"
         },
         {
           "term": "BGP",
           "definition": "Border Gateway Protocol: the core routing protocol used to exchange routing info between autonomous systems.",
-          "image": "assets/images/slide_3_term_2.jpg"
+          "image": "assets/images/slide_24_term_3.jpg"
         }
       ],
       "examples": [
@@ -620,7 +620,7 @@ window.CC101_MODULE_DATA = {
         "What is the purpose of the Time to Live (TTL) field in an IP packet header?"
       ],
       "image": {
-        "src": "assets/images/slide_2_term_2.jpg",
+        "src": "assets/images/slide_23_main.jpg",
         "alt": "Routers and Routing Paths Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -638,7 +638,7 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Network Protocol",
           "definition": "An agreed set of rules and formats governing data communication between systems.",
-          "image": "assets/images/slide_3_term_2.jpg"
+          "image": "assets/images/slide_24_term_3.jpg"
         },
         {
           "term": "Interoperability",
@@ -685,12 +685,12 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Encapsulation",
           "definition": "Adding protocol headers to data as it moves down through protocol layers.",
-          "image": "assets/images/slide_5_term_2.jpg"
+          "image": "assets/images/slide_27_main.jpg"
         },
         {
           "term": "Decapsulation",
           "definition": "Removing protocol headers from received data as it moves up through protocol layers.",
-          "image": "assets/images/slide_5_term_3.jpg"
+          "image": "assets/images/slide_28_term_2.jpg"
         }
       ],
       "examples": [
@@ -704,7 +704,7 @@ window.CC101_MODULE_DATA = {
         "Describe what happens during encapsulation at the sending device and decapsulation at the receiving device."
       ],
       "image": {
-        "src": "assets/images/slide_5_main.jpg",
+        "src": "assets/images/slide_26_term_1.jpg",
         "alt": "The TCP/IP Model Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -727,12 +727,12 @@ window.CC101_MODULE_DATA = {
         {
           "term": "UDP",
           "definition": "User Datagram Protocol: connectionless, lightweight, best-effort transport protocol.",
-          "image": "assets/images/slide_7_main.jpg"
+          "image": "assets/images/slide_29_term_1.jpg"
         },
         {
           "term": "3-Way Handshake",
           "definition": "The SYN, SYN-ACK, ACK sequence used by TCP to establish a connection before sending data.",
-          "image": "assets/images/slide_7_term_1.jpg"
+          "image": "assets/images/slide_2_main.jpg"
         }
       ],
       "examples": [
@@ -746,7 +746,7 @@ window.CC101_MODULE_DATA = {
         "Which transport protocol would you select for a banking transaction versus a live sports stream? Explain."
       ],
       "image": {
-        "src": "assets/images/slide_5_term_3.jpg",
+        "src": "assets/images/slide_28_term_2.jpg",
         "alt": "TCP and UDP Transport Protocols Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -764,7 +764,7 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Port Number",
           "definition": "A 16-bit transport layer number identifying a specific process or service endpoint.",
-          "image": "assets/images/slide_7_term_3.png"
+          "image": "assets/images/slide_2_term_1.jpg"
         },
         {
           "term": "Well-Known Ports",
@@ -806,7 +806,7 @@ window.CC101_MODULE_DATA = {
         {
           "term": "DNS",
           "definition": "Domain Name System: a distributed system converting domain names into IP addresses.",
-          "image": "assets/images/slide_10_term_1.jpg"
+          "image": "assets/images/slide_30_main.jpg"
         },
         {
           "term": "Recursive Resolver",
@@ -900,7 +900,7 @@ window.CC101_MODULE_DATA = {
         {
           "term": "HTTP Headers",
           "definition": "Metadata fields carrying client preferences, content type, encoding, and server details.",
-          "image": "assets/images/slide_12_term_3.jpg"
+          "image": "assets/images/slide_21_term_3.jpg"
         }
       ],
       "examples": [
@@ -932,17 +932,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "HTTP Method",
           "definition": "The action verb in an HTTP request indicating the intended operation.",
-          "image": "assets/images/slide_12_term_4.jpg"
+          "image": "assets/images/slide_22_term_1.jpg"
         },
         {
           "term": "GET vs POST",
           "definition": "GET retrieves data without modifying state; POST submits data to be processed or created.",
-          "image": "assets/images/slide_13_main.jpg"
+          "image": "assets/images/slide_5_term_1.jpg"
         },
         {
           "term": "Idempotency",
           "definition": "A property where repeating a request multiple times produces the same server state as a single request.",
-          "image": "assets/images/slide_13_term_1.jpg"
+          "image": "assets/images/slide_5_term_2.jpg"
         }
       ],
       "examples": [
@@ -957,7 +957,7 @@ window.CC101_MODULE_DATA = {
         "Why should sensitive password submissions use POST rather than GET?"
       ],
       "image": {
-        "src": "assets/images/slide_12_term_3.jpg",
+        "src": "assets/images/slide_22_main.jpg",
         "alt": "HTTP Methods Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -975,17 +975,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Status Code",
           "definition": "A 3-digit numerical response code summarizing request processing results.",
-          "image": "assets/images/slide_14_term_1.jpg"
+          "image": "assets/images/slide_5_term_3.jpg"
         },
         {
           "term": "200 OK",
           "definition": "Standard response code indicating the request succeeded and content is returned.",
-          "image": "assets/images/slide_14_term_2.jpg"
+          "image": "assets/images/slide_23_term_2.jpg"
         },
         {
           "term": "404 Not Found",
           "definition": "Client error code indicating the requested URI path was not found on the server.",
-          "image": "assets/images/slide_15_main.png"
+          "image": "assets/images/slide_23_term_3.jpg"
         },
         {
           "term": "500 Internal Server Error",
@@ -1006,7 +1006,7 @@ window.CC101_MODULE_DATA = {
         "Explain why receiving a 404 error proves your Internet connection is working."
       ],
       "image": {
-        "src": "assets/images/slide_13_term_1.jpg",
+        "src": "assets/images/slide_23_main.jpg",
         "alt": "HTTP Status Codes Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -1024,17 +1024,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "HTTPS",
           "definition": "Hypertext Transfer Protocol Secure: HTTP encrypted using TLS protocol.",
-          "image": "assets/images/slide_15_term_2.jpg"
+          "image": "assets/images/slide_7_term_1.jpg"
         },
         {
           "term": "TLS Handshake",
           "definition": "The cryptographic negotiation where client and server validate identity and exchange encryption keys.",
-          "image": "assets/images/slide_15_term_3.jpg"
+          "image": "assets/images/slide_7_term_3.png"
         },
         {
           "term": "Certificate Authority (CA)",
           "definition": "A trusted third-party organization that signs digital certificates verifying domain ownership.",
-          "image": "assets/images/slide_16_term_1.jpg"
+          "image": "assets/images/slide_24_term_3.jpg"
         }
       ],
       "examples": [
@@ -1048,7 +1048,7 @@ window.CC101_MODULE_DATA = {
         "Why does a green padlock icon not guarantee that a website's business claims are legitimate?"
       ],
       "image": {
-        "src": "assets/images/slide_15_main.png",
+        "src": "assets/images/slide_7_main.jpg",
         "alt": "HTTPS, Encryption, and Certificates Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -1065,12 +1065,12 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Request Journey",
           "definition": "The end-to-end multi-step technical sequence required to request and display a webpage.",
-          "image": "assets/images/slide_17_term_1.jpg"
+          "image": "assets/images/slide_25_term_1.png"
         },
         {
           "term": "Asset Sub-Requests",
           "definition": "Secondary HTTP requests automatically triggered by the browser for CSS, JS, fonts, and images referenced in HTML.",
-          "image": "assets/images/slide_18_main.jpg"
+          "image": "assets/images/slide_10_term_1.jpg"
         }
       ],
       "examples": [
@@ -1083,7 +1083,7 @@ window.CC101_MODULE_DATA = {
         "Why does receiving the primary HTML file trigger multiple additional HTTP requests?"
       ],
       "image": {
-        "src": "assets/images/slide_16_term_1.jpg",
+        "src": "assets/images/slide_9_main.jpg",
         "alt": "Complete Journey of Opening a Website Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -1101,17 +1101,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "3-Tier Architecture",
           "definition": "System design separating Client presentation, Server application logic, and Database storage.",
-          "image": "assets/images/slide_18_term_3.jpg"
+          "image": "assets/images/slide_26_term_1.jpg"
         },
         {
           "term": "Database",
           "definition": "A structured software system (like MySQL or PostgreSQL) for storing, querying, and updating data records.",
-          "image": "assets/images/slide_19_main.jpg"
+          "image": "assets/images/slide_11_term_1.jpg"
         },
         {
           "term": "Application Logic",
           "definition": "Backend code running on the server that enforces rules, calculations, and security.",
-          "image": "assets/images/slide_19_term_2.jpg"
+          "image": "assets/images/slide_26_term_3.png"
         }
       ],
       "examples": [
@@ -1124,7 +1124,7 @@ window.CC101_MODULE_DATA = {
         "Why should a client browser never connect directly to a remote database?"
       ],
       "image": {
-        "src": "assets/images/slide_18_term_2.jpg",
+        "src": "assets/images/slide_10_term_3.jpg",
         "alt": "Client, Server, and Database Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -1142,17 +1142,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "HTML",
           "definition": "Markup language defining the structural meaning of webpage elements.",
-          "image": "assets/images/slide_19_term_3.jpg"
+          "image": "assets/images/slide_12_main.jpg"
         },
         {
           "term": "CSS",
           "definition": "Stylesheet language controlling visual appearance, colors, fonts, and responsive layout.",
-          "image": "assets/images/slide_1_main.jpg"
+          "image": "assets/images/slide_12_term_1.jpg"
         },
         {
           "term": "JavaScript",
           "definition": "Programming language running in the browser providing interactive logic and dynamic DOM updates.",
-          "image": "assets/images/slide_1_term_1.jpg"
+          "image": "assets/images/slide_12_term_2.png"
         }
       ],
       "examples": [
@@ -1165,7 +1165,7 @@ window.CC101_MODULE_DATA = {
         "Why is it beneficial to keep CSS styles in separate files rather than inline inside HTML tags?"
       ],
       "image": {
-        "src": "assets/images/slide_19_term_2.jpg",
+        "src": "assets/images/slide_27_main.jpg",
         "alt": "Webpage Components Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -1183,17 +1183,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Cookie",
           "definition": "Small text data stored in the browser by websites for tracking, preferences, or session IDs.",
-          "image": "assets/images/slide_1_term_2.jpg"
+          "image": "assets/images/slide_12_term_3.jpg"
         },
         {
           "term": "Session",
           "definition": "Server-side data record keeping track of an active user state during web browsing.",
-          "image": "assets/images/slide_1_term_3.jpg"
+          "image": "assets/images/slide_28_term_2.jpg"
         },
         {
           "term": "Cache",
           "definition": "Local storage of previously fetched web assets (images, CSS) to speed up future visits.",
-          "image": "assets/images/slide_20_main.jpg"
+          "image": "assets/images/slide_13_main.jpg"
         }
       ],
       "examples": [
@@ -1207,7 +1207,7 @@ window.CC101_MODULE_DATA = {
         "What is the benefit of browser caching for web performance?"
       ],
       "image": {
-        "src": "assets/images/slide_1_term_1.jpg",
+        "src": "assets/images/slide_12_term_2.png",
         "alt": "Cookies, Sessions, and Caching Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -1225,17 +1225,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Web Hosting",
           "definition": "Providing server storage and network connectivity so website files are accessible 24/7.",
-          "image": "assets/images/slide_20_term_1.jpg"
+          "image": "assets/images/slide_29_term_1.jpg"
         },
         {
           "term": "Cloud Computing",
           "definition": "On-demand delivery of computing power, databases, and storage via the Internet.",
-          "image": "assets/images/slide_20_term_2.jpg"
+          "image": "assets/images/slide_14_term_1.jpg"
         },
         {
           "term": "CDN",
           "definition": "Content Delivery Network: edge servers distributed globally to cache content close to end users.",
-          "image": "assets/images/slide_20_term_3.jpg"
+          "image": "assets/images/slide_14_term_2.jpg"
         }
       ],
       "examples": [
@@ -1249,7 +1249,7 @@ window.CC101_MODULE_DATA = {
         "Differentiate between traditional web hosting, data centers, and cloud computing."
       ],
       "image": {
-        "src": "assets/images/slide_20_main.jpg",
+        "src": "assets/images/slide_29_main.jpg",
         "alt": "Hosting, Data Centers, Cloud, and CDNs Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -1267,17 +1267,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Bandwidth vs Throughput",
           "definition": "Bandwidth is maximum channel capacity; Throughput is actual sustained data delivery rate.",
-          "image": "assets/images/slide_21_main.png"
+          "image": "assets/images/slide_15_main.png"
         },
         {
           "term": "Latency (Ping)",
           "definition": "The time delay in milliseconds for a packet to travel to a destination and return.",
-          "image": "assets/images/slide_21_term_1.png"
+          "image": "assets/images/slide_30_term_2.jpg"
         },
         {
           "term": "Jitter & Packet Loss",
           "definition": "Jitter is latency fluctuation; Packet Loss is the percentage of dropped packets during congestion.",
-          "image": "assets/images/slide_21_term_2.png"
+          "image": "assets/images/slide_15_term_3.jpg"
         }
       ],
       "examples": [
@@ -1293,7 +1293,7 @@ window.CC101_MODULE_DATA = {
         "Explain the difference between network bandwidth and actual throughput."
       ],
       "image": {
-        "src": "assets/images/slide_20_term_3.jpg",
+        "src": "assets/images/slide_30_main.jpg",
         "alt": "Internet Performance Metrics Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -1311,17 +1311,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Bottleneck",
           "definition": "The lowest-capacity segment along an end-to-end network path that limits overall performance.",
-          "image": "assets/images/slide_23_term_4.jpg"
+          "image": "assets/images/slide_31_term_1.jpg"
         },
         {
           "term": "Network Congestion",
           "definition": "Performance degradation occurring when network traffic exceeds available link capacity.",
-          "image": "assets/images/slide_2_main.jpg"
+          "image": "assets/images/slide_31_term_2.jpg"
         },
         {
           "term": "Upload Saturation",
           "definition": "Completely filling upload capacity, which halts incoming download acknowledgments and slows the connection.",
-          "image": "assets/images/slide_2_term_1.jpg"
+          "image": "assets/images/slide_18_main.jpg"
         }
       ],
       "examples": [
@@ -1335,7 +1335,7 @@ window.CC101_MODULE_DATA = {
         "Why does saturating your upload bandwidth slow down your download speed?"
       ],
       "image": {
-        "src": "assets/images/slide_21_term_2.png",
+        "src": "assets/images/slide_15_term_3.jpg",
         "alt": "Congestion and Bottlenecks Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -1353,17 +1353,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "MFA",
           "definition": "Multi-Factor Authentication: requiring two or more verification factors to gain account access.",
-          "image": "assets/images/slide_2_term_2.jpg"
+          "image": "assets/images/slide_18_term_2.jpg"
         },
         {
           "term": "Phishing",
           "definition": "Deceptive attacks tricking users into revealing passwords or credentials via fake emails/sites.",
-          "image": "assets/images/slide_2_term_3.png"
+          "image": "assets/images/slide_32_term_2.jpg"
         },
         {
           "term": "Malware",
           "definition": "Malicious software (viruses, trojans, ransomware) designed to harm or exploit devices.",
-          "image": "assets/images/slide_3_main.jpg"
+          "image": "assets/images/slide_19_main.jpg"
         }
       ],
       "examples": [
@@ -1377,7 +1377,7 @@ window.CC101_MODULE_DATA = {
         "List four essential daily security practices for protecting personal online accounts."
       ],
       "image": {
-        "src": "assets/images/slide_2_term_1.jpg",
+        "src": "assets/images/slide_18_main.jpg",
         "alt": "Basic Internet Security Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -1395,17 +1395,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Dependency Ladder",
           "definition": "Troubleshooting in logical order from physical hardware up to application services.",
-          "image": "assets/images/slide_3_term_1.png"
+          "image": "assets/images/slide_19_term_2.jpg"
         },
         {
           "term": "Scope Isolation",
           "definition": "Determining whether a fault impacts a single device, an entire LAN, or a remote server.",
-          "image": "assets/images/slide_3_term_2.jpg"
+          "image": "assets/images/slide_19_term_3.jpg"
         },
         {
           "term": "Fault Location",
           "definition": "Pinpointing the exact segment (NIC, Wi-Fi, cable, gateway, ISP, DNS, or server) where a failure occurs.",
-          "image": "assets/images/slide_3_term_3.jpg"
+          "image": "assets/images/slide_1_main.jpg"
         }
       ],
       "examples": [
@@ -1419,7 +1419,7 @@ window.CC101_MODULE_DATA = {
         "Explain how scope isolation helps determine whether a problem is local or remote."
       ],
       "image": {
-        "src": "assets/images/slide_3_main.jpg",
+        "src": "assets/images/slide_19_main.jpg",
         "alt": "Basic Network Troubleshooting Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -1437,22 +1437,22 @@ window.CC101_MODULE_DATA = {
         {
           "term": "ipconfig /all",
           "definition": "Command listing detailed network configuration for all active system adapters.",
-          "image": "assets/images/slide_5_main.jpg"
+          "image": "assets/images/slide_1_term_1.jpg"
         },
         {
           "term": "ping",
           "definition": "Utility sending ICMP Echo Request packets to test target reachability and latency.",
-          "image": "assets/images/slide_5_term_1.jpg"
+          "image": "assets/images/slide_1_term_2.jpg"
         },
         {
           "term": "nslookup",
           "definition": "Command-line tool querying DNS servers to resolve hostnames or inspect DNS records.",
-          "image": "assets/images/slide_5_term_2.jpg"
+          "image": "assets/images/slide_1_term_3.jpg"
         },
         {
           "term": "tracert",
           "definition": "Traceroute tool displaying each router hop and latency along the path to a destination.",
-          "image": "assets/images/slide_5_term_3.jpg"
+          "image": "assets/images/slide_20_main.jpg"
         }
       ],
       "examples": [
@@ -1467,7 +1467,7 @@ window.CC101_MODULE_DATA = {
         "Why might a web server ignore a ping command even though its website opens normally in a browser?"
       ],
       "image": {
-        "src": "assets/images/slide_3_term_3.jpg",
+        "src": "assets/images/slide_1_main.jpg",
         "alt": "Introductory Command-Line Tools Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }
@@ -1485,17 +1485,17 @@ window.CC101_MODULE_DATA = {
         {
           "term": "Multi-Stakeholder Model",
           "definition": "Governance involving technical experts, academics, civil society, governments, and private industry.",
-          "image": "assets/images/slide_5_term_3.jpg"
+          "image": "assets/images/slide_20_main.jpg"
         },
         {
           "term": "ICANN",
           "definition": "Organization coordinating global domain names, IP address allocation, and root server parameters.",
-          "image": "assets/images/slide_6_term_2.jpg"
+          "image": "assets/images/slide_20_term_1.jpg"
         },
         {
           "term": "IETF",
           "definition": "Open technical community that develops and defines Internet protocol specifications (RFCs).",
-          "image": "assets/images/slide_7_main.jpg"
+          "image": "assets/images/slide_20_term_2.jpg"
         }
       ],
       "examples": [
@@ -1509,7 +1509,7 @@ window.CC101_MODULE_DATA = {
         "Summarize the core roles of the IETF and ICANN in maintaining global Internet standards."
       ],
       "image": {
-        "src": "assets/images/slide_5_term_2.jpg",
+        "src": "assets/images/slide_1_term_3.jpg",
         "alt": "Internet Governance and Responsibility Technical Visual",
         "credit": "Wikipedia Technical Photography / Diagram"
       }

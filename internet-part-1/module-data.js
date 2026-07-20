@@ -29,19 +29,23 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Sender",
-          "definition": "The device or application that originates the information being sent."
+          "definition": "The device or application that originates the information being sent.",
+          "image": "assets/images/slide_1_term_1.jpg"
         },
         {
           "term": "Receiver",
-          "definition": "The target device or application intended to receive the information."
+          "definition": "The target device or application intended to receive the information.",
+          "image": "assets/images/slide_1_term_2.jpg"
         },
         {
           "term": "Transmission Medium",
-          "definition": "The physical or wireless path (copper, fiber, radio waves) over which data travels."
+          "definition": "The physical or wireless path (copper, fiber, radio waves) over which data travels.",
+          "image": "assets/images/slide_1_term_3.jpg"
         },
         {
           "term": "Protocol Rules",
-          "definition": "Agreed standards governing how data is formatted, sent, and acknowledged."
+          "definition": "Agreed standards governing how data is formatted, sent, and acknowledged.",
+          "image": "assets/images/slide_1_term_4.jpg"
         }
       ],
       "examples": [
@@ -53,7 +57,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Identify the six components of the basic communication model for a Bluetooth earphone playing music.",
         "Why does binary data need to be converted into physical signals before traveling to another device?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_1_main.jpg",
+        "alt": "Begin With Communication Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Data Becomes Signals",
@@ -67,19 +76,23 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Physical Signal",
-          "definition": "A detectable physical quantity (electrical voltage, light pulse, or radio wave) representing binary data."
+          "definition": "A detectable physical quantity (electrical voltage, light pulse, or radio wave) representing binary data.",
+          "image": "assets/images/slide_2_term_1.jpg"
         },
         {
           "term": "Copper Transmission",
-          "definition": "Carrying binary data using varying electrical voltages over copper wires."
+          "definition": "Carrying binary data using varying electrical voltages over copper wires.",
+          "image": "assets/images/slide_2_term_2.jpg"
         },
         {
           "term": "Fiber-Optic Transmission",
-          "definition": "Carrying binary data as rapid pulses of light down ultra-pure glass strands."
+          "definition": "Carrying binary data as rapid pulses of light down ultra-pure glass strands.",
+          "image": "assets/images/slide_2_term_3.jpg"
         },
         {
           "term": "Wireless Modulation",
-          "definition": "Varying the frequency, amplitude, or phase of radio waves to encode binary 1s and 0s."
+          "definition": "Varying the frequency, amplitude, or phase of radio waves to encode binary 1s and 0s.",
+          "image": "assets/images/slide_2_term_4.jpg"
         }
       ],
       "examples": [
@@ -92,7 +105,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Which physical signal is used by Ethernet cables, fiber-optic lines, and Wi-Fi antennas?",
         "How does a receiving device convert incoming radio waves back into usable computer files?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_2_main.png",
+        "alt": "Data Becomes Signals Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "What Is a Computer Network?",
@@ -106,19 +124,23 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Computer Network",
-          "definition": "A group of connected devices capable of communicating and sharing resources."
+          "definition": "A group of connected devices capable of communicating and sharing resources.",
+          "image": "assets/images/slide_3_term_1.jpg"
         },
         {
           "term": "Node",
-          "definition": "Any active electronic device connected to a network that can send, receive, or forward data."
+          "definition": "Any active electronic device connected to a network that can send, receive, or forward data.",
+          "image": "assets/images/slide_3_term_2.jpg"
         },
         {
           "term": "Host",
-          "definition": "An end-user device (like a laptop or server) assigned a network address that originates or consumes data."
+          "definition": "An end-user device (like a laptop or server) assigned a network address that originates or consumes data.",
+          "image": "assets/images/slide_3_term_3.jpg"
         },
         {
           "term": "Resource",
-          "definition": "Hardware, files, applications, or data shared across a network."
+          "definition": "Hardware, files, applications, or data shared across a network.",
+          "image": "assets/images/slide_3_term_4.jpg"
         }
       ],
       "examples": [
@@ -131,7 +153,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Define the terms node, host, link, and resource in the context of a school computer lab.",
         "List four major reasons why businesses and schools build computer networks."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_3_main.jpg",
+        "alt": "What Is a Computer Network? Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Network Versus Internet",
@@ -145,15 +172,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Local Network (LAN)",
-          "definition": "A private network operating within a limited area under single organizational control."
+          "definition": "A private network operating within a limited area under single organizational control.",
+          "image": "assets/images/slide_4_term_1.jpg"
         },
         {
           "term": "The Internet",
-          "definition": "The global system of interconnected independent networks communicating via TCP/IP."
+          "definition": "The global system of interconnected independent networks communicating via TCP/IP.",
+          "image": "assets/images/slide_4_internet.jpg"
         },
         {
           "term": "Network Independence",
-          "definition": "The ability of a local network to share local files and devices without outside connectivity."
+          "definition": "The ability of a local network to share local files and devices without outside connectivity.",
+          "image": "assets/images/slide_4_term_3.jpg"
         }
       ],
       "examples": [
@@ -165,7 +195,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Explain why a school Wi-Fi network can still function for local printing even if its ISP connection fails.",
         "Summarize the key difference between a single local network and the Internet."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_4_main.png",
+        "alt": "Network Versus Internet Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Types of Networks by Coverage Area",
@@ -179,19 +214,23 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "PAN",
-          "definition": "Personal Area Network (around 1 person, e.g. Bluetooth mouse or earbuds)."
+          "definition": "Personal Area Network (around 1 person, e.g. Bluetooth mouse or earbuds).",
+          "image": "assets/images/slide_5_term_1.jpg"
         },
         {
           "term": "LAN & WLAN",
-          "definition": "Local Area Network and Wireless LAN (a room, home, lab, or single building)."
+          "definition": "Local Area Network and Wireless LAN (a room, home, lab, or single building).",
+          "image": "assets/images/slide_5_term_2.jpg"
         },
         {
           "term": "CAN",
-          "definition": "Campus Area Network (connecting multiple nearby organizational buildings)."
+          "definition": "Campus Area Network (connecting multiple nearby organizational buildings).",
+          "image": "assets/images/slide_5_term_3.jpg"
         },
         {
           "term": "MAN & WAN",
-          "definition": "Metropolitan Area Network (city-wide) and Wide Area Network (provinces, countries, global)."
+          "definition": "Metropolitan Area Network (city-wide) and Wide Area Network (provinces, countries, global).",
+          "image": "assets/images/slide_5_term_4.jpg"
         }
       ],
       "examples": [
@@ -205,7 +244,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "A university links its library, administrative center, and engineering labs. What network type is this?",
         "Is your smartphone's Bluetooth connection to a wireless speaker a LAN or a PAN? Explain."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_5_main.jpg",
+        "alt": "Types of Networks by Coverage Area Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Networks Can Be Classified in Different Ways",
@@ -219,19 +263,23 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Coverage",
-          "definition": "How far the physical or wireless network spans geographically (PAN, LAN, WAN)."
+          "definition": "How far the physical or wireless network spans geographically (PAN, LAN, WAN).",
+          "image": "assets/images/slide_6_term_1.jpg"
         },
         {
           "term": "Medium",
-          "definition": "Whether signals travel through physical cables (wired), radio waves (wireless), or both (hybrid)."
+          "definition": "Whether signals travel through physical cables (wired), radio waves (wireless), or both (hybrid).",
+          "image": "assets/images/slide_6_arch.png"
         },
         {
           "term": "Architecture",
-          "definition": "How control and resource sharing are structured (Peer-to-Peer vs Client-Server)."
+          "definition": "How control and resource sharing are structured (Peer-to-Peer vs Client-Server).",
+          "image": "assets/images/slide_6_term_3.png"
         },
         {
           "term": "Access & Topology",
-          "definition": "Who is allowed to enter (Intranet/Extranet/Public) and how nodes are wired (Star/Mesh)."
+          "definition": "Who is allowed to enter (Intranet/Extranet/Public) and how nodes are wired (Star/Mesh).",
+          "image": "assets/images/slide_6_term_4.png"
         }
       ],
       "examples": [
@@ -242,7 +290,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "List five different classification criteria used to describe a school computer lab network.",
         "Why is it incorrect to say a network must choose between being a LAN or being a wireless network?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_6_main.jpg",
+        "alt": "Networks Can Be Classified in Different Ways Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Wired and Wireless Networks",
@@ -256,15 +309,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Ethernet Cable",
-          "definition": "Shielded or unshielded twisted-pair copper cabling using modular RJ45 connectors."
+          "definition": "Shielded or unshielded twisted-pair copper cabling using modular RJ45 connectors.",
+          "image": "assets/images/slide_7_term_1.jpg"
         },
         {
           "term": "Wi-Fi (IEEE 802.11)",
-          "definition": "Wireless local networking technology operating over 2.4 GHz, 5 GHz, or 6 GHz radio bands."
+          "definition": "Wireless local networking technology operating over 2.4 GHz, 5 GHz, or 6 GHz radio bands.",
+          "image": "assets/images/slide_7_term_2.jpg"
         },
         {
           "term": "Interference",
-          "definition": "Distortion of wireless radio signals caused by obstacles, distance, or competing electronic devices."
+          "definition": "Distortion of wireless radio signals caused by obstacles, distance, or competing electronic devices.",
+          "image": "assets/images/slide_7_term_3.jpg"
         }
       ],
       "examples": [
@@ -276,7 +332,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Compare wired Ethernet and Wi-Fi across speed, mobility, interference, and installation cost.",
         "Why might a gaming tournament or video production studio prefer wired Ethernet cables over Wi-Fi?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_7_main.jpg",
+        "alt": "Wired and Wireless Networks Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Network Architecture: Peer-to-Peer and Client-Server",
@@ -290,15 +351,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Peer-to-Peer (P2P)",
-          "definition": "A decentralized network architecture where every node can act as both client and server."
+          "definition": "A decentralized network architecture where every node can act as both client and server.",
+          "image": "assets/images/slide_8_client.png"
         },
         {
           "term": "Client",
-          "definition": "A user device or application (e.g. web browser) that requests services or files."
+          "definition": "A user device or application (e.g. web browser) that requests services or files.",
+          "image": "assets/images/slide_8_term_2.png"
         },
         {
           "term": "Server",
-          "definition": "A high-capacity computer or service that listens for, processes, and fulfills client requests."
+          "definition": "A high-capacity computer or service that listens for, processes, and fulfills client requests.",
+          "image": "assets/images/slide_8_term_3.jpg"
         }
       ],
       "examples": [
@@ -310,7 +374,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Contrast peer-to-peer and client-server architectures in terms of centralization, security, and scalability.",
         "Can a single computer act as a client in one application and a server in another? Give an example."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_8_main.png",
+        "alt": "Network Architecture: Peer-to-Peer and Client-Server Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Network Access Types: Intranet, Extranet, and Internet",
@@ -324,15 +393,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Intranet",
-          "definition": "A private network accessible only to an internal staff or members."
+          "definition": "A private network accessible only to an internal staff or members.",
+          "image": "assets/images/slide_9_internet.jpg"
         },
         {
           "term": "Extranet",
-          "definition": "A secure extension of an intranet providing restricted access to trusted external entities."
+          "definition": "A secure extension of an intranet providing restricted access to trusted external entities.",
+          "image": "assets/images/slide_9_term_3.jpg"
         },
         {
           "term": "Public Internet",
-          "definition": "The globally accessible network open to the public."
+          "definition": "The globally accessible network open to the public.",
+          "image": "assets/images/slide_9_term_3.jpg"
         }
       ],
       "examples": [
@@ -345,7 +417,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Explain the security difference between a school intranet, a parent portal extranet, and a public website.",
         "Why would an organization choose to host an internal document on an intranet rather than the public web?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_9_main.jpg",
+        "alt": "Network Access Types: Intranet, Extranet, and Internet Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Basic Network Topologies",
@@ -359,19 +436,23 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Star Topology",
-          "definition": "All network nodes connect independently to a single central device (switch or AP)."
+          "definition": "All network nodes connect independently to a single central device (switch or AP).",
+          "image": "assets/images/slide_10_term_1.png"
         },
         {
           "term": "Bus Topology",
-          "definition": "Legacy arrangement where nodes share a single central trunk cable with terminators."
+          "definition": "Legacy arrangement where nodes share a single central trunk cable with terminators.",
+          "image": "assets/images/slide_10_term_2.jpg"
         },
         {
           "term": "Ring Topology",
-          "definition": "Nodes connect sequentially in a continuous loop, passing tokens in one direction."
+          "definition": "Nodes connect sequentially in a continuous loop, passing tokens in one direction.",
+          "image": "assets/images/slide_10_term_3.jpg"
         },
         {
           "term": "Mesh Topology",
-          "definition": "Redundant interconnections between nodes providing multiple path options."
+          "definition": "Redundant interconnections between nodes providing multiple path options.",
+          "image": "assets/images/slide_10_term_4.jpg"
         }
       ],
       "examples": [
@@ -383,7 +464,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Why is Star topology favored over Bus topology in modern home and school network installations?",
         "What is the primary advantage of a Mesh topology in critical environments like military or ISP backbones?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_10_main.png",
+        "alt": "Basic Network Topologies Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Network Media Comparison",
@@ -397,15 +483,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Copper Cat6",
-          "definition": "Standard Ethernet cabling carrying up to 10 Gbps signals up to 55-100 meters."
+          "definition": "Standard Ethernet cabling carrying up to 10 Gbps signals up to 55-100 meters.",
+          "image": "assets/images/slide_11_term_1.jpg"
         },
         {
           "term": "Single-Mode Fiber",
-          "definition": "Fiber-optic cable using narrow laser light beams for multi-kilometer transmission."
+          "definition": "Fiber-optic cable using narrow laser light beams for multi-kilometer transmission.",
+          "image": "assets/images/slide_11_term_2.jpg"
         },
         {
           "term": "Electromagnetic Interference (EMI)",
-          "definition": "Distortion of electrical signals caused by heavy machinery, power lines, or lightning."
+          "definition": "Distortion of electrical signals caused by heavy machinery, power lines, or lightning.",
+          "image": "assets/images/slide_11_term_3.jpg"
         }
       ],
       "examples": [
@@ -418,7 +507,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Why is copper Ethernet cabling restricted to a maximum length of 100 meters?",
         "Which medium would you recommend to connect two school buildings separated by 2 kilometers? Explain."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_11_main.jpg",
+        "alt": "Network Media Comparison Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Essential Network Devices",
@@ -432,19 +526,23 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "NIC",
-          "definition": "Network Interface Card: the hardware component giving a device a physical connection and MAC address."
+          "definition": "Network Interface Card: the hardware component giving a device a physical connection and MAC address.",
+          "image": "assets/images/slide_12_term_1.jpg"
         },
         {
           "term": "Switch",
-          "definition": "A local device that forwards frames between devices on the same local network."
+          "definition": "A local device that forwards frames between devices on the same local network.",
+          "image": "assets/images/slide_12_term_2.jpg"
         },
         {
           "term": "Router",
-          "definition": "A gateway device that forwards packets between different networks based on IP addresses."
+          "definition": "A gateway device that forwards packets between different networks based on IP addresses.",
+          "image": "assets/images/slide_12_term_3.jpg"
         },
         {
           "term": "Modem / ONT",
-          "definition": "A device that translates ISP access signals (fiber/copper/cable) into local network traffic."
+          "definition": "A device that translates ISP access signals (fiber/copper/cable) into local network traffic.",
+          "image": "assets/images/slide_12_term_4.jpg"
         }
       ],
       "examples": [
@@ -457,7 +555,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Explain the distinct roles of a switch, a router, and a modem in a home network.",
         "Why does a computer need a Network Interface Card (NIC) to join a network?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_12_main.jpg",
+        "alt": "Essential Network Devices Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Building a Home or School Network",
@@ -471,15 +574,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Aggregation",
-          "definition": "Combining traffic from multiple local end-user devices into central network paths."
+          "definition": "Combining traffic from multiple local end-user devices into central network paths.",
+          "image": "assets/images/slide_13_aggregation.jpg"
         },
         {
           "term": "Integrated Gateway",
-          "definition": "A single consumer box combining router, switch, access point, and modem functions."
+          "definition": "A single consumer box combining router, switch, access point, and modem functions.",
+          "image": "assets/images/slide_13_term_2.jpg"
         },
         {
           "term": "Enterprise Layout",
-          "definition": "A network separating switches, firewalls, routers, and access points into dedicated hardware."
+          "definition": "A network separating switches, firewalls, routers, and access points into dedicated hardware.",
+          "image": "assets/images/slide_13_term_2.jpg"
         }
       ],
       "examples": [
@@ -491,7 +597,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Trace the path of data from a school computer to an ISP fiber line, naming every device along the way.",
         "Why do commercial school networks use separate switches and access points instead of single all-in-one home boxes?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_13_main.png",
+        "alt": "Building a Home or School Network Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Communication Inside a Local Network",
@@ -505,15 +616,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "MAC Address",
-          "definition": "A unique 48-bit physical identifier (e.g. 00:1A:2B:3C:4D:5E) assigned to a network interface card."
+          "definition": "A unique 48-bit physical identifier (e.g. 00:1A:2B:3C:4D:5E) assigned to a network interface card.",
+          "image": "assets/images/slide_14_frame.jpg"
         },
         {
           "term": "Local Switching",
-          "definition": "Direct forwarding of frames between local ports without sending data outside the local network."
+          "definition": "Direct forwarding of frames between local ports without sending data outside the local network.",
+          "image": "assets/images/slide_14_term_2.jpg"
         },
         {
           "term": "Frame",
-          "definition": "A unit of data formatted for local delivery across a physical link using MAC addresses."
+          "definition": "A unit of data formatted for local delivery across a physical link using MAC addresses.",
+          "image": "assets/images/slide_14_term_3.png"
         }
       ],
       "examples": [
@@ -525,7 +639,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Trace the local delivery path of a document sent from a student laptop to a local network printer.",
         "What role does a MAC address play when a switch delivers data inside a local network?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_14_main.jpg",
+        "alt": "Communication Inside a Local Network Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Basic Network Models",
@@ -539,15 +658,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Layered Architecture",
-          "definition": "Dividing networking functions into distinct levels so software and hardware can be designed independently."
+          "definition": "Dividing networking functions into distinct levels so software and hardware can be designed independently.",
+          "image": "assets/images/slide_15_term_1.png"
         },
         {
           "term": "Application Layer",
-          "definition": "The top layer containing user-facing network applications and protocols."
+          "definition": "The top layer containing user-facing network applications and protocols.",
+          "image": "assets/images/slide_15_term_2.png"
         },
         {
           "term": "Link & Physical Layers",
-          "definition": "The bottom layers responsible for local MAC delivery and physical signal transmission."
+          "definition": "The bottom layers responsible for local MAC delivery and physical signal transmission.",
+          "image": "assets/images/slide_15_term_3.jpg"
         }
       ],
       "examples": [
@@ -558,7 +680,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Name the five layers of the simplified network model and state the primary question each layer answers.",
         "Why is a layered design beneficial for hardware manufacturers and software developers?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_15_main.jpg",
+        "alt": "Basic Network Models Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     }
   ],
   "activity": {

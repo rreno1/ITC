@@ -32,15 +32,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "The Internet",
-          "definition": "The global system of interconnected computer networks communicating via TCP/IP."
+          "definition": "The global system of interconnected computer networks communicating via TCP/IP.",
+          "image": "assets/images/slide_1_term_1.jpg"
         },
         {
           "term": "Interconnection",
-          "definition": "The physical and logical linking of separate networks so data can cross between them."
+          "definition": "The physical and logical linking of separate networks so data can cross between them.",
+          "image": "assets/images/slide_1_term_2.jpg"
         },
         {
           "term": "Open Standards",
-          "definition": "Publicly available technical rules that allow equipment from different manufacturers to communicate."
+          "definition": "Publicly available technical rules that allow equipment from different manufacturers to communicate.",
+          "image": "assets/images/slide_1_term_3.jpg"
         }
       ],
       "examples": [
@@ -52,7 +55,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Summarize three core ideas that define what the Internet is.",
         "Why does no single company or government control or own the entire Internet?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_1_main.jpg",
+        "alt": "What Is the Internet? Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Internet Versus World Wide Web",
@@ -66,15 +74,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "World Wide Web (Web)",
-          "definition": "An application service of linked web documents accessed via web browsers."
+          "definition": "An application service of linked web documents accessed via web browsers.",
+          "image": "assets/images/slide_2_term_1.jpg"
         },
         {
           "term": "Internet Service",
-          "definition": "An application or system (like email or VoIP) running over Internet infrastructure."
+          "definition": "An application or system (like email or VoIP) running over Internet infrastructure.",
+          "image": "assets/images/slide_2_term_2.jpg"
         },
         {
           "term": "HTTP / HTTPS",
-          "definition": "The primary web protocols used to transfer web pages and secure web communications."
+          "definition": "The primary web protocols used to transfer web pages and secure web communications.",
+          "image": "assets/images/slide_2_term_3.png"
         }
       ],
       "examples": [
@@ -86,7 +97,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Differentiate between the Internet and the World Wide Web.",
         "List four Internet services that do not rely on web browsers or web pages."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_2_main.jpg",
+        "alt": "Internet Versus World Wide Web Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Physical Internet Infrastructure",
@@ -100,15 +116,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Subsea Cable",
-          "definition": "Fiber-optic cables laid on the seabed carrying international Internet traffic between continents."
+          "definition": "Fiber-optic cables laid on the seabed carrying international Internet traffic between continents.",
+          "image": "assets/images/slide_3_term_1.png"
         },
         {
           "term": "Data Center",
-          "definition": "A dedicated facility housing computer servers, storage systems, and networking gear."
+          "definition": "A dedicated facility housing computer servers, storage systems, and networking gear.",
+          "image": "assets/images/slide_3_term_2.jpg"
         },
         {
           "term": "Internet Exchange Point (IXP)",
-          "definition": "A physical facility where different ISPs connect to exchange Internet traffic directly."
+          "definition": "A physical facility where different ISPs connect to exchange Internet traffic directly.",
+          "image": "assets/images/slide_3_term_3.jpg"
         }
       ],
       "examples": [
@@ -120,7 +139,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "What physical medium carries almost all international Internet data across oceans?",
         "What is the purpose of an Internet Exchange Point (IXP)?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_3_main.jpg",
+        "alt": "Physical Internet Infrastructure Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Internet Service Providers (ISPs)",
@@ -134,15 +158,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "ISP",
-          "definition": "Internet Service Provider: a commercial or public entity providing Internet access."
+          "definition": "Internet Service Provider: a commercial or public entity providing Internet access.",
+          "image": "assets/images/slide_13_main.jpg"
         },
         {
           "term": "FTTH",
-          "definition": "Fiber To The Home: delivering optical fiber lines directly into customer residences."
+          "definition": "Fiber To The Home: delivering optical fiber lines directly into customer residences.",
+          "image": "assets/images/slide_13_term_1.jpg"
         },
         {
           "term": "Peering",
-          "definition": "An agreement between two ISPs to exchange network traffic freely."
+          "definition": "An agreement between two ISPs to exchange network traffic freely.",
+          "image": "assets/images/slide_14_term_1.jpg"
         }
       ],
       "examples": [
@@ -154,7 +181,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "List three major access technologies used by ISPs to connect customer homes.",
         "Explain the core responsibilities of an ISP."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_12_term_4.jpg",
+        "alt": "Internet Service Providers (ISPs) Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "How a Device Joins a Network",
@@ -168,15 +200,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Network Association",
-          "definition": "Establishing a link layer connection between a wireless device and an Access Point."
+          "definition": "Establishing a link layer connection between a wireless device and an Access Point.",
+          "image": "assets/images/slide_5_term_1.jpg"
         },
         {
           "term": "Network Configuration",
-          "definition": "The set of network parameters (IP, Subnet, Gateway, DNS) required for IP communication."
+          "definition": "The set of network parameters (IP, Subnet, Gateway, DNS) required for IP communication.",
+          "image": "assets/images/slide_5_term_2.jpg"
         },
         {
           "term": "Subnet Mask",
-          "definition": "A network value used by a device to determine whether a target IP is on the local LAN or a remote network."
+          "definition": "A network value used by a device to determine whether a target IP is on the local LAN or a remote network.",
+          "image": "assets/images/slide_5_term_3.jpg"
         }
       ],
       "examples": [
@@ -188,7 +223,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "State the four essential configuration settings a device must receive upon joining a network.",
         "How does a device use its subnet mask to decide where to send a packet?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_5_main.jpg",
+        "alt": "How a Device Joins a Network Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "DHCP (Dynamic Host Configuration Protocol)",
@@ -202,15 +242,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "DHCP",
-          "definition": "Dynamic Host Configuration Protocol: a service that automatically assigns IP configuration to hosts."
+          "definition": "Dynamic Host Configuration Protocol: a service that automatically assigns IP configuration to hosts.",
+          "image": "assets/images/slide_15_term_3.jpg"
         },
         {
           "term": "DORA Sequence",
-          "definition": "The 4-step DHCP messaging sequence: Discover, Offer, Request, Acknowledge."
+          "definition": "The 4-step DHCP messaging sequence: Discover, Offer, Request, Acknowledge.",
+          "image": "assets/images/slide_6_term_2.jpg"
         },
         {
           "term": "Static vs Dynamic IP",
-          "definition": "Static IPs are permanent manual assignments; Dynamic IPs are temporary DHCP leases."
+          "definition": "Static IPs are permanent manual assignments; Dynamic IPs are temporary DHCP leases.",
+          "image": "assets/images/slide_17_term_1.jpg"
         }
       ],
       "examples": [
@@ -222,7 +265,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Outline the four stages of the DHCP DORA sequence.",
         "Why do servers use static IP addresses while smartphones use dynamic DHCP leases?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_15_term_2.jpg",
+        "alt": "DHCP (Dynamic Host Configuration Protocol) Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Understanding Addresses and Identifiers",
@@ -236,19 +284,23 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "MAC Address",
-          "definition": "Physical hardware identifier for local link delivery (e.g. 00:1A:2B:3C:4D:5E)."
+          "definition": "Physical hardware identifier for local link delivery (e.g. 00:1A:2B:3C:4D:5E).",
+          "image": "assets/images/slide_7_term_1.jpg"
         },
         {
           "term": "IP Address",
-          "definition": "Logical address used to route packets across global networks (e.g. 172.217.160.206)."
+          "definition": "Logical address used to route packets across global networks (e.g. 172.217.160.206).",
+          "image": "assets/images/slide_18_term_2.jpg"
         },
         {
           "term": "Domain Name",
-          "definition": "Human-friendly text name for an IP address (e.g. google.com)."
+          "definition": "Human-friendly text name for an IP address (e.g. google.com).",
+          "image": "assets/images/slide_7_term_3.png"
         },
         {
           "term": "Port Number",
-          "definition": "Transport-layer identifier directing data to a specific software service (e.g. Port 443)."
+          "definition": "Transport-layer identifier directing data to a specific software service (e.g. Port 443).",
+          "image": "assets/images/slide_19_main.jpg"
         }
       ],
       "examples": [
@@ -262,7 +314,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Fill in the main purpose for each identifier: MAC address, IP address, Domain name, Port number.",
         "Why can a laptop's IP address change while its MAC address remains unchanged?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_7_main.jpg",
+        "alt": "Understanding Addresses and Identifiers Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "IPv4 and IPv6",
@@ -276,15 +333,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "IPv4",
-          "definition": "32-bit legacy addressing scheme providing ~4.3 billion unique global addresses."
+          "definition": "32-bit legacy addressing scheme providing ~4.3 billion unique global addresses.",
+          "image": "assets/images/slide_19_main.jpg"
         },
         {
           "term": "IPv6",
-          "definition": "128-bit modern addressing scheme providing a virtually unlimited address space."
+          "definition": "128-bit modern addressing scheme providing a virtually unlimited address space.",
+          "image": "assets/images/slide_19_term_2.jpg"
         },
         {
           "term": "Hexadecimal Notation",
-          "definition": "Base-16 numbering system (0-9, A-F) used to write IPv6 addresses compactly."
+          "definition": "Base-16 numbering system (0-9, A-F) used to write IPv6 addresses compactly.",
+          "image": "assets/images/slide_19_term_3.jpg"
         }
       ],
       "examples": [
@@ -296,7 +356,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Compare IPv4 and IPv6 in terms of bit length, notation format, and address capacity.",
         "Why did the world need IPv6 when IPv4 was already working?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_18_term_3.jpg",
+        "alt": "IPv4 and IPv6 Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Public and Private IP Addresses",
@@ -310,15 +375,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Private IP Address",
-          "definition": "An IP address reserved for internal local network use, not routable on the public Internet."
+          "definition": "An IP address reserved for internal local network use, not routable on the public Internet.",
+          "image": "assets/images/slide_9_term_1.jpg"
         },
         {
           "term": "Public IP Address",
-          "definition": "A globally unique IP address assigned by ISPs and routable across the public Internet."
+          "definition": "A globally unique IP address assigned by ISPs and routable across the public Internet.",
+          "image": "assets/images/slide_1_term_1.jpg"
         },
         {
           "term": "RFC 1918",
-          "definition": "The Internet standard defining private IP address ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)."
+          "definition": "The Internet standard defining private IP address ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16).",
+          "image": "assets/images/slide_1_term_2.jpg"
         }
       ],
       "examples": [
@@ -330,7 +398,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Why can millions of home networks all use the IP address 192.168.1.1 simultaneously without conflicts?",
         "Differentiate between a public IP address and a private IP address."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_9_main.jpg",
+        "alt": "Public and Private IP Addresses Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Network Address Translation (NAT)",
@@ -344,15 +417,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "NAT",
-          "definition": "Network Address Translation: translating private local IPs into a public IP at the router boundary."
+          "definition": "Network Address Translation: translating private local IPs into a public IP at the router boundary.",
+          "image": "assets/images/slide_10_term_1.jpg"
         },
         {
           "term": "NAT Table",
-          "definition": "An internal tracking table in a router mapping local private IPs and ports to outgoing public requests."
+          "definition": "An internal tracking table in a router mapping local private IPs and ports to outgoing public requests.",
+          "image": "assets/images/slide_20_main.jpg"
         },
         {
           "term": "Address Conservation",
-          "definition": "Using NAT to allow thousands of internal hosts to share a single public IPv4 address."
+          "definition": "Using NAT to allow thousands of internal hosts to share a single public IPv4 address.",
+          "image": "assets/images/slide_10_term_3.jpg"
         }
       ],
       "examples": [
@@ -364,7 +440,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Explain how NAT allows 20 school laptops to share a single public ISP connection.",
         "What information does a router store in its NAT table to ensure incoming responses reach the correct local device?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_1_term_2.jpg",
+        "alt": "Network Address Translation (NAT) Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Default Gateway",
@@ -378,15 +459,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Default Gateway",
-          "definition": "The router interface IP address used by local hosts to reach non-local destinations."
+          "definition": "The router interface IP address used by local hosts to reach non-local destinations.",
+          "image": "assets/images/slide_11_term_1.jpg"
         },
         {
           "term": "Local vs Remote Routing",
-          "definition": "Direct MAC delivery for local subnets; Default Gateway forwarding for remote IP networks."
+          "definition": "Direct MAC delivery for local subnets; Default Gateway forwarding for remote IP networks.",
+          "image": "assets/images/slide_20_term_3.jpg"
         },
         {
           "term": "Gateway Address",
-          "definition": "Typically the first or last IP in a local subnet (e.g. 192.168.1.1)."
+          "definition": "Typically the first or last IP in a local subnet (e.g. 192.168.1.1).",
+          "image": "assets/images/slide_11_term_3.jpg"
         }
       ],
       "examples": [
@@ -398,7 +482,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "What decision does a computer make before deciding to send a packet to its default gateway?",
         "What happens to Internet connectivity if a user manually enters an incorrect default gateway IP?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_11_main.jpg",
+        "alt": "Default Gateway Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Packets",
@@ -412,19 +501,23 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Packet",
-          "definition": "A formatted block of data carried by a packet-switched network."
+          "definition": "A formatted block of data carried by a packet-switched network.",
+          "image": "assets/images/slide_12_term_1.jpg"
         },
         {
           "term": "Header",
-          "definition": "Control metadata attached to the front of a packet carrying delivery and protocol instructions."
+          "definition": "Control metadata attached to the front of a packet carrying delivery and protocol instructions.",
+          "image": "assets/images/slide_12_term_2.png"
         },
         {
           "term": "Payload",
-          "definition": "The actual user data content carried inside a packet."
+          "definition": "The actual user data content carried inside a packet.",
+          "image": "assets/images/slide_12_term_3.jpg"
         },
         {
           "term": "MTU",
-          "definition": "Maximum Transmission Unit: the largest packet payload size (usually 1500 bytes) allowed on a link."
+          "definition": "Maximum Transmission Unit: the largest packet payload size (usually 1500 bytes) allowed on a link.",
+          "image": "assets/images/slide_12_term_4.jpg"
         }
       ],
       "examples": [
@@ -436,7 +529,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Identify the two primary parts of a network packet and state what each part contains.",
         "Why are large files split into small packets rather than sent as one continuous stream?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_12_main.jpg",
+        "alt": "Packets Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Packet Switching",
@@ -450,15 +548,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Packet Switching",
-          "definition": "A communication method where packets are routed independently across shared network links."
+          "definition": "A communication method where packets are routed independently across shared network links.",
+          "image": "assets/images/slide_13_term_1.jpg"
         },
         {
           "term": "Circuit Switching",
-          "definition": "Legacy method where a dedicated physical circuit was reserved between two endpoints."
+          "definition": "Legacy method where a dedicated physical circuit was reserved between two endpoints.",
+          "image": "assets/images/slide_2_term_1.jpg"
         },
         {
           "term": "Dynamic Routing",
-          "definition": "Routers dynamically choosing optimal paths for each packet based on current network health."
+          "definition": "Routers dynamically choosing optimal paths for each packet based on current network health.",
+          "image": "assets/images/slide_2_term_2.jpg"
         }
       ],
       "examples": [
@@ -470,7 +571,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Contrast packet switching with circuit switching.",
         "State two major advantages of packet switching for global computer networks."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_13_main.jpg",
+        "alt": "Packet Switching Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Routers and Routing Paths",
@@ -484,19 +590,23 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Routing Table",
-          "definition": "A database stored in a router listing network paths and next-hop forwarding interfaces."
+          "definition": "A database stored in a router listing network paths and next-hop forwarding interfaces.",
+          "image": "assets/images/slide_14_term_1.jpg"
         },
         {
           "term": "TTL (Time to Live)",
-          "definition": "A packet header counter decremented by each router hop to prevent infinite routing loops."
+          "definition": "A packet header counter decremented by each router hop to prevent infinite routing loops.",
+          "image": "assets/images/slide_14_term_2.jpg"
         },
         {
           "term": "Autonomous System (AS)",
-          "definition": "A large network or group of networks operated by a single organization under a unified routing policy."
+          "definition": "A large network or group of networks operated by a single organization under a unified routing policy.",
+          "image": "assets/images/slide_3_term_1.png"
         },
         {
           "term": "BGP",
-          "definition": "Border Gateway Protocol: the core routing protocol used to exchange routing info between autonomous systems."
+          "definition": "Border Gateway Protocol: the core routing protocol used to exchange routing info between autonomous systems.",
+          "image": "assets/images/slide_3_term_2.jpg"
         }
       ],
       "examples": [
@@ -508,7 +618,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Explain the role of a router's routing table during packet forwarding.",
         "What is the purpose of the Time to Live (TTL) field in an IP packet header?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_2_term_2.jpg",
+        "alt": "Routers and Routing Paths Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Network Protocols",
@@ -522,15 +637,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Network Protocol",
-          "definition": "An agreed set of rules and formats governing data communication between systems."
+          "definition": "An agreed set of rules and formats governing data communication between systems.",
+          "image": "assets/images/slide_3_term_2.jpg"
         },
         {
           "term": "Interoperability",
-          "definition": "The ability of diverse systems and hardware to work together using standardized protocols."
+          "definition": "The ability of diverse systems and hardware to work together using standardized protocols.",
+          "image": "assets/images/slide_15_term_2.jpg"
         },
         {
           "term": "IETF",
-          "definition": "Internet Engineering Task Force: the organization that develops and publishes Internet protocol standards (RFCs)."
+          "definition": "Internet Engineering Task Force: the organization that develops and publishes Internet protocol standards (RFCs).",
+          "image": "assets/images/slide_15_term_3.jpg"
         }
       ],
       "examples": [
@@ -542,7 +660,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Define the term network protocol and explain why standardization is essential for the Internet.",
         "Identify the primary roles of IP, TCP, DNS, and HTTP."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_15_main.png",
+        "alt": "Network Protocols Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "The TCP/IP Model",
@@ -556,15 +679,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "TCP/IP Model",
-          "definition": "The 4-layer architectural framework defining Internet communication standards."
+          "definition": "The 4-layer architectural framework defining Internet communication standards.",
+          "image": "assets/images/slide_16_term_1.jpg"
         },
         {
           "term": "Encapsulation",
-          "definition": "Adding protocol headers to data as it moves down through protocol layers."
+          "definition": "Adding protocol headers to data as it moves down through protocol layers.",
+          "image": "assets/images/slide_5_term_2.jpg"
         },
         {
           "term": "Decapsulation",
-          "definition": "Removing protocol headers from received data as it moves up through protocol layers."
+          "definition": "Removing protocol headers from received data as it moves up through protocol layers.",
+          "image": "assets/images/slide_5_term_3.jpg"
         }
       ],
       "examples": [
@@ -576,7 +702,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "List the four layers of the TCP/IP model from top to bottom.",
         "Describe what happens during encapsulation at the sending device and decapsulation at the receiving device."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_5_main.jpg",
+        "alt": "The TCP/IP Model Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "TCP and UDP Transport Protocols",
@@ -590,15 +721,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "TCP",
-          "definition": "Transmission Control Protocol: connection-oriented, reliable, ordered transport protocol."
+          "definition": "Transmission Control Protocol: connection-oriented, reliable, ordered transport protocol.",
+          "image": "assets/images/slide_17_term_1.jpg"
         },
         {
           "term": "UDP",
-          "definition": "User Datagram Protocol: connectionless, lightweight, best-effort transport protocol."
+          "definition": "User Datagram Protocol: connectionless, lightweight, best-effort transport protocol.",
+          "image": "assets/images/slide_7_main.jpg"
         },
         {
           "term": "3-Way Handshake",
-          "definition": "The SYN, SYN-ACK, ACK sequence used by TCP to establish a connection before sending data."
+          "definition": "The SYN, SYN-ACK, ACK sequence used by TCP to establish a connection before sending data.",
+          "image": "assets/images/slide_7_term_1.jpg"
         }
       ],
       "examples": [
@@ -610,7 +744,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Contrast TCP and UDP across connection setup, reliability, packet ordering, and overhead.",
         "Which transport protocol would you select for a banking transaction versus a live sports stream? Explain."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_5_term_3.jpg",
+        "alt": "TCP and UDP Transport Protocols Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Port Numbers",
@@ -624,15 +763,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Port Number",
-          "definition": "A 16-bit transport layer number identifying a specific process or service endpoint."
+          "definition": "A 16-bit transport layer number identifying a specific process or service endpoint.",
+          "image": "assets/images/slide_7_term_3.png"
         },
         {
           "term": "Well-Known Ports",
-          "definition": "Standardized port numbers (0-1023) reserved for recognized global services (80, 443, 53)."
+          "definition": "Standardized port numbers (0-1023) reserved for recognized global services (80, 443, 53).",
+          "image": "assets/images/slide_18_term_2.jpg"
         },
         {
           "term": "Socket",
-          "definition": "The combination of an IP address and a Port Number (e.g. 172.217.160.206:443) identifying a unique connection end-point."
+          "definition": "The combination of an IP address and a Port Number (e.g. 172.217.160.206:443) identifying a unique connection end-point.",
+          "image": "assets/images/slide_18_term_3.jpg"
         }
       ],
       "examples": [
@@ -644,7 +786,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "What problem do port numbers solve when a computer runs multiple network applications at the same time?",
         "Identify the standard port numbers for unencrypted HTTP, encrypted HTTPS, and DNS."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_18_main.jpg",
+        "alt": "Port Numbers Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Domain Name System (DNS)",
@@ -658,15 +805,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "DNS",
-          "definition": "Domain Name System: a distributed system converting domain names into IP addresses."
+          "definition": "Domain Name System: a distributed system converting domain names into IP addresses.",
+          "image": "assets/images/slide_10_term_1.jpg"
         },
         {
           "term": "Recursive Resolver",
-          "definition": "A DNS server that performs full lookups on behalf of client devices."
+          "definition": "A DNS server that performs full lookups on behalf of client devices.",
+          "image": "assets/images/slide_19_term_2.jpg"
         },
         {
           "term": "Authoritative Name Server",
-          "definition": "The official DNS server holding the master record for a specific domain name."
+          "definition": "The official DNS server holding the master record for a specific domain name.",
+          "image": "assets/images/slide_19_term_3.jpg"
         }
       ],
       "examples": [
@@ -678,7 +828,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Explain the core purpose of the Domain Name System (DNS).",
         "Trace the lookup path a DNS resolver follows when finding the IP address of a new domain."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_19_main.jpg",
+        "alt": "Domain Name System (DNS) Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Domain Name Versus URL",
@@ -692,15 +847,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "URL",
-          "definition": "Uniform Resource Locator: a complete structured web address specifying how and where to fetch a resource."
+          "definition": "Uniform Resource Locator: a complete structured web address specifying how and where to fetch a resource.",
+          "image": "assets/images/slide_20_term_1.jpg"
         },
         {
           "term": "Scheme",
-          "definition": "The access protocol specified at the start of a URL (http, https, ftp)."
+          "definition": "The access protocol specified at the start of a URL (http, https, ftp).",
+          "image": "assets/images/slide_20_term_2.jpg"
         },
         {
           "term": "Path & Query",
-          "definition": "Path specifies the resource file location on the server; Query string passes key-value parameters."
+          "definition": "Path specifies the resource file location on the server; Query string passes key-value parameters.",
+          "image": "assets/images/slide_20_term_3.jpg"
         }
       ],
       "examples": [
@@ -712,7 +870,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Dissect the URL \"https://store.com/items/search?q=laptop#results\" into its five main components.",
         "What is the structural difference between a domain name and a full URL?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_20_main.jpg",
+        "alt": "Domain Name Versus URL Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "HTTP (Hypertext Transfer Protocol)",
@@ -726,15 +889,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "HTTP",
-          "definition": "Hypertext Transfer Protocol: the foundation protocol for client-server web communications."
+          "definition": "Hypertext Transfer Protocol: the foundation protocol for client-server web communications.",
+          "image": "assets/images/slide_21_term_1.png"
         },
         {
           "term": "Request-Response Cycle",
-          "definition": "The cycle where a client initiates a request and a server returns a formatted response."
+          "definition": "The cycle where a client initiates a request and a server returns a formatted response.",
+          "image": "assets/images/slide_21_term_2.png"
         },
         {
           "term": "HTTP Headers",
-          "definition": "Metadata fields carrying client preferences, content type, encoding, and server details."
+          "definition": "Metadata fields carrying client preferences, content type, encoding, and server details.",
+          "image": "assets/images/slide_12_term_3.jpg"
         }
       ],
       "examples": [
@@ -746,7 +912,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Describe the two main parts of an HTTP request-response cycle.",
         "What role do HTTP headers perform in a web exchange?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_21_main.png",
+        "alt": "HTTP (Hypertext Transfer Protocol) Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "HTTP Methods",
@@ -760,15 +931,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "HTTP Method",
-          "definition": "The action verb in an HTTP request indicating the intended operation."
+          "definition": "The action verb in an HTTP request indicating the intended operation.",
+          "image": "assets/images/slide_12_term_4.jpg"
         },
         {
           "term": "GET vs POST",
-          "definition": "GET retrieves data without modifying state; POST submits data to be processed or created."
+          "definition": "GET retrieves data without modifying state; POST submits data to be processed or created.",
+          "image": "assets/images/slide_13_main.jpg"
         },
         {
           "term": "Idempotency",
-          "definition": "A property where repeating a request multiple times produces the same server state as a single request."
+          "definition": "A property where repeating a request multiple times produces the same server state as a single request.",
+          "image": "assets/images/slide_13_term_1.jpg"
         }
       ],
       "examples": [
@@ -781,7 +955,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Compare GET, POST, PATCH, and DELETE in terms of intent and server impact.",
         "Why should sensitive password submissions use POST rather than GET?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_12_term_3.jpg",
+        "alt": "HTTP Methods Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "HTTP Status Codes",
@@ -795,19 +974,23 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Status Code",
-          "definition": "A 3-digit numerical response code summarizing request processing results."
+          "definition": "A 3-digit numerical response code summarizing request processing results.",
+          "image": "assets/images/slide_14_term_1.jpg"
         },
         {
           "term": "200 OK",
-          "definition": "Standard response code indicating the request succeeded and content is returned."
+          "definition": "Standard response code indicating the request succeeded and content is returned.",
+          "image": "assets/images/slide_14_term_2.jpg"
         },
         {
           "term": "404 Not Found",
-          "definition": "Client error code indicating the requested URI path was not found on the server."
+          "definition": "Client error code indicating the requested URI path was not found on the server.",
+          "image": "assets/images/slide_15_main.png"
         },
         {
           "term": "500 Internal Server Error",
-          "definition": "Server error code indicating an unexpected crash or fault in backend server code."
+          "definition": "Server error code indicating an unexpected crash or fault in backend server code.",
+          "image": "assets/images/slide_23_term_4.jpg"
         }
       ],
       "examples": [
@@ -821,7 +1004,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Identify the five broad ranges of HTTP status codes and state what each range represents.",
         "Explain why receiving a 404 error proves your Internet connection is working."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_13_term_1.jpg",
+        "alt": "HTTP Status Codes Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "HTTPS, Encryption, and Certificates",
@@ -835,15 +1023,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "HTTPS",
-          "definition": "Hypertext Transfer Protocol Secure: HTTP encrypted using TLS protocol."
+          "definition": "Hypertext Transfer Protocol Secure: HTTP encrypted using TLS protocol.",
+          "image": "assets/images/slide_15_term_2.jpg"
         },
         {
           "term": "TLS Handshake",
-          "definition": "The cryptographic negotiation where client and server validate identity and exchange encryption keys."
+          "definition": "The cryptographic negotiation where client and server validate identity and exchange encryption keys.",
+          "image": "assets/images/slide_15_term_3.jpg"
         },
         {
           "term": "Certificate Authority (CA)",
-          "definition": "A trusted third-party organization that signs digital certificates verifying domain ownership."
+          "definition": "A trusted third-party organization that signs digital certificates verifying domain ownership.",
+          "image": "assets/images/slide_16_term_1.jpg"
         }
       ],
       "examples": [
@@ -855,7 +1046,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "List three protections provided by HTTPS and TLS encryption.",
         "Why does a green padlock icon not guarantee that a website's business claims are legitimate?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_15_main.png",
+        "alt": "HTTPS, Encryption, and Certificates Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Complete Journey of Opening a Website",
@@ -868,11 +1064,13 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Request Journey",
-          "definition": "The end-to-end multi-step technical sequence required to request and display a webpage."
+          "definition": "The end-to-end multi-step technical sequence required to request and display a webpage.",
+          "image": "assets/images/slide_17_term_1.jpg"
         },
         {
           "term": "Asset Sub-Requests",
-          "definition": "Secondary HTTP requests automatically triggered by the browser for CSS, JS, fonts, and images referenced in HTML."
+          "definition": "Secondary HTTP requests automatically triggered by the browser for CSS, JS, fonts, and images referenced in HTML.",
+          "image": "assets/images/slide_18_main.jpg"
         }
       ],
       "examples": [
@@ -883,7 +1081,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Summarize the 14 stages of opening a website from typing a URL to final browser rendering.",
         "Why does receiving the primary HTML file trigger multiple additional HTTP requests?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_16_term_1.jpg",
+        "alt": "Complete Journey of Opening a Website Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Client, Server, and Database",
@@ -897,15 +1100,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "3-Tier Architecture",
-          "definition": "System design separating Client presentation, Server application logic, and Database storage."
+          "definition": "System design separating Client presentation, Server application logic, and Database storage.",
+          "image": "assets/images/slide_18_term_3.jpg"
         },
         {
           "term": "Database",
-          "definition": "A structured software system (like MySQL or PostgreSQL) for storing, querying, and updating data records."
+          "definition": "A structured software system (like MySQL or PostgreSQL) for storing, querying, and updating data records.",
+          "image": "assets/images/slide_19_main.jpg"
         },
         {
           "term": "Application Logic",
-          "definition": "Backend code running on the server that enforces rules, calculations, and security."
+          "definition": "Backend code running on the server that enforces rules, calculations, and security.",
+          "image": "assets/images/slide_19_term_2.jpg"
         }
       ],
       "examples": [
@@ -916,7 +1122,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Describe the separate roles of the Client, Application Server, and Database in a school portal.",
         "Why should a client browser never connect directly to a remote database?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_18_term_2.jpg",
+        "alt": "Client, Server, and Database Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Webpage Components",
@@ -930,15 +1141,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "HTML",
-          "definition": "Markup language defining the structural meaning of webpage elements."
+          "definition": "Markup language defining the structural meaning of webpage elements.",
+          "image": "assets/images/slide_19_term_3.jpg"
         },
         {
           "term": "CSS",
-          "definition": "Stylesheet language controlling visual appearance, colors, fonts, and responsive layout."
+          "definition": "Stylesheet language controlling visual appearance, colors, fonts, and responsive layout.",
+          "image": "assets/images/slide_1_main.jpg"
         },
         {
           "term": "JavaScript",
-          "definition": "Programming language running in the browser providing interactive logic and dynamic DOM updates."
+          "definition": "Programming language running in the browser providing interactive logic and dynamic DOM updates.",
+          "image": "assets/images/slide_1_term_1.jpg"
         }
       ],
       "examples": [
@@ -949,7 +1163,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Identify the core roles of HTML, CSS, and JavaScript in a modern webpage.",
         "Why is it beneficial to keep CSS styles in separate files rather than inline inside HTML tags?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_19_term_2.jpg",
+        "alt": "Webpage Components Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Cookies, Sessions, and Caching",
@@ -963,15 +1182,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Cookie",
-          "definition": "Small text data stored in the browser by websites for tracking, preferences, or session IDs."
+          "definition": "Small text data stored in the browser by websites for tracking, preferences, or session IDs.",
+          "image": "assets/images/slide_1_term_2.jpg"
         },
         {
           "term": "Session",
-          "definition": "Server-side data record keeping track of an active user state during web browsing."
+          "definition": "Server-side data record keeping track of an active user state during web browsing.",
+          "image": "assets/images/slide_1_term_3.jpg"
         },
         {
           "term": "Cache",
-          "definition": "Local storage of previously fetched web assets (images, CSS) to speed up future visits."
+          "definition": "Local storage of previously fetched web assets (images, CSS) to speed up future visits.",
+          "image": "assets/images/slide_20_main.jpg"
         }
       ],
       "examples": [
@@ -983,7 +1205,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Explain how cookies and sessions work together to keep a user logged into a website.",
         "What is the benefit of browser caching for web performance?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_1_term_1.jpg",
+        "alt": "Cookies, Sessions, and Caching Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Hosting, Data Centers, Cloud, and CDNs",
@@ -997,15 +1224,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Web Hosting",
-          "definition": "Providing server storage and network connectivity so website files are accessible 24/7."
+          "definition": "Providing server storage and network connectivity so website files are accessible 24/7.",
+          "image": "assets/images/slide_20_term_1.jpg"
         },
         {
           "term": "Cloud Computing",
-          "definition": "On-demand delivery of computing power, databases, and storage via the Internet."
+          "definition": "On-demand delivery of computing power, databases, and storage via the Internet.",
+          "image": "assets/images/slide_20_term_2.jpg"
         },
         {
           "term": "CDN",
-          "definition": "Content Delivery Network: edge servers distributed globally to cache content close to end users."
+          "definition": "Content Delivery Network: edge servers distributed globally to cache content close to end users.",
+          "image": "assets/images/slide_20_term_3.jpg"
         }
       ],
       "examples": [
@@ -1017,7 +1247,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "What is the main purpose of a Content Delivery Network (CDN)?",
         "Differentiate between traditional web hosting, data centers, and cloud computing."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_20_main.jpg",
+        "alt": "Hosting, Data Centers, Cloud, and CDNs Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Internet Performance Metrics",
@@ -1031,15 +1266,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Bandwidth vs Throughput",
-          "definition": "Bandwidth is maximum channel capacity; Throughput is actual sustained data delivery rate."
+          "definition": "Bandwidth is maximum channel capacity; Throughput is actual sustained data delivery rate.",
+          "image": "assets/images/slide_21_main.png"
         },
         {
           "term": "Latency (Ping)",
-          "definition": "The time delay in milliseconds for a packet to travel to a destination and return."
+          "definition": "The time delay in milliseconds for a packet to travel to a destination and return.",
+          "image": "assets/images/slide_21_term_1.png"
         },
         {
           "term": "Jitter & Packet Loss",
-          "definition": "Jitter is latency fluctuation; Packet Loss is the percentage of dropped packets during congestion."
+          "definition": "Jitter is latency fluctuation; Packet Loss is the percentage of dropped packets during congestion.",
+          "image": "assets/images/slide_21_term_2.png"
         }
       ],
       "examples": [
@@ -1053,7 +1291,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Match the user symptom (buffering video, delayed gaming response, choppy voice call) to the correct performance metric.",
         "Explain the difference between network bandwidth and actual throughput."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_20_term_3.jpg",
+        "alt": "Internet Performance Metrics Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Congestion and Bottlenecks",
@@ -1067,15 +1310,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Bottleneck",
-          "definition": "The lowest-capacity segment along an end-to-end network path that limits overall performance."
+          "definition": "The lowest-capacity segment along an end-to-end network path that limits overall performance.",
+          "image": "assets/images/slide_23_term_4.jpg"
         },
         {
           "term": "Network Congestion",
-          "definition": "Performance degradation occurring when network traffic exceeds available link capacity."
+          "definition": "Performance degradation occurring when network traffic exceeds available link capacity.",
+          "image": "assets/images/slide_2_main.jpg"
         },
         {
           "term": "Upload Saturation",
-          "definition": "Completely filling upload capacity, which halts incoming download acknowledgments and slows the connection."
+          "definition": "Completely filling upload capacity, which halts incoming download acknowledgments and slows the connection.",
+          "image": "assets/images/slide_2_term_1.jpg"
         }
       ],
       "examples": [
@@ -1087,7 +1333,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Define a network bottleneck and give three real-world examples of where bottlenecks occur.",
         "Why does saturating your upload bandwidth slow down your download speed?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_21_term_2.png",
+        "alt": "Congestion and Bottlenecks Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Basic Internet Security",
@@ -1101,15 +1352,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "MFA",
-          "definition": "Multi-Factor Authentication: requiring two or more verification factors to gain account access."
+          "definition": "Multi-Factor Authentication: requiring two or more verification factors to gain account access.",
+          "image": "assets/images/slide_2_term_2.jpg"
         },
         {
           "term": "Phishing",
-          "definition": "Deceptive attacks tricking users into revealing passwords or credentials via fake emails/sites."
+          "definition": "Deceptive attacks tricking users into revealing passwords or credentials via fake emails/sites.",
+          "image": "assets/images/slide_2_term_3.png"
         },
         {
           "term": "Malware",
-          "definition": "Malicious software (viruses, trojans, ransomware) designed to harm or exploit devices."
+          "definition": "Malicious software (viruses, trojans, ransomware) designed to harm or exploit devices.",
+          "image": "assets/images/slide_3_main.jpg"
         }
       ],
       "examples": [
@@ -1121,7 +1375,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Explain why Multi-Factor Authentication (MFA) provides stronger protection than a password alone.",
         "List four essential daily security practices for protecting personal online accounts."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_2_term_1.jpg",
+        "alt": "Basic Internet Security Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Basic Network Troubleshooting",
@@ -1135,15 +1394,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Dependency Ladder",
-          "definition": "Troubleshooting in logical order from physical hardware up to application services."
+          "definition": "Troubleshooting in logical order from physical hardware up to application services.",
+          "image": "assets/images/slide_3_term_1.png"
         },
         {
           "term": "Scope Isolation",
-          "definition": "Determining whether a fault impacts a single device, an entire LAN, or a remote server."
+          "definition": "Determining whether a fault impacts a single device, an entire LAN, or a remote server.",
+          "image": "assets/images/slide_3_term_2.jpg"
         },
         {
           "term": "Fault Location",
-          "definition": "Pinpointing the exact segment (NIC, Wi-Fi, cable, gateway, ISP, DNS, or server) where a failure occurs."
+          "definition": "Pinpointing the exact segment (NIC, Wi-Fi, cable, gateway, ISP, DNS, or server) where a failure occurs.",
+          "image": "assets/images/slide_3_term_3.jpg"
         }
       ],
       "examples": [
@@ -1155,7 +1417,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "List the 8 steps of the systematic network troubleshooting dependency ladder.",
         "Explain how scope isolation helps determine whether a problem is local or remote."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_3_main.jpg",
+        "alt": "Basic Network Troubleshooting Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Introductory Command-Line Tools",
@@ -1169,19 +1436,23 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "ipconfig /all",
-          "definition": "Command listing detailed network configuration for all active system adapters."
+          "definition": "Command listing detailed network configuration for all active system adapters.",
+          "image": "assets/images/slide_5_main.jpg"
         },
         {
           "term": "ping",
-          "definition": "Utility sending ICMP Echo Request packets to test target reachability and latency."
+          "definition": "Utility sending ICMP Echo Request packets to test target reachability and latency.",
+          "image": "assets/images/slide_5_term_1.jpg"
         },
         {
           "term": "nslookup",
-          "definition": "Command-line tool querying DNS servers to resolve hostnames or inspect DNS records."
+          "definition": "Command-line tool querying DNS servers to resolve hostnames or inspect DNS records.",
+          "image": "assets/images/slide_5_term_2.jpg"
         },
         {
           "term": "tracert",
-          "definition": "Traceroute tool displaying each router hop and latency along the path to a destination."
+          "definition": "Traceroute tool displaying each router hop and latency along the path to a destination.",
+          "image": "assets/images/slide_5_term_3.jpg"
         }
       ],
       "examples": [
@@ -1194,7 +1465,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "State the introductory purpose of ipconfig, ping, nslookup, and tracert.",
         "Why might a web server ignore a ping command even though its website opens normally in a browser?"
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_3_term_3.jpg",
+        "alt": "Introductory Command-Line Tools Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     },
     {
       "title": "Internet Governance and Responsibility",
@@ -1208,15 +1484,18 @@ window.CC101_MODULE_DATA = {
       "definitions": [
         {
           "term": "Multi-Stakeholder Model",
-          "definition": "Governance involving technical experts, academics, civil society, governments, and private industry."
+          "definition": "Governance involving technical experts, academics, civil society, governments, and private industry.",
+          "image": "assets/images/slide_5_term_3.jpg"
         },
         {
           "term": "ICANN",
-          "definition": "Organization coordinating global domain names, IP address allocation, and root server parameters."
+          "definition": "Organization coordinating global domain names, IP address allocation, and root server parameters.",
+          "image": "assets/images/slide_6_term_2.jpg"
         },
         {
           "term": "IETF",
-          "definition": "Open technical community that develops and defines Internet protocol specifications (RFCs)."
+          "definition": "Open technical community that develops and defines Internet protocol specifications (RFCs).",
+          "image": "assets/images/slide_7_main.jpg"
         }
       ],
       "examples": [
@@ -1228,7 +1507,12 @@ window.CC101_MODULE_DATA = {
       "review": [
         "Explain what is meant by the multi-stakeholder model of Internet governance.",
         "Summarize the core roles of the IETF and ICANN in maintaining global Internet standards."
-      ]
+      ],
+      "image": {
+        "src": "assets/images/slide_5_term_2.jpg",
+        "alt": "Internet Governance and Responsibility Technical Visual",
+        "credit": "Wikipedia Technical Photography / Diagram"
+      }
     }
   ],
   "activity": {

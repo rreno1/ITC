@@ -1911,6 +1911,25 @@ a {
   text-align: center;
 }
 
+.gradebook-summary-pill {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.25;
+}
+
+.gradebook-summary-pill strong {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.gradebook-summary-pill small {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
 .score-high { color: var(--success); }
 .score-mid { color: var(--warning); }
 .score-low { color: var(--danger); }

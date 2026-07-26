@@ -93,14 +93,15 @@ service cloud.firestore {
     match /users/{userId} {
       // Any signed-in user can read (needed for admin dashboard)
       allow read: if request.auth != null;
-      // Users can write their own doc, admin can write any doc (for approvals)
+      // Users can write their own doc, admin can write any doc (for approvals & deletion)
       allow write: if request.auth != null && 
         (request.auth.uid == userId || isAdmin());
       
       // Quiz results subcollection
       match /quizResults/{moduleId} {
         allow read: if request.auth != null;
-        allow write: if request.auth != null && request.auth.uid == userId;
+        allow write: if request.auth != null && 
+          (request.auth.uid == userId || isAdmin());
       }
     }
   }

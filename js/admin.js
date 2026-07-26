@@ -579,13 +579,27 @@ async function removeAccount(uid, name) {
   }
 }
 
+function populateGradebookModuleFilter() {
+  const select = document.getElementById('gradebookModuleFilter');
+  if (!select || select.children.length > 1) return;
+  const availableModules = MODULES.filter(m => m.status === 'available');
+  const options = [
+    '<option value="all">All Modules (Summary)</option>',
+    ...availableModules.map(m => `<option value="${escapeHTML(m.id)}">${escapeHTML(m.title)}</option>`),
+    '<option value="expanded">All Columns (Expanded)</option>'
+  ];
+  select.innerHTML = options.join('');
+}
+
 function renderStudentTable(accounts) {
   const tbody = document.getElementById('studentTableBody');
   if (!tbody) return;
   tbody.innerHTML = '';
 
   const availableModules = MODULES.filter(m => m.status === 'available');
-  renderGradebookHeader(availableModules);
+  const selectedModuleId = document.getElementById('gradebookModuleFilter')?.value || 'all';
+  renderGradebookHeader(availableModules, selectedModuleId);
+
   const searchValue = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
   const batchFilter = document.getElementById('gradebookBatchFilter')?.value || 'all';
   const rows = accounts
@@ -600,10 +614,12 @@ function renderStudentTable(accounts) {
     renderStudentTable(window.allStudentsCached || []);
   });
 
+  const totalCols = selectedModuleId === 'expanded' ? (8 + availableModules.length) : 9;
+
   if (rows.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="${8 + availableModules.length}" class="text-center" style="color: var(--text-secondary); padding: 30px;">
+        <td colspan="${totalCols}" class="text-center" style="color: var(--text-secondary); padding: 30px;">
           No approved accounts yet. Approve pending students to see them here.
         </td>
       </tr>
@@ -618,21 +634,71 @@ function renderStudentTable(accounts) {
     const row = document.createElement('tr');
     let scoreCells = '';
 
-    availableModules.forEach(mod => {
-      const quiz = student.quizResults[mod.id];
-      if (!quiz) {
-        scoreCells += '<td class="score-cell score-none">-</td>';
-        return;
+    if (selectedModuleId === 'expanded') {
+      availableModules.forEach(mod => {
+        const quiz = student.quizResults[mod.id];
+        if (!quiz) {
+          scoreCells += '<td class="score-cell score-none">-</td>';
+          return;
+        }
+
+        const percentage = quiz.bestPercentage || quiz.percentage || 0;
+        let scoreClass = 'score-low';
+        if (percentage >= 85) scoreClass = 'score-high';
+        else if (percentage >= 60) scoreClass = 'score-mid';
+
+        const completedDate = formatTimestamp(quiz.completedAt, { year: true });
+        scoreCells += `<td class="score-cell ${scoreClass}" title="Completed: ${completedDate}; Attempts: ${quiz.attempts || 1}">${quiz.bestScore ?? quiz.score}/${quiz.total}</td>`;
+      });
+    } else if (selectedModuleId === 'all') {
+      let completedCount = 0;
+      let totalPercentage = 0;
+      const completedDetails = [];
+
+      availableModules.forEach(mod => {
+        const quiz = student.quizResults[mod.id];
+        if (quiz) {
+          completedCount++;
+          const percentage = quiz.bestPercentage || quiz.percentage || 0;
+          totalPercentage += percentage;
+          completedDetails.push(`${mod.title}: ${quiz.bestScore ?? quiz.score}/${quiz.total}`);
+        }
+      });
+
+      if (completedCount === 0) {
+        scoreCells = '<td class="score-cell score-none">-</td>';
+      } else {
+        const avgPercentage = Math.round(totalPercentage / completedCount);
+        let scoreClass = 'score-low';
+        if (avgPercentage >= 85) scoreClass = 'score-high';
+        else if (avgPercentage >= 60) scoreClass = 'score-mid';
+
+        const tooltip = `Submitted (${completedCount}/${availableModules.length}): ${completedDetails.join(' | ')}`;
+        scoreCells = `
+          <td class="score-cell ${scoreClass}" title="${escapeHTML(tooltip)}">
+            <div class="gradebook-summary-pill">
+              <strong>${avgPercentage}% Avg</strong>
+              <small>(${completedCount}/${availableModules.length} done)</small>
+            </div>
+          </td>
+        `;
       }
+    } else {
+      const mod = availableModules.find(m => m.id === selectedModuleId);
+      const quiz = student.quizResults[selectedModuleId];
 
-      const percentage = quiz.bestPercentage || quiz.percentage || 0;
-      let scoreClass = 'score-low';
-      if (percentage >= 85) scoreClass = 'score-high';
-      else if (percentage >= 60) scoreClass = 'score-mid';
+      if (!quiz) {
+        scoreCells = '<td class="score-cell score-none">-</td>';
+      } else {
+        const percentage = quiz.bestPercentage || quiz.percentage || 0;
+        let scoreClass = 'score-low';
+        if (percentage >= 85) scoreClass = 'score-high';
+        else if (percentage >= 60) scoreClass = 'score-mid';
 
-      const completedDate = formatTimestamp(quiz.completedAt, { year: true });
-      scoreCells += `<td class="score-cell ${scoreClass}" title="Completed: ${completedDate}; Attempts: ${quiz.attempts || 1}">${quiz.bestScore ?? quiz.score}/${quiz.total}</td>`;
-    });
+        const completedDate = formatTimestamp(quiz.completedAt, { year: true });
+        scoreCells = `<td class="score-cell ${scoreClass}" title="Completed: ${completedDate}; Attempts: ${quiz.attempts || 1}">${quiz.bestScore ?? quiz.score}/${quiz.total}</td>`;
+      }
+    }
 
     const attendanceRecord = student.attendance && student.attendance[todayKey];
     const attendanceStatus = attendanceRecord && attendanceRecord.present
@@ -670,14 +736,24 @@ function renderStudentTable(accounts) {
   applyResponsiveTableLabels(tbody);
 }
 
-function renderGradebookHeader(availableModules = MODULES.filter(module => module.status === 'available')) {
+function renderGradebookHeader(availableModules = MODULES.filter(module => module.status === 'available'), selectedModuleId = 'all') {
   const row = document.getElementById('gradebookHeaderRow');
   const table = document.getElementById('gradebookTable');
   if (!row) return;
 
-  const moduleHeaders = availableModules
-    .map(module => `<th class="numeric-column">${escapeHTML(module.title)}</th>`)
-    .join('');
+  let moduleHeaders = '';
+  if (selectedModuleId === 'expanded') {
+    moduleHeaders = availableModules
+      .map(module => `<th class="numeric-column">${escapeHTML(module.title)}</th>`)
+      .join('');
+  } else if (selectedModuleId === 'all') {
+    moduleHeaders = `<th class="numeric-column">Quiz Progress &amp; Avg</th>`;
+  } else {
+    const selectedMod = availableModules.find(m => m.id === selectedModuleId);
+    const title = selectedMod ? selectedMod.title : 'Quiz Score';
+    moduleHeaders = `<th class="numeric-column">${escapeHTML(title)}</th>`;
+  }
+
   row.innerHTML = `
     <th class="row-number">#</th>
     <th>Name</th>
@@ -689,7 +765,14 @@ function renderGradebookHeader(availableModules = MODULES.filter(module => modul
     <th>Last Active</th>
     <th class="actions-column">Actions</th>
   `;
-  if (table) table.style.minWidth = `${760 + (availableModules.length * 112)}px`;
+
+  if (table) {
+    if (selectedModuleId === 'expanded') {
+      table.style.minWidth = `${760 + (availableModules.length * 112)}px`;
+    } else {
+      table.style.minWidth = '100%';
+    }
+  }
 }
 
 function renderAttendanceTable(accounts) {
@@ -1020,6 +1103,7 @@ function setupTabNavigation() {
 
 document.addEventListener('DOMContentLoaded', () => {
   setupTabNavigation();
+  populateGradebookModuleFilter();
   renderGradebookHeader();
   renderCourseModuleControls();
 
@@ -1057,6 +1141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('searchInput')?.addEventListener('input', filterStudentsTable);
   document.getElementById('gradebookBatchFilter')?.addEventListener('change', filterStudentsTable);
+  document.getElementById('gradebookModuleFilter')?.addEventListener('change', filterStudentsTable);
   document.getElementById('accountSearchInput')?.addEventListener('input', () => {
     resetAdminPage('accounts');
     renderAccountsTable(window.allAccountsCached || []);

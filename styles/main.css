@@ -2232,6 +2232,80 @@ a {
 .toast-error { border-left-color: var(--danger); }
 .toast-info { border-left-color: var(--indigo); }
 
+/* Large Centered Domain Restriction Modal */
+.domain-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+.domain-modal-backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.domain-modal-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 36px 30px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius, 14px);
+  background: var(--bg-secondary);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  transform: scale(0.92);
+  transition: transform 220ms ease;
+}
+
+.domain-modal-backdrop.show .domain-modal-card {
+  transform: scale(1);
+}
+
+.domain-modal-icon {
+  font-size: 52px;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.domain-modal-card h2 {
+  margin-bottom: 14px;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.domain-modal-message {
+  margin-bottom: 26px;
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.domain-modal-message strong {
+  color: var(--accent-color, #3b82f6);
+  font-weight: 800;
+}
+
+.domain-modal-btn {
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .portal-footer {
   margin-top: auto;
   padding: 24px;

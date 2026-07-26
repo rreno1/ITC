@@ -108,7 +108,7 @@ function googleSignIn() {
 
       if (!email.endsWith('@mlgcl.edu.ph') && !isAdmin) {
         await auth.signOut();
-        showToast('Please sign in using your official school email (@mlgcl.edu.ph).', 'error');
+        showDomainRestrictionModal();
         return;
       }
 
@@ -185,7 +185,7 @@ auth.onAuthStateChanged(async (user) => {
 
     if (!email.endsWith('@mlgcl.edu.ph') && !isAdmin) {
       await auth.signOut();
-      showToast('Please sign in using your official school email (@mlgcl.edu.ph).', 'error');
+      showDomainRestrictionModal();
       return;
     }
 
@@ -297,6 +297,27 @@ auth.onAuthStateChanged(async (user) => {
     }
   }
 });
+
+function showDomainRestrictionModal() {
+  const existing = document.getElementById('domainRestrictionModal');
+  if (existing) existing.remove();
+
+  const modal = document.createElement('div');
+  modal.id = 'domainRestrictionModal';
+  modal.className = 'domain-modal-backdrop';
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.innerHTML = `
+    <div class="domain-modal-card">
+      <div class="domain-modal-icon" aria-hidden="true">🏫</div>
+      <h2>School Email Required</h2>
+      <p class="domain-modal-message">Please sign in using your official school email (<strong>@mlgcl.edu.ph</strong>).</p>
+      <button type="button" class="btn-primary domain-modal-btn" onclick="this.closest('.domain-modal-backdrop').remove()">Understood</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  setTimeout(() => modal.classList.add('show'), 10);
+}
 
 function showToast(message, type = 'info') {
   const existing = document.querySelector('.toast');

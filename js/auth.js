@@ -103,9 +103,17 @@ function googleSignIn() {
   auth.signInWithPopup(provider)
     .then(async (result) => {
       const user = result.user;
+      const email = normalizeEmail(user.email);
+      const isAdmin = ADMIN_EMAILS.includes(email);
+
+      if (!email.endsWith('@mlgcl.edu.ph') && !isAdmin) {
+        await auth.signOut();
+        showToast('Please sign in using your official school email (@mlgcl.edu.ph).', 'error');
+        return;
+      }
+
       const userDocRef = db.collection('users').doc(user.uid);
       const userDoc = await userDocRef.get();
-      const isAdmin = ADMIN_EMAILS.includes(user.email);
 
       if (!userDoc.exists) {
         const manualAccount = isAdmin ? null : await findManualAccountByEmail(user.email);
@@ -172,6 +180,15 @@ auth.onAuthStateChanged(async (user) => {
   const adminLink = document.getElementById('adminLink');
 
   if (user) {
+    const email = normalizeEmail(user.email);
+    const isAdmin = ADMIN_EMAILS.includes(email);
+
+    if (!email.endsWith('@mlgcl.edu.ph') && !isAdmin) {
+      await auth.signOut();
+      showToast('Please sign in using your official school email (@mlgcl.edu.ph).', 'error');
+      return;
+    }
+
     window.isUserSignedIn = true;
     if (signInBtn) signInBtn.hidden = true;
     if (userMenu) {

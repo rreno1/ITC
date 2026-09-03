@@ -254,32 +254,15 @@
         <div class="maintenance-actions">
           ${auth?.currentUser ? `
             <div style="width: 100%; margin-bottom: 0.75rem; font-size: 0.88rem; color: var(--text-secondary);">
-              Signed in as: <strong style="color: var(--text-primary);">${auth.currentUser.email}</strong> (Student)
+              Signed in as: <strong style="color: var(--text-primary);">${auth.currentUser.email}</strong>
             </div>
-            <button type="button" class="btn btn-primary maint-admin-btn" id="maintSwitchAccountBtn">
-              <span>Sign in with Instructor Account</span>
-            </button>
             <button type="button" class="btn btn-secondary maint-signout-btn" id="maintSignOutBtn">
               <span>Sign Out</span>
             </button>
-          ` : `
-            <button type="button" class="btn btn-primary maint-admin-btn" id="maintAdminSignInBtn">
-              <svg class="google-icon" width="16" height="16" viewBox="0 0 18 18" aria-hidden="true">
-                <path fill="#4285F4" d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.47h4.84c-.21 1.12-.84 2.07-1.8 2.72v2.24h2.9c1.7-1.57 2.68-3.88 2.68-6.6z"/>
-                <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.2l-2.9-2.24c-.8.54-1.84.87-3.06.87-2.35 0-4.34-1.58-5.05-3.71H.95v2.3C2.43 15.89 5.5 18 9 18z"/>
-                <path fill="#FBBC05" d="M3.95 10.72A5.4 5.4 0 0 1 3.6 9c0-.6.1-1.19.35-1.72V4.98H.95A9.002 9.002 0 0 0 0 9c0 1.62.43 3.14 1.19 4.47l2.76-2.25z"/>
-                <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35L15 2.1C13.46.66 11.43 0 9 0 5.5 0 2.43 2.11.95 5.28l2.76 2.25C4.66 5.16 6.65 3.58 9 3.58z"/>
-              </svg>
-              <span>Instructor / Admin Sign In</span>
-            </button>
-          `}
+          ` : ''}
           <button type="button" class="btn btn-secondary maint-refresh-btn" id="maintRefreshBtn">
             <span>Check Again / Refresh</span>
           </button>
-        </div>
-
-        <div class="maintenance-footer-hint">
-          <span>Are you an instructor? Sign in with your authorized school email to bypass maintenance mode.</span>
         </div>
       </div>
     `;
@@ -287,33 +270,6 @@
     document.body.classList.add('portal-in-maintenance');
 
     // Attach listeners
-    const signInBtn = overlay.querySelector('#maintAdminSignInBtn');
-    if (signInBtn) {
-      signInBtn.addEventListener('click', () => {
-        if (typeof googleSignIn === 'function') {
-          googleSignIn();
-        } else if (typeof auth !== 'undefined') {
-          const provider = new firebase.auth.GoogleAuthProvider();
-          auth.signInWithPopup(provider).catch(err => {
-            console.error('Sign in error:', err);
-            alert('Sign in failed: ' + (err.message || err));
-          });
-        }
-      });
-    }
-
-    const switchBtn = overlay.querySelector('#maintSwitchAccountBtn');
-    if (switchBtn) {
-      switchBtn.addEventListener('click', async () => {
-        if (typeof auth !== 'undefined') {
-          await auth.signOut();
-          if (typeof googleSignIn === 'function') {
-            googleSignIn();
-          }
-        }
-      });
-    }
-
     const signOutBtn = overlay.querySelector('#maintSignOutBtn');
     if (signOutBtn) {
       signOutBtn.addEventListener('click', async () => {

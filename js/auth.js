@@ -259,6 +259,10 @@ auth.onAuthStateChanged(async (user) => {
       }
     }
 
+    if (typeof refreshMaintenanceGate === 'function') {
+      refreshMaintenanceGate();
+    }
+
     if (!document.getElementById('adminContent') && typeof markPageReady === 'function') {
       markPageReady();
     }
@@ -272,6 +276,7 @@ auth.onAuthStateChanged(async (user) => {
       await loadModuleAvailability();
     }
     if (typeof refreshModuleAvailabilityGate === 'function') refreshModuleAvailabilityGate();
+    if (typeof refreshMaintenanceGate === 'function') refreshMaintenanceGate();
 
     if (signInBtn) signInBtn.hidden = false;
     if (userMenu) userMenu.hidden = true;

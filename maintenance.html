@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" class="page-loading">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maintenance Mode — CC 101 Introduction to Computing</title>
+  <meta name="description" content="CC 101 Introduction to Computing learning portal is currently undergoing scheduled maintenance.">
+  <meta name="theme-color" content="#101417">
+  <link rel="stylesheet" href="styles/theme.css?v=20260712">
+  <link rel="stylesheet" href="styles/main.css?v=20260716-attendance">
+</head>
+<body class="portal-page standalone-maintenance-body">
+  <div class="page-loader" id="pageLoader" role="status" aria-live="polite" aria-busy="true">
+    <span class="page-loader-spinner" aria-hidden="true"></span>
+    <p>Checking portal status...</p>
+  </div>
+
+  <!-- NAV BAR -->
+  <nav class="portal-nav" id="navbar">
+    <a class="nav-brand" href="index.html" aria-label="CC 101 home">
+      <span class="nav-logo">🎓</span>
+      <span class="nav-title">CC 101</span>
+    </a>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" data-theme-toggle title="Toggle theme">
+        <span class="theme-toggle-icon" aria-hidden="true">☀</span>
+      </button>
+      <button class="btn-primary google-btn" id="signInBtn">
+        <svg class="google-icon" width="16" height="16" viewBox="0 0 18 18" aria-hidden="true">
+          <path fill="#4285F4" d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.47h4.84c-.21 1.12-.84 2.07-1.8 2.72v2.24h2.9c1.7-1.57 2.68-3.88 2.68-6.6z"/>
+          <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.2l-2.9-2.24c-.8.54-1.84.87-3.06.87-2.35 0-4.34-1.58-5.05-3.71H.95v2.3C2.43 15.89 5.5 18 9 18z"/>
+          <path fill="#FBBC05" d="M3.95 10.72A5.4 5.4 0 0 1 3.6 9c0-.6.1-1.19.35-1.72V4.98H.95A9.002 9.002 0 0 0 0 9c0 1.62.43 3.14 1.19 4.47l2.76-2.25z"/>
+          <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35L15 2.1C13.46.66 11.43 0 9 0 5.5 0 2.43 2.11.95 5.28l2.76 2.25C4.66 5.16 6.65 3.58 9 3.58z"/>
+        </svg>
+        <span class="google-btn-label">Instructor Sign In</span>
+      </button>
+      <div class="user-menu" id="userMenu" hidden>
+        <span id="userDisplayName" class="user-name">Loading...</span>
+        <a href="admin.html" class="btn-primary btn-compact" id="adminPortalBtn" style="margin-right: 0.5rem; text-decoration: none;">Admin Panel</a>
+        <button class="btn-secondary btn-compact" id="signOutBtn">Sign Out</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="standalone-maint-container">
+    <div class="maintenance-card standalone-card">
+      <div class="maintenance-badge" id="standaloneStatusBadge">
+        <span class="maintenance-pulse" aria-hidden="true"></span>
+        <span>Scheduled Maintenance In Progress</span>
+      </div>
+
+      <div class="maintenance-icon-wrap" aria-hidden="true">
+        <span class="maintenance-gear">⚙️</span>
+        <span class="maintenance-wrench">🔧</span>
+      </div>
+
+      <h1 class="maintenance-title">Portal Under Maintenance</h1>
+      <p class="maintenance-subtitle" id="standaloneStatusText">
+        The CC 101 Introduction to Computing learning portal is currently undergoing scheduled updates and maintenance. Student access is temporarily paused.
+      </p>
+
+      <div class="maintenance-details-box">
+        <div class="maint-detail-row">
+          <span class="maint-detail-icon">🎓</span>
+          <div>
+            <strong>CC 101 — Introduction to Computing</strong>
+            <small>MLG College of Learning</small>
+          </div>
+        </div>
+        <div class="maint-detail-row">
+          <span class="maint-detail-icon">🛡️</span>
+          <div>
+            <strong>Student Progress &amp; Grades Secure</strong>
+            <small>All completed quizzes, scores, and attendance logs are safe in the database.</small>
+          </div>
+        </div>
+        <div class="maint-detail-row">
+          <span class="maint-detail-icon">⏳</span>
+          <div>
+            <strong>Expected Availability</strong>
+            <small>Regular course access will resume once updates are verified. Please check back soon.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="maintenance-actions">
+        <button type="button" class="btn btn-secondary maint-refresh-btn" onclick="window.location.reload()">
+          <span>↻ Check Status / Refresh</span>
+        </button>
+        <a href="index.html" class="btn btn-primary">
+          <span>Go to Home Page</span>
+        </a>
+      </div>
+
+      <div class="maintenance-footer-hint">
+        <span>Instructors and administrators may sign in using the button in the top navigation to bypass maintenance mode.</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="portal-footer">
+    <p>© 2026 CC 101 — Introduction to Computing | MLG College of Learning</p>
+  </footer>
+
+  <script defer src="js/theme.js?v=20260712"></script>
+  <script defer src="js/loading.js?v=20260712"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script defer src="js/firebase-config.js?v=20260712-save2"></script>
+  <script defer src="js/auth.js?v=20260712"></script>
+  <script defer src="js/maintenance.js?v=20260903"></script>
+</body>
+</html>

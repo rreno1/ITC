@@ -243,7 +243,57 @@ function renderActiveAdminPanel() {
   if (activeTab === 'accounts') renderAccountsTable(window.allAccountsCached || []);
 }
 
+function renderMaintenanceControls() {
+  const card = document.getElementById('adminMaintControlCard');
+  const toggle = document.getElementById('globalMaintenanceToggle');
+  const indicator = document.getElementById('adminMaintIndicator');
+  const indicatorText = document.getElementById('adminMaintIndicatorText');
+  if (!toggle) return;
+
+  const isMaint = typeof isMaintenanceModeActive === 'function' ? isMaintenanceModeActive() : Boolean(window.isMaintenanceMode);
+  toggle.checked = isMaint;
+
+  if (card) {
+    card.classList.toggle('is-active', isMaint);
+  }
+  if (indicator) {
+    indicator.className = `admin-maint-state-indicator ${isMaint ? 'active' : 'inactive'}`;
+  }
+  if (indicatorText) {
+    indicatorText.textContent = isMaint ? 'Active (Portal Paused)' : 'Inactive (Portal Live)';
+  }
+
+  if (!toggle.dataset.listenerAttached) {
+    toggle.dataset.listenerAttached = 'true';
+    toggle.addEventListener('change', async () => {
+      const requested = toggle.checked;
+      toggle.disabled = true;
+      if (indicatorText) indicatorText.textContent = requested ? 'Activating...' : 'Deactivating...';
+
+      try {
+        if (typeof setMaintenanceMode === 'function') {
+          await setMaintenanceMode(requested);
+        } else {
+          window.isMaintenanceMode = requested;
+        }
+        renderMaintenanceControls();
+      } catch (err) {
+        console.error('Failed to update maintenance mode:', err);
+        toggle.checked = !requested;
+        renderMaintenanceControls();
+      } finally {
+        toggle.disabled = false;
+      }
+    });
+
+    document.addEventListener('maintenancestatechange', () => {
+      renderMaintenanceControls();
+    });
+  }
+}
+
 function renderCourseModuleControls() {
+  renderMaintenanceControls();
   const list = document.getElementById('moduleControlList');
   if (!list) return;
 

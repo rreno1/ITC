@@ -87,3 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('moduleavailabilitychange', () => {
   if (document.getElementById('moduleGrid')) renderModuleCards();
 });
+
+document.addEventListener('maintenancestatechange', () => {
+  if (document.getElementById('moduleGrid')) renderModuleCards();
+});
+

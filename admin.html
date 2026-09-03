@@ -233,6 +233,27 @@
         </div>
 
         <p class="module-settings-status" id="moduleSettingsStatus" role="status" aria-live="polite">Module availability is ready.</p>
+
+        <!-- MAINTENANCE MODE CONTROLS -->
+        <div class="admin-maint-control-card" id="adminMaintControlCard">
+          <div class="admin-maint-copy">
+            <p class="page-eyebrow">System Controls</p>
+            <h3>Portal Maintenance Mode</h3>
+            <p id="adminMaintDescription">When active, student access across all modules, home, and progress pages is temporarily paused with a scheduled maintenance notice. Instructors can still log in and bypass.</p>
+          </div>
+          <div class="admin-maint-toggle-wrap">
+            <span class="admin-maint-state-indicator" id="adminMaintIndicator">
+              <span class="maintenance-pulse" aria-hidden="true"></span>
+              <span id="adminMaintIndicatorText">Checking...</span>
+            </span>
+            <label class="module-access-switch" for="globalMaintenanceToggle">
+              <span class="visually-hidden">Toggle Maintenance Mode</span>
+              <input id="globalMaintenanceToggle" type="checkbox" role="switch" aria-label="Toggle Portal Maintenance Mode">
+              <span class="module-switch-track" aria-hidden="true"><span></span></span>
+            </label>
+          </div>
+        </div>
+
         <div class="module-control-list" id="moduleControlList" role="list" aria-label="Course module availability controls">
           <div class="admin-loading-state" role="status">
             <span class="loading-spinner" aria-hidden="true"></span>
@@ -481,6 +502,7 @@
   <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   <script defer src="js/firebase-config.js?v=20260712-save2"></script>
   <script defer src="js/auth.js?v=20260712"></script>
+  <script defer src="js/maintenance.js?v=20260903"></script>
   <script defer src="js/admin.js?v=20260717-revert"></script>
 </body>
 </html>
